@@ -433,34 +433,15 @@ span {
                         	<span>&nbsp;&nbsp;잠금모드</span>
                         	</span>
                         </li> -->
-                        <c:choose>
-                           <c:when test="${kind=='normal'}">
                           		<li>
                           			<span id="logout" style="cursor: pointer;">
                               			<span class="icon-key"></span> 
                               			<span>&nbsp;&nbsp;로그아웃</span>
                               		</span>
                               	</li>
-                           </c:when>
-                           <c:when test="${kind=='google'}">
-                              <li>
-                              	<span id="logoutGoogle" style="cursor: pointer;">
-                             		<span class="icon-key" ></span> 
-                              		<span>&nbsp;&nbsp;로그아웃</span>
-                              	</span>
-                              </li>
-                           </c:when>
-                           <c:when test="${kind=='naver'}">
-                              <li>
-                              	<span id="logoutNaver" style="cursor: pointer;">
-	                              	<span class="icon-key"></span> 
-	                              	<span>&nbsp;&nbsp;로그아웃</span>
-                              	</span>
-                              </li>
-                           </c:when>
-                           <c:otherwise></c:otherwise>
-                        </c:choose>
-
+						<c:if test="${email='null'}">
+                        <li>로그인을 해주세요.</li>
+						</c:if>
                         <li><%=session.getAttribute("email")%></li>
                      </ul>
                   </div>
@@ -925,27 +906,23 @@ span {
    </div>
    </div>
 <script type="text/javascript">
-//내정보 열기 (드롭다운)
-$('#myprofileEdit').click(function(){
-	  location.href="memberEdit.do?${sessionScope.email}";
-    });
-//잠금 모드 (드롭다운)
-$('#lockScoop').click(function(){
-		location.href="page-lock.jsp";
-    });
+$(document).ready(function($) {
+	var email = session.getAttribute("email");
+if(email == 'null'){
+		location.href="index.do";	
+	}else {
+		//내정보 열기 (드롭다운)
+		$('#myprofileEdit').click(function(){
+			  location.href="memberEdit.do?${sessionScope.email}";
+		    });
+	
+	}
+}
+
 //일반 회원 로그아웃 (드롭다운)
 $('#logout').click(function(){
 		location.href="logout.do";
     });  
-//구글 회원 로그아웃 (드롭다운)    
-$('#logoutGoogle').click(function(){
-	  	signOut();
-    });
-//네이버 회원 로그아웃 (드롭다운)
-$('#logoutNaver').click(function(){
-		location.href="logout.do";
-    });
-    
     
 
 </script>
