@@ -70,12 +70,12 @@ public class MemberController {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			
 			Map model = new HashMap();
-			model.put("title", "협업공간 SCOOP 회원가입 인증 이메일입니다");
+			model.put("title", "영화를 즐기는 MOFLEX 회원가입 인증 이메일입니다");
 			String mailBody = VelocityEngineUtils.mergeTemplateIntoString(
 					velocityEngineFactoryBean.createVelocityEngine(), "emailTemplate.vm", "UTF-8", model);
 			messageHelper.setFrom("chdl1229@gmail.com");
 			messageHelper.setTo(member.getEmail());
-			messageHelper.setSubject("협업공간 SCOOP 회원가입 인증 이메일입니다");
+			messageHelper.setSubject("영화를 즐기는 MOFLEX 회원가입 인증 이메일입니다");
 			messageHelper.setText(mailBody, true);
 			mailSender.send(message); //회원가입 인증 메일 보내기
 			PrintWriter out = response.getWriter();
@@ -206,12 +206,12 @@ public class MemberController {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			
 			Map model = new HashMap();
-			model.put("title", "협업공간 SCOOP 본인 인증 이메일입니다");
+			model.put("title", "영화를 즐기는 MOFLEX 본인 인증 이메일입니다");
 			// model.put("password", temp);
 			String mailBody = VelocityEngineUtils.mergeTemplateIntoString(velocityEngineFactoryBean.createVelocityEngine(), "forgotPwd.vm", "UTF-8", model);
 			messageHelper.setFrom("leeyong1321@gmail.com");
 			messageHelper.setTo(email);
-			messageHelper.setSubject("회원님의 SCOOP 계정의 본인 인증 이메일입니다");
+			messageHelper.setSubject("회원님의 MOFLEX 계정의 본인 인증 이메일입니다");
 			messageHelper.setText(mailBody, true);
 			mailSender.send(message);
 			
