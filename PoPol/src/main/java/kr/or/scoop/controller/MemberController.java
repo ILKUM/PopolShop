@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.LocaleResolver;
 
 import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dto.Member;
@@ -52,11 +54,15 @@ public class MemberController {
 
 	@Autowired
 	private VelocityEngineFactoryBean velocityEngineFactoryBean;
+	
+	@Autowired
+	private LocaleResolver localeResolver;
 
 	// 일반 회원가입 인증
 	@RequestMapping(value = "frontpage.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public String register(Member member, HttpSession session, Mail mail, HttpServletResponse response) throws ClassNotFoundException, SQLException {
 		response.setContentType("text/html; charset=UTF-8");
+
 		int result = 0;
 		String viewpage = "";
 		session.setAttribute("checkemail", member.getEmail());
@@ -165,6 +171,21 @@ public class MemberController {
 	@RequestMapping(value = "/userindex.do", method = RequestMethod.GET)
 	public String userindex(@RequestParam(required = false, name="lang") String language, HttpSession session, 
 				HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		if(language == null && session.getAttribute("language") != null) {
+			language = (String)session.getAttribute("language");
+		}else if(language == null) {
+			language = "ko";
+		}
+		
+		Locale locale  = new Locale(language);
+		localeResolver.setLocale(request, response, locale);
+		if(language.equals("ko")) {
+			session.setAttribute("defaultlang", "한국어");
+		}else{
+			session.setAttribute("defaultlang", "English");
+		}
+		session.setAttribute("language", language);
 		
 		String email = "";
 		
