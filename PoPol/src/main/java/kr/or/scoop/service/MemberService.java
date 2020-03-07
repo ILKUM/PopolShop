@@ -40,6 +40,7 @@ public class MemberService {
 			Member member = pwdCheck(email);
 			String encodePwd = member.getPwd();
 			boolean istrue = bCryptPasswordEncoder.matches(pwd, encodePwd);
+			System.out.println("istrue");
 			MemberDao dao = sqlsession.getMapper(MemberDao.class);
 			if(istrue) {
 				result = dao.loginCheck(email,encodePwd);

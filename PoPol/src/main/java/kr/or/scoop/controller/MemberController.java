@@ -158,7 +158,6 @@ public class MemberController {
 		if (result > 0) {
 			viewpage = "redirect:/userindex.do";
 			session.setAttribute("email", email);
-			session.setAttribute("kind", "normal");
 		} else {
 			viewpage = "utils/loginFail";
 		}
@@ -284,7 +283,7 @@ public class MemberController {
 	}
 	
 	// 회원가입 인증
-	@RequestMapping(value = "/certified.do")
+	@RequestMapping(value = "certified.do")
 	public String certified() {
 		return "certified/Certified";
 	}

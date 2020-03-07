@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 public class Role {
 	private String email; //사용자 이메일
 	private String rname; //사용자 등급
-	private int count; //사용자 프로젝트 개수
 	
 	public String getEmail() {
 		return email;
@@ -20,16 +19,10 @@ public class Role {
 	public void setRname(String rname) {
 		this.rname = rname;
 	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
 	
 	@Override
 	public String toString() {
-		return "Role [email=" + email + ", rname=" + rname + ", count=" + count + "]";
+		return "Role [email=" + email + ", rname=" + rname + "]";
 	}
 	
 	

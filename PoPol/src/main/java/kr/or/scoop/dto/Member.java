@@ -13,7 +13,7 @@ public class Member {
 	private CommonsMultipartFile filesrc; //프로필사진
 	private Date iddate; //가입 시간
 	private String profile; //프로필 사진 파일 이름
-	
+	private String rname; //등급 이름
 
 
 	public Date getIddate() {
@@ -52,12 +52,20 @@ public class Member {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+	
+	public String getRname() {
+		return rname;
+	}
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
+	
 	@Override
 	public String toString() {
 		return "Member [email=" + email + ", pwd=" + pwd + ", name=" + name + ", filesrc=" + filesrc + ", iddate="
-				+ iddate + ", profile=" + profile + "]";
+				+ iddate + ", profile=" + profile + ", rname=" + rname + "]";
 	}
 
-
+	
 	
 }
