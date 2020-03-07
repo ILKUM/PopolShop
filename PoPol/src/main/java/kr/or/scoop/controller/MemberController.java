@@ -170,7 +170,6 @@ public class MemberController {
 	@RequestMapping(value = "/userindex.do", method = RequestMethod.GET)
 	public String userindex(@RequestParam(required = false, name="lang") String language, HttpSession session, 
 				HttpServletRequest request, HttpServletResponse response, Model model) {
-
 		if(language == null && session.getAttribute("language") != null) {
 			language = (String)session.getAttribute("language");
 		}else if(language == null) {
@@ -197,6 +196,7 @@ public class MemberController {
 		session.setAttribute("name", member.getName()); //이름 세션저장
 		session.setAttribute("img",img); //프로필사진 세션저장
 		session.setAttribute("role", role.getRname()); //등급 세션저장
+		
 		
 		return "user/dashBoard";
 	}
