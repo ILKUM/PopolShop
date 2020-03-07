@@ -2,8 +2,8 @@ package kr.or.scoop.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.or.scoop.dao.MemberDao;
@@ -61,46 +61,6 @@ public class MemberService {
 		return member;
 	}
 	
-	//구글 아이디 로그인 
-	public int googleIdCheck(String email, String name) {
-		int result = 0;
-		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		result = dao.googleIdCheck(email, name);
-		if(result>0) {
-		} else {
-			int googleInsertCheck = 0;
-			googleInsertCheck = dao.googleInsertCheck(email, name);
-			if(googleInsertCheck>0) {
-				result = googleInsertCheck;
-			}else {
-			}
-		}
-		return result;
-		
-	}
-	
-	public int issueCheck() {
-		return 0;
-		
-	}
-	
-	//네이버 아이디 로그인
-	public int naverIdCheck(String email, String name) {
-		int result = 0;
-		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		result = dao.googleIdCheck(email, name);
-		if(result>0) {
-		} else {
-			int naverInsertCheck = 0;
-			naverInsertCheck = dao.naverInsertCheck(email, name);
-			if(naverInsertCheck>0) {
-				result = naverInsertCheck;
-			}else {
-			}
-		}
-		return result;
-	}
-	
 	//아이디 중복 체크 
 	public int idCheck(String email) {
 		int result = 0;
@@ -117,7 +77,7 @@ public class MemberService {
 		return result;
 	}
 	
-	//스쿱에서 회원 탈퇴
+	//회원 탈퇴
 	public int deleteMember(String email) {
 		int result = 0;
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);

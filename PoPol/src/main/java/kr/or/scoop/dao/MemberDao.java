@@ -20,15 +20,6 @@ public interface MemberDao {
 	// 회원 패스워드 암호화 체크
 	public Member pwdCheck(String email);
 	
-	// 구글로그인
-	public int googleIdCheck(String email, String name);
-	
-	// 구글아이디 등록
-	public int googleInsertCheck(String email, String name);
-	
-	// 네이버아이디 등록
-	public int naverInsertCheck(String email, String name);
-	
 	// 아이디 중복체크
 	public int idCheck(String email);
 	

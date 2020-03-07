@@ -1,6 +1,6 @@
 package kr.or.scoop.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -11,19 +11,17 @@ public class Member {
 	private String pwd; //비밀번호
 	private String name; //이름
 	private CommonsMultipartFile filesrc; //프로필사진
-	private Timestamp idtime; //가입 시간
+	private Date iddate; //가입 시간
 	private String profile; //프로필 사진 파일 이름
 	
-	public void setIdtime(Timestamp idtime) {
-		this.idtime = idtime;
+
+
+	public Date getIddate() {
+		return iddate;
 	}
-
-	public Timestamp getIdtime() {
-		return idtime;
+	public void setIddate(Date iddate) {
+		this.iddate = iddate;
 	}
-
-
-
 	public String getEmail() {
 		return email;
 	}
@@ -54,5 +52,12 @@ public class Member {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
+	@Override
+	public String toString() {
+		return "Member [email=" + email + ", pwd=" + pwd + ", name=" + name + ", filesrc=" + filesrc + ", iddate="
+				+ iddate + ", profile=" + profile + "]";
+	}
 
+
+	
 }
