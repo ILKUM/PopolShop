@@ -8,6 +8,7 @@
 <c:set var="count" value="${sessionScope.count}" />
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="status" value="${sessionScope.status}" />
+<c:set var="email" value="${sessionScope.email}"/>
 <style>
 input::placeholder {
    color: #fff;
@@ -906,18 +907,12 @@ span {
    </div>
    </div>
 <script type="text/javascript">
-$(document).ready(function($) {
-	var email = session.getAttribute("email");
-if(email == 'null'){
-		location.href="index.do";	
-	}else {
 		//내정보 열기 (드롭다운)
 		$('#myprofileEdit').click(function(){
-			  location.href="memberEdit.do?${sessionScope.email}";
+	  location.href="memberEdit.do?${sessionScope.email}";
 		    });
 	
-	}
-}
+
 
 //일반 회원 로그아웃 (드롭다운)
 $('#logout').click(function(){

@@ -35,4 +35,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="getProfile" parameterType="kr.or.scoop.dto.Member" resultType="String">
 		select profile from member where email = #{email}
 	</select>
+		<!-- 멤버정보 수정하기 -->
+	<update id="updateMember" parameterType="kr.or.scoop.dto.Member">
+		update member
+		set email = #{email,jdbcType=VARCHAR}, pwd = #{pwd,jdbcType=VARCHAR}, name=#{name,jdbcType=VARCHAR}, profile= #{profile,jdbcType=VARCHAR} where email = #{email,jdbcType=VARCHAR}
+	</update>
 </mapper>

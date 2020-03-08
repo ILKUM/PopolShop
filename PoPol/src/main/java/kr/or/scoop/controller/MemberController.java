@@ -193,6 +193,7 @@ public class MemberController {
 		Role role = memberdao.getRole(email); //로그인한 사람 등급 불러오기
 		String img = memberdao.getProfile(email); //로그인한 사람 프로필사진 불러오기
 		
+		session.setAttribute("email", member.getEmail());
 		session.setAttribute("name", member.getName()); //이름 세션저장
 		session.setAttribute("img",img); //프로필사진 세션저장
 		session.setAttribute("role", role.getRname()); //등급 세션저장
