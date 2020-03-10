@@ -500,7 +500,7 @@ span {
          <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="private.book" /></span>
+                  &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
          <li class="nav-label" style="padding-bottom: 0"><b style="font-size:15px;"><spring:message code="team.title" /></b></li>
          <li class="nav-label">
