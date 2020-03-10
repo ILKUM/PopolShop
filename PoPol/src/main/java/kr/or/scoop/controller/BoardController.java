@@ -33,4 +33,22 @@ public class BoardController {
 			model.addAttribute("notice",n);
 			return "notice/notice";
 		}
+		
+		//공지사항 작성
+		@RequestMapping(value="noticeWrite.do" , method=RequestMethod.POST)
+		public String noticeWrite(Notice notice) {
+			int result = 0;
+			String viewpage;
+			notice.setNocontent(notice.getNocontent().replace("\r\n", "<br>"));
+			result = bService.insertNotice(notice);//공지사항 작성
+			
+			if(result > 0) {
+				viewpage = "redirect:/notice.do";
+			}else {
+				viewpage = "user/userindex";
+			}
+			
+			return viewpage;
+		
+		}
 }

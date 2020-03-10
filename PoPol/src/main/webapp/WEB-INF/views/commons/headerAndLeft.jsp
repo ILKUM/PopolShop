@@ -885,14 +885,14 @@ span {
             <div class="modal-body">
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
-               <label for="bntitle">공지사항</label> <input
+               <label for="notitle">공지사항</label> <input
                   class="form-control createmodal" type="text" id="bntitle"
-                  name="bntitle" style="width: 100%;border-radius: 0.5rem;" placeholder="제목을 입력해 주세요.">
+                  name="notitle" style="width: 100%;border-radius: 0.5rem;" placeholder="제목을 입력해 주세요.">
                <br> <label for="noticecontent">공지 설명</label>
                <textarea class="form-control createmodal" rows="5"
-                  id="bncontent" name="bncontent" style="width: 100%"
+                  id="bncontent" name="nocontent" style="width: 100%"
                   placeholder="내용을 적어주세요."></textarea>   
-                  <input type="hidden" name="email" value="${sessionScope.email}">      
+                  <input type="hidden" name="nwriter" value="${sessionScope.email}">      
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"

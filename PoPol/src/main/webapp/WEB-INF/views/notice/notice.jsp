@@ -113,31 +113,31 @@ $(document).ready(function(){
 		</div>
 		<c:set value="${notice}" var="no" />
 		<c:forEach items="${notice}" var="n">
-		<a href="noticeDetail.do?bnseq=${n.bnseq}" name="bnseq" class="bnseq">	
+		<a href="noticeDetail.do?bnseq=${n.noseq}" name="bnseq" class="bnseq">	
 		<div class="row" style="margin-left: 2%; margin-right: 2%" id="row">	
 			<div class="col-sm-3 newissue">
 			<c:choose>
-           		<c:when test="${fn:length(n.bntitle) > 19}">	
-            <c:out value="${fn:substring(n.bntitle,0,18)}"/>...
+           		<c:when test="${fn:length(n.notitle) > 19}">	
+            <c:out value="${fn:substring(n.notitle,0,18)}"/>...
            </c:when>
            <c:otherwise>
-           		<c:out value="${n.bntitle}"/>
+           		<c:out value="${n.notitle}"/>
            </c:otherwise> 
           </c:choose>
 			</div>
 			
 			<div class="col-sm-7 newissue">
 			<c:choose>
-          <c:when test="${fn:length(n.bncontent) > 65}">
-             <c:out value="${fn:substring(n.bncontent,0,65)}"/>...
+          <c:when test="${fn:length(n.nocontent) > 65}">
+             <c:out value="${fn:substring(n.nocontent,0,65)}"/>...
            </c:when>
            <c:otherwise>
-           		<c:out value="${n.bncontent}"/>
+           		<c:out value="${n.nocontent}"/>
            </c:otherwise> 
           </c:choose>
 			</div>
 			<div class="col-sm-2 newissue">
-			${fn:substring(n.bntime,0,16)}
+			${fn:substring(n.notime,0,16)}
 			</div>
       </div>
 			</a>

@@ -6,4 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getNotice" resultType="kr.or.scoop.dto.Notice">
 	select noseq,notitle,nocontent,nwriter,notime from notice
 </select>
+<insert id="insertNotice" parameterType="kr.or.scoop.dto.Notice">
+	insert into notice (noseq,notitle,nocontent,notime,nwriter) 
+	values (noseq_notice_seq.nextval,#{notitle},#{nocontent},systimestamp,#{nwriter}) 
+</insert>
 </mapper>
