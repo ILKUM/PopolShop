@@ -51,4 +51,34 @@ public class BoardController {
 			return viewpage;
 		
 		}
+		
+		//공지사항 디테일
+		@RequestMapping(value="noticeDetail.do", method = RequestMethod.GET)
+		public String noticeDetail(int noseq,Model model) {
+			String viewpage;
+			NoticeDao dao = sqlSession.getMapper(NoticeDao.class);
+			Notice notice = dao.detailNotice(noseq); //공지사항 디테일
+			model.addAttribute("notice",notice);
+			
+			viewpage = "notice/noticeDetail";
+			
+			return viewpage;
+		}
+		
+		//공지사항 삭제
+		@RequestMapping(value="deleteNoitce.do",method = RequestMethod.POST)
+		public String noticeDelete(int noseq) {
+			int result = 0;
+			String viewpage;
+			NoticeDao dao = sqlSession.getMapper(NoticeDao.class);
+			result = dao.deleteNotice(noseq);
+			if(result > 0) {
+				viewpage = "redirect:/notice.do";
+			}else {
+				viewpage = "redirect:/noticeDetail.do?noseq"+noseq;
+			}
+			return viewpage;
+			
+		}
+		
 }

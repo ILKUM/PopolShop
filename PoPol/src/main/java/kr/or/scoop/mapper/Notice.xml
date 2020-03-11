@@ -10,4 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into notice (noseq,notitle,nocontent,notime,nwriter) 
 	values (noseq_notice_seq.nextval,#{notitle},#{nocontent},systimestamp,#{nwriter}) 
 </insert>
+<select id="detailNotice" resultType="kr.or.scoop.dto.Notice">
+	select notitle,nocontent,nwriter,notime from notice where noseq=#{noseq}
+	</select>
 </mapper>

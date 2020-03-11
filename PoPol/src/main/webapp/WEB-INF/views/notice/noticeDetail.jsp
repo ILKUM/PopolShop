@@ -26,7 +26,7 @@ $(function(){
 		console.log("${myissue.email}");
 		console.log("${sessionScope.email}");
 		$('#editIssue').click(function(){
-			location.href = 'noticeEdit.do?bnseq='+${notice.bnseq};
+			location.href = 'noticeEdit.do?bnseq='+${notice.noseq};
 		})
 		
 		$('#deleteIssue').click(function(){
@@ -41,7 +41,7 @@ $(function(){
 				   cancelButtonText: '취소'
 				 }).then((result) => {
 				   if (result.value) {
-					   location.href = 'deleteNoitce.do?bnseq='+${notice.bnseq};
+					   location.href = 'deleteNoitce.do?noseq='+${notice.noseq};
 				   }
 				 })
 		})
@@ -87,7 +87,7 @@ border-radius: 5px;
 		<div class="row"style="margin:2% 2% 0 2%" >
 		<div class="col-sm-10">
 		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #E71D36;" data-icon="ant-design:notification-outlined" data-inline="false"></span>
-		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;">${notice.bntitle}</span>
+		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;">${notice.notitle}</span>
 		</div>
 		<c:if test="${role == 'ROLE_ADMIN'}">
 		<div class="col-sm-2" style="padding-top: 2%;padding-left: 8%;">
@@ -104,7 +104,7 @@ border-radius: 5px;
 		<hr>
 		<div style="height:520px ;border: 1px solid rgba(0,0,0,0.5);margin-left: 2%;margin-right: 2%;border-radius: 0.5rem;padding: 1% 2% 1% 2%;">
 	        <div class="myissueDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
-	        ${notice.bncontent}
+	        ${notice.nocontent}
 	        <img src="resources/images/logo/ScoopTitle.png" style="width:500px;height: auto;opacity:0.5;position:absolute;left: 30%;">
 	        </div>    
 		</div>

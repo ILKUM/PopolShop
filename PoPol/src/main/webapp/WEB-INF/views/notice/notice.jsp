@@ -113,7 +113,7 @@ $(document).ready(function(){
 		</div>
 		<c:set value="${notice}" var="no" />
 		<c:forEach items="${notice}" var="n">
-		<a href="noticeDetail.do?bnseq=${n.noseq}" name="bnseq" class="bnseq">	
+		<a href="noticeDetail.do?noseq=${n.noseq}" name="noseq" class="noseq">	
 		<div class="row" style="margin-left: 2%; margin-right: 2%" id="row">	
 			<div class="col-sm-3 newissue">
 			<c:choose>
