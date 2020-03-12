@@ -1,6 +1,11 @@
 package kr.or.scoop.controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
+import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
 import kr.or.scoop.service.BoardService;
 
@@ -80,5 +88,46 @@ public class BoardController {
 			return viewpage;
 			
 		}
+		
+		//영화 추가 
+		@RequestMapping(value="insertMovie.do",method = RequestMethod.POST)
+		public String movieInsert(Movie movie , HttpServletRequest request) {
+			   			String viewpage;
+						CommonsMultipartFile multifile = movie.getFilesrc();
+						String filename = multifile.getOriginalFilename();		
+						String path = request.getServletContext().getRealPath("/user/movie");
+						
+						String fpath = path + "\\"+ filename; 
+							
+							if(!filename.equals("")) { //실 파일 업로드
+								FileOutputStream fs = null;
+								try {
+									fs = new FileOutputStream(fpath);
+								} catch (FileNotFoundException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									
+								}finally {
+									try {
+										fs.write(multifile.getBytes());
+										fs.close();
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+							}
+						
+					   MovieDao dao = sqlSession.getMapper(MovieDao.class);
+					   int result = dao.insertMovie(movie);
+					   if(result > 0) {
+						   viewpage = "redirect:/userindex.do";
+					   }else {
+						   viewpage = "redirect:/userindex.do";
+					   }
+					   
+					   return viewpage;
+		}
+		
 		
 }

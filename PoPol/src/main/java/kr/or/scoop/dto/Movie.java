@@ -12,6 +12,8 @@ public class Movie {
 	private int molike; //영화 추천수	
 	private int monum; //영화 분류코드
 	private Date modate; //영화 개봉날짜
+	private String modirector; //영화 감독
+	
 	public int getMoseq() {
 		return moseq;
 	}
@@ -54,12 +56,20 @@ public class Movie {
 	public void setModate(Date modate) {
 		this.modate = modate;
 	}
+	public String getModirector() {
+		return modirector;
+	}
+	public void setModirector(String modirector) {
+		this.modirector = modirector;
+	}
 	
 	@Override
 	public String toString() {
 		return "Movie [moseq=" + moseq + ", moname=" + moname + ", mocontent=" + mocontent + ", filesrc=" + filesrc
-				+ ", molike=" + molike + ", monum=" + monum + ", modate=" + modate + "]";
+				+ ", molike=" + molike + ", monum=" + monum + ", modate=" + modate + ", modirector=" + modirector + "]";
 	}
+	
+	
 	
 	
 }

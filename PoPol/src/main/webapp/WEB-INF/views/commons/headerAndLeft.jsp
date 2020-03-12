@@ -908,13 +908,13 @@ span {
       
         <!-- Modal Header -->
         <div class="modal-header" align="center">
-          <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">WatchList Add</h4>
+          <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">영화 추가</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-          <form class="was-validated" action="addwatch.list" enctype="multipart/form-data" method="post">
+          <form class="was-validated" action="insertNotice.do" enctype="multipart/form-data" method="post">
           
           <div class="form-label-group" text-align="center" align="center">
               <img id="image" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center">
@@ -922,31 +922,23 @@ span {
   
   <hr class="my-4">
      <div class="row">
-    <div class="col" width="33%" align="center" >Poster File</div>
-    <div class="col" width="33%" align="center">Input Date</div>
-    <div class="col" width="33%" align="center">Public or Private</div>
+    <div class="col" width="33%" align="center" >영화 사진</div>
+    <div class="col" width="33%" align="center">개봉 날짜</div>
     <hr class="my-4">
     <div class="w-100"></div>
     <div class="col" width="33%">
       <div class="custom-file">
-      <input type="file" id="file" name="file" class="custom-file-input" required>
-      <label class="custom-file-label" for="validatedCustomFile">Poster</label>
-      <div class="invalid-feedback">Select your movie poster file</div>
+      <input type="file" id="file" name="filesrc" class="custom-file-input" required>
+      <label class="custom-file-label" for="validatedCustomFile">영화사진</label>
+      <div class="invalid-feedback">선택해주세요 영화 포스터를</div>
     </div>
     </div>
     <div class="col" width="33%">
       <div class="form-label-group">
-        <input type="date" id="servdate" name="servdate" class="form-control" required>
+        <input type="date" id="servdate" name="modate" class="form-control" required>
         <label class="custom-date-label" for="validatedCustomDate"></label>
   </div>
     </div>
-    <div class="col" width="33%" align="center">
-    <div class="form-label-group">
-    <input type="radio" name="ispublic" id="ispublic-1" value="0" checked>Public
-     <input type="radio" name="ispublic" id="ispublic-2" value="1">Private
-    </div>
-    <div class="invalid-feedback">Do you want to get private?</div>
-  </div>
     </div>
   
     <hr class="my-4">
@@ -954,30 +946,23 @@ span {
 
 
   <div class="form-label-group">
-        <label for="validationTextarea">Title</label>
-        <input type="text" id="title" name="title" class="form-control" placeholder="Title" required readonly>
+        <label for="validationTextarea">영화 제목</label>
+        <input type="text" id="title" name="moname" class="form-control" placeholder="Title">
   </div>
-  
-  <div class="form-label-group">
-        <label for="validationTextarea">Director</label>
-        <input type="text" id="director" name="director" class="form-control" placeholder="Director" required readonly>
-  </div>
-  
-  <div class="form-label-group">
-        <label for="validationTextarea">Release</label>
-        <input type="text" id="release" name="release" class="form-control" placeholder="Release" required readonly>
-  </div>
-
+    <div class="form-label-group">
+        <label for="validationTextarea">영화 감독</label>
+        <input type="text" id="release" name="modirector" class="form-control" placeholder="Release" required readonly>
+  </div>  
   <div class="mb-3">
-    <label for="validationTextarea">Comment</label>
-    <textarea class="form-control is-invalid" id="comment" name="comment" placeholder="Required example textarea" required></textarea>
+    <label for="validationTextarea">영화 설명</label>
+    <textarea class="form-control is-invalid" id="comment" name="mocontent" placeholder="Required example textarea" required></textarea>
     <div class="invalid-feedback">
-      Write message about this movie in 20 letters
+      영화 설명을 써주세요.
     </div>
   </div>
-    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">Add</button>
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">추가하기</button>
         <br>
-      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">Cancel</button>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
   
 </form>
         </div>
