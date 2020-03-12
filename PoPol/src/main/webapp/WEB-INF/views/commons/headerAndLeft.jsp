@@ -497,47 +497,12 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
-         <li class="nav-label" style="padding-bottom: 0"><b style="font-size:15px;"><spring:message code="team.title" /></b></li>
-         <li class="nav-label">
-         <c:choose>
-         <c:when test="${count >= 3 and role == 'ROLE_USER'}">
-         <button type="button" class="btn"
-               style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-               data-toggle="modal" data-target="#myModal" disabled="disabled">
-               <i class="icon-note menu-icon"></i> <spring:message code="team.limit" />
-        </button>
-        </c:when>
-        <c:otherwise>
-         <button type="button" class="btn"
-               style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-               data-toggle="modal" data-target="#myModal">
-               <i class="icon-note menu-icon"></i> <spring:message code="team.create" />
-        </button>
-        </c:otherwise>
-        </c:choose>
-            </li>
-         <li class="nav-label" style="padding-top: 0"><input
-            onkeyup="filter()" type="search" id="searchpjt" class="form-control"
-            style="border-radius: 0.25rem; height: 20px" placeholder="협업공간 검색"></li>
-         <c:forEach items="${pjtlist}" var="p">
-            <c:choose>
-           <c:when test="${fn:length(p.pname) > 11}">
-            <li class="search_project"><a
-               href="projectDetail.do?tseq=${p.tseq}" class="projecthref" aria-expanded="false"><span
-                  class="iconify" data-icon="bx:bxs-flag-alt" data-inline="false"
-                  style="width: 20px; height: auto;"> </span><span
-                  class="nav-text resultsearch"> &nbsp; <c:out value="${fn:substring(p.pname,0,11)}"/> ...</span></a></li>
-               </c:when>
-               <c:otherwise>
-               <li class="search_project"><a
-               href="projectDetail.do?tseq=${p.tseq}" class="projecthref" aria-expanded="false"><span
-                  class="iconify" data-icon="bx:bxs-flag-alt" data-inline="false"
-                  style="width: 20px; height: auto;"> </span><span
-                  class="nav-text resultsearch"> &nbsp; <c:out value="${p.pname}"/></span></a></li>
-           </c:otherwise> 
-          </c:choose>    
-         </c:forEach>
-         <li class="nav-label" style="padding-bottom: 30px"></li>
+         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movie.title" /></b></li>
+               <li><a href="bookmark.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="private.wish" /></span>
+         </a></li>    
       </ul>
    </div>
 </div>
@@ -831,9 +796,6 @@ span {
                      </div>
                      <label for="content"><spring:message code="invite.team" /></label> <select id="select_invite"
                         name="tseq" class="form-control" style="border-radius: 0.25rem;">
-                        <c:forEach items="${pjtlist}" var="p">
-                           <option value="${p.tseq}">${p.pname}</option>
-                        </c:forEach>
                      </select>
                   </div>
                </div>
@@ -917,7 +879,7 @@ span {
           <form class="was-validated" action="insertNotice.do" enctype="multipart/form-data" method="post">
           
           <div class="form-label-group" text-align="center" align="center">
-              <img id="image" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center">
+              <img id="Photo" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center">
          </div>
   
   <hr class="my-4">
@@ -947,17 +909,16 @@ span {
 
   <div class="form-label-group">
         <label for="validationTextarea">영화 제목</label>
-        <input type="text" id="title" name="moname" class="form-control" placeholder="Title">
+        <input type="text" id="title" name="moname" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">
   </div>
     <div class="form-label-group">
         <label for="validationTextarea">영화 감독</label>
-        <input type="text" id="release" name="modirector" class="form-control" placeholder="Release" required readonly>
+        <input type="text" id="release" name="modirector" class="form-control is-invalid" placeholder="영화 감독을 입력해주세요" required="required">
   </div>  
   <div class="mb-3">
     <label for="validationTextarea">영화 설명</label>
-    <textarea class="form-control is-invalid" id="comment" name="mocontent" placeholder="Required example textarea" required></textarea>
+    <textarea class="form-control is-invalid" id="comment" name="mocontent" placeholder="영화 설명 300자이내로 설명해주세요." required></textarea>
     <div class="invalid-feedback">
-      영화 설명을 써주세요.
     </div>
   </div>
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">추가하기</button>
@@ -990,6 +951,20 @@ span {
 $('#logout').click(function(){
 		location.href="logout.do";
     });  
-    
+
+//사진 변경
+$(function(){
+	
+	$('#file').change(function(){
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			
+			document.getElementById("Photo").src = e.target.result;
+		};
+		
+		reader.readAsDataURL(this.files[0]);
+	});
+});
 
 </script>
