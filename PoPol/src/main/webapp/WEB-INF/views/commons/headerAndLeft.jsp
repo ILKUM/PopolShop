@@ -501,7 +501,27 @@ span {
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="private.wish" /></span>
+                  &nbsp;<spring:message code="movie.board1" /></span>
+         </a></li>    
+               <li><a href="bookmark.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="movie.board2" /></span>
+         </a></li>    
+               <li><a href="bookmark.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="movie.board3" /></span>
+         </a></li>    
+               <li><a href="bookmark.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="movie.board4" /></span>
+         </a></li>    
+               <li><a href="bookmark.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="movie.board5" /></span>
          </a></li>    
       </ul>
    </div>
