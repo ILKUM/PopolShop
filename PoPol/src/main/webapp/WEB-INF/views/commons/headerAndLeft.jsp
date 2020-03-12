@@ -289,13 +289,8 @@ span {
                value="공지사항 작성" data-toggle="modal" data-target="#makenotice">
                <input type="button"class="form-control"
                style="background-color: #E71D36; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
-               value="이슈 작성" data-toggle="modal" data-target="#makeissue">
+               value="영화 추가" data-toggle="modal" data-target="#addMovie">
                </c:when>
-               <c:otherwise>
-               <input type="button"class="form-control"
-               style="background-color: #E71D36; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
-               value="이슈 작성" data-toggle="modal" data-target="#makeissue">
-               </c:otherwise>
                </c:choose>
             <div class="drop-down animated flipInX d-md-none">
                <form action="#">
@@ -906,6 +901,98 @@ span {
       </div>
    </div>
    </div>
+   
+   <div class="modal fade" id="addMovie">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" align="center">
+          <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">WatchList Add</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="was-validated" action="addwatch.list" enctype="multipart/form-data" method="post">
+          
+          <div class="form-label-group" text-align="center" align="center">
+              <img id="image" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center">
+         </div>
+  
+  <hr class="my-4">
+     <div class="row">
+    <div class="col" width="33%" align="center" >Poster File</div>
+    <div class="col" width="33%" align="center">Input Date</div>
+    <div class="col" width="33%" align="center">Public or Private</div>
+    <hr class="my-4">
+    <div class="w-100"></div>
+    <div class="col" width="33%">
+      <div class="custom-file">
+      <input type="file" id="file" name="file" class="custom-file-input" required>
+      <label class="custom-file-label" for="validatedCustomFile">Poster</label>
+      <div class="invalid-feedback">Select your movie poster file</div>
+    </div>
+    </div>
+    <div class="col" width="33%">
+      <div class="form-label-group">
+        <input type="date" id="servdate" name="servdate" class="form-control" required>
+        <label class="custom-date-label" for="validatedCustomDate"></label>
+  </div>
+    </div>
+    <div class="col" width="33%" align="center">
+    <div class="form-label-group">
+    <input type="radio" name="ispublic" id="ispublic-1" value="0" checked>Public
+     <input type="radio" name="ispublic" id="ispublic-2" value="1">Private
+    </div>
+    <div class="invalid-feedback">Do you want to get private?</div>
+  </div>
+    </div>
+  
+    <hr class="my-4">
+    
+
+
+  <div class="form-label-group">
+        <label for="validationTextarea">Title</label>
+        <input type="text" id="title" name="title" class="form-control" placeholder="Title" required readonly>
+  </div>
+  
+  <div class="form-label-group">
+        <label for="validationTextarea">Director</label>
+        <input type="text" id="director" name="director" class="form-control" placeholder="Director" required readonly>
+  </div>
+  
+  <div class="form-label-group">
+        <label for="validationTextarea">Release</label>
+        <input type="text" id="release" name="release" class="form-control" placeholder="Release" required readonly>
+  </div>
+
+  <div class="mb-3">
+    <label for="validationTextarea">Comment</label>
+    <textarea class="form-control is-invalid" id="comment" name="comment" placeholder="Required example textarea" required></textarea>
+    <div class="invalid-feedback">
+      Write message about this movie in 20 letters
+    </div>
+  </div>
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">Add</button>
+        <br>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">Cancel</button>
+  
+</form>
+        </div>
+        
+        <!-- Modal footer -->
+        
+        
+        
+      
+          
+        
+        
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
 		//내정보 열기 (드롭다운)
 		$('#myprofileEdit').click(function(){
