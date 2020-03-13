@@ -497,7 +497,7 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
-         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movie.title" /></b></li>
+         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movietitle" /></b></li>
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
@@ -540,124 +540,6 @@ span {
 </style>
 
 <!-- The Modal -->
-
-<div class="modal fade" id="myModal">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-         <!-- Modal Header -->
-         <div class="modal-header">
-            <h3 class="modal-title">새 협업공간 만들기</h3>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-         </div>
-
-         <!-- Modal body -->
-         <form onsubmit="return checkz2()" action="team.do" method="post">
-            <div class="modal-body">
-               <p style="font-size: 12px">
-                  협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br> 협업공간을 만들고 함께
-                  일할 멤버들을 초대해보세요.
-               </p>
-               <label for="pname">협업공간 이름</label> <input
-                  class="form-control createmodal" type="text" id="pname"
-                  name="pname" style="width: 100%"> <br> <label
-                  for="pcontent">협업공간 설명</label>
-               <textarea class="form-control createmodal" rows="3" id="pcontent"
-                  name="pcontent" style="width: 100%"></textarea>
-            </div>
-
-            <!-- Modal footer -->
-
-            <!-- <input type="hidden" name="tseq" value="1"> -->
-            <!-- <input type="hidden" name="ischarge" value="0"> -->
-            <input type="hidden" name="email" value="${sessionScope.email}">
-            <!-- <input type="hidden" name="istpalarm" value="0"> -->
-            <!-- <input type="hidden" name="ptime" value="20/01/08"> -->
-            <div class="modal-footer">
-               <input type="submit" id="chatmake" class="btn btn-secondary" value="만들기"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">
-               <input type="button" class="btn btn-secondary" value="취소"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">
-            </div>
-         </form>
-      </div>
-   </div>
-</div>
-
-<div id="filediv" class="fileon"
-   style="display: none; background-color: white;">
-   <div class="row" style="margin: 2%;">
-      <div class="col-sm-12">
-         <h3>파일함(Ctrl + .)</h3>
-         <h6>파일을 클릭하시면 다운로드 됩니다.</h6>
-      </div>
-   </div>
-   <div class="row" style="margin: 2%;">
-      <ul class="nav nav-pills">
-         <!-- <li class="nav-item"><a class="nav-link" id="myFile" style="cursor: pointer;">내 파일</a></li> -->
-         <li class="nav-item" style="margin-right: 10px">
-          <select id="selectFile" name="tseq" class="form-control" style="border: 1px solid rgba(0,0,0,0.5) ; color: #000; font-size: 18px; padding-top: 0;">
-                 <option value="0">프로젝트 전체 파일</option>
-          		<option value="myFile">프라이빗 공간</option>
-              <c:forEach items="${pjtlist}" var="p">
-                 <option value="${p.tseq}">${p.pname}</option>
-              </c:forEach>
-          </select>
-         </li>
-         <li class="nav-item" style="margin-right: 10px">
-          <select id="selectLink" name="tlink" class="form-control" style="border: 1px solid rgba(0,0,0,0.5) ; color: #000; font-size: 18px; padding-top: 0;">
-                 <option value="0">프로젝트 전체 링크</option>
-          		<option value="myLink">프라이빗 공간</option>
-              <c:forEach items="${pjtlist}" var="p">
-                 <option value="${p.tseq}">${p.pname}</option>
-              </c:forEach>
-          </select>
-         </li>
-         <li class="nav-item"><input type="search" id="searchFile" class="form-control"
-            style="border-radius: 0.25rem; height: 20px" placeholder="검색 후 Enter치세요">
-         </li>
-      </ul>
-   </div>
-   <div class="row" id="fileLocation" style="margin: 2%; overflow: auto; height: 600px">
-   <c:forEach items="${filed}" var="f">
-      <div class="fileDown" id="${f.fdname}" style="width: 150px; height:150px; margin: 1%;">
-      <c:if test="${fn:substring(f.fdname,fn:length(f.fdname)-4,fn:length(f.fdname))=='.jpg'}">
-      	<a href="fileDownload.do?fileName=${f.fdname}">
-         <img id="${f.tseq}" width="100px" height="100px" style="margin: 1%; display: block; margin-left: auto; margin-right: auto"
-            src="<c:url value="/upload/${f.fdname}" />">
-        </a>
-        </c:if>
-      <c:if test="${fn:substring(f.fdname,fn:length(f.fdname)-5,fn:length(f.fdname))=='.jpeg'}">
-      	<a href="fileDownload.do?fileName=${f.fdname}">
-         <img id="${f.tseq}" width="100px" height="100px" style="margin: 1%; display: block; margin-left: auto; margin-right: auto"
-            src="<c:url value="/upload/${f.fdname}" />">
-        </a>
-        </c:if>
-      <c:if test="${fn:substring(f.fdname,fn:length(f.fdname)-4,fn:length(f.fdname))=='.png'}">
-      	<a href="fileDownload.do?fileName=${f.fdname}">
-         <img id="${f.tseq}" width="100px" height="100px" style="margin: 1%; display: block; margin-left: auto; margin-right: auto"
-            src="<c:url value="/upload/${f.fdname}" />">
-        </a>
-        </c:if>
-        <c:if test="${fn:substring(f.fdname,fn:length(f.fdname)-4,fn:length(f.fdname))=='.zip'}">
-         <img id="${f.tseq}" width="100px" height="100px" style="margin: 1%; display: block; margin-left: auto; margin-right: auto"
-            src="<c:url value="/resources/images/logo/ScoopSmall.png" />">
-        </c:if>
-         <p style="font-size: 15px; text-align: center">
-            <c:choose>
-           <c:when test="${fn:length(f.fdname) > 12 || fn:length(f.pname) > 12}">
-            <c:out value="${fn:substring(f.fdname,0,14)}"/> ...<br>  <c:out value="${fn:substring(f.pname,0,11)}"/> ...
-            </c:when>
-            <c:otherwise>
-            	<c:out value="${f.fdname}"/><br> <c:out value="${f.pname}"/>
-            </c:otherwise>
-            </c:choose>
-         </p>
-      </div>
-   </c:forEach>
-   </div>
-</div>
 <div id="filediv2" style="display: none;"></div>
 <img src="<c:url value="/resources/images/chat/close.png" />"
    id="fileclose" name="on" width=20px height=auto
@@ -924,9 +806,13 @@ span {
     </div>
   
     <hr class="my-4">
-    
-
-
+     <select id="monum" name="monum" class="form-control">                
+                           <option value="1">한국영화</option>
+                            <option value="2">미국영화</option>
+                             <option value="3">중국영화</option>
+                              <option value="4">유럽영화</option>
+                               <option value="5">일본영화</option>
+     </select>
   <div class="form-label-group">
         <label for="validationTextarea">영화 제목</label>
         <input type="text" id="title" name="moname" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">
