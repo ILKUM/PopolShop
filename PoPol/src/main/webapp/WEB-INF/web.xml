@@ -77,4 +77,10 @@
         <error-code>403</error-code>
         <location>/WEB-INF/views/error/page-error-403.jsp</location>
  	</error-page> -->
+ 	<servlet> <servlet-name>jsp</servlet-name> 
+ 	<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class> 
+ 	<init-param> <param-name>mappedfile</param-name> 
+ 	<param-value>false</param-value> </init-param> 
+ 	</servlet>
+
 </web-app>

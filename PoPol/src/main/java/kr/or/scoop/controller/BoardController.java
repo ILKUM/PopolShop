@@ -129,5 +129,11 @@ public class BoardController {
 					   return viewpage;
 		}
 		
+		@RequestMapping(value="movieGet.do",method = RequestMethod.GET)
+		public String movieGet() {
+			
+			return "movie/korea";
+		}
+		
 		
 }

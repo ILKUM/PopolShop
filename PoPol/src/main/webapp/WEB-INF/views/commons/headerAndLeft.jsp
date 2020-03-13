@@ -498,7 +498,7 @@ span {
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
          <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movietitle" /></b></li>
-               <li><a href="bookmark.do" aria-expanded="false"> <span
+               <li><a href="movieGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="movie.board1" /></span>
@@ -539,71 +539,6 @@ span {
 }
 </style>
 
-<!-- The Modal -->
-<div id="filediv2" style="display: none;"></div>
-<img src="<c:url value="/resources/images/chat/close.png" />"
-   id="fileclose" name="on" width=20px height=auto
-   style="cursor: pointer; display: none;">
-
-<div class="modal fade" id="makeissue">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-         <!-- Modal Header -->
-         
-         <div class="modal-header">
-            <h3 class="modal-title">이슈 작성</h3>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-         </div>
-   
-         <form onsubmit="return checkz()" action="writeIssue.do" method="POST" enctype="multipart/form-data">
-            <!-- Modal body -->
-            <div class="modal-body">
-               <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
-             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
-               <label for="title">이슈 제목</label> <input
-                  class="form-control createmodal" type="text" id="issuetitle"
-                  name="issuetitle" style="width: 100%;border-radius:0.5rem;" placeholder="제목을 입력해 주세요.">
-               <br> <label for="content">이슈 설명</label> <span id="filename"></span>
-               <img id="imgpreview" alt="사진 미리보기 자리"
-                  style="display: none; width: 40px; height: 40px" src="#" /> 
-                  <input type="file" multiple="multiple"  id="fileclick" name="files" hidden="">
-               <button type="button" id="auth" disabled hidden="">Authenticate</button>
-               <textarea class="form-control createmodal" rows="5"
-                  id="issuecontent" name="issuecontent" style="width: 100%;border-radius: 0.5rem;"
-                  placeholder="@를 입력하여 멘션, 할 일, 파일 등을 추가해 보세요."></textarea>
-               <br>
-               <label for="annota">첨부</label>
-               <div id="todoresult" style="overflow: auto; height: 100px; border: 1px solid #000; border-radius: 0.5rem;">
-                  <!-- mention -->
-               </div>
-               <!-- The Google API Loader script. -->
-               <script type="text/javascript"
-                  src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-               <select id="selectpro" name="selectTeam" class="form-control">
-                  <option value="${sessionScope.email}">프라이빗 공간</option>
-                  <c:forEach items="${pjtlist}" var="p">
-                           <option value="${p.tseq}">${p.pname}</option>
-                           <%-- <c:set value="${p.pname}" var="pname"></c:set> --%>
-                           <%-- <input type="hidden" value="${p.pname}" name="pname"  readonly> --%>
-                  </c:forEach>
-               </select>
-               <%-- <c:if test="${tseq!=null} }">
-               <input type="hidden" value="${pname }" name="pname"  readonly>
-               </c:if> --%>
-               <button type="submit" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
-               <button type="button" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
-            </div>
-         </form>
-      </div>
-   </div>
-
    <div class="list-group" id="mentionlist" style="display: none;border:10px solid #cbc9d4">
       <a href="#" class="list-group-item list-group-item-action menli" id="men1"style="padding: 5px;">@ 멘션</a> 
       <a href="#" class="list-group-item list-group-item-action menli" id="men2"style="padding: 5px"><span class="iconify" data-icon="whh:googledrive" data-inline="false"></span> 구글 드라이브</a> 
@@ -612,123 +547,6 @@ span {
       <a href="#" class="list-group-item list-group-item-action menli" id="men5"style="padding: 5px"><span class="iconify" data-icon="bx:bx-calendar" data-inline="false"></span> 일정</a>
    </div>
    <!--  -->
-   <!-- 멘션할 사람 목록 -->
-   <div class="list-group" id="memlist" style="display: none">
-   <c:forEach items="${tpmemlist}" var="t">
-   	<a href="#" class="list-group-item list-group-item-action todo projectmem${t.tseq}" style="padding: 5px; border-radius: 0" id="${t.tseq}/${t.email}">${t.name}</a>
-   </c:forEach>
-   </div>
-   <div class="list-group" id="todo" style="display: none;">
-      <label for="todomem">담당자</label> <input
-         class="form-control createmodal" type="text" id="todomem"
-         style="width: 100%" name=""> <br> <label for="todolist">할
-         일</label>
-      <textarea class="form-control createmodal" rows="3" id="todolist"
-         style="width: 100%; margin-bottom: 2%" placeholder="할 일을 작성해주세요."></textarea>
-      <button type="button" id="todomake" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
-      <button type="button" id="todocancle" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">취소</button>
-   </div>
-   <div class="list-group" id="datepick" style="display: none;">
-      <label>일정 작성</label>
-      <div class="row">
-         <div class="col-sm-5" style="padding-right: 0;">
-            <span class="iconify" data-icon="bx:bx-calendar" data-inline="false"
-               style="width: 25px; height: auto;"></span> <input type="text"
-               id="from" name="from" style="width: 70%; border: none;"
-               placeholder="시작날짜">
-         </div>
-         <div class="col-sm-2" style="padding-left: 0; padding-right: 0;">
-            ~</div>
-         <div class="col-sm-5" style="padding-left: 0;">
-            <span class="iconify" data-icon="bx:bx-calendar" data-inline="false"
-               style="width: 25px; height: auto;"></span> <input type="text"
-               id="to" name="to" style="width: 70%; border: none;"
-               placeholder="종료날짜">
-         </div>
-      </div>
-      <br> <!-- <label>할 일</label>
-      <textarea class="form-control createmodal" rows="3" id="datecontent"
-         style="width: 100%; margin-bottom: 2%" placeholder="일정을 작성해주세요."></textarea> -->
-         <div class="row">
-         <div class="col-sm-6" style="padding-right: 2px">
-      <button type="button" id="datemake" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; width: 100%">만들기</button>
-         </div>
-         <div class="col-sm-6" style="padding-left: 2px">
-      <button type="button" id="datecancle" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; width: 100%">취소</button>
-         </div>
-         </div>
-   </div>
-</div>
-<!-- 파트너 초대 모달 -->
-<div class="modal fade" id="inviteModal">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content modal-fullsize"
-         style="border-radius: 0.5rem;">
-         <!-- Modal Header -->
-         <div class="modal-header" style="padding-bottom: 0px;height: 67px;">
-            <h5 style="padding-top: 2%; padding-left: 5px;"><spring:message code="invite.title" /></h5>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-         </div>
-
-         <!-- Modal body -->
-         <form action="inviteTeam.do" method="post" id="inviteForm">
-         </form>
-            <div class="row" style="margin-bottom: 1%;" id="inviteContent">
-               <div class="col-sm-6"
-                  style="border-right: 1px solid rgba(0,0,0,0.5); padding-left: 20px;">
-                  <div class="modal-body">
-                     <p style="font-size: 12px">
-		              <spring:message code="invite.content1" /><br> 
-		              <spring:message code="invite.content2" />
-                     </p>
-                     <label for="title"><spring:message code="invite.subject" /></label> <input
-                        class="form-control createmodal" type="text" id="invite_Submit"
-                        placeholder="<spring:message code='invite.holder' />"
-                        style="width: 100%; border-radius: 0.25rem;">
-                     <p style="font-size: 13px; margin-top: 2%; margin-left: 1%;">
-                     	<spring:message code="invite.subcon" />
-                     </p>
-                     <div id="invite_email_append"
-                        style="min-width: 35%; border: 1px solid #c8c8c8; border-radius: 0.25rem; background-color: #fff; display: none; position: absolute; top: 145px; left: 18px;">
-
-                     </div>
-                     <label for="content"><spring:message code="invite.team" /></label> <select id="select_invite"
-                        name="tseq" class="form-control" style="border-radius: 0.25rem;">
-                     </select>
-                  </div>
-               </div>
-               <div class="col-sm-6">
-                  <label for="content" style="margin-top: 3%; margin-bottom: 0px;">
-                  	<spring:message code="invite.list" />
-                  </label>
-                  <div id="invite_Input"
-                     style="border: 2px solid rgba(0,0, 0, 0.3); border-radius: 0.5rem; margin-right: 3%; height: 280px; overflow: auto; margin-bottom: 10px;">
-                     <span id="invite_Input1"
-                        style="margin-left: 35%; margin-top: 18%;"> <img
-                        src="<c:url value="/resources/images/icon/mail.png" />"
-                        style="width: 75px; height: 75px; margin-left: 40%;' ">
-                     </span>
-                     <p id="invite_Input2" style="text-align: center;">
-                       <spring:message code="invite.listcon1" /><br>
-                       <spring:message code="invite.listcon2" />
-                     </p>
-                  </div>
-                  <input type="hidden" name="invitecnt" id="invitecnt">
-                  <button type="submit" class="btn btn-secondary" id="invitebtn"
-                     style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; margin-left: 100px; padding-left: 75px; padding-right: 75px;"
-                     disabled="disabled"><spring:message code="invite.invite" /></button>
-               </div>
-            </div>
-
-
-
-      </div>
-   </div>
-</div>
 <div class="modal fade" id="makenotice">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -830,7 +648,6 @@ span {
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">추가하기</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
-  
 </form>
         </div>
         
