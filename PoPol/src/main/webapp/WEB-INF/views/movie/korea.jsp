@@ -90,92 +90,216 @@ $(document).ready(function(){
         <!--**********************************
             Content body start
         ***********************************-->
-         <div class="content-body">
+        <div class="content-body">
             <div class="container-fluid">
-     
+        <div class="card">
+        	<div class="row">
+			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
+    padding-left: 30px;
+    padding-top: 15px;
+">
+		        				<div class="project">
+		        					<div class="img">
+		        						<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="https://movie-phinf.pstatic.net/20200221_216/1582251798358N3QEz_JPEG/movie_image.jpg?type=m99_141_2" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'"></a>
+		        					</div>        					
+		        							<div class="text">
+		        							<h4>
+		        								<a href="#">영화제목</a>
+		        								</h4>	     								
+		        								<h4>영화감독 </h4>
+		        								<h4>개봉날짜</h4>
+												<h6>
+		        									<span>추천수</span>
+		        									0
+		        								</h6>
+		        							</div>
+		        				
+		        				</div>
+		        			
+		        			</div>
+							<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
+    padding-left: 30px;
+    padding-top: 15px;
+">
+		        				<div class="project">
+		        					<div class="img">
+		        						<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="https://movie-phinf.pstatic.net/20200221_216/1582251798358N3QEz_JPEG/movie_image.jpg?type=m99_141_2" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'"></a>
+		        					</div>        					
+		        							<div class="text">
+		        							<h4>
+		        								<a href="#">영화제목</a>
+		        								</h4>	     								
+		        								<h4>영화감독 </h4>
+		        								<h4>개봉날짜</h4>
+												<h6>
+		        									<span>추천수</span>
+		        									0
+		        								</h6>
+		        							</div>
+		        				
+		        				</div>
+		        			
+		        			</div>
+		        			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
+    padding-left: 30px;
+    padding-top: 15px;
+">
+		        				<div class="project">
+		        					<div class="img">
+		        						<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="https://movie-phinf.pstatic.net/20200221_216/1582251798358N3QEz_JPEG/movie_image.jpg?type=m99_141_2" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'"></a>
+		        					</div>        					
+		        							<div class="text">
+		        							<h4>
+		        								<a href="#">영화제목</a>
+		        								</h4>	     								
+		        								<h4>영화감독 </h4>
+		        								<h4>개봉날짜</h4>
+												<h6>
+		        									<span>추천수</span>
+		        									0
+		        								</h6>
+		        							</div>
+		        				
+		        				</div>
+		        			
+		        			</div>
+		        			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
+    padding-left: 30px;
+    padding-top: 15px;
+">
+		        				<div class="project">
+		        					<div class="img">
+		        						<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="https://movie-phinf.pstatic.net/20200221_216/1582251798358N3QEz_JPEG/movie_image.jpg?type=m99_141_2" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'"></a>
+		        					</div>        					
+		        							<div class="text">
+		        							<h4>
+		        								<a href="#">영화제목</a>
+		        								</h4>	     								
+		        								<h4>영화감독 </h4>
+		        								<h4>개봉날짜</h4>
+												<h6>
+		        									<span>추천수</span>
+		        									0
+		        								</h6>
+		        							</div>
+		        				
+		        				</div>
+		        			
+		        			</div>
+		        			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
+    padding-left: 30px;
+    padding-top: 15px;
+">
+		        				<div class="project">
+		        					<div class="img">
+		        						<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="https://movie-phinf.pstatic.net/20200221_216/1582251798358N3QEz_JPEG/movie_image.jpg?type=m99_141_2" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'"></a>
+		        					</div>        					
+		        							<div class="text">
+		        							<h4>
+		        								<a href="#">영화제목</a>
+		        								</h4>	     								
+		        								<h4>영화감독 </h4>
+		        								<h4>개봉날짜</h4>
+												<h6>
+		        									<span>추천수</span>
+		        									0
+		        								</h6>
+		        							</div>
+		        				
+		        				</div>
+		        			
+		        			</div>
+		        			
+		        			
+		        			</div>
 			
-			<div class="lst_wrap">
-				<ul class="lst_detail_t1">	
-				<li>
-					<div class="thumb">
-								<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="https://movie-phinf.pstatic.net/20200221_216/1582251798358N3QEz_JPEG/movie_image.jpg?type=m99_141_2" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'"></a>
-					</div>
-					<dl class="lst_dsc">
-					<dt class="tit">				
-								<span class="ico_rating_15">15세 관람가</span>					
-						<a href="/movie/bi/mi/basic.nhn?code=189001">인비저블맨</a>
-						<!-- N=a:nol.title,r:1,i:189001 -->
-					</dt>							
-					<dd class="star">								
-								<dl class="info_star">
-									<dt class="tit_t1">네티즌</dt>
-									<dd>
-										<div class="star_t1">
-											<a href="/movie/bi/mi/point.nhn?code=189001#pointAfterTab"><span class="st_off"><span class="st_on" style="width:80.8%"></span></span><span class="num">8.08</span><span class="num2">참여 <em>1,665</em>명</span></a><!-- N=a:nol.urating -->
-										</div>					
-											<span class="split">|</span>									
-									</dd>																					
-								</dl>
-												<dl class="info_exp">
-												<dt class="tit_t1">예매율</dt>
-												<dd>
-													<div class="star_t1 b_star">
-													
-														
-															<span class="num">21.01</span><span class="txt">%</span>																																									
-													</div>
-												</dd>
-											</dl>
-				
-					</dd>
-					<dd>
-						<dl class="info_txt1">
-						<dt class="tit_t1">개요</dt>
-						<dd>
-							<span class="link_txt">
-								
-									<a href="/movie/sdb/browsing/bmovie.nhn?genre=4">공포</a><!-- N=a:nol.genre,r:1 -->, 
-								
-									<a href="/movie/sdb/browsing/bmovie.nhn?genre=7">스릴러</a><!-- N=a:nol.genre,r:2 -->
-								
-							</span>					
-								<span class="split">|</span>
-								124분
-				<span class="split">|</span>
-								2020.02.26 개봉
-						</dd>
-						<dt class="tit_t2">감독</dt>
-						<dd>
-							<span class="link_txt">
-									<a href="/movie/bi/pi/basic.nhn?code=51988">리 워넬</a><!-- N=a:nol.director,r:1 -->
-							</span>
-						</dd>
-						<dt class="tit_t3">출연</dt>
-						<dd>
-							<span class="link_txt">
-									<a href="/movie/bi/pi/basic.nhn?code=21737">엘리자베스 모스</a><!-- N=a:nol.actor,r:1 -->
-							</span>
-						</dd>
-						</dl>
-					</dd>
-					<dd class="info_t1">
-						<div class="btn_area">
-								<a href="/movie/bi/mi/reserve.nhn?code=189001" class="btn_rsv">예매하기</a><!-- N=a:nol.ticket,r:1,i:189001 -->
-							<span class="btn_t1">
-									<a href="/movie/bi/mi/photoView.nhn?code=189001" class="item1">포토보기</a><!-- N=a:nol.photo,r:1,i:189001 -->
-									<a href="/movie/bi/mi/mediaView.nhn?code=189001&amp;mid=45394#tab" class="item2">예고편</a><!-- N=a:nol.trailer,r:1,i:189001 -->
-									<a href="/movie/bi/mi/mediaView.nhn?code=189001&amp;mid=45455#tab" class="item4">메이킹</a><!-- N=a:nol.making,r:1,i:189001 -->
-							</span>
-						</div>
-					</dd>
-					</dl>
-				</li>
-				</ul>
+            </div>
+            </div>
+		</div>
+		
+        	
+        </div>
+       </div> 
+        <!--**********************************
+            Content body end
+        ***********************************-->
+  <div class="modal fade" id="noticeDetail">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h3 class="modal-title">공지사항</h3>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
+	
+				<!-- Modal body -->
+				<div class="modal-body">
+					<!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
+             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
+					<label for="bntitle">공지사항</label> 
+					<input class="form-control createmodal" id="title" name="title" type="text"style="width: 100%;background-color: #eeeeee;border: 1px solid #fffcfc;border-radius:0.5rem;" readonly="readonly">
+					<br> <label for="noticecontent">공지 설명</label>
+					<textarea class="form-control createmodal" rows="5" style="width: 100%;background-color: #eeeeee;border: 1px solid #fffcfc;border-radius:0.5rem; resize: none" id="content" name="content" readonly="readonly" ></textarea>	
+				<!-- Modal footer -->
+				<div class="modal-footer">
+				<c:choose>
+						<c:when test="${role == 'ROLE_ADMIN'}">
+					<button type="button" class="btn btn-secondary"
+						style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+						data-target="#noticeEdit" data-toggle="modal">수정</button>
+					<button type="button" class="btn btn-secondary" id="del"
+						style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+						>삭제</button>
+						</c:when>
+						</c:choose>
+						<button type="button" class="btn btn-secondary"
+						style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+						data-dismiss="modal">닫기</button>
+					</div>
+					
+					</div>
+				</div>
 		</div>
 	</div>
-		
-</div>
+	
+  <div class="modal fade" id="noticeEdit">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h3 class="modal-title">공지사항 작성</h3>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+	
+			<form action="noticeEdit.do" method="POST">
+				<!-- Modal body -->
+				<div class="modal-body">
+				<input type="hidden" name="bnseq" id="nseq">
+					<!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
+             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
+					<label for="bntitle">공지사항</label> <input
+						class="form-control createmodal" type="text" id="ntitle"
+						name="bntitle" style="width: 100%">
+					<br> <label for="noticecontent">공지 설명</label>
+					<textarea class="form-control createmodal" rows="5"
+						id="ncontent" name="bncontent" style="width: 100%"
+						></textarea>	
+						<input type="hidden" name="email" value="${sessionScope.email}">		
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-secondary"
+						style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">수정</button>
+					<button type="button" class="btn btn-secondary"
+						style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+						data-dismiss="modal">취소</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
         
   <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>
     <!--**********************************

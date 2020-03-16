@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.scoop.dao.MovieDao">
+<insert id="insertMovie" parameterType="kr.or.scoop.dto.Movie">
+	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum)
+       values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum})
+</insert>
+</mapper>

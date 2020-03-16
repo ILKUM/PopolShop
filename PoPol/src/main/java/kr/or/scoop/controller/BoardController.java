@@ -92,6 +92,7 @@ public class BoardController {
 		//영화 추가 
 		@RequestMapping(value="insertMovie.do",method = RequestMethod.POST)
 		public String movieInsert(Movie movie , HttpServletRequest request) {
+			System.out.println("여기도착?");
 			   			String viewpage;
 						CommonsMultipartFile multifile = movie.getFilesrc();
 						String filename = multifile.getOriginalFilename();		
