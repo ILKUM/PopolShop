@@ -1,7 +1,5 @@
 package kr.or.scoop.dto;
 
-import java.util.Date;
-
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Movie {
@@ -12,7 +10,7 @@ public class Movie {
 	private String mophoto;
 	private int molike; //영화 추천수	
 	private int monum; //영화 분류코드
-	private Date modate; //영화 개봉날짜
+	private String modate; //영화 개봉날짜
 	private String modirector; //영화 감독
 	
 	public int getMoseq() {
@@ -51,10 +49,11 @@ public class Movie {
 	public void setMonum(int monum) {
 		this.monum = monum;
 	}
-	public Date getModate() {
+	
+	public String getModate() {
 		return modate;
 	}
-	public void setModate(Date modate) {
+	public void setModate(String modate) {
 		this.modate = modate;
 	}
 	public String getModirector() {

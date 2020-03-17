@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,8 +91,8 @@ public class BoardController {
 		}
 		
 		//영화 추가 
-		@RequestMapping(value="insertMovie.do",method = RequestMethod.POST)
-		public String movieInsert(Movie movie , HttpServletRequest request) {
+		@RequestMapping(value="insertMovie.do",method = {RequestMethod.POST , RequestMethod.GET})
+		public String movieInsert(Movie movie , HttpServletRequest request , HttpSession session) {
 			System.out.println("여기도착?");
 			   			String viewpage;
 						CommonsMultipartFile multifile = movie.getFilesrc();
@@ -99,7 +100,11 @@ public class BoardController {
 						String path = request.getServletContext().getRealPath("/user/movie");
 						
 						String fpath = path + "\\"+ filename; 
-							
+						if(filename.equals("")) {
+							movie.setMophoto((String)session.getAttribute("img"));
+						}else {
+							movie.setMophoto(filename);
+						}
 							if(!filename.equals("")) { //실 파일 업로드
 								FileOutputStream fs = null;
 								try {
@@ -118,7 +123,7 @@ public class BoardController {
 									}
 								}
 							}
-						
+						System.out.println("dd : " + movie);
 					   MovieDao dao = sqlSession.getMapper(MovieDao.class);
 					   int result = dao.insertMovie(movie);
 					   if(result > 0) {

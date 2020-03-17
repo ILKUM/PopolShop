@@ -23,27 +23,9 @@ $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	$('#profile').click(function(){
 		$('#Photo').click();
-	})
-  $('#address_btn').click(function(){
-     var realaddr = $('#sample6_postcode').val() + "/" + $('#sample6_address').val() + "/" + $('#sample6_detailAddress').val();
-     console.log(realaddr);
-     $('#address').val(realaddr);
-  });
-  if($('#address').val()!=''){
-     var addr1 = ""; 
-     var addr2 = ""; 
-     var addr3 = "";
-     var tempaddress = $('#address').val().split("/"); 
-     addr1 = tempaddress[0];
-     addr2 = tempaddress[1];
-     addr3 = tempaddress[2];
-     $('#sample6_postcode').val(addr1);
-     $('#sample6_address').val(addr2);
-     $('#sample6_detailAddress').val(addr3);
-     }
-  $('#sample6_postcode').change(function(){
-     console.log("바뀌니?");
-     })
+		console.log("눌림1");
+	});
+ 
 });
 
 
@@ -170,12 +152,12 @@ $(function(){
 			<div class="media align-items-center mb-4">
 					<c:choose>
 						<c:when test="${img==null}">
-							<img id ="profile" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-							<input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
+							<img id="profile" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+							<input type="file" name="filesrc" id="Photo" accept="image/*">
 						</c:when>
 						<c:otherwise>
                              <img id ="profile" class="mr-3 img-circle" src="<c:url value='/user/upload/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-                             <input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
+                             <input type="file" name="filesrc" id="Photo" accept="image/*">
 						</c:otherwise>
 					</c:choose>
                                     <div class="media-body">

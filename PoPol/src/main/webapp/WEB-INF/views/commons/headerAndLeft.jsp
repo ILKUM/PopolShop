@@ -501,7 +501,7 @@ span {
                <li><a href="movieGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="korea" /></span>
+                  &nbsp;<spring:message code="korean" /></span>
          </a></li>    
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
@@ -596,12 +596,13 @@ span {
         
         <!-- Modal body -->
         <div class="modal-body">
-          <form class="was-validated" action="insertMovie.do" enctype="multipart/form-data">
+          <form class="was-validated" action="insertMovie.do" enctype="multipart/form-data" method="Post">
           
           <div class="form-label-group" text-align="center" align="center">
-              <img id="Photo" name="mophoto" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center">
+        	<img id="profile" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center" name="mophoto">
          </div>
-  
+  		
+                            
   <hr class="my-4">
      <div class="row">
     <div class="col" width="33%" align="center" >영화 사진</div>
@@ -610,7 +611,7 @@ span {
     <div class="w-100"></div>
     <div class="col" width="33%">
       <div class="custom-file">
-      <input type="file" id="file" name="filesrc" class="custom-file-input" required>
+       <input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" required>
       <label class="custom-file-label" for="validatedCustomFile">영화사진</label>
       <div class="invalid-feedback">선택해주세요 영화 포스터를</div>
     </div>
@@ -645,6 +646,7 @@ span {
     <div class="invalid-feedback">
     </div>
   </div>
+  <input type="text" name="monum" class="form-control is-invalid" placeholder="영화 감독을 입력해주세요" hidden="" value="0">
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">추가하기</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
@@ -678,12 +680,12 @@ $('#logout').click(function(){
 //사진 변경
 $(function(){
 	
-	$('#file').change(function(){
+	$('#Photo').change(function(){
 		var reader = new FileReader();
 		
 		reader.onload = function(e) {
 			
-			document.getElementById("Photo").src = e.target.result;
+			document.getElementById("profile").src = e.target.result;
 		};
 		
 		reader.readAsDataURL(this.files[0]);

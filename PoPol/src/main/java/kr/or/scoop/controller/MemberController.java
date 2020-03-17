@@ -341,6 +341,7 @@ public class MemberController {
 				}
 			
 		   MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		   System.out.println(member);
 		if(member.getPwd().equals("")) {
 			Member checkmember = dao.getMember((String)session.getAttribute("email"));
 			member.setPwd(checkmember.getPwd());
