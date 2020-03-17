@@ -135,9 +135,11 @@ public class BoardController {
 					   return viewpage;
 		}
 		
-		@RequestMapping(value="movieGet.do",method = RequestMethod.GET)
-		public String movieGet() {
-			
+		@RequestMapping(value="koreaGet.do",method = RequestMethod.GET)
+		public String movieGet(Movie movie , Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getKorea();
+			model.addAttribute("movie",m);
 			return "movie/korea";
 		}
 		

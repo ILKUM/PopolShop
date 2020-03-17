@@ -498,27 +498,27 @@ span {
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
-               <li><a href="movieGet.do" aria-expanded="false"> <span
+               <li><a href="koreaGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="korean" /></span>
+                  &nbsp;<spring:message code="korea" /></span>
          </a></li>    
-               <li><a href="bookmark.do" aria-expanded="false"> <span
+               <li><a href="americanGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="american" /></span>
          </a></li>    
-               <li><a href="bookmark.do" aria-expanded="false"> <span
+               <li><a href="chinaGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="china" /></span>
          </a></li>    
-               <li><a href="bookmark.do" aria-expanded="false"> <span
+               <li><a href="europeGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="europe" /></span>
          </a></li>    
-               <li><a href="bookmark.do" aria-expanded="false"> <span
+               <li><a href="japanGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="japan" /></span>

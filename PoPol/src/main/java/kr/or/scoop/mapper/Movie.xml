@@ -7,4 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum)
        values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum})
 </insert>
+<select id="getKorea" resultType="kr.or.scoop.dto.Movie">
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 1
+</select>
 </mapper>
