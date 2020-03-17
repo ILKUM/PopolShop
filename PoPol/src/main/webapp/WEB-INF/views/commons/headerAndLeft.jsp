@@ -75,7 +75,8 @@ input::placeholder {
       $('#logoutNaver').click(function(){
 			location.href="logout.do";
           });
-      //파일함 열기
+      //위시리스트 이동
+      
       
 
    $(function() { // onload
@@ -435,7 +436,7 @@ span {
                               			<span>&nbsp;&nbsp;로그아웃</span>
                               		</span>
                               	</li>
-						<c:if test="${email='null'}">
+						<c:if test="${email=null}">
                         <li>로그인을 해주세요.</li>
 						</c:if>
                         <li><%=session.getAttribute("email")%></li>
@@ -455,7 +456,6 @@ span {
 <!--**********************************
             Sidebar start
         ***********************************-->
-<c:set var="kind" value="${session.kind}}"></c:set>
 <c:set var="email" value="${session.email}}"></c:set>
 
 <div class="nk-sidebar" style="z-index: 0;">
@@ -492,11 +492,13 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="private.issue" /></span>
          </a></li>
-         <li><a href="bookmark.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+         <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
+         <li><a href="wishlist.do?email=${sessionScope.email}" aria-expanded="false" id="wish"> <span
+               class="iconify" data-icon="ic:round-bookmark" data-inline="false" id="wish"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
+         </c:if>       
         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
                <li><a href="koreaGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
