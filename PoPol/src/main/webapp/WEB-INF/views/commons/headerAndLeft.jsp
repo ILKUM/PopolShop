@@ -501,27 +501,27 @@ span {
                <li><a href="movieGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="movieboard1" /></span>
+                  &nbsp;<spring:message code="korea" /></span>
          </a></li>    
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="movieboard2" /></span>
+                  &nbsp;<spring:message code="american" /></span>
          </a></li>    
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="movieboard3" /></span>
+                  &nbsp;<spring:message code="china" /></span>
          </a></li>    
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="movieboard4" /></span>
+                  &nbsp;<spring:message code="europe" /></span>
          </a></li>    
                <li><a href="bookmark.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="movieboard5" /></span>
+                  &nbsp;<spring:message code="japan" /></span>
          </a></li>    
       </ul>
    </div>
@@ -596,10 +596,10 @@ span {
         
         <!-- Modal body -->
         <div class="modal-body">
-          <form class="was-validated" action="insertMovie.do" enctype="multipart/form-data" method="post">
+          <form class="was-validated" action="insertMovie.do" enctype="multipart/form-data">
           
           <div class="form-label-group" text-align="center" align="center">
-              <img id="Photo" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center" name="mophoto">
+              <img id="Photo" name="mophoto" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center">
          </div>
   
   <hr class="my-4">

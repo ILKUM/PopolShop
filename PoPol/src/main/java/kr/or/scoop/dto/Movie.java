@@ -9,6 +9,7 @@ public class Movie {
 	private String moname; //영화 제목
 	private String mocontent; //영화 설명
 	private CommonsMultipartFile filesrc; //영화사진
+	private String mophoto;
 	private int molike; //영화 추천수	
 	private int monum; //영화 분류코드
 	private Date modate; //영화 개봉날짜
@@ -62,12 +63,21 @@ public class Movie {
 	public void setModirector(String modirector) {
 		this.modirector = modirector;
 	}
+	public String getMophoto() {
+		return mophoto;
+	}
+	public void setMophoto(String mophoto) {
+		this.mophoto = mophoto;
+	}
 	
 	@Override
 	public String toString() {
 		return "Movie [moseq=" + moseq + ", moname=" + moname + ", mocontent=" + mocontent + ", filesrc=" + filesrc
-				+ ", molike=" + molike + ", monum=" + monum + ", modate=" + modate + ", modirector=" + modirector + "]";
+				+ ", mophoto=" + mophoto + ", molike=" + molike + ", monum=" + monum + ", modate=" + modate
+				+ ", modirector=" + modirector + "]";
 	}
+	
+	
 	
 	
 	
