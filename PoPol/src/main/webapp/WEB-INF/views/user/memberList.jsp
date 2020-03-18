@@ -98,6 +98,19 @@ $(document).ready(function(){
 				<h3 style="padding-left: 15px;">멤버관리</h3>
 			</div>
 		</div>
+		<div class="row" style="margin-left: 2%;">
+			<ul class="nav nav-pills">
+			    <li class="nav-item">
+			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #E71D36;">내 정보</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="management.do">회원관리</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
+			    </li>
+		    </ul>
+		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">
 				<div class="col-sm-4 newissue" >
