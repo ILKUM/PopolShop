@@ -407,4 +407,14 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="admin.do",method= RequestMethod.GET)
+	public String adminGet(Model model,HttpSession session) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		Member mem = dao.getMember((String)session.getAttribute("email"));
+		
+		model.addAttribute("member",mem);
+		return "user/admin-Profile";
+		
+	}
+	
 }

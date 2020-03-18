@@ -458,7 +458,7 @@ span {
         ***********************************-->
 <c:set var="email" value="${session.email}}"></c:set>
 
-<div class="nk-sidebar" style="z-index: 0;">
+<div class="nk-sidebar" style="z-index: 0; padding-bottom: 0px;">
    <div id="scnav" class="nk-nav-scroll">
       <ul class="metismenu" id="menu">
          <li class="nav-label" style="padding-bottom: 10px;">
@@ -496,7 +496,7 @@ span {
           <li><a href="admin.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:baseline-person" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="private.admin" /></span>
+                  &nbsp;<spring:message code="private.admins" /></span>
          </a></li>
          </c:if>
          <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">

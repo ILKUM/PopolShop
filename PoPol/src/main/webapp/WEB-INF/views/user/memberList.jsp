@@ -36,46 +36,45 @@
 
 <body>
 <script type="text/javascript">
-$(function () {
-    let table = $('#dataTable').DataTable({
-   	 stateSave: true, // 페이지 상태 저장
-   	"ordering": false
-   });
+	
+$(document).ready(function(){
+	//더보기 스타일 변경
+	$('#load').mouseover(function(){
+		$(this).css("color","#E71D36");
+	});
+	$('#load').mouseout(function(){
+		$(this).css("color","#464a53");
+	});
+	var temp = 0;
+	var moreEventArray = document.querySelectorAll(".card > a > .row ");
+	if(moreEventArray.length<=10){
+		 $('#load').remove();
+         $('#loadPlus').remove();
+         $('.tooltip').remove();
+	}
+	 $(moreEventArray).attr("hidden","hidden");
+	 $(moreEventArray).slice(0,10).removeAttr("hidden");
+	 $(moreEventArray).slice(0,10);
+	 temp = 10;
+	$("#load").click(function(e){
+		console.log(moreEventArray);
+		console.log("if");
+		$(moreEventArray).slice(temp,temp+10).removeAttr("hidden");
+		 temp +=10;
+		if(moreEventArray.length<temp+10){
+			$(moreEventArray).slice(temp,10).removeAttr("hidden");
+			if(temp-moreEventArray.length>=0){
+	            $('#load').remove();
+	            $('#loadPlus').remove();
+	            $('.tooltip').remove();
+	         }
 
-   $('#dataTable_filter').prepend(
-       '<select id="select" class="custom-select" style="margin-right : 10px; width: 100px"></select>');
+			}
+		
+			
+	}); 
 
-   // 검색 th 칼럼 별로 할 수 있게 select 생성
-   let ths = $('#dataTable > thead > tr > th');
-   $('#select').append('<option>전체</option>');
-   ths.each(function (index, element) {
-       if (index < 3) // 앞에 3개만
-           $('#select').append('<option>' + element.innerHTML + '</option>');
-   });
-
-   // select에 따라 검색 결과 table에 표현
-   $('.dataTables_filter input').keyup(function () {
-       tableSearch();
-   });
-
-   $("#deptSelect").change(function () {
-       tableSearch();
-   });
-
-   function tableSearch() {
-       let colIndex = document.querySelector('#select').selectedIndex;
-       let searchText = $('.dataTables_filter input').val();
-		// 전체 검색
-       if(colIndex==0){
-       	table.search(searchText).draw();
-       } 
-   	// 컬럼 검색
-       else{
-       	table.column(colIndex-1).search(searchText).draw();
-       }
-   }
 });
-
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -96,34 +95,43 @@ $(function () {
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">멤버관리</h3>	
+				<h3 style="padding-left: 15px;">멤버관리</h3>
 			</div>
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
-		 <table class="table table-bordered" id="dataTable">
-							<thead>
-								<tr>
-									<th width="10%">No</th>
-									<th width="60%">제목</th>
-									<th width="20%">작성일</th>
-									<th width="10%">조회수</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:forEach var="member" items="${mem}">
-									<tr >
-										<td width="10%" style="text-align: center !important;">${member.email}</td>
-										<td width="60%" class="sorting_1" >
-											<a href="#">#{member.name}</a></td>
-										<td width="20%" style="text-align: center !important;">
-											변경
-										</td>
-										<td width="10%" style="text-align: center !important;">삭제</td>
-									</tr>
-									</c:forEach>
-								
-							</tbody>
-						</table>
+		 <div class="row" style="margin-left: 2%; margin-right: 2%">
+				<div class="col-sm-4 newissue" >
+				이메일
+				</div>
+				<div class="col-sm-4 newissue">
+				이름
+				</div>
+				<div class="col-sm-2 newissue">
+				권한
+				</div>
+				<div class="col-sm-2 newissue">
+				삭제
+				</div>
+		</div>
+		<c:forEach items="${member}" var="m">
+		<div class="row" style="margin-left: 2%; margin-right: 2%" id="row">	
+			<div class="col-sm-4 newissue">   
+           		${m.email}       
+			</div>			
+			<div class="col-sm-4 newissue">    
+           		${m.name}      
+			</div>
+			<div class="col-sm-2 newissue">
+			변경
+			</div>
+			<div class="col-sm-2 newissue">
+			삭제
+			</div>
+      </div>	
+			</c:forEach>
+			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
+			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
+			</div>
 			</div>
 		
             <!-- #/ container -->
@@ -137,6 +145,7 @@ $(function () {
         <!--**********************************
             Content body end
         ***********************************-->
+
         
   <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>
     <!--**********************************
