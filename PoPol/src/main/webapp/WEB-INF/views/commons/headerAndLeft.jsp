@@ -278,7 +278,7 @@ span {
                <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3"
                   id="searchSubmitIcon"><i class="mdi mdi-magnify" style="cursor: pointer;"></i></span>
             </div>
-            <form action="searchIssue.do" id="searchSubmit">
+            <form action="searchMovie.do" id="searchSubmit">
             <input type="search" id="sIssue" name="word" class="form-control" placeholder="검색 후 Enter치세요"
                aria-label="Search">
             <input type="hidden" id="searchEmail" name="email" value=<%=session.getAttribute("email")%>>
@@ -492,6 +492,13 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="private.issue" /></span>
          </a></li>
+         <c:if test="${role == 'ROLE_ADMIN'}">
+          <li><a href="admin.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:baseline-person" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="private.admin" /></span>
+         </a></li>
+         </c:if>
          <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
          <li><a href="wishlist.do?email=${sessionScope.email}" aria-expanded="false" id="wish"> <span
                class="iconify" data-icon="ic:round-bookmark" data-inline="false" id="wish"

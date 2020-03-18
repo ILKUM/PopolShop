@@ -1,5 +1,7 @@
 package kr.or.scoop.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import kr.or.scoop.dto.Member;
@@ -40,5 +42,8 @@ public interface MemberDao {
 	
 	//회원 탈퇴 
 	public int deleteMember(String email);
+	
+	//멤버 리스트 
+	public List<Member> searchMember();
 	
 }

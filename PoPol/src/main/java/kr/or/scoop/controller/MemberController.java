@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -394,6 +395,16 @@ public class MemberController {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		result = dao.idCheck(email);
 		return result;
+	}
+	
+	@RequestMapping(value="management.do",method= RequestMethod.GET)
+	public String searchMember(Model model,Member member) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		List<Member> mem = dao.searchMember();
+		
+		model.addAttribute("member",mem);
+		return "user/memberList";
+		
 	}
 	
 }

@@ -10,4 +10,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getKorea" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 1
 </select>
+<select id="getAmerican" resultType="kr.or.scoop.dto.Movie">
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 2
+</select>
+<select id="getChina" resultType="kr.or.scoop.dto.Movie">
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 3
+</select>
+<select id="getEurope" resultType="kr.or.scoop.dto.Movie">
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 4
+</select>
+<select id="getJapan" resultType="kr.or.scoop.dto.Movie">
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 5
+</select>
+<select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
+		select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where (moname like '%'||#{word}||'%')
+	</select>
 </mapper>

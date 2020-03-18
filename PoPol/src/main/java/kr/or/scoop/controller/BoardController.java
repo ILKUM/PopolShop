@@ -136,12 +136,51 @@ public class BoardController {
 		}
 		
 		@RequestMapping(value="koreaGet.do",method = RequestMethod.GET)
-		public String movieGet(Movie movie , Model model) {
+		public String koreaGet(Movie movie , Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			List<Movie> m = dao.getKorea();
 			model.addAttribute("movie",m);
-			return "movie/korea";
+			return "movie/movie";
 		}
 		
+		@RequestMapping(value="americanGet.do",method = RequestMethod.GET)
+		public String americanGet(Movie movie , Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getAmerican();
+			model.addAttribute("movie",m);
+			return "movie/movie";
+		}
+		
+		@RequestMapping(value="chinaGet.do",method = RequestMethod.GET)
+		public String chinaGet(Movie movie , Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getChina();
+			model.addAttribute("movie",m);
+			return "movie/movie";
+		}
+		
+		@RequestMapping(value="europeGet.do",method = RequestMethod.GET)
+		public String europeGet(Movie movie , Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getEurope();
+			model.addAttribute("movie",m);
+			return "movie/movie";
+		}
+		
+		@RequestMapping(value="japanGet.do",method = RequestMethod.GET)
+		public String japanGet(Movie movie , Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getJapan();
+			model.addAttribute("movie",m);
+			return "movie/movie";
+		}
+		
+		@RequestMapping(value="searchMovie.do",method = RequestMethod.GET)
+		public String searchGet(Movie movie , Model model , String word) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.searchMovie(word);
+			model.addAttribute("movie",m);
+			return "movie/movie";
+		}
 		
 }
