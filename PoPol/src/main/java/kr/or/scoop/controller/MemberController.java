@@ -398,7 +398,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="management.do",method= RequestMethod.GET)
-	public String searchMember(Model model,Member member) {
+	public String listMember(Model model,Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		List<Member> mem = dao.searchMember();
 		

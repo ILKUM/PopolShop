@@ -73,6 +73,21 @@ $(document).ready(function(){
 		
 			
 	}); 
+	
+	  function filter() {
+	      var value, name, item, i;
+	      value = document.getElementById("searchemail").value.toUpperCase();
+	      item = document.getElementsByClassName("search_member");
+
+	      for (i = 0; i < item.length; i++) {
+	         name = item[i].getElementsByClassName("resultmember");
+	         if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+	            item[i].style.display = "flex";
+	         } else {
+	            item[i].style.display = "none";
+	         }
+	      }
+	   }
 
 });
 </script>	
@@ -113,6 +128,9 @@ $(document).ready(function(){
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">
+		 <input
+            onkeyup="filter()" type="search" id="searchemail" class="form-control"
+            style="border-radius: 0.25rem; height: 20px" placeholder="이메일 검색">
 				<div class="col-sm-4 newissue" >
 				이메일
 				</div>
@@ -127,7 +145,8 @@ $(document).ready(function(){
 				</div>
 		</div>
 		<c:forEach items="${member}" var="m">
-		<div class="row" style="margin-left: 2%; margin-right: 2%" id="row">	
+		<div class="row search_member resultmember" style="margin-left: 2%; margin-right: 2%" id="row">	
+			
 			<div class="col-sm-4 newissue">   
            		${m.email}       
 			</div>			
@@ -140,6 +159,7 @@ $(document).ready(function(){
 			<div class="col-sm-2 newissue">
 			삭제
 			</div>
+		
       </div>	
 			</c:forEach>
 			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
