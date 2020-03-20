@@ -35,6 +35,24 @@ $('#writeletter').mouseover(function(){
 $('#writeletter').mouseout(function(){
 	 $('#write').attr("style","font-size: 20px;");
 });
+
+function checkz() {
+//공지사항 제목 공백 확인
+ if($("#retitle").val() == ""){
+    Swal.fire("제목을 입력해주세요.");
+   $("#retitle").focus();
+   return false;
+ }
+
+ //공지사항 설명 공백 확인
+ if($("#recontent").val() == ""){
+    Swal.fire("내용을 입력해주세요.");
+   $("#recontent").focus();
+   return false;
+ }
+ 
+return true;
+}
 </script>
 <body>
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -124,14 +142,14 @@ $('#writeletter').mouseout(function(){
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
                <label for="title">리뷰글 제목</label> <input
                   class="form-control createmodal" type="text" id="retitle"
-                  name="issuetitle" style="width: 100%;border-radius:0.5rem;" placeholder="제목을 입력해 주세요.">
+                  name="retitle" style="width: 100%;border-radius:0.5rem;" placeholder="제목을 입력해 주세요.">
                <br> <label for="content">리뷰 설명</label> <span id="filename"></span>
                <img id="imgpreview" alt="사진 미리보기 자리"
                   style="display: none; width: 40px; height: 40px" src="#" /> 
                   <input type="file" multiple="multiple"  id="fclick" name="files" hidden="">
                <button type="button" id="auth" disabled hidden="">Authenticate</button>
                <textarea class="form-control createmodal" rows="5"
-                  id="issuecontent" name="issuecontent" style="width: 100%;border-radius: 0.5rem;"
+                  id="recontent" name="recontent" style="width: 100%;border-radius: 0.5rem;"
                   placeholder="@를 입력하여 멘션, 할 일, 파일 등을 추가해 보세요."></textarea>
                <br>
                <label for="annota">첨부</label>
@@ -295,7 +313,7 @@ $('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했�
 	       $(this).click();
 	    }
 	});
-		$('#issuecontent').keydown( //이슈작성에서 @단축키 사용했을때 방향키로 조절가능
+		$('#recontent').keydown( //이슈작성에서 @단축키 사용했을때 방향키로 조절가능
 				function(event) {
 					if($('#filelist').css('display')==('flex')){
 						var key = event.keyCode;
@@ -328,8 +346,8 @@ $('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했�
 			               	$(this).click();
 			               }
 					}
-					var top = ($('#issuecontent').offset().top);
-					var left = ($('#issuecontent').offset().left + 490);
+					var top = ($('#recontent').offset().top);
+					var left = ($('#recontent').offset().left + 490);
 					if (event.shiftKey && event.keyCode == 50) {
 						$('#filelist').attr(
 								'style',

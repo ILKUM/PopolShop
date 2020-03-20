@@ -1,6 +1,7 @@
 package kr.or.scoop.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -9,7 +10,7 @@ public class Review {
 	private String retitle; //리뷰 제목
 	private String recontent; //리뷰 내용
 	private Timestamp retime; //글쓴 시간
-	private CommonsMultipartFile filesrc; //리뷰사진 
+	private List<CommonsMultipartFile> files; //리뷰사진 
 	private String rephoto; //리뷰사진
 	private String email; //작성자 이메일
 	private String name; //작성자 이름
@@ -37,11 +38,12 @@ public class Review {
 	public void setRetime(Timestamp retime) {
 		this.retime = retime;
 	}
-	public CommonsMultipartFile getFilesrc() {
-		return filesrc;
+	
+	public List<CommonsMultipartFile> getFiles() {
+		return files;
 	}
-	public void setFilesrc(CommonsMultipartFile filesrc) {
-		this.filesrc = filesrc;
+	public void setFiles(List<CommonsMultipartFile> files) {
+		this.files = files;
 	}
 	public String getRephoto() {
 		return rephoto;
@@ -65,8 +67,9 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [reseq=" + reseq + ", retitle=" + retitle + ", recontent=" + recontent + ", retime=" + retime
-				+ ", filesrc=" + filesrc + ", rephoto=" + rephoto + ", email=" + email + ", name=" + name + "]";
+				+ ", files=" + files + ", rephoto=" + rephoto + ", email=" + email + ", name=" + name + "]";
 	}
 	
+
 	
 }

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.scoop.dao.MovieDao;
@@ -135,6 +137,7 @@ public class BoardController {
 					   return viewpage;
 		}
 		
+		//한국영화 이동
 		@RequestMapping(value="koreaGet.do",method = RequestMethod.GET)
 		public String koreaGet(Movie movie , Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -143,6 +146,7 @@ public class BoardController {
 			return "movie/movie";
 		}
 		
+		//미국영화 이동
 		@RequestMapping(value="americanGet.do",method = RequestMethod.GET)
 		public String americanGet(Movie movie , Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -151,6 +155,7 @@ public class BoardController {
 			return "movie/movie";
 		}
 		
+		//중국영화 이동
 		@RequestMapping(value="chinaGet.do",method = RequestMethod.GET)
 		public String chinaGet(Movie movie , Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -159,6 +164,7 @@ public class BoardController {
 			return "movie/movie";
 		}
 		
+		//유럽영화 이동
 		@RequestMapping(value="europeGet.do",method = RequestMethod.GET)
 		public String europeGet(Movie movie , Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -167,6 +173,7 @@ public class BoardController {
 			return "movie/movie";
 		}
 		
+		//일본영화 이동
 		@RequestMapping(value="japanGet.do",method = RequestMethod.GET)
 		public String japanGet(Movie movie , Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -175,6 +182,7 @@ public class BoardController {
 			return "movie/movie";
 		}
 		
+		//영화 찾기
 		@RequestMapping(value="searchMovie.do",method = RequestMethod.GET)
 		public String searchGet(Movie movie , Model model , String word) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -183,11 +191,42 @@ public class BoardController {
 			return "movie/movie";
 		}
 		
+		//리뷰 페이지 이동
 		@RequestMapping(value="review.do" , method=RequestMethod.GET)
 		public String wishGet(Model model,Movie movie,Review review) {
 			
 			return "review/review";
 			
+		}
+		
+		@RequestMapping(value="writeReview.do",method=RequestMethod.POST)
+		public String reviewInsert(Review review,HttpServletRequest request,@RequestParam(value="files") MultipartFile[] files) {
+			if(files != null && files.length > 0) {
+				 //업로드한 파일이 하나라도 있다면
+				 for(MultipartFile mutifile : files) {
+					 String filename = mutifile.getOriginalFilename();
+					 String filepath = request.getServletContext().getRealPath("/upload/file");
+					 String fpath = filepath + "\\" + filename;
+					 if(!filename.equals("")) {
+						 //서버에 파일 업로드 (write)
+						 try {
+						 FileOutputStream fs = new FileOutputStream(fpath);
+							 fs.write(mutifile.getBytes());
+							 fs.close();
+						 } catch (Exception e) {
+
+						 }
+					 }
+				 }
+			 }
+			String viewpage;
+			int result = bService.insertReview(review);
+			if(result > 0) {
+				viewpage= "Review/review";
+			}else {
+				viewpage="Review/review";
+			}
+			return viewpage;
 		}
 		
 }
