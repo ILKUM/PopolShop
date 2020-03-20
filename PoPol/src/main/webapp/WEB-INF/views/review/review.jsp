@@ -123,7 +123,7 @@ $('#writeletter').mouseout(function(){
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
                <label for="title">리뷰글 제목</label> <input
-                  class="form-control createmodal" type="text" id="issuetitle"
+                  class="form-control createmodal" type="text" id="retitle"
                   name="issuetitle" style="width: 100%;border-radius:0.5rem;" placeholder="제목을 입력해 주세요.">
                <br> <label for="content">리뷰 설명</label> <span id="filename"></span>
                <img id="imgpreview" alt="사진 미리보기 자리"
@@ -154,8 +154,8 @@ $('#writeletter').mouseout(function(){
       </div>
    </div>
 
-   <div class="list-group" id="mentionlist" style="display: none;border:10px solid #cbc9d4">
-      <a href="#" class="list-group-item list-group-item-action menli" id="men3" style="padding: 5px"><span class="iconify" data-icon="si-glyph:file-box" data-inline="false"></span> 파일</a> 
+   <div class="list-group" id="filelist" style="display: none;border:10px solid #cbc9d4">
+      <a href="#" class="list-group-item list-group-item-action menli" id="selfile" style="padding: 5px"><span class="iconify" data-icon="si-glyph:file-box" data-inline="false"></span> 파일</a> 
    </div>
    <!--  -->
    <!-- 멘션할 사람 목록 -->
@@ -281,8 +281,8 @@ $('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했�
 	    if (tar2 < 0) {
 	       tar2 = 0;
 	    }
-	    if (tar2 > 5) {
-	       tar2 = 5;
+	    if (tar2 > 1) {
+	       tar2 = 1;
 	    }
 	    $('#men' + tar2).focus();
 	    if ($('#men' + tar2).focus()) {
@@ -297,7 +297,7 @@ $('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했�
 	});
 		$('#issuecontent').keydown( //이슈작성에서 @단축키 사용했을때 방향키로 조절가능
 				function(event) {
-					if($('#mentionlist').css('display')==('flex')){
+					if($('#filelist').css('display')==('flex')){
 						var key = event.keyCode;
 			               switch (key) {
 			               case 38:
@@ -314,8 +314,8 @@ $('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했�
 			               if (tar < 0) {
 			                  tar = 0;
 			               }
-			               if (tar > 5) {
-			                  tar = 5;
+			               if (tar > 1) {
+			                  tar = 1;
 			               }
 			               $('#men' + tar).focus();
 			               if ($('#men' + tar).focus()) {
@@ -331,18 +331,18 @@ $('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했�
 					var top = ($('#issuecontent').offset().top);
 					var left = ($('#issuecontent').offset().left + 490);
 					if (event.shiftKey && event.keyCode == 50) {
-						$('#mentionlist').attr(
+						$('#filelist').attr(
 								'style',
 								'position:fixed;border:1px solid black;border-radius:0.5rem; width:20%;top:' + top + 'px;left:'
-										+ left + 'px; z-index:4');
-						$('#mentionlist').show();
-						$('div').not('#mentionlist').click(function() {
-							$('#mentionlist').hide();
+										+ left + 'px; z-index:5');
+						$('#filelist').show();
+						$('div').not('#filelist').click(function() {
+							$('#filelist').hide();
 						});
 					}
 				});
 		
-		$('#men3').click(function() { //파일 클릭하면 hidden으로 숨겨놓은 파일선택 실행
+		$('#selfile').click(function() { //파일 클릭하면 hidden으로 숨겨놓은 파일선택 실행
 			$('#fclick').click();
 		});
 </script>
