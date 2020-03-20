@@ -43,4 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
 		select email , name from member
 	</select>
+	<delete id="banMember">
+	delete from member where email=#{email,jdbcType=VARCHAR}
+	</delete>
 </mapper>

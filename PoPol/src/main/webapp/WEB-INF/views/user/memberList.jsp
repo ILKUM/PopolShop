@@ -92,6 +92,38 @@ function filter() {
        }
     }
  }
+
+function memberdelete() {
+$('.banMember').click(function(){
+	   var memDiv = $(this).parents(".search_member");
+	   Swal.fire({
+		   title: '정말로 삭제하시겠습니까?',
+		   text: "확인을 누르시면 되돌릴수 없습니다!",
+		   icon: 'warning',
+		   showCancelButton: true,
+		   confirmButtonColor: '#d33',
+		   cancelButtonColor: '#c8c8c8',
+		   confirmButtonText: '확인',
+		   cancelButtonText: '취소'
+		 }).then((result) => {
+		   if (result.value) {
+				$.ajax({
+					type : 'post',
+					url : 'banMember.do',
+					data : {				
+						email:$("#del").val()
+					},
+					success : function(data) {
+						console.log("ajax success"+data);
+						console.log(memDiv);
+						$(memDiv).remove();
+					}
+				});
+		   }
+		 })
+		})
+		
+}
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -159,7 +191,8 @@ function filter() {
 			변경
 			</div>
 			<div class="col-sm-2 listmem">
-			삭제
+				<a class=banMember href="javascript:memberdelete();">탈퇴</a>
+				<input type="hidden" name="email" value="${m.email}" id="del">			
 			</div>
 		
       </div>	

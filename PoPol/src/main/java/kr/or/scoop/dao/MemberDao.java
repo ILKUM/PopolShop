@@ -46,5 +46,6 @@ public interface MemberDao {
 	//회원 탈퇴 
 	public int deleteMember(String email);
 	
-	
+	//회원 추방
+	public int banMember(String email);
 }

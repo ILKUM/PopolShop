@@ -360,12 +360,6 @@ public class MemberController {
 		return "user/Payment";
 	}
 	
-	//알림 페이지 
-	@RequestMapping(value="app-alram.do", method=RequestMethod.GET)
-	public String alarmpage() {
-		return "user/app-alram";
-	}
-	
 	//회원 등급 수정
 	@RequestMapping(value="updateRole.do", method=RequestMethod.POST)
 	public String updateRole(HttpSession session) {
@@ -397,6 +391,7 @@ public class MemberController {
 		return result;
 	}
 	
+	//멤버관리 페이지
 	@RequestMapping(value="management.do",method= RequestMethod.GET)
 	public String listMember(Model model,Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -407,6 +402,7 @@ public class MemberController {
 		
 	}
 	
+	//운영자 공간이동
 	@RequestMapping(value="admin.do",method= RequestMethod.GET)
 	public String adminGet(Model model,HttpSession session) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -414,6 +410,25 @@ public class MemberController {
 		
 		model.addAttribute("member",mem);
 		return "user/admin-Profile";
+		
+	}
+	
+	//회원 추방
+	@RequestMapping(value = "banMember.do", method = {RequestMethod.POST,RequestMethod.GET})
+	public String banMember(String email, Model model) {
+		int result = 0;
+		String viewpage;
+		System.out.println("에미일 : " + email);
+		result = service.banMember(email);
+		
+		if(result > 0) {
+			model.addAttribute("ajax", "멤버탈퇴 성공했습니다");
+			viewpage = "utils/ajax";
+		}else {
+			model.addAttribute("ajax", "멤버탈퇴 실패했습니다");
+			viewpage = "utils/ajax";
+		}
+		return viewpage;
 		
 	}
 	

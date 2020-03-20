@@ -87,4 +87,11 @@ public class MemberService {
 		return result;
 	}
 	
+	public int banMember(String email) {
+		int result = 0;
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		result = dao.banMember(email);
+		return result;
+	}
+	
 }
