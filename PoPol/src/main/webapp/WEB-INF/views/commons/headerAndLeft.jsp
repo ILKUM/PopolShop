@@ -135,37 +135,6 @@ input::placeholder {
    min-width: 950px;
    right: 230px;
 }
-
-#filediv {
-   position: fixed;
-   bottom: 0;
-   right: 0;
-   font-size: 18px;
-   z-index: 2;
-   width: 84.6%;
-   height: 100%;
-}
-
-#filediv2 {
-   position: fixed;
-   bottom: 0;
-   right: left;
-   font-size: 18px;
-   z-index: 2;
-   width: 15.4%;
-   height: 100%;
-   background-color: black;
-   opacity: 0.5;
-}
-
-#fileclose {
-   position: fixed;
-   bottom: 95%;
-   left: 1%;
-   font-size: 18px;
-   z-index: 3;
-}
-
 /* The switch - the box around the slider */
 .switch_alarm {
    position: relative;
@@ -180,30 +149,6 @@ input::placeholder {
    display: none;
 }
 
-/* The slider */
-.slider_alarm {
-   position: absolute;
-   cursor: pointer;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 0;
-   background-color: #ccc;
-   -webkit-transition: .4s;
-   transition: .4s;
-}
-
-.slider_alarm:before {
-   position: absolute;
-   content: "";
-   height: 26px;
-   width: 26px;
-   left: 4px;
-   bottom: 4px;
-   background-color: white;
-   -webkit-transition: .4s;
-   transition: .4s;
-}
 
 input:checked+.slider_alarm {
    background-color: #00D63D;
@@ -477,9 +422,9 @@ span {
                   &nbsp;<spring:message code="newissue" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
          </a></li>
          <li><a href="myissue.do" aria-expanded="false"> <span
-               class="iconify" data-icon="simple-line-icons:emotsmile"
+               class="iconify" data-icon="bx:bx-like"
                data-inline="false" style="width: 17px; height: auto;font: bold;"> </span><span
-               class="nav-text"> &nbsp;<spring:message code="myissue" /></span>
+               class="nav-text"> &nbsp;<spring:message code="like" /></span>
          </a></li>
          <li><a href="review.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:outline-rate-review" data-inline="false"
@@ -608,7 +553,7 @@ span {
           <form class="was-validated" action="insertMovie.do" enctype="multipart/form-data" method="Post">
           
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profile" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center" name="mophoto">
+        	<img id="profile" name="mophoto" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center" >
          </div>
   		
                             
@@ -655,23 +600,17 @@ span {
     <div class="invalid-feedback">
     </div>
   </div>
-  <input type="text" name="monum" class="form-control is-invalid" placeholder="영화 감독을 입력해주세요" hidden="" value="0">
+  <input type="text" name="monum" class="form-control is-invalid" hidden="" value="0">
+  <input type="text" name="iswish" class="form-control is-invalid"  hidden="" value="0">
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">추가하기</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
 </form>
         </div>
         
-        <!-- Modal footer -->
-        
-        
-        
-      
-          
-        
-        
       </div>
     </div>
+    
   </div>
 <script type="text/javascript">
 		//내정보 열기 (드롭다운)

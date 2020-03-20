@@ -4,25 +4,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.MovieDao">
 <insert id="insertMovie" parameterType="kr.or.scoop.dto.Movie">
-	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum)
-       values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum})
+	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum,iswish)
+       values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum},0)
 </insert>
 <select id="getKorea" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 1
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 1
 </select>
 <select id="getAmerican" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 2
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 2
 </select>
 <select id="getChina" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 3
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 3
 </select>
 <select id="getEurope" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 4
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 4
 </select>
 <select id="getJapan" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where monum = 5
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 5
 </select>
 <select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
-		select moseq,moname,mocontent,modate,modirector,molike,mophoto from movie where (moname like '%'||#{word}||'%')
+		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where (moname like '%'||#{word}||'%')
 	</select>
 </mapper>

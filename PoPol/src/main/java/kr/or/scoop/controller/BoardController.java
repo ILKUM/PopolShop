@@ -20,6 +20,7 @@ import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
+import kr.or.scoop.dto.Review;
 import kr.or.scoop.service.BoardService;
 
 @Controller
@@ -93,7 +94,6 @@ public class BoardController {
 		//영화 추가 
 		@RequestMapping(value="insertMovie.do",method = {RequestMethod.POST , RequestMethod.GET})
 		public String movieInsert(Movie movie , HttpServletRequest request , HttpSession session) {
-			System.out.println("여기도착?");
 			   			String viewpage;
 						CommonsMultipartFile multifile = movie.getFilesrc();
 						String filename = multifile.getOriginalFilename();		
@@ -181,6 +181,13 @@ public class BoardController {
 			List<Movie> m = dao.searchMovie(word);
 			model.addAttribute("movie",m);
 			return "movie/movie";
+		}
+		
+		@RequestMapping(value="review.do" , method=RequestMethod.GET)
+		public String wishGet(Model model,Movie movie,Review review) {
+			
+			return "review/review";
+			
 		}
 		
 }
