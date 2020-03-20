@@ -496,7 +496,7 @@ span {
           <li><a href="admin.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:baseline-person" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="privateadmin" /></span>
+                  &nbsp;<spring:message code="privateadmins" /></span>
          </a></li>
          </c:if>
          <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">

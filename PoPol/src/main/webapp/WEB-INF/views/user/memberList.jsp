@@ -27,7 +27,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 
 <style>
-.newissue{
+.listmem{
 	border-bottom: 1px solid #c8c8c8;
 	padding-top: 0.7%;
 	padding-bottom: 0.7%;
@@ -74,22 +74,24 @@ $(document).ready(function(){
 			
 	}); 
 	
-	  function filter() {
-	      var value, name, item, i;
-	      value = document.getElementById("searchemail").value.toUpperCase();
-	      item = document.getElementsByClassName("search_member");
-
-	      for (i = 0; i < item.length; i++) {
-	         name = item[i].getElementsByClassName("resultmember");
-	         if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-	            item[i].style.display = "flex";
-	         } else {
-	            item[i].style.display = "none";
-	         }
-	      }
-	   }
+	 
 
 });
+
+function filter() {
+    var value, name, item, i;
+    value = document.getElementById("searchemail").value.toUpperCase();
+    item = document.getElementsByClassName("search_member");
+
+    for (i = 0; i < item.length; i++) {
+       name = item[i].getElementsByClassName("listmem");
+       if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+          item[i].style.display = "flex";
+       } else {
+          item[i].style.display = "none";
+       }
+    }
+ }
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -131,32 +133,32 @@ $(document).ready(function(){
 		 <input
             onkeyup="filter()" type="search" id="searchemail" class="form-control"
             style="border-radius: 0.25rem; height: 20px" placeholder="이메일 검색">
-				<div class="col-sm-4 newissue" >
+				<div class="col-sm-4 listmem" >
 				이메일
 				</div>
-				<div class="col-sm-4 newissue">
+				<div class="col-sm-4 listmem">
 				이름
 				</div>
-				<div class="col-sm-2 newissue">
+				<div class="col-sm-2 listmem">
 				권한
 				</div>
-				<div class="col-sm-2 newissue">
+				<div class="col-sm-2 listmem">
 				삭제
 				</div>
 		</div>
 		<c:forEach items="${member}" var="m">
 		<div class="row search_member resultmember" style="margin-left: 2%; margin-right: 2%" id="row">	
 			
-			<div class="col-sm-4 newissue">   
+			<div class="col-sm-4 listmem">   
            		${m.email}       
 			</div>			
-			<div class="col-sm-4 newissue">    
+			<div class="col-sm-4 listmem">    
            		${m.name}      
 			</div>
-			<div class="col-sm-2 newissue">
+			<div class="col-sm-2 listmem">
 			변경
 			</div>
-			<div class="col-sm-2 newissue">
+			<div class="col-sm-2 listmem">
 			삭제
 			</div>
 		

@@ -40,4 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member
 		set email = #{email,jdbcType=VARCHAR}, pwd = #{pwd,jdbcType=VARCHAR}, name=#{name,jdbcType=VARCHAR}, profile= #{profile,jdbcType=VARCHAR} where email = #{email,jdbcType=VARCHAR}
 	</update>
+	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
+		select email , name from member
+	</select>
 </mapper>

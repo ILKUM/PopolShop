@@ -19,6 +19,9 @@ public interface MemberDao {
 	// 로그인 검증
 	public int loginCheck(String email, String pwd);
 	
+	//멤버 리스트 
+	public List<Member> searchMember();
+	
 	// 회원 패스워드 암호화 체크
 	public Member pwdCheck(String email);
 	
@@ -43,7 +46,5 @@ public interface MemberDao {
 	//회원 탈퇴 
 	public int deleteMember(String email);
 	
-	//멤버 리스트 
-	public List<Member> searchMember();
 	
 }
