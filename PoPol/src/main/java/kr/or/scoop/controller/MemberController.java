@@ -392,24 +392,12 @@ public class MemberController {
 	}
 	
 	//멤버관리 페이지
-	@RequestMapping(value="management.do",method= RequestMethod.GET)
+	@RequestMapping(value="admin.do",method= RequestMethod.GET)
 	public String listMember(Model model,Member member) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		List<Member> mem = dao.searchMember();
-		
 		model.addAttribute("member",mem);
 		return "user/memberList";
-		
-	}
-	
-	//운영자 공간이동
-	@RequestMapping(value="admin.do",method= RequestMethod.GET)
-	public String adminGet(Model model,HttpSession session) {
-		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		Member mem = dao.getMember((String)session.getAttribute("email"));
-		
-		model.addAttribute("member",mem);
-		return "user/admin-Profile";
 		
 	}
 	

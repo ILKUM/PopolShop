@@ -481,10 +481,10 @@ span {
                data-inline="false" style="width: 17px; height: auto;font: bold;"> </span><span
                class="nav-text"> &nbsp;<spring:message code="myissue" /></span>
          </a></li>
-         <li><a href="calendar.do" aria-expanded="false"> <span
-               class="iconify" data-icon="bx:bx-calendar" data-inline="false"
+         <li><a href="review.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:outline-rate-review" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="calendar" /></span>
+                  &nbsp;<spring:message code="review" /></span>
          </a></li>
          <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
          <li><a href="private.do" aria-expanded="false"> <span
@@ -494,41 +494,41 @@ span {
          </a></li>
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:baseline-person" data-inline="false"
+               class="iconify" data-icon="wpf:administrator" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="privateadmins" /></span>
          </a></li>
          </c:if>
          <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
          <li><a href="wishlist.do?email=${sessionScope.email}" aria-expanded="false" id="wish"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false" id="wish"
+               class="iconify" data-icon="el:heart" data-inline="false" id="wish"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
          </c:if>       
         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
                <li><a href="koreaGet.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="korea" /></span>
          </a></li>    
                <li><a href="americanGet.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="american" /></span>
          </a></li>    
                <li><a href="chinaGet.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="china" /></span>
          </a></li>    
                <li><a href="europeGet.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="europe" /></span>
          </a></li>    
                <li><a href="japanGet.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:round-bookmark" data-inline="false"
+               class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="japan" /></span>
          </a></li>    

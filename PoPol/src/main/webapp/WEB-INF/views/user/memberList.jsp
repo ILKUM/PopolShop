@@ -150,11 +150,8 @@ $('.banMember').click(function(){
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #E71D36;">내 정보</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="management.do">회원관리</a>
-			    </li>
+			      <a class="nav-link" href="admin.do" style="color: #E71D36;">회원관리</a>
+			    </li>		
 			    <li class="nav-item">
 			      <a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
 			    </li>
@@ -172,7 +169,7 @@ $('.banMember').click(function(){
 				이름
 				</div>
 				<div class="col-sm-2 listmem">
-				권한
+				가입날짜
 				</div>
 				<div class="col-sm-2 listmem">
 				삭제
@@ -186,9 +183,9 @@ $('.banMember').click(function(){
 			</div>			
 			<div class="col-sm-4 listmem">    
            		${m.name}      
-			</div>
+			</div>		
 			<div class="col-sm-2 listmem">
-			변경
+				${m.iddate}
 			</div>
 			<div class="col-sm-2 listmem">
 				<a class=banMember href="javascript:memberdelete();">탈퇴</a>

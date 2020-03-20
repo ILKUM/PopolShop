@@ -92,7 +92,7 @@ $(document).ready(function(){
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="min-height: 1080px">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
 				<h3 style="padding-left: 15px;">공지사항</h3>

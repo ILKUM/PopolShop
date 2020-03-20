@@ -92,7 +92,7 @@ $(document).ready(function(){
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-        <div class="card">
+        <div class="card" style="min-height: 1080px">
         	<div class="row">
         	<c:forEach items="${movie}" var="m">
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
