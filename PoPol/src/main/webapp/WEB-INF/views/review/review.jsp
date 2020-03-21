@@ -104,7 +104,7 @@ $(function(){
          	작성시간 
          </div>
          <div class="col-sm-1 newissue">
-         	위시리스트
+         	추천수
          </div>
       </div>
       <c:forEach items="${review}" var="re">
@@ -119,7 +119,7 @@ $(function(){
          ${fn:substring(re.retime,0,19)}    	
          </div>
 				<div class="col-sm-1 newissue" style="padding-left: 30px;">
-					<i class="fas fa-heart"></i>
+					${re.relike}
 				</div>
       </div>
       </c:forEach>    
