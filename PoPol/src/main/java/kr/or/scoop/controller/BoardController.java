@@ -14,10 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Movie;
@@ -194,39 +193,102 @@ public class BoardController {
 		//리뷰 페이지 이동
 		@RequestMapping(value="review.do" , method=RequestMethod.GET)
 		public String wishGet(Model model,Movie movie,Review review) {
-			
+		
+		  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
+		  List<Review> r =  dao.getReview(); 
+		   model.addAttribute("review", r);
+		 
 			return "review/review";
 			
 		}
 		
 		@RequestMapping(value="writeReview.do",method=RequestMethod.POST)
-		public String reviewInsert(Review review,HttpServletRequest request,@RequestParam(value="files") MultipartFile[] files) {
-			if(files != null && files.length > 0) {
-				 //업로드한 파일이 하나라도 있다면
-				 for(MultipartFile mutifile : files) {
-					 String filename = mutifile.getOriginalFilename();
-					 String filepath = request.getServletContext().getRealPath("/upload/file");
-					 String fpath = filepath + "\\" + filename;
-					 if(!filename.equals("")) {
-						 //서버에 파일 업로드 (write)
-						 try {
-						 FileOutputStream fs = new FileOutputStream(fpath);
-							 fs.write(mutifile.getBytes());
-							 fs.close();
-						 } catch (Exception e) {
-
-						 }
-					 }
-				 }
-			 }
+		public String reviewInsert(Review review,HttpServletRequest request,HttpSession session) {
+			System.out.println("ㄱㄷ : " + review);
+			CommonsMultipartFile multifile = review.getFilesrc();
+			String filename = multifile.getOriginalFilename();		
+			String path = request.getServletContext().getRealPath("/upload/file");
+			
+			String fpath = path + "\\"+ filename; 
+			if(filename.equals("")) {
+				review.setRephoto((String)session.getAttribute("img"));
+			}else {
+				review.setRephoto(filename);
+			}
+				if(!filename.equals("")) { //실 파일 업로드
+					FileOutputStream fs = null;
+					try {
+						fs = new FileOutputStream(fpath);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}finally {
+						try {
+							fs.write(multifile.getBytes());
+							fs.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
 			String viewpage;
 			int result = bService.insertReview(review);
 			if(result > 0) {
-				viewpage= "Review/review";
+				viewpage= "review/review";
 			}else {
-				viewpage="Review/review";
+				viewpage="review/review";
 			}
 			return viewpage;
 		}
+		
+		@RequestMapping(value="like.do" , method=RequestMethod.GET)
+		public String getLike() {
+			
+			return "recommend/recommend";
+		}
+		
+		@RequestMapping(value="writeLike.do",method=RequestMethod.POST)
+		public String reviewInsert(Review review,HttpServletRequest request,HttpSession session) {
+			System.out.println("ㄱㄷ : " + review);
+			CommonsMultipartFile multifile = review.getFilesrc();
+			String filename = multifile.getOriginalFilename();		
+			String path = request.getServletContext().getRealPath("/upload/file");
+			
+			String fpath = path + "\\"+ filename; 
+			if(filename.equals("")) {
+				review.setRephoto((String)session.getAttribute("img"));
+			}else {
+				review.setRephoto(filename);
+			}
+				if(!filename.equals("")) { //실 파일 업로드
+					FileOutputStream fs = null;
+					try {
+						fs = new FileOutputStream(fpath);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}finally {
+						try {
+							fs.write(multifile.getBytes());
+							fs.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+			String viewpage;
+			int result = bService.insertReview(review);
+			if(result > 0) {
+				viewpage= "review/review";
+			}else {
+				viewpage="review/review";
+			}
+			return viewpage;
+		}
+		
 		
 }

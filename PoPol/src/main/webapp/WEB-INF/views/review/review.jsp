@@ -53,6 +53,14 @@ function checkz() {
  
 return true;
 }
+
+$(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+	$('#profiles').click(function() { 
+		$('#Photo').click();
+	});
+ 
+});
 </script>
 <body>
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -79,7 +87,7 @@ return true;
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;">
 	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#writereview"></span> 
-	         	<span id="letter" data-toggle="modal" data-target="#writereview">리뷰 글쓰기</span>
+	         	<span id="letter" data-toggle="modal" data-target="#reviewWrite">리뷰 글쓰기</span>
          	</span>
 
          </div>
@@ -98,21 +106,23 @@ return true;
          <div class="col-sm-1 newissue">
          	위시리스트
          </div>
-      </div>    
+      </div>
+      <c:forEach items="${review}" var="re">
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
          <div class="col-sm-7 newissue">	
-         <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 5%;">제목자리</a>     
+         <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 5%;">${re.retitle}</a>     
          </div>
          <div class="col-sm-2 newissue" >
-         	글쓴자리
+         	${re.name}
          </div>
          <div class="col-sm-2 newissue">
-        	글쓴시간 
+         ${fn:substring(re.retime,0,19)}    	
          </div>
 				<div class="col-sm-1 newissue" style="padding-left: 30px;">
 					<i class="fas fa-heart"></i>
 				</div>
       </div>
+      </c:forEach>    
     
       		<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
 			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
@@ -124,86 +134,51 @@ return true;
         <!--**********************************
             Content body end
         ***********************************-->
- <div class="modal fade" id="writereview">
-   <div class="modal-dialog modal-dialog-centered">
+ <div class="modal fade" id="reviewWrite">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-
-         <!-- Modal Header -->
-         
-         <div class="modal-header">
-            <h3 class="modal-title">리뷰 작성</h3>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+      
+        <!-- Modal Header -->
+        <div class="modal-header" align="center">
+          <h4><label for="validationTextarea">리뷰 작성</label></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="was-validated" action="writeReview.do" enctype="multipart/form-data" method="Post">
+          <div class="col" width="33%" align="center" >리뷰 사진</div> 
+          <div class="form-label-group" text-align="center" align="center">
+        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">
+        	<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" hidden="">
          </div>
-   
-         <form onsubmit="return checkz()" action="writeReview.do" method="POST" enctype="multipart/form-data">
-            <!-- Modal body -->
-            <div class="modal-body">
-               <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
-             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
-               <label for="title">리뷰글 제목</label> <input
-                  class="form-control createmodal" type="text" id="retitle"
-                  name="retitle" style="width: 100%;border-radius:0.5rem;" placeholder="제목을 입력해 주세요.">
-               <br> <label for="content">리뷰 설명</label> <span id="filename"></span>
-               <img id="imgpreview" alt="사진 미리보기 자리"
-                  style="display: none; width: 40px; height: 40px" src="#" /> 
-                  <input type="file" multiple="multiple"  id="fclick" name="files" hidden="">
-               <button type="button" id="auth" disabled hidden="">Authenticate</button>
-               <textarea class="form-control createmodal" rows="5"
-                  id="recontent" name="recontent" style="width: 100%;border-radius: 0.5rem;"
-                  placeholder="@를 입력하여 멘션, 할 일, 파일 등을 추가해 보세요."></textarea>
-               <br>
-               <label for="annota">첨부</label>
-               <div id="todoresult" style="overflow: auto; height: 100px; border: 1px solid #000; border-radius: 0.5rem;">
-                  <!-- mention -->
-               </div>
-               <!-- The Google API Loader script. -->
-               <script type="text/javascript"
-                  src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">      
-               <button type="submit" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
-               <button type="button" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
-            </div>
-         </form>
+  		
+                            
+  <hr class="my-4">
+     <div class="row">   
+    </div>
+  <div class="form-label-group">
+        <label for="validationTextarea">리뷰 제목</label>
+        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">
+  </div>   
+  <div class="mb-3">
+    <label for="validationTextarea">리뷰 내용</label>
+    <textarea class="form-control is-invalid" id="comment" name="recontent" placeholder="영화 설명 300자이내로 설명해주세요." required></textarea>
+    <div class="invalid-feedback">
+    </div>
+  </div>
+  <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
+  <input type="text" name="iswish" class="form-control is-invalid"  hidden="" value="0">
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
+        <br>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
+</form>
+        </div>
+        
       </div>
-   </div>
-
-   <div class="list-group" id="filelist" style="display: none;border:10px solid #cbc9d4">
-      <a href="#" class="list-group-item list-group-item-action menli" id="selfile" style="padding: 5px"><span class="iconify" data-icon="si-glyph:file-box" data-inline="false"></span> 파일</a> 
-   </div>
-   <!--  -->
-   <!-- 멘션할 사람 목록 -->
-   <div class="list-group" id="todo" style="display: none;">
+    </div>
     
-      <textarea class="form-control createmodal" rows="3" id="todolist"
-         style="width: 100%; margin-bottom: 2%" placeholder="할 일을 작성해주세요."></textarea>
-      <button type="button" id="todomake" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
-      <button type="button" id="todocancle" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">취소</button>
-   </div>
-   <div class="list-group" id="datepick" style="display: none;">
-      <label>일정 작성</label>
-       </div>
-      </div>
-      <br> <!-- <label>할 일</label>
-      <textarea class="form-control createmodal" rows="3" id="datecontent"
-         style="width: 100%; margin-bottom: 2%" placeholder="일정을 작성해주세요."></textarea> -->
-         <div class="row">
-         <div class="col-sm-6" style="padding-right: 2px">
-      <button type="button" id="datemake" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; width: 100%">작성완료</button>
-         </div>
-         <div class="col-sm-6" style="padding-left: 2px">
-      <button type="button" id="datecancle" class="btn btn-secondary"
-         style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; width: 100%">취소</button>
-         </div>
-  
-</div>
+  </div>
   <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>
     </div>
     <!--**********************************
@@ -280,89 +255,19 @@ $(document).ready(function(){
 
 });
 
-var tar = 0;
-var tar2 = 1;
-$('.menli').keydown(function(event) { //이슈작성에서 @단축키 사용했을때 방향키로 조절가능
-	   var key = event.keyCode;
-	    switch (key) {
-	    case 38:
-	       tar2--;
-	       break;
-	    case 40:
-	       tar2++;
-	       break;
-	    case 39:
-	       break;
-	    case 37:
-	       break;
-	    }
-	    if (tar2 < 0) {
-	       tar2 = 0;
-	    }
-	    if (tar2 > 1) {
-	       tar2 = 1;
-	    }
-	    $('#men' + tar2).focus();
-	    if ($('#men' + tar2).focus()) {
-	       $('.menli').css('background-color', '#fff');
-	       $('#men' + tar2).css(
-	             'background-color',
-	             'rgba(225, 225, 225,0.5)');
-	    }
-	    if(event.keyCode == 13){
-	       $(this).click();
-	    }
-	});
-		$('#recontent').keydown( //이슈작성에서 @단축키 사용했을때 방향키로 조절가능
-				function(event) {
-					if($('#filelist').css('display')==('flex')){
-						var key = event.keyCode;
-			               switch (key) {
-			               case 38:
-			                  tar--;
-			                  break;
-			               case 40:
-			                  tar++;
-			                  break;
-			               case 39:
-			                  break;
-			               case 37:
-			                  break;
-			               }
-			               if (tar < 0) {
-			                  tar = 0;
-			               }
-			               if (tar > 1) {
-			                  tar = 1;
-			               }
-			               $('#men' + tar).focus();
-			               if ($('#men' + tar).focus()) {
-			                  $('.menli').css('background-color', '#fff');
-			                  $('#men' + tar).css(
-			                        'background-color',
-			                        'rgba(225, 225, 225,0.5)');
-			               }
-			               if(event.keyCode == 13){
-			               	$(this).click();
-			               }
-					}
-					var top = ($('#recontent').offset().top);
-					var left = ($('#recontent').offset().left + 490);
-					if (event.shiftKey && event.keyCode == 50) {
-						$('#filelist').attr(
-								'style',
-								'position:fixed;border:1px solid black;border-radius:0.5rem; width:20%;top:' + top + 'px;left:'
-										+ left + 'px; z-index:5');
-						$('#filelist').show();
-						$('div').not('#filelist').click(function() {
-							$('#filelist').hide();
-						});
-					}
-				});
+$(function(){
+	
+	$('#Photo').change(function(){
+		var reader = new FileReader();
 		
-		$('#selfile').click(function() { //파일 클릭하면 hidden으로 숨겨놓은 파일선택 실행
-			$('#fclick').click();
-		});
+		reader.onload = function(e) {
+			
+			document.getElementById("profiles").src = e.target.result;
+		};
+		
+		reader.readAsDataURL(this.files[0]);
+	});
+});
 </script>
 </body>
 </html>

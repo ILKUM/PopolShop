@@ -106,7 +106,51 @@ $('#writeletter').mouseout(function(){
         <!--**********************************
             Content body end
         ***********************************-->
- 
+ 	<div class="modal fade" id="reviewWrite">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" align="center">
+          <h4><label for="validationTextarea">추천 글 작성</label></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="was-validated" action="writeReview.do" enctype="multipart/form-data" method="Post">
+          <div class="col" width="33%" align="center" >추천 영화 사진</div> 
+          <div class="form-label-group" text-align="center" align="center">
+        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="추천 사진을 올려주세요!">
+        	<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" hidden="">
+         </div>
+  		
+                            
+  <hr class="my-4">
+     <div class="row">   
+    </div>
+  <div class="form-label-group">
+        <label for="validationTextarea">추천 글 제목</label>
+        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="제목을 입력해주세요" required="required">
+  </div>   
+  <div class="mb-3">
+    <label for="validationTextarea">추천 글 내용</label>
+    <textarea class="form-control is-invalid" id="comment" name="recontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
+    <div class="invalid-feedback">
+    </div>
+  </div>
+  <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
+  <input type="text" name="iswish" class="form-control is-invalid"  hidden="" value="0">
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
+        <br>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
+</form>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
   <jsp:include page="/WEB-INF/views/commons/footer.jsp"></jsp:include>
     </div>
     <!--**********************************

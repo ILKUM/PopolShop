@@ -4,7 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.BoardDao">
 	<insert id="insertReview" parameterType="kr.or.scoop.dto.Review">
-	insert into reboard (reseq,retitle,recontent,rephoto, email, pidate)
-  		values (PISEQ_MYISSUE_SEQ.NEXTVAL, #{pititle}, #{picontent}, #{pistart,jdbcType=TIMESTAMP}, #{piend,jdbcType=TIMESTAMP}, 0, #{email,jdbcType=VARCHAR}, sysdate)
+	insert into reboard (reseq,retitle,recontent,rephoto, email, retime ,iswish)
+  		values (RESEQ_REBOARD_SEQ.NEXTVAL, #{retitle}, #{recontent}, #{rephoto}, #{email,jdbcType=VARCHAR}, SYSTIMESTAMP , 0)
 	</insert>
+	<select id="getReview" resultType="kr.or.scoop.dto.Review">
+	select m.name,r.reseq,r.retitle,r.retime,r.iswish from member m join reboard r on m.email = r.email
+	</select>
 </mapper>

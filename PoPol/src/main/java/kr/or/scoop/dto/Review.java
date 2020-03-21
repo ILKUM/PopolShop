@@ -1,7 +1,6 @@
 package kr.or.scoop.dto;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -10,10 +9,12 @@ public class Review {
 	private String retitle; //리뷰 제목
 	private String recontent; //리뷰 내용
 	private Timestamp retime; //글쓴 시간
-	private List<CommonsMultipartFile> files; //리뷰사진 
+	private CommonsMultipartFile filesrc; //리뷰사진 
 	private String rephoto; //리뷰사진
 	private String email; //작성자 이메일
 	private String name; //작성자 이름
+	private int iswish; //위시리스트 여부
+	
 	public int getReseq() {
 		return reseq;
 	}
@@ -38,13 +39,7 @@ public class Review {
 	public void setRetime(Timestamp retime) {
 		this.retime = retime;
 	}
-	
-	public List<CommonsMultipartFile> getFiles() {
-		return files;
-	}
-	public void setFiles(List<CommonsMultipartFile> files) {
-		this.files = files;
-	}
+
 	public String getRephoto() {
 		return rephoto;
 	}
@@ -63,12 +58,28 @@ public class Review {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public CommonsMultipartFile getFilesrc() {
+		return filesrc;
+	}
+	public void setFilesrc(CommonsMultipartFile filesrc) {
+		this.filesrc = filesrc;
+	}
+	public int getIswish() {
+		return iswish;
+	}
+	public void setIswish(int iswish) {
+		this.iswish = iswish;
+	}
 	
 	@Override
 	public String toString() {
 		return "Review [reseq=" + reseq + ", retitle=" + retitle + ", recontent=" + recontent + ", retime=" + retime
-				+ ", files=" + files + ", rephoto=" + rephoto + ", email=" + email + ", name=" + name + "]";
+				+ ", filesrc=" + filesrc + ", rephoto=" + rephoto + ", email=" + email + ", name=" + name + ", iswish="
+				+ iswish + "]";
 	}
+	
+	
+	
 	
 
 	

@@ -417,11 +417,11 @@ span {
                   &nbsp;<spring:message code="notice" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
          </a></li>
          <li><a href="userindex.do" aria-expanded="false"> <span
-               class="iconify" data-icon="bx:bx-file-blank" data-inline="false"
+               class="iconify" data-icon="mdi:bulletin-board" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="newissue" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
+                  &nbsp;<spring:message code="freeboard" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
          </a></li>
-         <li><a href="myissue.do" aria-expanded="false"> <span
+         <li><a href="like.do" aria-expanded="false"> <span
                class="iconify" data-icon="bx:bx-like"
                data-inline="false" style="width: 17px; height: auto;font: bold;"> </span><span
                class="nav-text"> &nbsp;<spring:message code="like" /></span>
@@ -544,7 +544,7 @@ span {
       
         <!-- Modal Header -->
         <div class="modal-header" align="center">
-          <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">영화 추가</h4>
+          <h4><label for="validationTextarea">영화 추가</label></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
