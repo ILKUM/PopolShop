@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Notice;
+import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
 
 @Service
@@ -33,4 +34,13 @@ public class BoardService {
 		
 		return result;
 	}
+	
+	//추천작성 
+		public int insertRecomm(Recommend recom) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.insertRecomm(recom);
+			
+			return result;
+		}
 }

@@ -21,6 +21,7 @@ import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
+import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
 import kr.or.scoop.service.BoardService;
 
@@ -192,7 +193,7 @@ public class BoardController {
 		
 		//리뷰 페이지 이동
 		@RequestMapping(value="review.do" , method=RequestMethod.GET)
-		public String wishGet(Model model,Movie movie,Review review) {
+		public String wishGet(Model model,Review review) {
 		
 		  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
 		  List<Review> r =  dao.getReview(); 
@@ -244,23 +245,26 @@ public class BoardController {
 		}
 		
 		@RequestMapping(value="like.do" , method=RequestMethod.GET)
-		public String getLike() {
+		public String getLike(Model model,Recommend recom) {
 			
+		  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
+		  List<Recommend> rc =  dao.getRecomm(); 
+		  model.addAttribute("recom", rc);
+			 
 			return "recommend/recommend";
 		}
 		
 		@RequestMapping(value="writeLike.do",method=RequestMethod.POST)
-		public String reviewInsert(Review review,HttpServletRequest request,HttpSession session) {
-			System.out.println("ㄱㄷ : " + review);
-			CommonsMultipartFile multifile = review.getFilesrc();
+		public String reviewInsert(Recommend recom,HttpServletRequest request,HttpSession session) {		
+			CommonsMultipartFile multifile = recom.getFilesrc();
 			String filename = multifile.getOriginalFilename();		
 			String path = request.getServletContext().getRealPath("/upload/file");
 			
 			String fpath = path + "\\"+ filename; 
 			if(filename.equals("")) {
-				review.setRephoto((String)session.getAttribute("img"));
+				recom.setRcphoto((String)session.getAttribute("img"));
 			}else {
-				review.setRephoto(filename);
+				recom.setRcphoto(filename);
 			}
 				if(!filename.equals("")) { //실 파일 업로드
 					FileOutputStream fs = null;
@@ -281,14 +285,13 @@ public class BoardController {
 					}
 				}
 			String viewpage;
-			int result = bService.insertReview(review);
+			int result = bService.insertRecomm(recom);
 			if(result > 0) {
-				viewpage= "review/review";
+				viewpage= "recommend/recommend";
 			}else {
-				viewpage="review/review";
+				viewpage="recommend/recommend";
 			}
 			return viewpage;
 		}
-		
 		
 }

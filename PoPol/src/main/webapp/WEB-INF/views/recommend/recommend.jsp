@@ -35,6 +35,14 @@ $('#writeletter').mouseover(function(){
 $('#writeletter').mouseout(function(){
 	 $('#write').attr("style","font-size: 20px;");
 });
+
+$(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+	$('#profiles').click(function() { 
+		$('#Photo').click();
+	});
+ 
+});
 </script>
 <body>
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -60,8 +68,8 @@ $('#writeletter').mouseout(function(){
          </div>
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;">
-	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;"></span> 
-	         	<span id="letter">추천 글쓰기</span>
+	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#likeWrite"></span> 
+	         	<span id="letter" data-toggle="modal" data-target="#likeWrite">추천 글쓰기</span>
          	</span>
 
          </div>
@@ -78,23 +86,25 @@ $('#writeletter').mouseout(function(){
          	작성시간 
          </div>
          <div class="col-sm-1 newissue">
-         	위시리스트
+         	추천수
          </div>
-      </div>    
+      </div>
+      <c:forEach items="${recom}" var="rc">    
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
          <div class="col-sm-7 newissue">	
-         <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 5%;">제목자리</a>     
+         <a href="recommDetail.do?rcseq=${rc.rcseq}" style="margin-left: 5%;">${rc.rctitle}</a>     
          </div>
          <div class="col-sm-2 newissue" >
-         	글쓴자리
+         	${rc.name}
          </div>
          <div class="col-sm-2 newissue">
-        	글쓴시간 
+         ${fn:substring(rc.rctime,0,19)}  
          </div>
 				<div class="col-sm-1 newissue" style="padding-left: 30px;">
-					<i class="fas fa-heart"></i>
+					${rc.rclike}
 				</div>
       </div>
+      </c:forEach>
     
       		<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
 			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
@@ -106,7 +116,7 @@ $('#writeletter').mouseout(function(){
         <!--**********************************
             Content body end
         ***********************************-->
- 	<div class="modal fade" id="reviewWrite">
+ 	<div class="modal fade" id="likeWrite">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
       
@@ -118,10 +128,10 @@ $('#writeletter').mouseout(function(){
         
         <!-- Modal body -->
         <div class="modal-body">
-          <form class="was-validated" action="writeReview.do" enctype="multipart/form-data" method="Post">
+          <form class="was-validated" action="writeLike.do" enctype="multipart/form-data" method="Post">
           <div class="col" width="33%" align="center" >추천 영화 사진</div> 
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="추천 사진을 올려주세요!">
+        	<img id="profiles" name="rcphoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="추천 사진을 올려주세요!">
         	<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" hidden="">
          </div>
   		
@@ -131,16 +141,15 @@ $('#writeletter').mouseout(function(){
     </div>
   <div class="form-label-group">
         <label for="validationTextarea">추천 글 제목</label>
-        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="제목을 입력해주세요" required="required">
+        <input type="text" id="title" name="rctitle" class="form-control is-invalid" placeholder="제목을 입력해주세요" required="required">
   </div>   
   <div class="mb-3">
     <label for="validationTextarea">추천 글 내용</label>
-    <textarea class="form-control is-invalid" id="comment" name="recontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
+    <textarea class="form-control is-invalid" id="comment" name="rccontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
-  <input type="text" name="iswish" class="form-control is-invalid"  hidden="" value="0">
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
@@ -225,6 +234,20 @@ $(document).ready(function(){
 	}); 
 	
 
+});
+
+$(function(){
+	
+	$('#Photo').change(function(){
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			
+			document.getElementById("profiles").src = e.target.result;
+		};
+		
+		reader.readAsDataURL(this.files[0]);
+	});
 });
 </script>
 </body>
