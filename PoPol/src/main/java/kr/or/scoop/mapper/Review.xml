@@ -10,4 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getReview" resultType="kr.or.scoop.dto.Review">
 	select m.name,r.reseq,r.retitle,r.retime,r.relike from member m join reboard r on m.email = r.email
 	</select>
+	<select id="selectReview" resultType="kr.or.scoop.dto.Review">
+		select retitle,reseq,recontent,retime,relike,rephoto from reboard where reseq = #{reseq}
+	</select>
 </mapper>

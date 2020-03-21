@@ -168,7 +168,7 @@ $(function(){
     </div>
   </div>
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
-  <input type="text" name="iswish" class="form-control is-invalid"  hidden="" value="0">
+  <input type="text" name="relike" class="form-control is-invalid"  hidden="" value="0">
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>

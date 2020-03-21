@@ -294,4 +294,13 @@ public class BoardController {
 			return viewpage;
 		}
 		
+		@RequestMapping(value="reviewDetail.do",method = RequestMethod.GET)
+		public String detailReview(int reseq,Model model) {
+			BoardDao dao = sqlSession.getMapper(BoardDao.class);
+			Review re = dao.selectReview(reseq); 
+			model.addAttribute("review", re);
+		
+			return "review/reviewDetail";
+		}
+		
 }
