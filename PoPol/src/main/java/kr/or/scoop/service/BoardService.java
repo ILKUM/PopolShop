@@ -51,4 +51,18 @@ public class BoardService {
 			return result;
 			
 		}
+		
+		public int relikeUp(int reseq) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.relikeCount(reseq);
+			return result;
+		}
+		
+		public int insertRelike(int reseq, String email) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.insertRelike(reseq, email);
+			return result;
+		}
 }

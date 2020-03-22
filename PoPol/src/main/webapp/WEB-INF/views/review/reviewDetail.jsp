@@ -149,10 +149,6 @@ $(function(){
 		   }
 		 })
 	})
-	$('#comeback').click(function(){
-		console.log("타니?");
-		history.back();
-	})
 	//댓글 삭제 
 	$('.deleteComment').click(function(){
 		var temp=$(this);
@@ -181,6 +177,53 @@ $(function(){
 	});
 });
 
+$('.like').click(function(){
+	let like = $(this);
+
+	let reseq = book.closest('div.row').children('input[name=reseq]').val();
+	let email = book.closest('div.row').children('input[name=email]').val();
+	let status = book.attr('name');
+
+	$.ajax({
+		url : "relike.do",
+		type : "POST",
+		data : {"email" : email,
+				"reseq" : reseq, 
+				"status" : status
+		       },
+		success : function(datadata){
+				Swal.fire({
+		    		  title: "추천",
+		    		  text: "북마크 성공",
+		    		  icon: "success",
+		    		  button: "확인"
+		    		})
+		    		if(status == "bookoff"){					
+						like.removeAttr('name').attr('name', 'bookon');				
+			}else if(status == "likeon"){			
+				book.removeAttr("name").attr("name", "bookoff");		
+				Swal.fire({
+		    		  title: "북마크 취소",
+		    		  text: "북마크 취소",
+		    		  icon: "warning",
+		    		  button: "확인"
+		    		})
+			}
+
+		},
+		error : function(err){
+			console.log('error' + err);
+			Swal.fire({
+	    		  title: "추천 중 에러",
+	    		  text: "추천 중 에러발생",
+	    		  icon: "error",
+	    		  button: "확인"
+	    		})
+			return false;
+		}
+	});
+});
+});
 
 </script>
 <style>
@@ -220,23 +263,24 @@ border-radius: 5px;
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
-		
+		<input type="hidden" name="reseq" value="${review.reseq}">
+		<input type="hidden" name="email" value="${sessionScope.email}">
 			
-			<div class="col-sm-8" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
+			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
 			
 			<c:if test="${review.email==sessionScope.email}">
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-				<span class="iconify" data-icon="ant-design:like-outlined" data-inline="false" style="margin-left: 5px;cursor: pointer; font-size: 25px;"></span>
+				<span class="iconify like" name="likeoff" data-icon="ant-design:like-outlined" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></span>
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 25px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 20px;"></span>
-				<span class="iconify" id="comeback" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 15px;"></span>
+				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 15px;"></span></a>
 				</div>				
 			</c:if>
 			
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
 			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${review.retitle}</span>
-			<span style="float: right;padding-right: 5%;padding-top:1%;">글쓴이&nbsp;&nbsp;${review.retime}</span>
+			<span style="float: right;padding-right: 5%;padding-top:1%;">${review.name}&nbsp;&nbsp;${review.retime}</span>
 			</div>
 		
 		

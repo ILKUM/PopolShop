@@ -11,9 +11,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email
 	</select>
 	<select id="selectReview" resultType="kr.or.scoop.dto.Review">
-		select retitle,reseq,recontent,retime,relike,rephoto,email from reboard where reseq = #{reseq}
+		select r.retitle,r.reseq,r.recontent,r.retime,r.relike,r.rephoto,r.email, m.name from reboard r join member m on r.email = m.email where r.reseq = #{reseq}
 	</select>
 	<update id="rernumCount">
 		 update reboard set rernum=rernum+1 where reseq = #{reseq}
 	</update>
+	<insert id="insertRelike" parameterType="kr.or.scoop.dto.Review">
+		insert into reviewmem (email , reseq) values (#{email,jdbcType=VARCHAR},#{reseq,jdbcType=INTEGER})
+	</insert>
+	<update id="relikeCount">
+		update reboard set relike = relike+1 where reseq = #{reseq}
+	</update>
+	<select id="getrelike" resultType="kr.or.scoop.dto.Review">
+		select email , reseq from reviewmem where email = #{email,jdbctype=VARCHAR}
+	</select>
+	<delete id="deleteRelike">
+		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
+	</delete>
 </mapper>

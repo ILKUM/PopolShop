@@ -309,4 +309,24 @@ public class BoardController {
 			return "review/reviewDetail";
 		}
 		
+		@RequestMapping(value="relike.do" , method = RequestMethod.POST)
+		public String updateRelike(int reseq,String email,String islike) {
+			BoardDao dao = sqlSession.getMapper(BoardDao.class);
+			int like = dao.getrelike(email);
+			int result = 0;
+			if(like > 0) {
+				result = dao.deleteRelike(reseq, email);
+			}else {
+				result = dao.insertRelike(reseq, email);
+			}
+			
+			if(result > 0) {
+				dao.relikeCount(reseq);
+			}else {
+				System.out.println("실패");
+			}
+			
+			return "redirect:/reviewDetail,do?reseq=" + reseq;
+		}
+		
 }
