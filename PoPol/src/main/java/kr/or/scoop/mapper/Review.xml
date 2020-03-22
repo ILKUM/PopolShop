@@ -4,11 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.BoardDao">
 	<insert id="insertReview" parameterType="kr.or.scoop.dto.Review">
-	insert into reboard (reseq,retitle,recontent,rephoto, email, retime ,relike)
-  		values (RESEQ_REBOARD_SEQ.NEXTVAL, #{retitle}, #{recontent}, #{rephoto}, #{email,jdbcType=VARCHAR}, SYSTIMESTAMP , 0)
+	insert into reboard (reseq,retitle,recontent,rephoto,email,relike,rernum,retime)
+  		values (RESEQ_REBOARD_SEQ.NEXTVAL,#{retitle,jdbcType=VARCHAR},#{recontent,jdbcType=VARCHAR},#{rephoto,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{relike,jdbcType=INTEGER},#{rernum,jdbcType=INTEGER},SYSDATE)
 	</insert>
 	<select id="getReview" resultType="kr.or.scoop.dto.Review">
-	select m.name,r.reseq,r.retitle,r.retime,r.relike from member m join reboard r on m.email = r.email
+	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email
 	</select>
 	<select id="selectReview" resultType="kr.or.scoop.dto.Review">
 		select retitle,reseq,recontent,retime,relike,rephoto from reboard where reseq = #{reseq}

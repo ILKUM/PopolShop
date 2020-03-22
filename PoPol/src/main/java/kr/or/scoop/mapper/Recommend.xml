@@ -4,10 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.BoardDao">
 	<insert id="insertRecomm" parameterType="kr.or.scoop.dto.Recommend">
-	insert into recommend (rcseq,rctitle,rccontent,rcphoto,email, rctime ,rclike)
-  		values (RCSEQ_RCOMMEND_SEQ.NEXTVAL, #{rctitle}, #{rccontent}, #{rcphoto}, #{email,jdbcType=VARCHAR}, SYSTIMESTAMP , 0)
+	insert into recommend (rcseq,rctitle,rccontent,rcphoto,email,rclike,rcrnum,rctime)
+  		values (RCSEQ_RCOMMEND_SEQ.NEXTVAL, #{rctitle,jdbcType=VARCHAR}, #{rccontent,jdbcType=VARCHAR}, #{rcphoto,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{rclike,jdbcType=INTEGER},#{rcrnum,jdbcType=INTEGER},SYSDATE)
 	</insert>
 	<select id="getRecomm" resultType="kr.or.scoop.dto.Recommend">
-	select m.name,r.rcseq,r.rctitle,r.rctime,r.rclike from member m join recommend r on m.email = r.email
+	select m.name,r.rcseq,r.rctitle,r.rctime,r.rclike,r,rcrcnum from member m join recommend r on m.email = r.email
 	</select>
 	</mapper>

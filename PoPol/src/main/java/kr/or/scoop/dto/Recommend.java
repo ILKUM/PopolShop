@@ -14,6 +14,7 @@ public class Recommend {
 	private String email; //글쓴이메일
 	private int rclike; //추천수
 	private String name; //글쓴이 이름
+	private int rcrnum; //조회수
 	public int getRcseq() {
 		return rcseq;
 	}
@@ -68,14 +69,18 @@ public class Recommend {
 	public void setFilesrc(CommonsMultipartFile filesrc) {
 		this.filesrc = filesrc;
 	}
-	
+	public int getRcrnum() {
+		return rcrnum;
+	}
+	public void setRcrnum(int rcrnum) {
+		this.rcrnum = rcrnum;
+	}
 	@Override
 	public String toString() {
 		return "Recommend [rcseq=" + rcseq + ", rctitle=" + rctitle + ", rccontent=" + rccontent + ", filesrc="
 				+ filesrc + ", rcphoto=" + rcphoto + ", rctime=" + rctime + ", email=" + email + ", rclike=" + rclike
-				+ ", name=" + name + "]";
+				+ ", name=" + name + ", rcrnum=" + rcrnum + "]";
 	}
-	
 	
 	
 	

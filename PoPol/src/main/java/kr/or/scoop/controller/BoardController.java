@@ -193,8 +193,7 @@ public class BoardController {
 		
 		//리뷰 페이지 이동
 		@RequestMapping(value="review.do" , method=RequestMethod.GET)
-		public String wishGet(Model model,Review review) {
-		
+		public String wishGet(Model model,Review review) {		
 		  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
 		  List<Review> r =  dao.getReview(); 
 		   model.addAttribute("review", r);
@@ -205,7 +204,7 @@ public class BoardController {
 		
 		@RequestMapping(value="writeReview.do",method=RequestMethod.POST)
 		public String reviewInsert(Review review,HttpServletRequest request,HttpSession session) {
-			System.out.println("ㄱㄷ : " + review);
+			
 			CommonsMultipartFile multifile = review.getFilesrc();
 			String filename = multifile.getOriginalFilename();		
 			String path = request.getServletContext().getRealPath("/upload/file");
@@ -255,7 +254,8 @@ public class BoardController {
 		}
 		
 		@RequestMapping(value="writeLike.do",method=RequestMethod.POST)
-		public String reviewInsert(Recommend recom,HttpServletRequest request,HttpSession session) {		
+		public String reviewInsert(Recommend recom,HttpServletRequest request,HttpSession session) {
+			
 			CommonsMultipartFile multifile = recom.getFilesrc();
 			String filename = multifile.getOriginalFilename();		
 			String path = request.getServletContext().getRealPath("/upload/file");

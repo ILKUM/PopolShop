@@ -94,7 +94,7 @@ $(function(){
       </div>     
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
-         <div class="col-sm-7 newissue" style="padding-left: 87px;" >
+         <div class="col-sm-6 newissue" style="padding-left: 87px;" >
          	제목
          </div>
          <div class="col-sm-2 newissue">
@@ -104,13 +104,16 @@ $(function(){
          	작성시간 
          </div>
          <div class="col-sm-1 newissue">
+         	조회수
+         </div>
+         <div class="col-sm-1 newissue">
          	추천수
          </div>
       </div>
       <c:forEach items="${review}" var="re">
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
-         <div class="col-sm-7 newissue">	
-         <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 5%;">${re.retitle}</a>     
+         <div class="col-sm-6 newissue">      
+         <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.retitle}</a>     
          </div>
          <div class="col-sm-2 newissue" >
          	${re.name}
@@ -118,9 +121,12 @@ $(function(){
          <div class="col-sm-2 newissue">
          ${fn:substring(re.retime,0,19)}    	
          </div>
-				<div class="col-sm-1 newissue" style="padding-left: 30px;">
-					${re.relike}
-				</div>
+		<div class="col-sm-1 newissue" style="padding-left: 30px;">
+		${re.rernum}
+		</div>
+		<div class="col-sm-1 newissue" style="padding-left: 30px;">
+			${re.relike}
+		</div>
       </div>
       </c:forEach>    
     
@@ -168,7 +174,8 @@ $(function(){
     </div>
   </div>
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
-  <input type="text" name="relike" class="form-control is-invalid"  hidden="" value="0">
+  <input type="hidden" name="rernum" value="0">
+  <input type="hidden" name="relike" value="0">
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>

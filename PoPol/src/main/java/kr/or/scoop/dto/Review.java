@@ -14,7 +14,7 @@ public class Review {
 	private String email; //작성자 이메일
 	private String name; //작성자 이름
 	private int relike; //추천수
-	
+	private int rernum; //조회수
 	public int getReseq() {
 		return reseq;
 	}
@@ -39,7 +39,12 @@ public class Review {
 	public void setRetime(Timestamp retime) {
 		this.retime = retime;
 	}
-
+	public CommonsMultipartFile getFilesrc() {
+		return filesrc;
+	}
+	public void setFilesrc(CommonsMultipartFile filesrc) {
+		this.filesrc = filesrc;
+	}
 	public String getRephoto() {
 		return rephoto;
 	}
@@ -58,29 +63,26 @@ public class Review {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public CommonsMultipartFile getFilesrc() {
-		return filesrc;
-	}
-	public void setFilesrc(CommonsMultipartFile filesrc) {
-		this.filesrc = filesrc;
-	}
 	public int getRelike() {
 		return relike;
 	}
 	public void setRelike(int relike) {
 		this.relike = relike;
 	}
+	public int getRernum() {
+		return rernum;
+	}
+	public void setRernum(int rernum) {
+		this.rernum = rernum;
+	}
 	
 	@Override
 	public String toString() {
 		return "Review [reseq=" + reseq + ", retitle=" + retitle + ", recontent=" + recontent + ", retime=" + retime
 				+ ", filesrc=" + filesrc + ", rephoto=" + rephoto + ", email=" + email + ", name=" + name + ", relike="
-				+ relike + "]";
+				+ relike + ", rernum=" + rernum + "]";
 	}
-
-		
 	
 	
-
 	
 }
