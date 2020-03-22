@@ -16,6 +16,9 @@ public interface BoardDao {
 	//리뷰 글 디테일
 	public Review selectReview(int reseq);
 	
+	//리뷰 글 조회수 증가
+	public int rernumCount(int reseq);
+	
 	//추천 작성
 	public int insertRecomm(Recommend recom);
 	

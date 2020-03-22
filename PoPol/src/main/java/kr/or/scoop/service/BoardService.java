@@ -43,4 +43,12 @@ public class BoardService {
 			
 			return result;
 		}
+		
+		public int rernumUp(int reseq) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.rernumCount(reseq);
+			return result;
+			
+		}
 }

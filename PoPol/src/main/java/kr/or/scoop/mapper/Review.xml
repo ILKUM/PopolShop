@@ -11,6 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email
 	</select>
 	<select id="selectReview" resultType="kr.or.scoop.dto.Review">
-		select retitle,reseq,recontent,retime,relike,rephoto from reboard where reseq = #{reseq}
+		select retitle,reseq,recontent,retime,relike,rephoto,email from reboard where reseq = #{reseq}
 	</select>
+	<update id="rernumCount">
+		 update reboard set rernum=rernum+1 where reseq = #{reseq}
+	</update>
 </mapper>
