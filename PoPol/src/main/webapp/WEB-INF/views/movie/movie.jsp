@@ -164,7 +164,7 @@ $(document).ready(function(){
         	<div class="row">
         	<c:forEach items="${movie}" var="m">
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
-						<a href="MovieDetail.do?moseq=${m.moseq}">
+						<a href="movieDetail.do?moseq=${m.moseq}">
 		        			<div class="project">
 		        					<div class="img">
 		        						<img src="<c:url value='/user/movie/${m.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">

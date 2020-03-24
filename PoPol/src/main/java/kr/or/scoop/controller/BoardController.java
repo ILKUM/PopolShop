@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.scoop.dao.BoardDao;
+import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
+import kr.or.scoop.dto.Role;
 import kr.or.scoop.service.BoardService;
 
 @Controller
@@ -243,10 +245,14 @@ public class BoardController {
 			return viewpage;
 		}
 		
-		@RequestMapping(value="movieDeatil.do",method=RequestMethod.GET)
-		public String movieDetail(int moseq,Model model) {
+		@RequestMapping(value="movieDetail.do",method=RequestMethod.GET)
+		public String movieDetail(int moseq,Model model,HttpSession session) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			MemberDao mdao = sqlSession.getMapper(MemberDao.class);
+			String email = (String)session.getAttribute("email");
+			Role role = mdao.getRole(email);
 			Movie movie = dao.selectMovie(moseq);
+			session.setAttribute("role", role.getRname());
 			model.addAttribute("movie", movie);
 			return "movie/movieDetail";
 		}
