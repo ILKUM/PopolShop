@@ -23,6 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 5
 </select>
 <select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
-		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where (moname like '%'||#{word}||'%')
+		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where (moname like '%'||#{word}||'%')
+	</select>
+	<select id="selectMovie" resultType="kr.or.scoop.dto.Movie">
+		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where moseq = #{moseq}
 	</select>
 </mapper>

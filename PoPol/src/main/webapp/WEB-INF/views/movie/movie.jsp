@@ -73,6 +73,74 @@ $(document).ready(function(){
 		
 			
 	}); 
+	
+	/* 북마크 */
+	$('.jjim').click(function(){
+		let like = $(this);
+		
+		let icon = book.attr('class').split(' ');
+		let status = book.attr('name');
+		let tiseq = book.closest('div.row').children('input[name=tiseq]').val();
+		let tseq = book.closest('div.row').children('input[name=tseq]').val();
+
+		console.log(icon);
+		console.log(status);
+		console.log(tiseq);
+		console.log(tseq);
+		
+		let dat;
+		let mark;
+		
+		$.ajax({
+			url : "tibookmark.do",
+			type : "POST",
+			data : {"moseq" : tiseq ,
+					"tseq" : tseq, 
+					"status" : status
+			       },
+			success : function(datadata){
+				mark = book.attr('class').split(' ');
+
+				if(status == "jjimoff"){
+					console.log('bookclass ? ' + book.attr('class'));
+					console.log('icon : ' + mark);
+					console.log('jjimoff if');
+					book.removeAttr('name').attr('name', 'jjimon');
+					book.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-bookmark");
+
+					Swal.fire({
+			    		  title: "찜하기 성공",
+			    		  text: "찜하기 성공",
+			    		  icon: "success",
+			    		  button: "확인"
+			    		})
+				}else if(status == "jjimon"){
+					console.log('jjimon if');
+					book.removeAttr("name").attr("name", "jjimoff");
+					book.removeClass(mark[1]+" "+mark[2]).addClass("far fa-bookmark");
+
+					Swal.fire({
+			    		  title: "찜하기 취소",
+			    		  text: "찜하기 취소",
+			    		  icon: "warning",
+			    		  button: "확인"
+			    		})
+				}
+				
+
+			},
+			error : function(err){
+				console.log('error' + err);
+				Swal.fire({
+		    		  title: "찜하기 중 에러",
+		    		  text: "찜하기 중 에러발생",
+		    		  icon: "error",
+		    		  button: "확인"
+		    		})
+				return false;
+			}
+		});
+	});
 
 });
 </script>	
@@ -95,17 +163,15 @@ $(document).ready(function(){
         <div class="card" style="min-height: 1080px">
         	<div class="row">
         	<c:forEach items="${movie}" var="m">
-			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="
-    padding-left: 30px;
-    padding-top: 15px;
-">
-		        				<div class="project">
+			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
+						<a href="MovieDetail.do?moseq=${m.moseq}">
+		        			<div class="project">
 		        					<div class="img">
-		        						<a href="/movie/bi/mi/basic.nhn?code=189001"><img src="<c:url value='/user/movie/${m.mophoto}' />" alt="인비저블맨" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;"></a>
+		        						<img src="<c:url value='/user/movie/${m.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
 		        					</div>        					
 		        							<div class="text">
 		        							<h4>
-		        								<a href="#">${m.moname}</a>
+		        								${m.moname}
 		        								</h4>	     								
 		        								<h4>${m.modirector}</h4>
 		        								<h4><c:out value="${fn:substring(m.modate,0,10)}"/></h4>
@@ -113,10 +179,13 @@ $(document).ready(function(){
 		        									<span>추천수 : </span>
 		        									${m.molike}
 		        								</h6>
+		        								
 		        							</div>
 		        				
 		        				</div>
+							</a>
 		        			
+							
 		        			</div>
 		        			</c:forEach>
 							

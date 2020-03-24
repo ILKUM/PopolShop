@@ -19,4 +19,6 @@ public interface MovieDao {
 	
 	public List<Movie> searchMovie(String word); //영화 검색
 	
+	public Movie selectMovie(int moseq);//영화 디테일
+	
 }

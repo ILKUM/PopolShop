@@ -243,6 +243,14 @@ public class BoardController {
 			return viewpage;
 		}
 		
+		@RequestMapping(value="movieDeatil.do",method=RequestMethod.GET)
+		public String movieDetail(int moseq,Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			Movie movie = dao.selectMovie(moseq);
+			model.addAttribute("movie", movie);
+			return "movie/movieDetail";
+		}
+		
 		@RequestMapping(value="like.do" , method=RequestMethod.GET)
 		public String getLike(Model model,Recommend recom) {
 			
