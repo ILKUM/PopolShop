@@ -28,4 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMovie" resultType="kr.or.scoop.dto.Movie">
 		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where moseq = #{moseq}
 	</select>
+	<insert id="addMovieJJim">
+	insert into JJIM(jseq, moseq, email) 
+	values(jseq_jjim_seq.nextval, #{param1,jdbcType=INTEGER}, #{param2})
+</insert>
 </mapper>

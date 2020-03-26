@@ -176,6 +176,8 @@ $(function(){
 		});
 		
 	});
+	
+	
 
 });
 
@@ -217,6 +219,7 @@ border-radius: 5px;
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
+		<input type="hidden" name="moseq" value="${movie.moseq}">
 			<c:choose>
 				<c:when test="${movie.monum==1}">
 				<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">한국영화</div>
@@ -234,10 +237,25 @@ border-radius: 5px;
 				<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">일본영화</div>
 				</c:otherwise>
 			</c:choose>
-			
+			 <c:set var="mark" value="true" />
+			<c:set var="loop" value="false" />
+			<c:forEach items="${bookMark}" var="book">
+				<c:if test="${not loop}" />
+				<c:if test="${movie.moseq == jjim.jseq}">
+					<c:set var="mark" value="false" />
+					<c:set var="loop" value="true" />
+				</c:if>
+         	</c:forEach>
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
+				<c:choose>
+			<c:when test="${mark}">
+							<i class="jjim far fa-heart" id="like" name="likeoff" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></i>		
+			</c:when>
+			<c:otherwise>		
+					<i class="jjim fas fa-heart" id="like" name="likeon" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></i>	
+			</c:otherwise>
+		</c:choose>	
 			<c:if test="${role=='ROLE_ADMIN'}">
-				<a href="javascript:likedo();"><span class="iconify" id="like" name="likeoff" data-icon="ant-design:like-outlined" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></span></a>
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 25px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 20px;"></span>
 			</c:if>
@@ -316,48 +334,75 @@ border-radius: 5px;
         Scripts
     ***********************************-->
    
-    <!-- <script type="text/javascript">
+     <script type="text/javascript">
 		$(function(){
-			console.log('start')
-			let content = $('#myissueContent').text()
-			let contentline = content.split('\n')
-			let urlData = [];
-			
-			for(let i = 0; i < contentline.length; i++){
-				if(contentline[i].indexOf("http") != -1 || contentline[i].indexOf("www") != -1) {
-					let link = contentline[i].split(' ')
-					for(let j = 0; j < link.length; j++){
-						if(link[j].indexOf("http") != -1 || link[j].indexOf("www") != -1){
-							urlData.push(link[j])
-						}
-					}
-				}
-			}
-			
-			console.log(urlData)
-			
-			console.log('start')
-			for(let i = 0; i < urlData.length; i++){
-				console.log(urlData[i])
-				let udata = urlData[i]
+			$('.jjim').click(function(){
+				let like = $(this);
+				
+				let icon = like.attr('class').split(' ');
+				let status = like.attr('name');
+				let moseq = like.closest('div.row').children('input[name=moseq]').val();
+				
+
+				console.log(icon);
+				console.log(status);
+				console.log(moseq);
+				
+				let dat;
+				let mark;
+				
 				$.ajax({
-					url: 'http://192.168.6.45:8091/index',
-					type: 'GET',
-					data: 'url='+udata,
-					success: function(data){
-						console.log('success')
-						console.log(data)
+					url : "jjimMovie.do",
+					type : "POST",
+					data : {"moseq" : moseq, 
+							"status" : status
+					       },
+					success : function(datadata){
+						mark = like.attr('class').split(' ');
+						if(status == "likeoff"){
+							console.log('likeclass ? ' + like.attr('class'));
+							console.log('icon : ' + mark);
+							console.log('likeoff if');
+							like.removeAttr('name').attr('name', 'likeon');
+							like.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-heart");
+
+							Swal.fire({
+					    		  title: "찜하기 성공",
+					    		  text: "찜하기 성공",
+					    		  icon: "success",
+					    		  button: "확인"
+					    		})
+						}else if(status == "likeon"){
+							console.log('likeon if');
+							like.removeAttr("name").attr("name", "likeoff");
+							like.removeClass(mark[1]+" "+mark[2]).addClass("far fa-heart");
+
+							Swal.fire({
+					    		  title: "찜하기 취소",
+					    		  text: "찜하기 취소",
+					    		  icon: "warning",
+					    		  button: "확인"
+					    		})
+						}
+						
+
 					},
-					error: function(xhr, status, error){
-						console.log('xhr : ' + xhr.status)
-						console.log(error)
+					error : function(err){
+						console.log('error' + err);
+						Swal.fire({
+				    		  title: "찜하기 중 에러",
+				    		  text: "찜하기 중 에러발생",
+				    		  icon: "error",
+				    		  button: "확인"
+				    		})
+						return false;
 					}
-				})
-			}
-		})
+				});
+			});
+		});
 		
 		
-	</script> -->
+	</script> 
 	
     <script src="<c:url value="/resources/plugins/common/common.min.js" />"></script>
     <script src="<c:url value="/resources/js/custom.min.js" />"></script>

@@ -21,4 +21,8 @@ public interface MovieDao {
 	
 	public Movie selectMovie(int moseq);//영화 디테일
 	
+	public int addMovieJJim(int moseq,String email); //영화 찜 추가
+	
+	public int delMovieJJim(int moseq,String email); //영화 찜 삭제
+	
 }

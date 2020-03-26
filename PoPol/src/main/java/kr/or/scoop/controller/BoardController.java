@@ -343,4 +343,33 @@ public class BoardController {
 			return "redirect:/reviewDetail,do?reseq=" + reseq;
 		}
 		
+		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)
+		public String tiBookMark (HttpSession session, int moseq, String status, Model model) {
+			System.out.println("번호 : " + moseq);
+			String email = (String)session.getAttribute("email");
+			String viewpage = "";
+			int result = 0;
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			
+			// 북마크 추가/제거
+			if(status.equals("likeoff")) {
+				result = dao.addMovieJJim(moseq, email);
+			}else if(status.equals("likeon")) {
+				result = dao.delMovieJJim(moseq, email);
+			}
+			
+			// 북마크 추가, 제거 성공시 북마크 상태 변경
+			if(status.equals("likeoff") && result > 0) {
+				status = "bookon";
+				viewpage = "redirect:movieDetail.do?tseq="+moseq;
+			}else if(status.equals("likeon") && result > 0) {
+				status = "bookoff";
+				viewpage = "redirect:movieDetail.do?tseq="+moseq;
+			}
+			
+			model.addAttribute("status", status);
+			
+			return viewpage;
+		}
+		
 }

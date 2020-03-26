@@ -14,6 +14,7 @@ public class Member {
 	private Date iddate; //가입 시간
 	private String profile; //프로필 사진 파일 이름
 	private String rname; //등급 이름
+	
 
 
 	public Date getIddate() {
