@@ -361,10 +361,10 @@ public class BoardController {
 			// 찜 추가, 제거 성공시 찜 상태 변경
 			if(status.equals("likeoff") && result > 0) {
 				status = "bookon";
-				viewpage = "redirect:movieDetail.do?tseq="+moseq;
+				viewpage = "redirect:movieDetail.do?moseq="+moseq;
 			}else if(status.equals("likeon") && result > 0) {
 				status = "bookoff";
-				viewpage = "redirect:movieDetail.do?tseq="+moseq;
+				viewpage = "redirect:movieDetail.do?moseq="+moseq;
 			}
 			
 			model.addAttribute("status", status);

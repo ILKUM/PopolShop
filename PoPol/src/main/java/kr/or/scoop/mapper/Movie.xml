@@ -30,6 +30,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="addMovieJJim" parameterType="kr.or.scoop.dto.JJim">
 	insert into JJIM(jseq, moseq, email) 
-	values(jseq_jjim_seq.nextval, #{moseq,jdbcType=INTEGER},#{email,jdbcType=VARCHAR})
+	values(jseq_jjim_seq.nextval, #{param1},#{param2})
 </insert>
+<delete id="delMovieJJim">
+	delete from JJIM 
+	where moseq=#{param1} and email=#{param2}
+</delete>
+<select id="getMovieJJim" resultType="kr.or.scoop.dto.JJim">
+select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email from movie m join jjim j on m.moseq = j.moseq where j.email = #{email};
+</select>
 </mapper>

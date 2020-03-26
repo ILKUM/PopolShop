@@ -2,6 +2,7 @@ package kr.or.scoop.dao;
 
 import java.util.List;
 
+import kr.or.scoop.dto.JJim;
 import kr.or.scoop.dto.Movie;
 
 public interface MovieDao {	
@@ -24,5 +25,7 @@ public interface MovieDao {
 	public int addMovieJJim(int moseq,String email); //영화 찜 추가
 	
 	public int delMovieJJim(int moseq,String email); //영화 찜 삭제
+	
+	public JJim getMovieJJim(int mosesq,String email);
 	
 }
