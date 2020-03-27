@@ -74,73 +74,7 @@ $(document).ready(function(){
 			
 	}); 
 	
-	/* 북마크 */
-	$('.jjim').click(function(){
-		let like = $(this);
-		
-		let icon = book.attr('class').split(' ');
-		let status = book.attr('name');
-		let tiseq = book.closest('div.row').children('input[name=tiseq]').val();
-		let tseq = book.closest('div.row').children('input[name=tseq]').val();
-
-		console.log(icon);
-		console.log(status);
-		console.log(tiseq);
-		console.log(tseq);
-		
-		let dat;
-		let mark;
-		
-		$.ajax({
-			url : "tibookmark.do",
-			type : "POST",
-			data : {"moseq" : tiseq ,
-					"tseq" : tseq, 
-					"status" : status
-			       },
-			success : function(datadata){
-				mark = book.attr('class').split(' ');
-
-				if(status == "jjimoff"){
-					console.log('bookclass ? ' + book.attr('class'));
-					console.log('icon : ' + mark);
-					console.log('jjimoff if');
-					book.removeAttr('name').attr('name', 'jjimon');
-					book.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-bookmark");
-
-					Swal.fire({
-			    		  title: "찜하기 성공",
-			    		  text: "찜하기 성공",
-			    		  icon: "success",
-			    		  button: "확인"
-			    		})
-				}else if(status == "jjimon"){
-					console.log('jjimon if');
-					book.removeAttr("name").attr("name", "jjimoff");
-					book.removeClass(mark[1]+" "+mark[2]).addClass("far fa-bookmark");
-
-					Swal.fire({
-			    		  title: "찜하기 취소",
-			    		  text: "찜하기 취소",
-			    		  icon: "warning",
-			    		  button: "확인"
-			    		})
-				}
-				
-
-			},
-			error : function(err){
-				console.log('error' + err);
-				Swal.fire({
-		    		  title: "찜하기 중 에러",
-		    		  text: "찜하기 중 에러발생",
-		    		  icon: "error",
-		    		  button: "확인"
-		    		})
-				return false;
-			}
-		});
-	});
+	
 
 });
 </script>	
@@ -163,13 +97,14 @@ $(document).ready(function(){
         <div class="card" style="min-height: 1080px">
         	<div class="row">
         	<c:forEach items="${movie}" var="m">
+        	<input type="hidden" name="moseq" value="${m.moseq}"> 
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
 						<a href="movieDetail.do?moseq=${m.moseq}">
 		        			<div class="project">
 		        					<div class="img">
 		        						<img src="<c:url value='/user/movie/${m.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
 		        					</div>        					
-		        							<div class="text">
+		        						<div class="text">
 		        							<h4>
 		        								${m.moname}
 		        								</h4>	     								
@@ -178,16 +113,39 @@ $(document).ready(function(){
 												<h6>
 		        									<span>추천수 : </span>
 		        									${m.molike}
-		        								</h6>
+		        									</h6>
+		        									</div>
+		        									
+		        									</a>
+		        									
+		        			<c:set var="mark" value="true" />
+							<c:set var="loop" value="false" />
+							<c:forEach items="${jjimlist}" var="jjim">
+							<c:if test="${not loop}" />
+							<c:if test="${m.moseq == jjim.jseq}">
+								<c:set var="mark" value="false" />
+								<c:set var="loop" value="true" />
+							</c:if>
+				         	</c:forEach>
+								
+							<c:choose>
+							<c:when test="${mark}">
+							<i class="jjim far fa-heart" id="like" name="likeoff" data-inline="false" style="cursor: pointer; font-size: 20px;"></i>		
+							</c:when>
+							<c:otherwise>		
+							<i class="jjim fas fa-heart" id="like" name="likeon" data-inline="false" style="cursor: pointer; font-size: 20px;"></i>	
+							</c:otherwise>
+							</c:choose>
 		        								
-		        							</div>
-		        				
-		        				</div>
-							</a>
+		        								
+		        			</div>
+		        			</c:forEach>
+		        			</div>
+							
 		        			
 							
 		        			</div>
-		        			</c:forEach>
+		        		
 							
 		        			
 		        			
@@ -197,10 +155,77 @@ $(document).ready(function(){
             </div>
             </div>
 		</div>
+		 <script type="text/javascript">
+		$(function(){
+			$('.jjim').click(function(){
+				let like = $(this);
+				
+				let icon = like.attr('class').split(' ');
+				let status = like.attr('name');
+				let moseq = like.closest('div.row').children('input[name=moseq]').val();
+				
+
+				console.log(icon);
+				console.log(status);
+				console.log(moseq);
+				
+				let dat;
+				let mark;
+				
+				$.ajax({
+					url : "jjimMovie.do",
+					type : "POST",
+					data : {"moseq" : moseq, 
+							"status" : status
+					       },
+					success : function(datadata){
+						mark = like.attr('class').split(' ');
+						if(status == "likeoff"){
+							console.log('likeclass ? ' + like.attr('class'));
+							console.log('icon : ' + mark);
+							console.log('likeoff if');
+							like.removeAttr('name').attr('name', 'likeon');
+							like.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-heart");
+
+							Swal.fire({
+					    		  title: "찜하기 성공",
+					    		  text: "찜하기 성공",
+					    		  icon: "success",
+					    		  button: "확인"
+					    		})
+						}else if(status == "likeon"){
+							console.log('likeon if');
+							like.removeAttr("name").attr("name", "likeoff");
+							like.removeClass(mark[1]+" "+mark[2]).addClass("far fa-heart");
+
+							Swal.fire({
+					    		  title: "찜하기 취소",
+					    		  text: "찜하기 취소",
+					    		  icon: "warning",
+					    		  button: "확인"
+					    		})
+						}
+						
+
+					},
+					error : function(err){
+						console.log('error' + err);
+						Swal.fire({
+				    		  title: "찜하기 중 에러",
+				    		  text: "찜하기 중 에러발생",
+				    		  icon: "error",
+				    		  button: "확인"
+				    		})
+						return false;
+					}
+				});
+			});
+		});
 		
+		
+	</script> 
         	
-        </div>
-       </div> 
+    
         <!--**********************************
             Content body end
         ***********************************-->

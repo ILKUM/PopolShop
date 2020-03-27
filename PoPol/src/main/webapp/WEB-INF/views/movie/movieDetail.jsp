@@ -237,24 +237,8 @@ border-radius: 5px;
 				<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">일본영화</div>
 				</c:otherwise>
 			</c:choose>
-			 <c:set var="mark" value="true" />
-			<c:set var="loop" value="false" />
-			<c:forEach items="${bookMark}" var="book">
-				<c:if test="${not loop}" />
-				<c:if test="${movie.moseq == jjim.jseq}">
-					<c:set var="mark" value="false" />
-					<c:set var="loop" value="true" />
-				</c:if>
-         	</c:forEach>
-				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-				<c:choose>
-			<c:when test="${mark}">
-							<i class="jjim far fa-heart" id="like" name="likeoff" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></i>		
-			</c:when>
-			<c:otherwise>		
-					<i class="jjim fas fa-heart" id="like" name="likeon" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></i>	
-			</c:otherwise>
-		</c:choose>	
+			
+		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">	
 			<c:if test="${role=='ROLE_ADMIN'}">
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 25px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 20px;"></span>
@@ -334,75 +318,7 @@ border-radius: 5px;
         Scripts
     ***********************************-->
    
-     <script type="text/javascript">
-		$(function(){
-			$('.jjim').click(function(){
-				let like = $(this);
-				
-				let icon = like.attr('class').split(' ');
-				let status = like.attr('name');
-				let moseq = like.closest('div.row').children('input[name=moseq]').val();
-				
-
-				console.log(icon);
-				console.log(status);
-				console.log(moseq);
-				
-				let dat;
-				let mark;
-				
-				$.ajax({
-					url : "jjimMovie.do",
-					type : "POST",
-					data : {"moseq" : moseq, 
-							"status" : status
-					       },
-					success : function(datadata){
-						mark = like.attr('class').split(' ');
-						if(status == "likeoff"){
-							console.log('likeclass ? ' + like.attr('class'));
-							console.log('icon : ' + mark);
-							console.log('likeoff if');
-							like.removeAttr('name').attr('name', 'likeon');
-							like.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-heart");
-
-							Swal.fire({
-					    		  title: "찜하기 성공",
-					    		  text: "찜하기 성공",
-					    		  icon: "success",
-					    		  button: "확인"
-					    		})
-						}else if(status == "likeon"){
-							console.log('likeon if');
-							like.removeAttr("name").attr("name", "likeoff");
-							like.removeClass(mark[1]+" "+mark[2]).addClass("far fa-heart");
-
-							Swal.fire({
-					    		  title: "찜하기 취소",
-					    		  text: "찜하기 취소",
-					    		  icon: "warning",
-					    		  button: "확인"
-					    		})
-						}
-						
-
-					},
-					error : function(err){
-						console.log('error' + err);
-						Swal.fire({
-				    		  title: "찜하기 중 에러",
-				    		  text: "찜하기 중 에러발생",
-				    		  icon: "error",
-				    		  button: "확인"
-				    		})
-						return false;
-					}
-				});
-			});
-		});
-		
-		
-	</script> 
+    
 	
     <script src="<c:url value="/resources/plugins/common/common.min.js" />"></script>
     <script src="<c:url value="/resources/js/custom.min.js" />"></script>

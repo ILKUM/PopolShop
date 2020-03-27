@@ -20,6 +20,7 @@ import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
+import kr.or.scoop.dto.JJim;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
 import kr.or.scoop.dto.Recommend;
@@ -141,55 +142,73 @@ public class BoardController {
 		
 		//한국영화 이동
 		@RequestMapping(value="koreaGet.do",method = RequestMethod.GET)
-		public String koreaGet(Movie movie , Model model) {
+		public String koreaGet(Movie movie , Model model,HttpSession session,JJim jjim) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			String email = (String) session.getAttribute("email");
 			List<Movie> m = dao.getKorea();
+			List<JJim> jjimlist = dao.getMovieJJim(email);
 			model.addAttribute("movie",m);
+			model.addAttribute("jjimlist",jjimlist);
 			return "movie/movie";
 		}
 		
 		//미국영화 이동
 		@RequestMapping(value="americanGet.do",method = RequestMethod.GET)
-		public String americanGet(Movie movie , Model model) {
+		public String americanGet(Movie movie , Model model,HttpSession session) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			String email = (String) session.getAttribute("email");
 			List<Movie> m = dao.getAmerican();
+			List<JJim> jjimlist = dao.getMovieJJim(email);
 			model.addAttribute("movie",m);
+			model.addAttribute("jjimlist",jjimlist);
 			return "movie/movie";
 		}
 		
 		//중국영화 이동
 		@RequestMapping(value="chinaGet.do",method = RequestMethod.GET)
-		public String chinaGet(Movie movie , Model model) {
+		public String chinaGet(Movie movie , Model model,HttpSession session) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			String email = (String) session.getAttribute("email");
 			List<Movie> m = dao.getChina();
+			List<JJim> jjimlist = dao.getMovieJJim(email);
 			model.addAttribute("movie",m);
+			model.addAttribute("jjimlist",jjimlist);
 			return "movie/movie";
 		}
 		
 		//유럽영화 이동
 		@RequestMapping(value="europeGet.do",method = RequestMethod.GET)
-		public String europeGet(Movie movie , Model model) {
+		public String europeGet(Movie movie , Model model,HttpSession session) {
+			String email = (String) session.getAttribute("email");
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			List<Movie> m = dao.getEurope();
+			List<JJim> jjimlist = dao.getMovieJJim(email);
 			model.addAttribute("movie",m);
+			model.addAttribute("jjimlist",jjimlist);
 			return "movie/movie";
 		}
 		
 		//일본영화 이동
 		@RequestMapping(value="japanGet.do",method = RequestMethod.GET)
-		public String japanGet(Movie movie , Model model) {
+		public String japanGet(Movie movie , Model model,HttpSession session) {
+			String email = (String) session.getAttribute("email");
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<JJim> jjimlist = dao.getMovieJJim(email);
 			List<Movie> m = dao.getJapan();
 			model.addAttribute("movie",m);
+			model.addAttribute("jjimlist",jjimlist);
 			return "movie/movie";
 		}
 		
 		//영화 찾기
 		@RequestMapping(value="searchMovie.do",method = RequestMethod.GET)
-		public String searchGet(Movie movie , Model model , String word) {
+		public String searchGet(Movie movie , Model model , String word , HttpSession session) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			String email = (String) session.getAttribute("email");
+			List<JJim> jjimlist = dao.getMovieJJim(email);
 			List<Movie> m = dao.searchMovie(word);
 			model.addAttribute("movie",m);
+			model.addAttribute("jjimlist",jjimlist);
 			return "movie/movie";
 		}
 		
@@ -360,10 +379,10 @@ public class BoardController {
 			
 			// 찜 추가, 제거 성공시 찜 상태 변경
 			if(status.equals("likeoff") && result > 0) {
-				status = "bookon";
+				status = "likeon";
 				viewpage = "redirect:movieDetail.do?moseq="+moseq;
 			}else if(status.equals("likeon") && result > 0) {
-				status = "bookoff";
+				status = "likeoff";
 				viewpage = "redirect:movieDetail.do?moseq="+moseq;
 			}
 			

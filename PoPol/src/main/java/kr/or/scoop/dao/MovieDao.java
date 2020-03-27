@@ -26,6 +26,6 @@ public interface MovieDao {
 	
 	public int delMovieJJim(int moseq,String email); //영화 찜 삭제
 	
-	public JJim getMovieJJim(int mosesq,String email);
+	public List<JJim> getMovieJJim(String email); //찜 리스트
 	
 }
