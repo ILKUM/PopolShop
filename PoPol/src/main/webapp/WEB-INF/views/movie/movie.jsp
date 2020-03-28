@@ -98,6 +98,7 @@ $(document).ready(function(){
         	<div class="row">
         	<c:forEach items="${movie}" var="m">
         	<input type="hidden" name="moseq" value="${m.moseq}"> 
+        	<input type="hidden" name="monum" value="${m.monum}"> 
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
 						<a href="movieDetail.do?moseq=${m.moseq}">
 		        			<div class="project">
@@ -163,6 +164,7 @@ $(document).ready(function(){
 				let icon = like.attr('class').split(' ');
 				let status = like.attr('name');
 				let moseq = like.closest('div.row').children('input[name=moseq]').val();
+				let monum = like.closest('div.row').children('input[name=monum]').val();
 				
 
 				console.log(icon);
@@ -176,7 +178,8 @@ $(document).ready(function(){
 					url : "jjimMovie.do",
 					type : "POST",
 					data : {"moseq" : moseq, 
-							"status" : status
+							"status" : status,
+							"monum" : monum
 					       },
 					success : function(datadata){
 						mark = like.attr('class').split(' ');

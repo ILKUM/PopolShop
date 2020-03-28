@@ -154,7 +154,7 @@ public class BoardController {
 		
 		//미국영화 이동
 		@RequestMapping(value="americanGet.do",method = RequestMethod.GET)
-		public String americanGet(Movie movie , Model model,HttpSession session) {
+		public String americanGet(Movie movie , Model model,HttpSession session,JJim jjim) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			String email = (String) session.getAttribute("email");
 			List<Movie> m = dao.getAmerican();
@@ -166,7 +166,7 @@ public class BoardController {
 		
 		//중국영화 이동
 		@RequestMapping(value="chinaGet.do",method = RequestMethod.GET)
-		public String chinaGet(Movie movie , Model model,HttpSession session) {
+		public String chinaGet(Movie movie , Model model,HttpSession session,JJim jjim) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			String email = (String) session.getAttribute("email");
 			List<Movie> m = dao.getChina();
@@ -178,7 +178,7 @@ public class BoardController {
 		
 		//유럽영화 이동
 		@RequestMapping(value="europeGet.do",method = RequestMethod.GET)
-		public String europeGet(Movie movie , Model model,HttpSession session) {
+		public String europeGet(Movie movie , Model model,HttpSession session,JJim jjim) {
 			String email = (String) session.getAttribute("email");
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			List<Movie> m = dao.getEurope();
@@ -190,7 +190,7 @@ public class BoardController {
 		
 		//일본영화 이동
 		@RequestMapping(value="japanGet.do",method = RequestMethod.GET)
-		public String japanGet(Movie movie , Model model,HttpSession session) {
+		public String japanGet(Movie movie , Model model,HttpSession session,JJim jjim) {
 			String email = (String) session.getAttribute("email");
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			List<JJim> jjimlist = dao.getMovieJJim(email);
@@ -363,8 +363,7 @@ public class BoardController {
 		}
 		
 		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)
-		public String tiBookMark (HttpSession session,int moseq, String status, Model model) {
-			System.out.println("번호 : " + moseq);
+		public String tiBookMark (HttpSession session,int moseq,int monum, String status, Model model) {
 			String email = (String)session.getAttribute("email");
 			String viewpage = "";
 			int result = 0;
@@ -379,11 +378,41 @@ public class BoardController {
 			
 			// 찜 추가, 제거 성공시 찜 상태 변경
 			if(status.equals("likeoff") && result > 0) {
-				status = "likeon";
-				viewpage = "redirect:movieDetail.do?moseq="+moseq;
+				if(monum == 1) {
+					status = "likeon";
+					viewpage = "redirect:koreaGet.do";
+				} else if(monum == 2) {
+					status = "likeon";
+					viewpage = "redirect:americanGet.do";
+				}else if(monum == 3) {
+					status = "likeon";
+					viewpage = "redirect:chinaGet.do";
+				}else if(monum == 4) {
+					status = "likeon";
+					viewpage = "redirect:europeGet.do";
+				}else {
+					status = "likeon";
+					viewpage = "redirect:japanGet.do";
+				}
+				
 			}else if(status.equals("likeon") && result > 0) {
-				status = "likeoff";
-				viewpage = "redirect:movieDetail.do?moseq="+moseq;
+				if(monum == 1) {
+					status = "likeoff";
+					viewpage = "redirect:koreaGet.do";
+				} else if(monum == 2) {
+					status = "likeoff";
+					viewpage = "redirect:americanGet.do";
+				}else if(monum == 3) {
+					status = "likeoff";
+					viewpage = "redirect:chinaGet.do?";
+				}else if(monum == 4) {
+					status = "likeoff";
+					viewpage = "redirect:europeGet.do";
+				}else {
+					status = "likeoff";
+					viewpage = "redirect:japanGet.do";
+				}
+				
 			}
 			
 			model.addAttribute("status", status);

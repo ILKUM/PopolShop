@@ -8,19 +8,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum},0)
 </insert>
 <select id="getKorea" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 1
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 1
 </select>
 <select id="getAmerican" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 2
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 2
 </select>
 <select id="getChina" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 3
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 3
 </select>
 <select id="getEurope" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 4
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 4
 </select>
 <select id="getJapan" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish from movie where monum = 5
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 5
 </select>
 <select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
 		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where (moname like '%'||#{word}||'%')
@@ -37,6 +37,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where moseq=#{param1} and email=#{param2}
 </delete>
 <select id="getMovieJJim" resultType="kr.or.scoop.dto.JJim">
-select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email from movie m join jjim j on m.moseq = j.moseq where j.email = #{email}
+select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email,j.jseq from movie m join jjim j on m.moseq = j.moseq where j.email = #{email}
 </select>
 </mapper>
