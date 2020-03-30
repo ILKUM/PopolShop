@@ -45,10 +45,12 @@ $(document).ready(function(){
 	$('#load').mouseout(function(){
 		$(this).css("color","#464a53");
 	});
+	
 	$(".project").click(function(){
 		let seq = $("#mos").val();
 		location.href="movieDetail.do?moseq="+seq;
 	});
+
 	var temp = 0;
 	var moreEventArray = document.querySelectorAll(".card > a > .row ");
 	if(moreEventArray.length<=10){
@@ -82,7 +84,8 @@ $(document).ready(function(){
 
 });
 </script>	
-
+<c:set var="mark" value="true" />
+<c:set var="loop" value="false" />
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
 
     
@@ -100,32 +103,33 @@ $(document).ready(function(){
             <div class="container-fluid">
         <div class="card" style="min-height: 1080px">
         	<div class="row">
-        	<c:forEach items="${movie}" var="m">
-        	<input type="hidden" name="moseq" value="${m.moseq}" id="mos"> 
-        	<input type="hidden" name="monum" value="${m.monum}"> 
+        	<c:forEach items="${jjimlist}" var="jjim">
+        	<input type="hidden" name="moseq" value="${jjim.moseq}" id="mos"> 
+        	<input type="hidden" name="monum" value="${jjim.monum}"> 
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
 						
 		        			<div class="project">
+		        			
 		        					<div class="img">
-		        						<img src="<c:url value='/user/movie/${m.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
+		        						<img src="<c:url value='/user/movie/${jjim.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
 		        					</div>        					
 		        						<div class="text">
 		        							<h4>
-		        								${m.moname}
+		        								${jjim.moname}
 		        								</h4>	     								
-		        								<h4>${m.modirector}</h4>
-		        								<h4><c:out value="${fn:substring(m.modate,0,10)}"/></h4>
+		        								<h4>${jjim.modirector}</h4>
+		        								<h4><c:out value="${fn:substring(jjim.modate,0,10)}"/></h4>
 												<h6>
 		        									<span>추천수 : </span>
-		        									${m.molike}
+		        									${jjim.molike}
 		        									</h6>
 		        									</div>
 		        									
 		        									
 		        									
-		        			<c:set var="mark" value="true" />
-							<c:set var="loop" value="false" />
-							<c:forEach items="${jjimlist}" var="jjim">
+		        									
+		        			
+							<c:forEach items="${movie}" var="m">
 							<c:if test="${not loop}" />
 							<c:if test="${m.moseq == jjim.jseq}">
 								<c:set var="mark" value="false" />
@@ -142,7 +146,8 @@ $(document).ready(function(){
 							</c:otherwise>
 							</c:choose>
 		        								
-		        			</div>					
+		        								
+		        			</div>
 		        			</div>
 		        			</c:forEach>
 		        			</div>

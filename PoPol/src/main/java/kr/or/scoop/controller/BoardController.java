@@ -363,7 +363,7 @@ public class BoardController {
 		}
 		
 		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)
-		public String tiBookMark (HttpSession session,int moseq,int monum, String status, Model model) {
+		public String movieWish(HttpSession session,int moseq,int monum, String status, Model model) {
 			String email = (String)session.getAttribute("email");
 			String viewpage = "";
 			int result = 0;
@@ -418,6 +418,17 @@ public class BoardController {
 			model.addAttribute("status", status);
 			
 			return viewpage;
+		}
+		
+		@RequestMapping(value="wishlist.do",method=RequestMethod.GET)
+		public String getWish(String email,Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getMovieList();
+			List<JJim> jjim = dao.getMovieJJim(email);
+			model.addAttribute("movie", m);
+			model.addAttribute("jjimlist", jjim);
+			
+			return "user/wishList";
 		}
 		
 }

@@ -8,6 +8,8 @@ import kr.or.scoop.dto.Movie;
 public interface MovieDao {	
 	public int insertMovie(Movie movie); //영화 추가 
 	
+	public List<Movie> getMovieList(); //모든 영화 리스트
+	
 	public List<Movie> getKorea(); //한국영화 리스트
 	
 	public List<Movie> getAmerican();//미국영화 리스트

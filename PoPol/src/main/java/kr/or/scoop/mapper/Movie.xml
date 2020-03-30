@@ -22,6 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getJapan" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 5
 </select>
+<select id="getMovieList" resultType="kr.or.scoop.dto.Movie">
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie
+</select>
 <select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
 		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where (moname like '%'||#{word}||'%')
 	</select>
