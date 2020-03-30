@@ -26,7 +26,7 @@ public interface BoardDao {
 	public int insertRelike(int reseq,String email);
 	
 	//리뷰글 추천 중복방지
-	public int getrelike(String email);
+	public int getrelike(String email, int reseq);
 	
 	//리뷰글 추천 삭제
 	public int deleteRelike(int reseq,String email);
@@ -36,5 +36,7 @@ public interface BoardDao {
 	
 	//추천 리스트
 	public List<Recommend> getRecomm();
+
+	
 	
 }

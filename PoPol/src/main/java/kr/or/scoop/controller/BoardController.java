@@ -343,12 +343,12 @@ public class BoardController {
 		}
 		
 		@RequestMapping(value="relike.do" , method = RequestMethod.POST)
-		public String updateRelike(int reseq,String email,String islike) {
+		public String updateRelike(int reseq,String email,Model model) {
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
-			int like = dao.getrelike(email);
+			int like = dao.getrelike(email,reseq);
 			int result = 0;
 			if(like > 0) {
-				result = dao.deleteRelike(reseq, email);
+				model.addAttribute("on", like);
 			}else {
 				result = dao.insertRelike(reseq, email);
 			}

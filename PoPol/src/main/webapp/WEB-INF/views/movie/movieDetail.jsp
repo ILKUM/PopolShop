@@ -238,7 +238,8 @@ border-radius: 5px;
 				</c:otherwise>
 			</c:choose>
 			
-		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">	
+		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
+		<i class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
 			<c:if test="${role=='ROLE_ADMIN'}">
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 25px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 20px;"></span>

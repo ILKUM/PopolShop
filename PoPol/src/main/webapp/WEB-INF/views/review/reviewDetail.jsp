@@ -223,10 +223,10 @@ border-radius: 5px;
 			
 			<c:if test="${review.email==sessionScope.email}">
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-				<a href="javascript:likedo();"><span class="iconify" id="like" name="likeoff" data-icon="ant-design:like-outlined" data-inline="false" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;margin-left: 25px;"></span></a>
-	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 25px;"></span>
-				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 20px;"></span>
-				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 15px;"></span></a>
+				<i class="chuchun fas fa-thumbs-up"  style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${review.relike}</i>
+	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
+				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			</c:if>
 			
@@ -303,48 +303,66 @@ border-radius: 5px;
         Scripts
     ***********************************-->
    
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
 		$(function(){
-			console.log('start')
-			let content = $('#myissueContent').text()
-			let contentline = content.split('\n')
-			let urlData = [];
-			
-			for(let i = 0; i < contentline.length; i++){
-				if(contentline[i].indexOf("http") != -1 || contentline[i].indexOf("www") != -1) {
-					let link = contentline[i].split(' ')
-					for(let j = 0; j < link.length; j++){
-						if(link[j].indexOf("http") != -1 || link[j].indexOf("www") != -1){
-							urlData.push(link[j])
-						}
-					}
-				}
-			}
-			
-			console.log(urlData)
-			
-			console.log('start')
-			for(let i = 0; i < urlData.length; i++){
-				console.log(urlData[i])
-				let udata = urlData[i]
+			$('.chuchun').click(function(){
+				let chu = $(this);
+				
+				let reseq = like.closest('div.row').children('input[name=reseq]').val();
+				let monum = like.closest('div.row').children('input[name=email]').val();
+				
 				$.ajax({
-					url: 'http://192.168.6.45:8091/index',
-					type: 'GET',
-					data: 'url='+udata,
-					success: function(data){
-						console.log('success')
-						console.log(data)
+					url : "relike.do",
+					type : "POST",
+					data : {"reseq" : reseq, 
+							"email" : email
+					       },
+					success : function(datadata){
+						mark = like.attr('class').split(' ');
+						if(status == "likeoff"){
+							console.log('likeclass ? ' + like.attr('class'));
+							console.log('icon : ' + mark);
+							console.log('likeoff if');
+							like.removeAttr('name').attr('name', 'likeon');
+							like.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-heart");
+
+							Swal.fire({
+					    		  title: "찜하기 성공",
+					    		  text: "찜하기 성공",
+					    		  icon: "success",
+					    		  button: "확인"
+					    		})
+						}else if(status == "likeon"){
+							console.log('likeon if');
+							like.removeAttr("name").attr("name", "likeoff");
+							like.removeClass(mark[1]+" "+mark[2]).addClass("far fa-heart");
+
+							Swal.fire({
+					    		  title: "찜하기 취소",
+					    		  text: "찜하기 취소",
+					    		  icon: "warning",
+					    		  button: "확인"
+					    		})
+						}
+						
+
 					},
-					error: function(xhr, status, error){
-						console.log('xhr : ' + xhr.status)
-						console.log(error)
+					error : function(err){
+						console.log('error' + err);
+						Swal.fire({
+				    		  title: "추천 중 에러",
+				    		  text: "추천 중 에러발생",
+				    		  icon: "error",
+				    		  button: "확인"
+				    		})
+						return false;
 					}
-				})
-			}
-		})
+				});
+			});
+		});
 		
 		
-	</script> -->
+	</script> 
 	
     <script src="<c:url value="/resources/plugins/common/common.min.js" />"></script>
     <script src="<c:url value="/resources/js/custom.min.js" />"></script>
