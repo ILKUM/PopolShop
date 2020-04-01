@@ -342,11 +342,14 @@ public class BoardController {
 			return "review/reviewDetail";
 		}
 		
-		@RequestMapping(value="relike.do" , method = RequestMethod.POST)
+		@RequestMapping(value="/relike.do" , method = RequestMethod.POST)
 		public String updateRelike(int reseq,String email,Model model) {
+			System.out.println("여긴옴??");
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
 			int like = dao.getrelike(email,reseq);
 			int result = 0;
+			String viewpage = "";
+			int chu = 0;
 			if(like > 0) {
 				model.addAttribute("on", like);
 			}else {
@@ -354,12 +357,17 @@ public class BoardController {
 			}
 			
 			if(result > 0) {
-				dao.relikeCount(reseq);
+				chu = dao.relikeCount(reseq);
 			}else {
 				System.out.println("실패");
 			}
 			
-			return "redirect:/reviewDetail,do?reseq=" + reseq;
+			if(chu > 0) {
+				viewpage = "redirect:/reviewDetail,do?reseq=" + reseq;
+			}else {
+				viewpage = "redirect:/reviewDetail,do?reseq=" + reseq;
+			}
+			return viewpage;
 		}
 		
 		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)
