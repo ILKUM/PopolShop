@@ -344,16 +344,19 @@ public class BoardController {
 		
 		@RequestMapping(value="/relike.do" , method = RequestMethod.POST)
 		public String updateRelike(int reseq,String email,Model model) {
-			System.out.println("여긴옴??");
+			System.out.println("e : " + email);
+			System.out.println("e : " + reseq);
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
 			int like = dao.getrelike(email,reseq);
 			int result = 0;
 			String viewpage = "";
 			int chu = 0;
-			if(like > 0) {
-				model.addAttribute("on", like);
-			}else {
+			System.out.println("라이크 : " + like);
+			if(like == 0) {
 				result = dao.insertRelike(reseq, email);
+	
+			}else {
+				model.addAttribute("on", like);
 			}
 			
 			if(result > 0) {

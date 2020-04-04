@@ -176,39 +176,7 @@ $(function(){
 		
 	});
 	
-	$('#chuchun').click(function(){
-		let chu = $(this);
-		
-		let reseq = like.closest('div.row').children('input[name=reseq]').val();
-		let email = like.closest('div.row').children('input[name=email]').val();
-		
-		$.ajax({
-			url : "relike.do",
-			type : "POST",
-			data : {"reseq" : reseq, 
-					"email" : email
-			       },
-			success : function(datadata){					
-					Swal.fire({
-			    		  title: "추천하기 성공",
-			    		  text: "추천하기 성공",
-			    		  icon: "success",
-			    		  button: "확인"
-			    		})
-				
-			},
-			error : function(err){
-				console.log('error' + err);
-				Swal.fire({
-		    		  title: "추천 중 에러",
-		    		  text: "추천 중 에러발생",
-		    		  icon: "error",
-		    		  button: "확인"
-		    		})
-				return false;
-			}
-		});
-	});
+	
 
 });
 
@@ -255,14 +223,14 @@ border-radius: 5px;
 			
 			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
 			
-			<c:if test="${review.email==sessionScope.email}">
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-				<i class="fas fa-thumbs-up" id="chuchun" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${review.relike}</i>
+				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${review.relike}</i>
+			<c:if test="${review.email==sessionScope.email}">
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+			</c:if>
 				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
-			</c:if>
 			
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
@@ -339,7 +307,39 @@ border-radius: 5px;
    
     <script type="text/javascript">
 		$(function(){
-			
+			$('#chuchun').click(function(){
+				let chu = $(this);
+				
+				let reseq = chu.closest('div.row').children('input[name=reseq]').val();
+				let email = chu.closest('div.row').children('input[name=email]').val();
+				
+				$.ajax({
+					url : "relike.do",
+					type : "POST",
+					data : {"reseq" : reseq, 
+							"email" : email
+					       },
+					success : function(datadata){					
+							Swal.fire({
+					    		  title: "추천하기 성공",
+					    		  text: "추천하기 성공",
+					    		  icon: "success",
+					    		  button: "확인"
+					    		})
+						
+					},
+					error : function(err){
+						console.log('error' + err);
+						Swal.fire({
+				    		  title: "추천 중 에러",
+				    		  text: "추천 중 에러발생",
+				    		  icon: "error",
+				    		  button: "확인"
+				    		})
+						return false;
+					}
+				});
+			});
 		});
 		
 		

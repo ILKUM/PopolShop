@@ -6,6 +6,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Review {
 	private int reseq; //리뷰 글번호
+	private int rvseq; //추천 번호
 	private String retitle; //리뷰 제목
 	private String recontent; //리뷰 내용
 	private Timestamp retime; //글쓴 시간
@@ -15,6 +16,14 @@ public class Review {
 	private String name; //작성자 이름
 	private int relike; //추천수
 	private int rernum; //조회수
+	
+	
+	public int getRvseq() {
+		return rvseq;
+	}
+	public void setRvseq(int rvseq) {
+		this.rvseq = rvseq;
+	}
 	public int getReseq() {
 		return reseq;
 	}
@@ -75,12 +84,11 @@ public class Review {
 	public void setRernum(int rernum) {
 		this.rernum = rernum;
 	}
-	
 	@Override
 	public String toString() {
-		return "Review [reseq=" + reseq + ", retitle=" + retitle + ", recontent=" + recontent + ", retime=" + retime
-				+ ", filesrc=" + filesrc + ", rephoto=" + rephoto + ", email=" + email + ", name=" + name + ", relike="
-				+ relike + ", rernum=" + rernum + "]";
+		return "Review [reseq=" + reseq + ", rvseq=" + rvseq + ", retitle=" + retitle + ", recontent=" + recontent
+				+ ", retime=" + retime + ", filesrc=" + filesrc + ", rephoto=" + rephoto + ", email=" + email
+				+ ", name=" + name + ", relike=" + relike + ", rernum=" + rernum + "]";
 	}
 	
 	

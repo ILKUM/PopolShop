@@ -17,13 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 update reboard set rernum=rernum+1 where reseq = #{reseq}
 	</update>
 	<insert id="insertRelike" parameterType="kr.or.scoop.dto.Review">
-		insert into reviewmem (email , reseq) values (#{email,jdbcType=VARCHAR},#{reseq,jdbcType=INTEGER})
+		insert into reviewmem(rvseq,reseq,email) 
+		values (RVSEQ_REVIEWMEM_SEQ.NEXTVAL,#{param1},#{param2})
 	</insert>
 	<update id="relikeCount">
 		update reboard set relike = relike+1 where reseq = #{reseq}
 	</update>
-	<select id="getrelike" resultType="kr.or.scoop.dto.Review">
-		select email , reseq from reviewmem where email = #{email,jdbctype=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
+	<select id="getrelike" resultType="Integer">
+		select email , reseq from reviewmem where email = #{param1} and reseq = #{param2}
 	</select>
 	<delete id="deleteRelike">
 		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
