@@ -241,7 +241,55 @@ function signOut() {
         $("#name").focus();
         return false;
       }
-
+		
+      if($("#name").val() == "운영자"){
+          alert("이 이름은 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "관리자"){
+          alert("이 이름은 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "ADMIN"){
+          alert("이 이름은 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "책임자"){
+          alert("이 이름은 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "모플렉스"){
+          alert("이 이름은 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "섹스"){
+          alert("성적인 단어는 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "SEX"){
+          alert("성적인 단어는 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "어드민"){
+          alert("성적인 단어는 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
       //비밀번호 공백 확인
       if($("#tbPwd").val() == ""){
         alert("비밀번호를 입력해주세요");
@@ -490,70 +538,6 @@ function idOver(a) {
 	        	   <a href="#" data-toggle="modal" data-target="#passwordFind"><spring:message code="login.forgot" /></a>
         </div>
       	</form>
-		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-								  <script type="text/javascript">
-								  	var naver_id_login = new naver_id_login("idXo9CECDTdxmjiuAWdC", "http://scoop.com:8090/SCOOP/naverCertified.do");
-								  	var state = naver_id_login.getUniqState();
-								  	naver_id_login.setButton("white", 3,40);
-								  	naver_id_login.setDomain("http://scoop.com:8090/SCOOP/");
-								  	naver_id_login.setState(state);
-								  	naver_id_login.init_naver_id_login();
-								  </script>
-									
-							      <script>
-							        function onSuccess(googleUser) {
-							          console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-							          console.log(googleUser.getBasicProfile().getEmail());
- 							          $.ajax({
-							        	    url:'googleLogin.do', //request 보낼 서버의 경로
-							        	    type:'post', // 메소드(get, post, put 등)
-							        	    data:{'email':googleUser.getBasicProfile().getEmail(),
-							        	    	'name':googleUser.getBasicProfile().getName()
-							        	    	}, //보낼 데이터
-							        	    success: function(data) {
-							        	    	Swal.fire({
-							        	    		  title: "구글 로그인 성공",
-							        	    		  text: "WELCOME",
-							        	    		  icon: "success",
-							        	    		  button: "확인"
-							        	    		})
-							        	    	location.href="userindex.do";
-							        	    },
-							        	    error: function(err) {
-							        	    	Swal.fire({
-							        	    		  title: "에러 발생",
-							        	    		  text: "로그인 중 에러가 발생했습니다",
-							        	    		  icon: "error",
-							        	    		  button: "확인"
-							        	    		})
-							        	    }
-							        	});
-							          
-							          
-							        }
-							        function onFailure(error) {
-							        	Swal.fire({
-					        	    		  title: "구글 로그인 실패",
-					        	    		  text: "구글 로그인 실패",
-					        	    		  icon: "warning",
-					        	    		  button: "확인"
-					        	    		})
-							          console.log(error);
-							        }
-							        function renderButton() {
-							          gapi.signin2.render('my-signin2', {
-							            'scope': 'profile email',
-							            'width': 190,
-							            'height': 38,
-							            'longtitle': true,
-							            'theme': 'dark',
-							            'onsuccess': onSuccess,
-							            'onfailure': onFailure
-							          });
-							        }
-
-							     
-							      </script>
 							      <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
      </div>
    </div>

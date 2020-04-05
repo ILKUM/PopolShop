@@ -451,7 +451,7 @@ span {
                   &nbsp;<spring:message code="private.wish" /></span>
          </a></li>
          </c:if>       
-        <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
+        <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movietitle" /></b></li>
                <li><a href="koreaGet.do" aria-expanded="false"> <span
                class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">

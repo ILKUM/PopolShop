@@ -15,6 +15,7 @@ public class Recommend {
 	private int rclike; //추천수
 	private String name; //글쓴이 이름
 	private int rcrnum; //조회수
+	
 	public int getRcseq() {
 		return rcseq;
 	}
