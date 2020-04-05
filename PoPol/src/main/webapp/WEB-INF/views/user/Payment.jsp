@@ -29,7 +29,7 @@ function requestPay(){
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'SCOOP PRIMIUM',
+            name : 'MOFLEX PRIMIUM',
             amount : 100,
             buyer_email : '<%=session.getAttribute("email")%>',
             buyer_name : '',
@@ -59,7 +59,7 @@ function requestPay(){
                 });
                 Swal.fire(
                         '결제를 성공하셨습니다.',
-                        '스쿱 프리미엄이 되신 것을 환영합니다!',
+                        '모플렉스 프리미엄이 되신 것을 환영합니다!',
                         'success'
                       )
                 window.setTimeout(function() {
