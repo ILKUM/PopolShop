@@ -13,6 +13,8 @@ public class Movie {
 	private String modate; //영화 개봉날짜
 	private String modirector; //영화 감독
 	private int iswish; //위시리스트 여부
+	private int mpoint; //영화 가격
+	
 	
 	public int getMoseq() {
 		return moseq;
@@ -76,12 +78,18 @@ public class Movie {
 	public void setIswish(int iswish) {
 		this.iswish = iswish;
 	}
+	public int getMpoint() {
+		return mpoint;
+	}
+	public void setMpoint(int mpoint) {
+		this.mpoint = mpoint;
+	}
 	
 	@Override
 	public String toString() {
 		return "Movie [moseq=" + moseq + ", moname=" + moname + ", mocontent=" + mocontent + ", filesrc=" + filesrc
 				+ ", mophoto=" + mophoto + ", molike=" + molike + ", monum=" + monum + ", modate=" + modate
-				+ ", modirector=" + modirector + ", iswish=" + iswish + "]";
+				+ ", modirector=" + modirector + ", iswish=" + iswish + ", mpoint=" + mpoint + "]";
 	}
 	
 	

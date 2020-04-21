@@ -200,9 +200,9 @@ public class MemberController {
 		session.setAttribute("role", role.getRname()); //등급 세션저장
 		
 		
-		return "user/dashBoard";
+		return "redirect:/notice.do";
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpSession session, HttpServletResponse response) {
@@ -418,6 +418,13 @@ public class MemberController {
 		}
 		return viewpage;
 		
+	}
+	
+	//회원 추방
+	@RequestMapping(value = "couponReg.do", method = RequestMethod.POST)
+	public String couponRegsiter(String email,String cnum, Model model) {
+		
+		return null;
 	}
 	
 	

@@ -10,7 +10,7 @@ public class Notice {
 	private String notitle; //공지사항 제목 
 	private String nocontent; //공지사항 내용
 	private Timestamp notime; //공지사항 작성시간 
-	private String nwriter; //공지사항 작성자
+	private String email; //공지사항 작성자
 	public int getNoseq() {
 		return noseq;
 	}
@@ -35,17 +35,19 @@ public class Notice {
 	public void setNotime(Timestamp notime) {
 		this.notime = notime;
 	}
-	public String getNwriter() {
-		return nwriter;
+	public String getEmail() {
+		return email;
 	}
-	public void setNwriter(String nwriter) {
-		this.nwriter = nwriter;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	
 	@Override
 	public String toString() {
 		return "Notice [noseq=" + noseq + ", notitle=" + notitle + ", nocontent=" + nocontent + ", notime=" + notime
-				+ ", nwriter=" + nwriter + "]";
+				+ ", email=" + email + "]";
 	}
+	
 	
 	
 	

@@ -4,32 +4,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.MovieDao">
 <insert id="insertMovie" parameterType="kr.or.scoop.dto.Movie">
-	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum,iswish)
-       values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum},0)
+	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum,iswish,mpoint)
+       values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum},0,#{mpoint})
 </insert>
 <select id="getKorea" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 1
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 1
 </select>
 <select id="getAmerican" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 2
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 2
 </select>
 <select id="getChina" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 3
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 3
 </select>
 <select id="getEurope" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 4
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 4
 </select>
 <select id="getJapan" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where monum = 5
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 5
 </select>
 <select id="getMovieList" resultType="kr.or.scoop.dto.Movie">
-	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie
+	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie
 </select>
 <select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
-		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where (moname like '%'||#{word}||'%')
+		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where (moname like '%'||#{word}||'%')
 	</select>
 	<select id="selectMovie" resultType="kr.or.scoop.dto.Movie">
-		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum from movie where moseq = #{moseq}
+		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where moseq = #{moseq}
 	</select>
 	<insert id="addMovieJJim" parameterType="kr.or.scoop.dto.JJim">
 	insert into JJIM(jseq, moseq, email) 
@@ -40,6 +40,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where moseq=#{param1} and email=#{param2}
 </delete>
 <select id="getMovieJJim" resultType="kr.or.scoop.dto.JJim">
-select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email,j.jseq from movie m join jjim j on m.moseq = j.moseq where j.email = #{email}
+select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email,j.jseq,m.mpoint from movie m join jjim j on m.moseq = j.moseq where j.email = #{email}
 </select>
 </mapper>

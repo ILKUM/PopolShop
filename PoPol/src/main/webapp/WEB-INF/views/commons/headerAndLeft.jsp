@@ -80,18 +80,42 @@ input::placeholder {
       
 
    $(function() { // onload
-		connect();	//연결
-		
+	 //공지사항작성 validation
+	    function checknotice() {
+	    //이슈 제목 공백 확인
+	     if($("#bntitle").val() == ""){
+	        Swal.fire("제목을 입력해주세요.");
+	       $("#bntitle").focus();
+	       return false;
+	     }
 
-		$('#logout').onclick(function(){
-			disconnect();
-		});
-		$('#logoutNaver').onclick(function(){
-			disconnect();
-		});
-		$('#logoutGoogle').onclick(function(){
-			disconnect();
-		});
+	     //이슈 설명 공백 확인
+	     if($("#bncontent").val() == ""){
+	        Swal.fire("내용을 입력해주세요.");
+	       $("#bncontent").focus();
+	       return false;
+	     }
+
+	   return true;
+	   } 
+   
+	   function checkCoupon() {
+	    //이슈 제목 공백 확인
+	     if($("#cotitle").val() == ""){
+	        Swal.fire("번호를 입력해주세요.");
+	       $("#cotitle").focus();
+	       return false;
+	     }
+
+	     //이슈 설명 공백 확인
+	     if($("#cotitle").val() != "50005000"){
+	        Swal.fire("번호를 확인해주세요.");
+	       $("#cotitle").focus();
+	       return false;
+	     }
+
+	   return true;
+	   } 
 	});
 	
 	/* function connect() { //입장 버튼 클릭시 작동 함수(웹소켓 생성)
@@ -416,11 +440,11 @@ span {
          <span class="nav-text">
                   &nbsp;<spring:message code="notice" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
          </a></li>
-         <li><a href="userindex.do" aria-expanded="false"> <span
+         <%-- <li><a href="userindex.do" aria-expanded="false"> <span
                class="iconify" data-icon="mdi:bulletin-board" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="freeboard" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
-         </a></li>
+         </a></li> --%>
          <li><a href="like.do" aria-expanded="false"> <span
                class="iconify" data-icon="bx:bx-like"
                data-inline="false" style="width: 17px; height: auto;font: bold;"> </span><span
@@ -523,11 +547,44 @@ span {
                <textarea class="form-control createmodal" rows="5"
                   id="bncontent" name="nocontent" style="width: 100%"
                   placeholder="내용을 적어주세요."></textarea>   
-                  <input type="hidden" name="nwriter" value="${sessionScope.email}">      
+                  <input type="hidden" name="email" value="${sessionScope.email}">      
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
                   style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
+               <button type="button" class="btn btn-secondary"
+                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  data-dismiss="modal">취소</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   </div>
+   
+<div class="modal fade" id="makenotice">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h3 class="modal-title">쿠폰 등록</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+   
+         <form action="couponReg.do" method="POST" onsubmit="return checkCoupon()">
+            <!-- Modal body -->
+            <div class="modal-body">
+               <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
+             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
+               <label for="cotitle">쿠폰번호</label> <input
+                  class="form-control createmodal" type="text" id="cotitle"
+                  name="coupon" style="width: 100%;border-radius: 0.5rem;" placeholder="번호 입력해주세요.">                
+                  <input type="hidden" name="email" value="${sessionScope.email}">      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-secondary"
+                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
                <button type="button" class="btn btn-secondary"
                   style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
                   data-dismiss="modal">취소</button>
@@ -570,6 +627,7 @@ span {
       <div class="invalid-feedback">선택해주세요 영화 포스터를</div>
     </div>
     </div>
+
     <div class="col" width="33%">
       <div class="form-label-group">
         <input type="date" id="servdate" name="modate" class="form-control" required>
@@ -577,7 +635,10 @@ span {
   </div>
     </div>
     </div>
-  
+       <div class="form-label-group">
+        <label for="validationTextarea">영화 가격</label>
+        <input type="text" id="mpoint" name="mpoint" class="form-control is-invalid" placeholder="포인트를 입력 해주세요." required="required" style="width: 50%;">
+  </div>
     <hr class="my-4">
      <select id="monum" name="monum" class="form-control">                
                            <option value="1">한국영화</option>

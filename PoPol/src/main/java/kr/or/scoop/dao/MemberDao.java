@@ -48,4 +48,7 @@ public interface MemberDao {
 	
 	//회원 추방
 	public int banMember(String email);
+	
+	//쿠폰 등록
+	public int addCoupon(String email);
 }

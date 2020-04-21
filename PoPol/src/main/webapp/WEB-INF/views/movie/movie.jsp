@@ -114,6 +114,7 @@ $(document).ready(function(){
 		        								${m.moname}
 		        								</h4>	     								
 		        								<h4>${m.modirector}</h4>
+		        								<h4>${m.mpoint}P</h4>
 		        								<h4><c:out value="${fn:substring(m.modate,0,10)}"/></h4>
 												<h6>
 		        									<span>추천수 : </span>

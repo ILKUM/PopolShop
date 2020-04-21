@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.scoop.dao.MemberDao">
 	<!-- 일반회원가입 -->
     <insert id="insertMember" parameterType="kr.or.scoop.dto.Member">
-       insert into member(email, pwd, name,iddate)
-       values (#{email},#{pwd},#{name},SYSDATE)
+       insert into member(email, pwd, name,iddate,point)
+       values (#{email},#{pwd},#{name},SYSDATE,300)
     </insert>
 	<!-- 회원가입 중복체크 -->
 	<select id="loginCheck" resultType="int">
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 멤버정보 가져오기 -->
 	<select id="getMember" resultType="kr.or.scoop.dto.Member">
-		select email,name,pwd,profile,iddate from member 
+		select email,name,pwd,profile,iddate,point from member 
 		where email = #{email}
 	</select>
 	<select id="getRole" resultType="kr.or.scoop.dto.Role">
