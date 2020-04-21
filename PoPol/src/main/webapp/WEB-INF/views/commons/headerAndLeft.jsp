@@ -9,6 +9,7 @@
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="status" value="${sessionScope.status}" />
 <c:set var="email" value="${sessionScope.email}"/>
+<c:set var="point" value="${sessionScope.point}"/>
 <style>
 input::placeholder {
    color: #fff;
@@ -18,23 +19,12 @@ input::placeholder {
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<%-- <link rel="stylesheet" href="<c:url value="/resources/lib/codemirror.css" />">
-<script src="<c:url value="/resources/lib/codemirror.js" />"></script> --%>
-<%-- <link rel="stylesheet"
-   href="<c:url value="/resources/dist/summernote.css" />">
-<script src="<c:url value="/resources/dist/summernote.min.js" />"></script> --%>
 <meta property="og:title" content>
 <meta name="google-signin-client_id" content="806433148370-o0ss3i4kp8dhj6p0d2cvkdjfus8kivds.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js?onload=loadAuthClient" async defer></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 얘 위로가면 구글살고
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- -->
-    <link href= 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'> 
-    <script src= "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script> 
-<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
+<link href= 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'> 
+<script src= "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" ></script> 
 <script type="text/javascript">
    $(function() {
 	   for(let i=0; i<$('#memlist').children().length-1; i++){ //멘션에서 멤버리스트 불러올때 서로 다른 협업공간에 중복되는 유저 제거
@@ -43,111 +33,23 @@ input::placeholder {
 					$('#memlist').children().eq(j).hide();
 				}
 			}
-		}
-	   $('#searchFile').keypress(function(event){ //파일함에서 파일 검색
-		   if (event.keyCode == 13) {
-			   $.ajax({
-					url : 'teamFileSearch.do',
-					dataType:"json",
-					data : {word : $('#searchFile').val()},
-					success : function(data) {
-						$('#fileLocation').empty();
-						$.each(data,function(index,object){
-							tempFname = object.fdname;
+		}	
 
       //내정보 열기 (드롭다운)
       $('#myprofileEdit').click(function(){
     	  location.href="memberEdit.do?${sessionScope.email}";
           });
-      //잠금 모드 (드롭다운)
-      $('#lockScoop').click(function(){
-			location.href="page-lock.jsp";
-          });
+      
       //일반 회원 로그아웃 (드롭다운)
       $('#logout').click(function(){
 			location.href="logout.do";
           });  
-      //구글 회원 로그아웃 (드롭다운)    
-      $('#logoutGoogle').click(function(){
-    	  	signOut();
-          });
-      //네이버 회원 로그아웃 (드롭다운)
-      $('#logoutNaver').click(function(){
-			location.href="logout.do";
-          });
-      //위시리스트 이동
-      
-      
 
-   $(function() { // onload
-	 //공지사항작성 validation
-	    function checknotice() {
-	    //이슈 제목 공백 확인
-	     if($("#bntitle").val() == ""){
-	        Swal.fire("제목을 입력해주세요.");
-	       $("#bntitle").focus();
-	       return false;
-	     }
-
-	     //이슈 설명 공백 확인
-	     if($("#bncontent").val() == ""){
-	        Swal.fire("내용을 입력해주세요.");
-	       $("#bncontent").focus();
-	       return false;
-	     }
-
-	   return true;
-	   } 
-   
-	   function checkCoupon() {
-	    //이슈 제목 공백 확인
-	     if($("#cotitle").val() == ""){
-	        Swal.fire("번호를 입력해주세요.");
-	       $("#cotitle").focus();
-	       return false;
-	     }
-
-	     //이슈 설명 공백 확인
-	     if($("#cotitle").val() != "50005000"){
-	        Swal.fire("번호를 확인해주세요.");
-	       $("#cotitle").focus();
-	       return false;
-	     }
-
-	   return true;
-	   } 
+	 
+	   
 	});
+					
 	
-	/* function connect() { //입장 버튼 클릭시 작동 함수(웹소켓 생성)
-		wsocket = new WebSocket("ws://scoop.com:8090/SCOOP/Chat-ws.do?cmd=join&room=${room}");
-
-		//해당 함수 정의
-		wsocket.onmessage = onMessage;
-	}
-	
-	function disconnect() {
-		wsocket.close();
-	}
-
-	function onMessage(evt) { 
-		var data = JSON.parse(evt.data);
-		notificationMessage(data);
-	}
-
-	function send(message) { //전송할때 json형태로 전송
-		let data = { message : message
-						, cmd : "message"
-						, room : "${room}"
-						, img : "${sessionScope.img}"
-						 };
-		
-		wsocket.send(JSON.stringify(data));
-	}
-
-	function notificationMessage(data) { //메시지 뷰단에 append
-		alert(data);
-	}
- */
 
      
 </script>
@@ -251,7 +153,7 @@ span {
             <input type="search" id="sIssue" name="word" class="form-control" placeholder="검색 후 Enter치세요"
                aria-label="Search">
             <input type="hidden" id="searchEmail" name="email" value=<%=session.getAttribute("email")%>>
-            </form>
+            </form>          
                <c:choose>
                   <c:when test="${role == 'ROLE_ADMIN'}">
                <input type="button"class="form-control"
@@ -387,28 +289,28 @@ span {
                         	</span>
                         </li>
                         <li>
+                        	<span id="couponopen" style="cursor: pointer;">
+                        	<span class="iconify" data-icon="emojione-monotone:admission-tickets" data-inline="false" style="font-size: 15px"></span> 
+                        	<span>&nbsp;&nbsp;쿠폰 등록</span>
+                        	</span>
+                        </li>
+                        <li>
+                        	<span id="couponopen" style="cursor: pointer;">
+                        	<span class="iconify" data-icon="emojione-monotone:money-with-wings" data-inline="false" style="font-size: 15px"></span> 
+                        	<span>&nbsp;&nbsp;<%=session.getAttribute("point")%>P</span>
+                        	</span>
+                        </li>
+                        <li>
                         	<span id="fileopen" style="cursor: pointer;">
                         	<span class="iconify" data-icon="ion:folder-open-outline" data-inline="false"style="font-size: 15px"></span> 
                         	<span>&nbsp;&nbsp;파일함</span></span>
-                        </li>
-                        <hr class="my-2">
-                       <!--  <li>
-                        	<span id="lockScoop" style="cursor: pointer;">
-                        	<a href="page-lock.jsp">
-                        	<span class="icon-lock"></span>
-                        	<span>&nbsp;&nbsp;잠금모드</span>
-                        	</span>
-                        </li> -->
+                        </li>                 
                           		<li>
                           			<span id="logout" style="cursor: pointer;">
                               			<span class="icon-key"></span> 
                               			<span>&nbsp;&nbsp;로그아웃</span>
                               		</span>
-                              	</li>
-						<c:if test="${email=null}">
-                        <li>로그인을 해주세요.</li>
-						</c:if>
-                        <li><%=session.getAttribute("email")%></li>
+                              	</li>						                    
                      </ul>
                   </div>
                </div>
@@ -541,11 +443,11 @@ span {
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
                <label for="notitle">공지사항</label> <input
-                  class="form-control createmodal" type="text" id="bntitle"
+                  class="form-control createmodal" type="text" id="notitle"
                   name="notitle" style="width: 100%;border-radius: 0.5rem;" placeholder="제목을 입력해 주세요.">
                <br> <label for="noticecontent">공지 설명</label>
                <textarea class="form-control createmodal" rows="5"
-                  id="bncontent" name="nocontent" style="width: 100%"
+                  id="nocontent" name="nocontent" style="width: 100%"
                   placeholder="내용을 적어주세요."></textarea>   
                   <input type="hidden" name="email" value="${sessionScope.email}">      
             <!-- Modal footer -->
@@ -562,7 +464,7 @@ span {
    </div>
    </div>
    
-<div class="modal fade" id="makenotice">
+<div class="modal fade" id="couponon">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
@@ -572,15 +474,16 @@ span {
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
-         <form action="couponReg.do" method="POST" onsubmit="return checkCoupon()">
+         <form onsubmit="return checkCoupon()" action="couponReg.do" method="POST">
             <!-- Modal body -->
             <div class="modal-body">
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
                <label for="cotitle">쿠폰번호</label> <input
-                  class="form-control createmodal" type="text" id="cotitle"
+                  class="form-control createmodal" type="text" id="couponnum"
                   name="coupon" style="width: 100%;border-radius: 0.5rem;" placeholder="번호 입력해주세요.">                
                   <input type="hidden" name="email" value="${sessionScope.email}">      
+                  <input type="hidden" id="cpoint" name="cpoint" value="${sessionScope.cpoint}">      
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
@@ -679,6 +582,10 @@ span {
 	  location.href="memberEdit.do?${sessionScope.email}";
 		    });
 	
+		//쿠폰 열기
+	      $('#couponopen').click(function(){
+	    	  $('#couponon').modal();
+	          });
 
 
 //일반 회원 로그아웃 (드롭다운)
@@ -699,6 +606,57 @@ $(function(){
 		
 		reader.readAsDataURL(this.files[0]);
 	});
+	
+
 });
 
+//공지사항작성 validation
+function checknotice() {
+	  //이슈 제목 공백 확인
+    if($("#notitle").val() == ""){
+       Swal.fire("제목을 입력해주세요.");
+      $("#notitle").focus();
+      return false;
+    }
+
+    //이슈 설명 공백 확인
+    if($("#nocontent").val() == ""){
+       Swal.fire("내용을 입력해주세요.");
+      $("#nocontent").focus();
+      return false;
+    }
+    
+return true;
+} 
+
+function checkCoupon() {
+//쿠폰번호 공백 확인
+ if($("#couponnum").val() == ""){
+    Swal.fire("번호를 입력해주세요.");
+   $("#couponnum").focus();
+   return false;
+ }
+	
+if($("#couponnum").val() !="50005000"){
+	Swal.fire("번호를 확인해주세요.");
+	return false;
+}
+
+if($("#cpoint").val() == 1) {
+	Swal.fire({
+		  title : '등록 실패',
+		  text : '이미 쿠폰을 등록 하셨습니다.',
+		  icon : 'warning',
+		  confirmButtonColor: '#d33'
+	})
+	return false;
+}
+Swal.fire({
+	  title : '등록 성공',
+	  text : '쿠폰이 등록 되었습니다.',
+	  icon : 'success',
+	  confirmButtonColor: '#d33'
+})
+	return true;
+} 
 </script>

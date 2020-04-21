@@ -51,4 +51,7 @@ public interface MemberDao {
 	
 	//쿠폰 등록
 	public int addCoupon(String email);
+	
+	//쿠폰 중복방비
+	public int checkCoupon(String email);
 }

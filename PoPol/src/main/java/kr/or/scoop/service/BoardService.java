@@ -44,6 +44,7 @@ public class BoardService {
 			return result;
 		}
 		
+		//리뷰글 조회수 증가
 		public int rernumUp(int reseq) {
 			int result = 0;
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
@@ -52,6 +53,7 @@ public class BoardService {
 			
 		}
 		
+		//좋아요 수 증가 (미구현)
 		public int relikeUp(int reseq) {
 			int result = 0;
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
@@ -59,10 +61,20 @@ public class BoardService {
 			return result;
 		}
 		
+		//아직 미구현
 		public int insertRelike(int reseq, String email) {
 			int result = 0;
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			result = dao.insertRelike(reseq, email);
 			return result;
+		}
+		
+		//공지사항 조회수 증가
+		public int nrnumUp(int noseq) {
+			int result = 0;
+			NoticeDao dao = sqlsession.getMapper(NoticeDao.class);
+			result = dao.nrnumCount(noseq);
+			return result;
+			
 		}
 }

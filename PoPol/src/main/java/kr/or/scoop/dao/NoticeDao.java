@@ -13,4 +13,6 @@ public interface NoticeDao {
 	public Notice detailNotice(int noseq); //공지사항 디테일 
 	
 	public int deleteNotice(int noseq); //공지사항 삭제
+	
+	public int nrnumCount(int noseq); //공지사항 조회수 증가
 }

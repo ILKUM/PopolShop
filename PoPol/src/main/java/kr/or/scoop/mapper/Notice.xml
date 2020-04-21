@@ -4,13 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.NoticeDao">
 <select id="getNotice" resultType="kr.or.scoop.dto.Notice">
-	select noseq,notitle,nocontent,email,notime from notice
+	select noseq,notitle,nocontent,email,notime,nrnum from notice
 </select>
 <insert id="insertNotice" parameterType="kr.or.scoop.dto.Notice">
-	insert into notice (noseq,notitle,nocontent,notime,email) 
-	values (noseq_notice_seq.nextval,#{notitle},#{nocontent},systimestamp,#{email}) 
+	insert into notice (noseq,notitle,nocontent,notime,email,nrnum) 
+	values (noseq_notice_seq.nextval,#{notitle},#{nocontent},systimestamp,#{email},0) 
 </insert>
 <select id="detailNotice" resultType="kr.or.scoop.dto.Notice">
-	select notitle,nocontent,email,notime from notice where noseq=#{noseq}
+	select notitle,nocontent,email,notime,nrnum from notice where noseq=#{noseq}
 	</select>
+	<update id="nrnumCount">
+		 update notice set nrnum=nrnum+1 where noseq = #{noseq}
+	</update>
 </mapper>

@@ -116,16 +116,16 @@ $(function(){
          <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.retitle}</a>     
          </div>
          <div class="col-sm-2 newissue" >
-         	${re.name}
+         	<a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.name}</a>
          </div>
          <div class="col-sm-2 newissue">
-         ${fn:substring(re.retime,0,19)}    	
+        <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${fn:substring(re.retime,0,19)}</a>   	
          </div>
 		<div class="col-sm-1 newissue" style="padding-left: 30px;">
-		${re.rernum}
+		<a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.rernum}</a>
 		</div>
 		<div class="col-sm-1 newissue" style="padding-left: 30px;">
-			${re.relike}
+			<a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.relike}</a>
 		</div>
       </div>
       </c:forEach>    

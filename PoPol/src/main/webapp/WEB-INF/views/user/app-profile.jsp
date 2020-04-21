@@ -64,6 +64,72 @@ $(function(){
 		        $("#name").focus();
 		        return false;
 		      }
+		      if($("#name").val() == "운영자"){
+		          alert("이 이름은 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "관리자"){
+		          alert("이 이름은 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "ADMIN"){
+		          alert("이 이름은 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "책임자"){
+		          alert("이 이름은 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "모플렉스"){
+		          alert("이 이름은 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "섹스"){
+		          alert("성적인 단어는 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "SEX"){
+		          alert("성적인 단어는 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "보지"){
+		          alert("성적인 단어는 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "운영"){
+		          alert("이 이름은 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
+		      if($("#name").val() == "잠지"){
+		          alert("성적인 단어는 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		 
+		      if($("#name").val() == "자지"){
+		          alert("성적인 단어는 사용할 수 없습니다.");
+		          $("#name").focus();
+		          return false;
+		        }
+		      
 			
 			//회원가입 시 메일 보낼 때 얼럿창
 
@@ -158,11 +224,7 @@ $(function(){
                              <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/upload/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
                              <input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
 						</c:otherwise>
-					</c:choose>
-                                    <div class="media-body">
-                                        <h3 class="mb-0" style="padding-left: 2%;">${member.name}</h3>
-                                        <p class="text-muted mb-0" style="margin-left: 2%; width: 300px;">${member.email}</p>
-                                    </div>
+					</c:choose>                        
                                 </div>
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
@@ -176,8 +238,11 @@ $(function(){
     		<input class="form-control myinfo" type="password" id="pwdchk" name="pwdchk" style="width: 60%" >
     		<div id="chkmsg" style="color: green;"><br></div>
     		<br>
-    		<label for="name">이름</label>
+    		<label for="name">닉네임</label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}">
+    		<br>
+    		<label for="name">포인트</label>
+    		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.point}" disabled="disabled">
     		<input type="submit" id="address_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
     		
     		</div>

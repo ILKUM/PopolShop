@@ -104,11 +104,14 @@ $(document).ready(function(){
 				<div class="col-sm-3 newissue" >
 				제목
 				</div>
-				<div class="col-sm-7 newissue">
+				<div class="col-sm-6 newissue">
 				내용
 				</div>
 				<div class="col-sm-2 newissue">
 				작성시간
+				</div>
+				<div class="col-sm-1 newissue">
+				조회수
 				</div>
 		</div>
 		<c:set value="${notice}" var="no" />
@@ -126,7 +129,7 @@ $(document).ready(function(){
           </c:choose>
 			</div>
 			
-			<div class="col-sm-7 newissue">
+			<div class="col-sm-6 newissue">
 			<c:choose>
           <c:when test="${fn:length(n.nocontent) > 65}">
              <c:out value="${fn:substring(n.nocontent,0,65)}"/>...
@@ -138,6 +141,9 @@ $(document).ready(function(){
 			</div>
 			<div class="col-sm-2 newissue">
 			${fn:substring(n.notime,0,16)}
+			</div>
+			<div class="col-sm-1 newissue">
+			 ${n.nrnum}
 			</div>
       </div>
 			</a>

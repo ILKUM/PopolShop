@@ -15,6 +15,7 @@ public class Member {
 	private String profile; //프로필 사진 파일 이름
 	private String rname; //등급 이름
 	private int point; //유저 포인트
+	private int cpoint; //쿠폰 여부
 	
 	public Date getIddate() {
 		return iddate;
@@ -65,11 +66,19 @@ public class Member {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public int getCpoint() {
+		return cpoint;
+	}
+	public void setCpoint(int cpoint) {
+		this.cpoint = cpoint;
+	}
 	@Override
 	public String toString() {
 		return "Member [email=" + email + ", pwd=" + pwd + ", name=" + name + ", filesrc=" + filesrc + ", iddate="
-				+ iddate + ", profile=" + profile + ", rname=" + rname + ", point=" + point + "]";
+				+ iddate + ", profile=" + profile + ", rname=" + rname + ", point=" + point + ", cpoint=" + cpoint
+				+ "]";
 	}
+	
 	
 	
 	

@@ -70,12 +70,17 @@ public class BoardController {
 		//공지사항 디테일
 		@RequestMapping(value="noticeDetail.do", method = RequestMethod.GET)
 		public String noticeDetail(int noseq,Model model) {
-			String viewpage;
+			String viewpage = "";
+			int result = 0;
 			NoticeDao dao = sqlSession.getMapper(NoticeDao.class);
-			Notice notice = dao.detailNotice(noseq); //공지사항 디테일
-			model.addAttribute("notice",notice);
-			
-			viewpage = "notice/noticeDetail";
+			result = bService.nrnumUp(noseq);
+			if(result > 0) {
+				Notice notice = dao.detailNotice(noseq); //공지사항 디테일
+				model.addAttribute("notice",notice);	
+				viewpage = "notice/noticeDetail";
+			}else {
+				System.out.println("실패");
+			}
 			
 			return viewpage;
 		}

@@ -194,6 +194,8 @@ public class MemberController {
 		Role role = memberdao.getRole(email); //로그인한 사람 등급 불러오기
 		String img = memberdao.getProfile(email); //로그인한 사람 프로필사진 불러오기
 		
+		session.setAttribute("point", member.getPoint());
+		session.setAttribute("cpoint", member.getCpoint());
 		session.setAttribute("email", member.getEmail());
 		session.setAttribute("name", member.getName()); //이름 세션저장
 		session.setAttribute("img",img); //프로필사진 세션저장
@@ -420,11 +422,22 @@ public class MemberController {
 		
 	}
 	
-	//회원 추방
+	//쿠폰
 	@RequestMapping(value = "couponReg.do", method = RequestMethod.POST)
-	public String couponRegsiter(String email,String cnum, Model model) {
+	public String couponRegsiter(String email, Model model) {
+		int result = 0;
+		String viewpage;
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);		
+			result = dao.addCoupon(email);
+			if(result > 0) {
+				viewpage = "redirect:/notice.do";
+				System.out.println("아님 여기냐?");
+			}else {
+				viewpage = "redirect:/notice.do";
+			}
 		
-		return null;
+		
+		return viewpage;
 	}
 	
 	

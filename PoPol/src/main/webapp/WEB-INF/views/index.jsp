@@ -284,7 +284,25 @@ function signOut() {
           return false;
         }
       
-      if($("#name").val() == "어드민"){
+      if($("#name").val() == "보지"){
+          alert("성적인 단어는 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "운영"){
+          alert("이 이름은 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+      
+      if($("#name").val() == "잠지"){
+          alert("성적인 단어는 사용할 수 없습니다.");
+          $("#name").focus();
+          return false;
+        }
+ 
+      if($("#name").val() == "자지"){
           alert("성적인 단어는 사용할 수 없습니다.");
           $("#name").focus();
           return false;
