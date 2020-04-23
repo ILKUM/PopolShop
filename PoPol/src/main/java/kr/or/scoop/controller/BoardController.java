@@ -23,10 +23,12 @@ import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.JJim;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
+import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.Role;
 import kr.or.scoop.service.BoardService;
+import net.sf.json.JSONArray;
 
 @Controller
 public class BoardController {
@@ -335,9 +337,12 @@ public class BoardController {
 		@RequestMapping(value="reviewDetail.do",method = RequestMethod.GET)
 		public String detailReview(int reseq,Model model) {
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
+			List<Recoment> recom = dao.reviewCommentOk(reseq);
+			System.out.println(recom);
 			int result = bService.rernumUp(reseq);
 			if(result > 0) {
 				Review re = dao.selectReview(reseq);
+				model.addAttribute("recom", recom);
 				model.addAttribute("review", re);
 			}else {
 				System.out.println("실패");
@@ -352,24 +357,19 @@ public class BoardController {
 			System.out.println("e : " + email);
 			System.out.println("e : " + reseq);
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
-			int like = dao.getrelike(email,reseq);
+			int like = (int)dao.getrelike(email,reseq);
+			System.out.println("like " + like);
 			int result = 0;
 			String viewpage = "";
 			int chu = 0;
 			System.out.println("라이크 : " + like);
-			if(like == 0) {
-				result = dao.insertRelike(reseq, email);
-	
-			}else {
+			if(like > 0) {
 				model.addAttribute("on", like);
-			}
-			
-			if(result > 0) {
-				chu = dao.relikeCount(reseq);
 			}else {
-				System.out.println("실패");
-			}
-			
+				result = dao.insertRelike(reseq, email);
+				chu = dao.relikeCount(reseq);
+			}			
+		
 			if(chu > 0) {
 				viewpage = "redirect:/reviewDetail,do?reseq=" + reseq;
 			}else {
@@ -378,6 +378,7 @@ public class BoardController {
 			return viewpage;
 		}
 		
+		//찜하기 
 		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)
 		public String movieWish(HttpSession session,int moseq,int monum, String status, Model model) {
 			String email = (String)session.getAttribute("email");
@@ -436,6 +437,7 @@ public class BoardController {
 			return viewpage;
 		}
 		
+		//위시리스트 
 		@RequestMapping(value="wishlist.do",method=RequestMethod.GET)
 		public String getWish(String email,Model model) {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
@@ -445,6 +447,34 @@ public class BoardController {
 			model.addAttribute("jjimlist", jjim);
 			
 			return "user/wishList";
+		}
+		
+		//댓글
+		@RequestMapping(value = "reComment.do", method = {RequestMethod.POST,RequestMethod.GET})
+		public String reviewComent(int reseq,String rcontent,String email,Model model) {
+			int result = 0;	
+			String viewpage = "";
+			result = bService.reviewComment(reseq, rcontent, email);
+			
+			if(result > 0) {
+				model.addAttribute("ajax","댓글 성공");
+				viewpage = "utils/ajax";
+				
+			}else {
+				model.addAttribute("ajax","댓글 실패");
+				viewpage = "utils/ajax";
+			}
+			return viewpage;
+		}
+		
+		//팀이슈 댓글 비동기 뿌리기
+		@RequestMapping(value = "reCommentOk.do",method = {RequestMethod.POST,RequestMethod.GET})
+		public String reviewCommentOk(int reseq,Model model) {
+			String viewpage = "utils/ajax";
+			List<Recoment> recoment = bService.reviewCommentOk(reseq);
+			JSONArray jsonlist = JSONArray.fromObject(recoment);
+			model.addAttribute("ajax",jsonlist);
+			return viewpage;
 		}
 		
 }

@@ -1,5 +1,7 @@
 package kr.or.scoop.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Notice;
+import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
 
@@ -76,5 +79,19 @@ public class BoardService {
 			result = dao.nrnumCount(noseq);
 			return result;
 			
+		}
+		
+		//댓글 처리
+		public int reviewComment(int reseq,String rcontent,String email) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			int result = dao.reviewComment(reseq,rcontent,email);
+			return result;
+		}
+		
+		//댓글 리스트 
+		public List<Recoment> reviewCommentOk(int reseq){
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			List<Recoment> result = dao.reviewCommentOk(reseq);
+			return result;
 		}
 }

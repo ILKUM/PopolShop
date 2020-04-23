@@ -78,9 +78,4 @@ public class Member {
 				+ iddate + ", profile=" + profile + ", rname=" + rname + ", point=" + point + ", cpoint=" + cpoint
 				+ "]";
 	}
-	
-	
-	
-	
-	
 }

@@ -2,6 +2,7 @@ package kr.or.scoop.dao;
 
 import java.util.List;
 
+import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
 
@@ -26,7 +27,7 @@ public interface BoardDao {
 	public int insertRelike(int reseq,String email);
 	
 	//리뷰글 추천 중복방지
-	public int getrelike(String email, int reseq);
+	public Integer getrelike(String email, int reseq);
 	
 	//리뷰글 추천 삭제
 	public int deleteRelike(int reseq,String email);
@@ -37,6 +38,10 @@ public interface BoardDao {
 	//추천 리스트
 	public List<Recommend> getRecomm();
 
+	//댓글 등록
+	public int reviewComment(int reseq,String rcontent,String email);
 	
+	//댓글 처리
+	public List<Recoment> reviewCommentOk(int reseq);
 	
 }

@@ -20,13 +20,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into reviewmem(rvseq,reseq,email) 
 		values (RVSEQ_REVIEWMEM_SEQ.NEXTVAL,#{param1},#{param2})
 	</insert>
-	<update id="relikeCount">
+	<update id="relikeCount" parameterType="kr.or.scoop.dto.Review">
 		update reboard set relike = relike+1 where reseq = #{reseq}
 	</update>
-	<select id="getrelike" resultType="Integer">
+	<select id="getrelike" resultType="int">
 		select email , reseq from reviewmem where email = #{param1} and reseq = #{param2}
 	</select>
 	<delete id="deleteRelike">
 		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
 	</delete>
+	<insert id="reviewComment" parameterType="kr.or.scoop.dto.Recoment">
+	insert into recoment(rseq, rcontent, email, rtime, reseq)
+  	values(rseq_recoment_seq.nextval, #{param2}, #{param3}, sysdate, #{param1})
+	</insert>
+	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.Recoment">
+	select r.rseq,r.reseq,r.rcontent,r.rtime,m.email,m.name from recoment r join member m on r.email=m.email where reseq = #{reseq}
+	</select>
 </mapper>
