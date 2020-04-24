@@ -356,12 +356,12 @@ span {
                class="iconify" data-icon="ic:outline-rate-review" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="review" /></span>
-         </a></li>
+         </a></li>     
          <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
-         <li><a href="private.do" aria-expanded="false"> <span
-               class="iconify" data-icon="ic:baseline-person" data-inline="false"
+         <li><a href="history.do" aria-expanded="false"> <span
+               class="iconify" data-icon="ic:baseline-history" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="private.issue" /></span>
+                  &nbsp;<spring:message code="history" /></span>
          </a></li>
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span

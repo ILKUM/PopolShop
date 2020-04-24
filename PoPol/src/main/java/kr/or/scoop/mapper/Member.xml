@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 일반회원가입 -->
     <insert id="insertMember" parameterType="kr.or.scoop.dto.Member">
        insert into member(email, pwd, name,iddate,point,cpoint)
-       values (#{email},#{pwd},#{name},SYSDATE,300,0)
+       values (#{email},#{pwd},#{name},SYSDATE,300,#{cpoint})
     </insert>
 	<!-- 회원가입 중복체크 -->
 	<select id="loginCheck" resultType="int">
@@ -56,4 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkCoupon" resultType="Integer">
 		select cpoint from member where email = #{email}
 	</select>
+	<insert id="addHistory" parameterType="kr.or.scoop.dto.History">
+	 insert into history (hseq,email,moseq) values (hseq_history_seq.nextval,#{param2},#{param1})
+	</insert>
 </mapper>

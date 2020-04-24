@@ -17,6 +17,7 @@ public class Member {
 	private int point; //유저 포인트
 	private int cpoint; //쿠폰 여부
 	
+	
 	public Date getIddate() {
 		return iddate;
 	}

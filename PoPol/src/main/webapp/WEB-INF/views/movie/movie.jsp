@@ -47,6 +47,7 @@ $(document).ready(function(){
 	});
 	$(".project").click(function(){
 		let seq = $("#mos").val();
+		let email = $("#moa").val();
 		location.href="movieDetail.do?moseq="+seq;
 	});
 	var temp = 0;
@@ -103,6 +104,7 @@ $(document).ready(function(){
         	<c:forEach items="${movie}" var="m">
         	<input type="hidden" name="moseq" value="${m.moseq}" id="mos"> 
         	<input type="hidden" name="monum" value="${m.monum}"> 
+        	<input type="hidden" name="email" value="${sessionScope.email}" id="moa"> 
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
 						
 		        			<div class="project">

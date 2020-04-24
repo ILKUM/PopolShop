@@ -26,7 +26,6 @@ import kr.or.scoop.dto.Notice;
 import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
-import kr.or.scoop.dto.Role;
 import kr.or.scoop.service.BoardService;
 import net.sf.json.JSONArray;
 
@@ -273,13 +272,19 @@ public class BoardController {
 		
 		@RequestMapping(value="movieDetail.do",method=RequestMethod.GET)
 		public String movieDetail(int moseq,Model model,HttpSession session) {
+			int result = 0;
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			MemberDao mdao = sqlSession.getMapper(MemberDao.class);
 			String email = (String)session.getAttribute("email");
-			Role role = mdao.getRole(email);
+			System.out.println("m " + moseq);
+			System.out.println("m " + email);
+			result = mdao.addHistory(moseq, email);
 			Movie movie = dao.selectMovie(moseq);
-			session.setAttribute("role", role.getRname());
-			model.addAttribute("movie", movie);
+			if(result > 0 ) { 
+				model.addAttribute("movie", movie);
+			}else {
+				System.out.println("이거는 ? " + movie);
+			}
 			return "movie/movieDetail";
 		}
 		
