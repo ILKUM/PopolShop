@@ -42,4 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getMovieJJim" resultType="kr.or.scoop.dto.JJim">
 select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email,j.jseq,m.mpoint from movie m join jjim j on m.moseq = j.moseq where j.email = #{email}
 </select>
+<select id="getHistory" resultType="kr.or.scoop.dto.Movie">
+	select DISTINCT m.moseq , m.moname , m.mocontent , m.mophoto , m.molike , m.modate , m.monum , m.modirector , m.mpoint , m.iswish from movie m join history h on m.moseq = h.moseq where h.email = #{email}
+</select>
 </mapper>

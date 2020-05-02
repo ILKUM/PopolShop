@@ -30,4 +30,6 @@ public interface MovieDao {
 	
 	public List<JJim> getMovieJJim(String email); //찜 리스트
 	
+	public List<Movie> getHistory(String email); //지난 영화리스트 
+	
 }

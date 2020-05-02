@@ -472,7 +472,7 @@ public class BoardController {
 			return viewpage;
 		}
 		
-		//팀이슈 댓글 비동기 뿌리기
+		//댓글 뿌리기
 		@RequestMapping(value = "reCommentOk.do",method = {RequestMethod.POST,RequestMethod.GET})
 		public String reviewCommentOk(int reseq,Model model) {
 			String viewpage = "utils/ajax";
@@ -481,5 +481,17 @@ public class BoardController {
 			model.addAttribute("ajax",jsonlist);
 			return viewpage;
 		}
+		
+		//지난 영화 뿌리기
+		@RequestMapping(value = "history.do" , method = RequestMethod.GET)
+		public String historyGet(Movie movie , Model model , HttpSession session) {
+			String email = (String) session.getAttribute("email");
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			List<Movie> m = dao.getHistory(email);
+			model.addAttribute("movie", m);
+			
+			return "user/History";
+		}
+		
 		
 }
