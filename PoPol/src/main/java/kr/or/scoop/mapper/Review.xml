@@ -29,11 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteRelike">
 		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
 	</delete>
-	<insert id="reviewComment" parameterType="kr.or.scoop.dto.Recoment">
-	insert into recoment(rseq, rcontent, email, rtime, reseq)
-  	values(rseq_recoment_seq.nextval, #{param2}, #{param3}, sysdate, #{param1})
+	<insert id="reviewComment" parameterType="kr.or.scoop.dto.RvReply">
+	insert into rvreply(rvrseq, rvrcontent, email, rvrtime, reseq)
+  	values(rvrseq_rvreply_seq.nextval, #{param1}, #{param3}, sysdate, #{param2})
 	</insert>
-	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.Recoment">
-	select r.rseq,r.reseq,r.rcontent,r.rtime,m.email,m.name from recoment r join member m on r.email=m.email where reseq = #{reseq}
+	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.RvReply">
+	select r.rvrseq,r.reseq,r.rvrcontent,r.rvrtime,m.email,m.name from rvreply r join member m on r.email=m.email where reseq = #{reseq}
 	</select>
 </mapper>

@@ -16,6 +16,7 @@ public class Review {
 	private String name; //작성자 이름
 	private int relike; //추천수
 	private int rernum; //조회수
+	private Timestamp rtime;
 	
 	
 	public int getRvseq() {
@@ -83,6 +84,13 @@ public class Review {
 	}
 	public void setRernum(int rernum) {
 		this.rernum = rernum;
+	}
+	
+	public Timestamp getRtime() {
+		return rtime;
+	}
+	public void setRtime(Timestamp rtime) {
+		this.rtime = rtime;
 	}
 	@Override
 	public String toString() {

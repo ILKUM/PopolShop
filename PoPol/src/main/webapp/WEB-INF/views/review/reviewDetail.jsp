@@ -33,14 +33,13 @@ $(function(){
 			})
 			return;
 		}
-		var reseqq = ${review.reseq};
-		$.ajax({
-			
+		var reseqq = $("#reseq").val();
+		$.ajax({			
 			url:"reComment.do",
 			data:{
-				rcontent: $("#reComment").val(),
-				reseq: "${review.reseq}",
-				email:"${sessionScope.email}"
+				rvrcontent: $("#reComment").val(),
+				reseq: $("#reseq").val(),
+				email:$("#email").val()
 			},
 			success:function(data){
 				console.log(data);
@@ -49,7 +48,7 @@ $(function(){
 					dataType:"json",
 					url:"reCommentOk.do",
 					data:{
-						reseq: "${review.reseq}"						
+						reseq: $("#reseq").val()						
 					},
 					success:function(event){
 						$('#commentMain').empty();
@@ -96,7 +95,7 @@ $(function(){
 								type:"GET",
 								url:"delComment.do",
 								data:{
-									replyseq: $(this).attr("id")				
+									rvrseq: $(this).attr("id")				
 								},
 								success:function(event){
 									
@@ -218,8 +217,8 @@ border-radius: 5px;
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
-		<input type="hidden" name="reseq" value="${review.reseq}">
-		<input type="hidden" name="email" value="${sessionScope.email}">
+		<input type="hidden" name="reseq" value="${review.reseq}" id="reseq">
+		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
 			
 			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
 			
@@ -251,7 +250,7 @@ border-radius: 5px;
             </div> 
             <div class="card" style="height: 600px;float:right;background-color: #fff;margin-left:10px;padding-left: 0px;padding-right: 0px;width:400px;">
             <div id="commentMain" style="height:450px;padding-left: 3%;padding-top: 5%;padding-right: 3%;padding-bottom: 5%;overflow: auto;margin:5%;">
-           
+           <c:forEach items="${recoment}" var="recom">
             
             <div class="row" style="margin:2% 3% 2% 3%;">
             
@@ -268,24 +267,25 @@ border-radius: 5px;
             <div class="col-sm-10">
             <div id="commentMain" style="margin: 3% 5% 3% 5%;" >
             <div style="margin-bottom: 1%;width: 260px;">
-            <span>${review.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${recom.rtime}</span>
+            <span>${review.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${recom.rvrtime}</span>
             <c:if test="${review.email==sessionScope.email}">
-            <span id="${recom.rseq}" class="deleteComment">
+            <span id="${recom.rvrseq}" class="deleteComment">
             <span class="iconify" id="deleteComment"  data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size:15px;margin-bottom: 3px;"></span>
             </span>
             </c:if>
             <br>
-            <div>${recom.rcontent}</div>
+            <div>${recom.rvrcontent}</div>
             </div>
             </div>
             </div>
             
             </div>
+           </c:forEach>
             
             
             </div>
             <img src="resources/images/logo/ScoopTitle.png" style="width:150px;height: auto;opacity:0.3;position:absolute;top:25%;left: 32%;">
-            <textarea id="reComment" rows="5" placeholder="말하지 않아도 아는것은 초코파이뿐입니다                        댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:auto;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
+            <textarea id="reComment" rows="5" name="rvrcontent" placeholder="말하지 않아도 아는것은 초코파이뿐입니다                        댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:auto;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
             <input id="reCommentBtn" type="submit" value="저장" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #E71D36;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
             </div>
             </div>

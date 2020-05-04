@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.Notice;
-import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
+import kr.or.scoop.dto.RvReply;
 
 @Service
 public class BoardService {
@@ -82,16 +82,16 @@ public class BoardService {
 		}
 		
 		//댓글 처리
-		public int reviewComment(int reseq,String rcontent,String email) {
+		public int reviewComment(int reseq,String rvrcontent,String email) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
-			int result = dao.reviewComment(reseq,rcontent,email);
+			int result = dao.reviewComment(reseq,rvrcontent,email);
 			return result;
 		}
 		
 		//댓글 리스트 
-		public List<Recoment> reviewCommentOk(int reseq){
+		public List<RvReply> reviewCommentOk(int reseq){
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
-			List<Recoment> result = dao.reviewCommentOk(reseq);
+			List<RvReply> result = dao.reviewCommentOk(reseq);
 			return result;
 		}
 }

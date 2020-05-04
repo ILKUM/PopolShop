@@ -2,9 +2,9 @@ package kr.or.scoop.dao;
 
 import java.util.List;
 
-import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
+import kr.or.scoop.dto.RvReply;
 
 public interface BoardDao {
 	
@@ -39,9 +39,9 @@ public interface BoardDao {
 	public List<Recommend> getRecomm();
 
 	//댓글 등록
-	public int reviewComment(int reseq,String rcontent,String email);
+	public int reviewComment(int reseq,String rvrcontent,String email);
 	
 	//댓글 처리
-	public List<Recoment> reviewCommentOk(int reseq);
+	public List<RvReply> reviewCommentOk(int reseq);
 	
 }

@@ -94,7 +94,7 @@ $(function(){
       </div>     
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
-         <div class="col-sm-6 newissue" style="padding-left: 87px;" >
+         <div class="col-sm-6 newissue" style="padding-left: 18px;" >
          	제목
          </div>
          <div class="col-sm-2 newissue">
@@ -110,24 +110,27 @@ $(function(){
          	추천수
          </div>
       </div>
-      <c:forEach items="${review}" var="re">
+      <c:set value="${review}" var="r"/>
+      <c:forEach items="${review}" var="rev" >
+      <a href="reviewDetail.do?reseq=${rev.reseq}">
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
          <div class="col-sm-6 newissue">      
-         <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.retitle}</a>     
+         ${rev.retitle}   
          </div>
          <div class="col-sm-2 newissue" >
-         	<a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.name}</a>
+         ${rev.name}
          </div>
          <div class="col-sm-2 newissue">
-        <a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${fn:substring(re.retime,0,19)}</a>   	
+        ${fn:substring(rev.retime,0,16)}
          </div>
 		<div class="col-sm-1 newissue" style="padding-left: 30px;">
-		<a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.rernum}</a>
+		${rev.rernum}
 		</div>
 		<div class="col-sm-1 newissue" style="padding-left: 30px;">
-			<a href="reviewDetail.do?reseq=${re.reseq}" style="margin-left: 8%;">${re.relike}</a>
+			${rev.relike}
 		</div>
       </div>
+      </a>  
       </c:forEach>    
     
       		<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >

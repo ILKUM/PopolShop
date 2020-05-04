@@ -23,9 +23,9 @@ import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.JJim;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
-import kr.or.scoop.dto.Recoment;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
+import kr.or.scoop.dto.RvReply;
 import kr.or.scoop.service.BoardService;
 import net.sf.json.JSONArray;
 
@@ -263,9 +263,9 @@ public class BoardController {
 			String viewpage;
 			int result = bService.insertReview(review);
 			if(result > 0) {
-				viewpage= "review/review";
+				viewpage= "redirect:/review.do";
 			}else {
-				viewpage="review/review";
+				viewpage="redirect:/review.do";
 			}
 			return viewpage;
 		}
@@ -342,7 +342,7 @@ public class BoardController {
 		@RequestMapping(value="reviewDetail.do",method = RequestMethod.GET)
 		public String detailReview(int reseq,Model model) {
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
-			List<Recoment> recom = dao.reviewCommentOk(reseq);
+			List<RvReply> recom = dao.reviewCommentOk(reseq);
 			System.out.println(recom);
 			int result = bService.rernumUp(reseq);
 			if(result > 0) {
@@ -456,11 +456,11 @@ public class BoardController {
 		
 		//댓글
 		@RequestMapping(value = "reComment.do", method = {RequestMethod.POST,RequestMethod.GET})
-		public String reviewComent(int reseq,String rcontent,String email,Model model) {
+		public String reviewComent(int reseq,String rvrcontent,String email,Model model) {
+			System.out.println("등록은함? " + reseq + " " + email + " " + rvrcontent);
 			int result = 0;	
 			String viewpage = "";
-			result = bService.reviewComment(reseq, rcontent, email);
-			
+			result = bService.reviewComment(reseq, rvrcontent, email);
 			if(result > 0) {
 				model.addAttribute("ajax","댓글 성공");
 				viewpage = "utils/ajax";
@@ -476,7 +476,8 @@ public class BoardController {
 		@RequestMapping(value = "reCommentOk.do",method = {RequestMethod.POST,RequestMethod.GET})
 		public String reviewCommentOk(int reseq,Model model) {
 			String viewpage = "utils/ajax";
-			List<Recoment> recoment = bService.reviewCommentOk(reseq);
+			List<RvReply> recoment = bService.reviewCommentOk(reseq);
+			System.out.println("아님 여기냐 ?  " + recoment);
 			JSONArray jsonlist = JSONArray.fromObject(recoment);
 			model.addAttribute("ajax",jsonlist);
 			return viewpage;
