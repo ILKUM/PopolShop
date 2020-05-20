@@ -456,15 +456,14 @@ public class BoardController {
 		
 		//댓글
 		@RequestMapping(value = "reComment.do", method = {RequestMethod.POST,RequestMethod.GET})
-		public String reviewComent(int reseq,String rvrcontent,String email,Model model) {
+		public String reviewComent(int reseq,String email,String rvrcontent,Model model) {
 			System.out.println("등록은함? " + reseq + " " + email + " " + rvrcontent);
 			int result = 0;	
 			String viewpage = "";
 			result = bService.reviewComment(reseq, rvrcontent, email);
 			if(result > 0) {
 				model.addAttribute("ajax","댓글 성공");
-				viewpage = "utils/ajax";
-				
+				viewpage = "utils/ajax";				
 			}else {
 				model.addAttribute("ajax","댓글 실패");
 				viewpage = "utils/ajax";

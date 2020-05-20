@@ -37,9 +37,9 @@ $(function(){
 		$.ajax({			
 			url:"reComment.do",
 			data:{
-				rvrcontent: $("#reComment").val(),
 				reseq: $("#reseq").val(),
-				email:$("#email").val()
+				email:$("#email").val(),
+				rvrcontent: $("#reComment").val()
 			},
 			success:function(data){
 				console.log(data);
@@ -142,7 +142,7 @@ $(function(){
 		   cancelButtonColor: '#c8c8c8',
 		   confirmButtonText: '확인',
 		   cancelButtonText: '취소'
-		 }).then((result) => {
+		 }).then((result) =>  {
 		   if (result.value) {
 			   location.href = 'deleteTeamIssue.do?reseq='+${review.reseq};
 		   }
@@ -178,6 +178,8 @@ $(function(){
 	
 
 });
+
+	
 
 </script>
 <style>
@@ -234,7 +236,7 @@ border-radius: 5px;
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
 			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${review.retitle}</span>
-			<span style="float: right;padding-right: 5%;padding-top:1%;">${review.name}&nbsp;&nbsp;${review.retime}</span>
+			<a href="userProfile.do?email=${review.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${review.name}</a></span><span style="float: right;padding-right: 5%;padding-top:1%;">${review.retime}</span>
 			</div>
 		
 		

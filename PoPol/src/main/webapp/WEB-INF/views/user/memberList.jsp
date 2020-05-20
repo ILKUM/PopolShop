@@ -152,9 +152,6 @@ $('.banMember').click(function(){
 			    <li class="nav-item">
 			      <a class="nav-link" href="admin.do" style="color: #E71D36;">회원관리</a>
 			    </li>		
-			    <li class="nav-item">
-			      <a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
-			    </li>
 		    </ul>
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
@@ -165,13 +162,16 @@ $('.banMember').click(function(){
 				<div class="col-sm-4 listmem" >
 				이메일
 				</div>
-				<div class="col-sm-4 listmem">
+				<div class="col-sm-3 listmem">
 				이름
+				</div>
+				<div class="col-sm-2 listmem">
+				보유 포인트
 				</div>
 				<div class="col-sm-2 listmem">
 				가입날짜
 				</div>
-				<div class="col-sm-2 listmem">
+				<div class="col-sm-1 listmem">
 				삭제
 				</div>
 		</div>
@@ -181,13 +181,16 @@ $('.banMember').click(function(){
 			<div class="col-sm-4 listmem">   
            		${m.email}       
 			</div>			
-			<div class="col-sm-4 listmem">    
+			<div class="col-sm-3 listmem">    
            		${m.name}      
+			</div>
+			<div class="col-sm-2 listmem">
+				${m.point}
 			</div>		
 			<div class="col-sm-2 listmem">
 				${m.iddate}
 			</div>
-			<div class="col-sm-2 listmem">
+			<div class="col-sm-1 listmem">
 				<a class=banMember href="javascript:memberdelete();">탈퇴</a>
 				<input type="hidden" name="email" value="${m.email}" id="del">			
 			</div>

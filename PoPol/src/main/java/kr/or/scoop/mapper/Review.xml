@@ -30,8 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
 	</delete>
 	<insert id="reviewComment" parameterType="kr.or.scoop.dto.RvReply">
-	insert into rvreply(rvrseq, rvrcontent, email, rvrtime, reseq)
-  	values(rvrseq_rvreply_seq.nextval, #{param1}, #{param3}, sysdate, #{param2})
+	insert into RVREPLY(rvrseq, rvrcontent, email, rvrtime, reseq)
+  	values(rvrseq_rvreply_seq.nextval, #{param3}, #{param2}, sysdate, #{param1})
 	</insert>
 	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.RvReply">
 	select r.rvrseq,r.reseq,r.rvrcontent,r.rvrtime,m.email,m.name from rvreply r join member m on r.email=m.email where reseq = #{reseq}

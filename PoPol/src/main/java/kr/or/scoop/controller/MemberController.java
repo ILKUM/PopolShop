@@ -408,7 +408,6 @@ public class MemberController {
 	public String banMember(String email, Model model) {
 		int result = 0;
 		String viewpage;
-		System.out.println("에미일 : " + email);
 		result = service.banMember(email);
 		
 		if(result > 0) {
@@ -428,15 +427,37 @@ public class MemberController {
 		int result = 0;
 		String viewpage;
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);		
-			result = dao.addCoupon(email);
-			if(result > 0) {
-				viewpage = "redirect:/notice.do";
-				System.out.println("아님 여기냐?");
+			int chk = dao.checkCoupon(email);
+			System.out.println("chk = " + chk);
+			if(chk == 0) {
+				result = dao.addCoupon(email);
+				if(result > 0) {
+					viewpage = "redirect:/notice.do";
+				}else {
+					viewpage = "redirect:/notice.do";
+				}
 			}else {
 				viewpage = "redirect:/notice.do";
 			}
 		
 		
+		return viewpage;
+	}
+	
+	@RequestMapping(value="userProfile.do" , method = {RequestMethod.POST , RequestMethod.GET})
+	public String userProfile(String email, Model model,HttpSession session) {
+		String viewpage;
+		if(email.equals(session.getAttribute("email"))) {
+			viewpage = "redirect:/memberEdit.do?email="+email;
+		}else {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		Member member = dao.getMember(email);
+		
+		model.addAttribute("member",member);
+		model.addAttribute("img", member.getProfile());
+		
+		viewpage = "user/user-profile";
+		}		
 		return viewpage;
 	}
 	

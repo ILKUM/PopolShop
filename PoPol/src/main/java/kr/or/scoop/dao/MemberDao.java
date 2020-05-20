@@ -52,9 +52,10 @@ public interface MemberDao {
 	//쿠폰 등록
 	public int addCoupon(String email);
 	
-	//쿠폰 중복방비
+	//쿠폰 중복방지
 	public int checkCoupon(String email);
 	
 	//지난기록 인서트
 	public int addHistory(int moseq, String email);
+	
 }

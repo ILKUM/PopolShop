@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getRole" resultType="kr.or.scoop.dto.Role">
 	select m.email , r.RNAME from member m join role r on m.email = r.email where r.email= #{email,jdbcType=VARCHAR}
 	</select>
-		<select id="getProfile" parameterType="kr.or.scoop.dto.Member" resultType="String">
+	<select id="getProfile" parameterType="kr.or.scoop.dto.Member" resultType="String">
 		select profile from member where email = #{email}
 	</select>
 		<!-- 멤버정보 수정하기 -->
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set email = #{email,jdbcType=VARCHAR}, pwd = #{pwd,jdbcType=VARCHAR}, name=#{name,jdbcType=VARCHAR}, profile= #{profile,jdbcType=VARCHAR} where email = #{email,jdbcType=VARCHAR}
 	</update>
 	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
-		select email , name,iddate from member 
+		select email , name,iddate,point from member 
 	</select>
 	<delete id="banMember">
 	delete from member where email=#{email,jdbcType=VARCHAR}
