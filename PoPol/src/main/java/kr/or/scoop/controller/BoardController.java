@@ -376,9 +376,9 @@ public class BoardController {
 			}			
 		
 			if(chu > 0) {
-				viewpage = "redirect:/reviewDetail,do?reseq=" + reseq;
+				viewpage = "redirect:/reviewDetail.do?reseq=" + reseq;
 			}else {
-				viewpage = "redirect:/reviewDetail,do?reseq=" + reseq;
+				viewpage = "redirect:/reviewDetail.do?reseq=" + reseq;
 			}
 			return viewpage;
 		}
