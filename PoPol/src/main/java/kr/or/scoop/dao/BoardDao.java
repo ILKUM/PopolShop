@@ -27,7 +27,7 @@ public interface BoardDao {
 	public int insertRelike(int reseq,String email);
 	
 	//리뷰글 추천 중복방지
-	public Integer getrelike(String email, int reseq);
+	public int getrelike(String email, int reseq);
 	
 	//리뷰글 추천 삭제
 	public int deleteRelike(int reseq,String email);

@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update reboard set relike = relike+1 where reseq = #{reseq}
 	</update>
 	<select id="getrelike" resultType="int">
-		select email , reseq from reviewmem where email = #{param1} and reseq = #{param2}
+		select count(*) from reviewmem where email = #{param1} and reseq = #{param2}
 	</select>
 	<delete id="deleteRelike">
 		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
