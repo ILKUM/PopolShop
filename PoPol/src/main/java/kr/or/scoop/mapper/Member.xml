@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="addCoupon" parameterType="kr.or.scoop.dto.Member">
 		update member set point = point+5000 , cpoint=1 where email = #{email}
 	</update>
-	<select id="checkCoupon" resultType="Integer">
+	<select id="checkCoupon" resultType="int">
 		select cpoint from member where email = #{email}
 	</select>
 	<insert id="addHistory" parameterType="kr.or.scoop.dto.History">

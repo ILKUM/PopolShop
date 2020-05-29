@@ -359,15 +359,11 @@ public class BoardController {
 		
 		@RequestMapping(value="/relike.do" , method = RequestMethod.POST)
 		public String updateRelike(int reseq,String email,Model model) {
-			System.out.println("e : " + email);
-			System.out.println("e : " + reseq);
 			BoardDao dao = sqlSession.getMapper(BoardDao.class);
 			int like = (int)dao.getrelike(email,reseq);
-			System.out.println("like " + like);
 			int result = 0;
 			String viewpage = "";
 			int chu = 0;
-			System.out.println("라이크 : " + like);
 			if(like > 0) {
 				model.addAttribute("on", like);
 			}else {

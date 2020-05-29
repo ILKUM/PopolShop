@@ -361,7 +361,7 @@ span {
          <li><a href="history.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:baseline-history" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="historys" /></span>
+                  &nbsp;<spring:message code="history" /></span>
          </a></li>
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span
