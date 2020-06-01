@@ -44,4 +44,7 @@ public interface BoardDao {
 	//댓글 처리
 	public List<RvReply> reviewCommentOk(int reseq);
 	
+	//리뷰 글 수정
+	public Review updateReview(int reseq);
+	
 }

@@ -38,6 +38,12 @@ public class BoardService {
 		return result;
 	}
 	
+	public int updateReview(Review review,int reseq) {
+		Review result = 0;
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		result = dao.updateReview(reseq);
+	}
+	
 	//추천작성 
 		public int insertRecomm(Recommend recom) {
 			int result = 0;
@@ -56,7 +62,7 @@ public class BoardService {
 			
 		}
 		
-		//좋아요 수 증가 (미구현)
+		//추천 수 증가 
 		public int relikeUp(int reseq) {
 			int result = 0;
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);

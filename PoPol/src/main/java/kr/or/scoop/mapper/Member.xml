@@ -29,9 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select email,name,pwd,profile,iddate,point,cpoint from member 
 		where email = #{email}
 	</select>
+	<!-- 멤버 등급  -->
 	<select id="getRole" resultType="kr.or.scoop.dto.Role">
 	select m.email , r.RNAME from member m join role r on m.email = r.email where r.email= #{email,jdbcType=VARCHAR}
 	</select>
+	<!-- 프로필 조회 -->
 	<select id="getProfile" parameterType="kr.or.scoop.dto.Member" resultType="String">
 		select profile from member where email = #{email}
 	</select>
@@ -40,9 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member
 		set email = #{email,jdbcType=VARCHAR}, pwd = #{pwd,jdbcType=VARCHAR}, name=#{name,jdbcType=VARCHAR}, profile= #{profile,jdbcType=VARCHAR} where email = #{email,jdbcType=VARCHAR}
 	</update>
+	<!-- 멤버 조회 -->
 	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
 		select email , name,iddate,point from member 
 	</select>
+	<!-- 멤버 탈퇴 -->
 	<delete id="banMember">
 	delete from member where email=#{email,jdbcType=VARCHAR}
 	</delete>
@@ -50,12 +54,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateRole" parameterType="kr.or.scoop.dto.Role">
 		update role set rname = 'ROLE_CHARGE' where email = #{email}
 	</update>
+	<!-- 쿠폰 등록 -->
 	<update id="addCoupon" parameterType="kr.or.scoop.dto.Member">
-		update member set point = point+5000 , cpoint=1 where email = #{email}
+		update member set point = point+5000 , cpoint= cpoint + 1 where email = #{email}
 	</update>
+	<insert id="addCouponChk" parameterType="kr.or.scoop.dto.Member">
+		insert into coupon (cpseq,email) values (cpseq_coupon_seq.nextval,#{email})
+	</insert>
+	<!-- 쿠폰 중복 체크 -->
 	<select id="checkCoupon" resultType="int">
-		select cpoint from member where email = #{email}
+		select count(*) from coupon where email = #{email}
 	</select>
+	<!-- 지난기록 등록 -->
 	<insert id="addHistory" parameterType="kr.or.scoop.dto.History">
 	 insert into history (hseq,email,moseq) values (hseq_history_seq.nextval,#{param2},#{param1})
 	</insert>

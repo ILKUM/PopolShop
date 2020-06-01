@@ -425,14 +425,18 @@ public class MemberController {
 	@RequestMapping(value = "couponReg.do", method = RequestMethod.POST)
 	public String couponRegsiter(String email, Model model) {
 		int result = 0;
+		int result2 = 0;
+		int total = 0;
 		String viewpage;
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);		
 			int chk = dao.checkCoupon(email);
 			System.out.println("chk = " + chk);
 			if(chk == 0) {
 				result = dao.addCoupon(email);
-				if(result > 0) {
-					viewpage = "redirect:/notice.do";
+				result2 = dao.addCouponChk(email);
+				total = result + result2;
+				if(total > 0) {
+					viewpage = "redirect:/index.do";
 				}else {
 					viewpage = "redirect:/notice.do";
 				}

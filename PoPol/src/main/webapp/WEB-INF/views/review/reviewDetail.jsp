@@ -129,13 +129,13 @@ $(function(){
 				
 		});
 	});
-	$('#editIssue').click(function(){
-		location.href = 'teamIssueEdit.do?reseq='+${review.reseq};
+	$('#editReview').click(function(){
+		location.href = 'ReviewEdit.do?reseq='+${review.reseq};
 	});
-	$('#deleteIssue').click(function(){
+	$('#deleteReview').click(function(){
 	   Swal.fire({
-		   title: '정말로 이슈를 삭제하시겠습니까??',
-		   text: "삭제하시면 이슈의 모든 정보가 사라집니다!",
+		   title: '정말로 리뷰를 삭제하시겠습니까??',
+		   text: "삭제하시면 리뷰의 모든 정보가 사라집니다!",
 		   icon: 'warning',
 		   showCancelButton: true,
 		   confirmButtonColor: '#d33',
@@ -144,7 +144,7 @@ $(function(){
 		   cancelButtonText: '취소'
 		 }).then((result) =>  {
 		   if (result.value) {
-			   location.href = 'deleteTeamIssue.do?reseq='+${review.reseq};
+			   location.href = 'deleteReview.do?reseq='+${review.reseq};
 		   }
 		 })
 	});
@@ -227,8 +227,8 @@ border-radius: 5px;
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${review.relike}</i>
 			<c:if test="${review.email==sessionScope.email}">
-	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
-				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+	        	<span class="fas fa-cog"  id="editReview" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
+				<span class="iconify" id="deleteReview" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
 				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
