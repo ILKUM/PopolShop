@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getRole" resultType="kr.or.scoop.dto.Role">
 	select m.email , r.RNAME from member m join role r on m.email = r.email where r.email= #{email,jdbcType=VARCHAR}
 	</select>
-	<!-- 프로필 조회 -->
+	<!-- 프로필 사진  -->
 	<select id="getProfile" parameterType="kr.or.scoop.dto.Member" resultType="String">
 		select profile from member where email = #{email}
 	</select>
@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 멤버 조회 -->
 	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
-		select email , name,iddate,point from member 
+		select email , name, iddate, point from member 
 	</select>
 	<!-- 멤버 탈퇴 -->
 	<delete id="banMember">

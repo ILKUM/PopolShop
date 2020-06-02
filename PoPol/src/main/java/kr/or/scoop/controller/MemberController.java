@@ -304,45 +304,45 @@ public class MemberController {
 		model.addAttribute("pass",pwd);
 		session.setAttribute("img", member.getProfile());
 		
-		return "user/app-profile";
+		return "user/Myprofile";
 		
 	}
 	
 	//회원정보 수정
 	@RequestMapping(value="editCheck.do" , method = RequestMethod.POST)
-	public String UpdateProfile(Member member,HttpServletRequest request,HttpSession session) {
-		    
+	public String UpdateProfile(Member member,HttpServletRequest request,HttpSession session) {		    	
+				CommonsMultipartFile multifile = member.getFilesrc();
+				System.out.println("파일오긴해 ? " + member.getFilesrc());
+				String filename = multifile.getOriginalFilename();
+				System.out.println(filename + "인데?");
+				if(filename.equals("")) {
+					member.setProfile((String)session.getAttribute("img"));
+				}else {
+					member.setProfile(filename);
+				}
+				String path = request.getServletContext().getRealPath("/user/profile");
 				
-			CommonsMultipartFile multifile = member.getFilesrc();
-			String filename = multifile.getOriginalFilename();
-			if(filename.equals("")) {
-				member.setProfile((String)session.getAttribute("img"));
-			}else {
-				member.setProfile(filename);
-			}
-			String path = request.getServletContext().getRealPath("/user/upload");
-			
-			String fpath = path + "\\"+ filename; 
-				
-				if(!filename.equals("")) { //실 파일 업로드
-					FileOutputStream fs = null;
-					try {
-						fs = new FileOutputStream(fpath);
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						
-					}finally {
+				String fpath = path + "\\"+ filename; 
+					
+					if(!filename.equals("")) { //실 파일 업로드
+						FileOutputStream fs = null;
 						try {
-							fs.write(multifile.getBytes());
-							fs.close();
-						} catch (IOException e) {
+							fs = new FileOutputStream(fpath);
+						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							
+						}finally {
+							try {
+								fs.write(multifile.getBytes());
+								fs.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
-				}
-			
+				
 		   MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		   System.out.println(member);
 		if(member.getPwd().equals("")) {
@@ -353,7 +353,7 @@ public class MemberController {
 			member.setPwd(this.bCryptPasswordEncoder.encode(member.getPwd()));
 			dao.updateMember(member);
 		}
-		return "redirect:/userindex.do";
+		return "redirect:/notice.do";
 	}
 	
 	// 결재페이지

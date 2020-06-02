@@ -38,12 +38,6 @@ public class BoardService {
 		return result;
 	}
 	
-	public int updateReview(Review review,int reseq) {
-		Review result = 0;
-		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		result = dao.updateReview(reseq);
-	}
-	
 	//추천작성 
 		public int insertRecomm(Recommend recom) {
 			int result = 0;

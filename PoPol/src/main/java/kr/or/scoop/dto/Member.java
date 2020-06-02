@@ -18,13 +18,6 @@ public class Member {
 	private int cpseq; //쿠폰 등록멤버 번호
 	private int cpoint; //쿠폰여부
 	
-	
-	public Date getIddate() {
-		return iddate;
-	}
-	public void setIddate(Date iddate) {
-		this.iddate = iddate;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -49,13 +42,18 @@ public class Member {
 	public void setFilesrc(CommonsMultipartFile filesrc) {
 		this.filesrc = filesrc;
 	}
+	public Date getIddate() {
+		return iddate;
+	}
+	public void setIddate(Date iddate) {
+		this.iddate = iddate;
+	}
 	public String getProfile() {
 		return profile;
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-	
 	public String getRname() {
 		return rname;
 	}
@@ -74,7 +72,6 @@ public class Member {
 	public void setCpseq(int cpseq) {
 		this.cpseq = cpseq;
 	}
-		
 	public int getCpoint() {
 		return cpoint;
 	}

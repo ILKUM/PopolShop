@@ -118,7 +118,6 @@ public class BoardController {
 								try {
 									fs = new FileOutputStream(fpath);
 								} catch (FileNotFoundException e) {
-									// TODO Auto-generated catch block
 									e.printStackTrace();
 									
 								}finally {
@@ -126,12 +125,11 @@ public class BoardController {
 										fs.write(multifile.getBytes());
 										fs.close();
 									} catch (IOException e) {
-										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
 								}
 							}
-						System.out.println("dd : " + movie);
+							
 					   MovieDao dao = sqlSession.getMapper(MovieDao.class);
 					   int result = dao.insertMovie(movie);
 					   if(result > 0) {
@@ -223,8 +221,6 @@ public class BoardController {
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			MemberDao mdao = sqlSession.getMapper(MemberDao.class);
 			String email = (String)session.getAttribute("email");
-			System.out.println("m " + moseq);
-			System.out.println("m " + email);
 			result = mdao.addHistory(moseq, email);
 			Movie movie = dao.selectMovie(moseq);
 			if(result > 0 ) { 
@@ -251,7 +247,7 @@ public class BoardController {
 			
 			CommonsMultipartFile multifile = recom.getFilesrc();
 			String filename = multifile.getOriginalFilename();		
-			String path = request.getServletContext().getRealPath("/upload/file");
+			String path = request.getServletContext().getRealPath("/upload/review");
 			
 			String fpath = path + "\\"+ filename; 
 			if(filename.equals("")) {

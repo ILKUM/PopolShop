@@ -273,7 +273,7 @@ span {
                      height="40" width="40" alt="">
                   	</c:when>
                   	<c:otherwise>
-                  	<img src="<c:url value="/user/upload/${img}" />"
+                  	<img src="<c:url value="/user/profile/${img}" />"
                      height="40" width="40" alt="">
                   	</c:otherwise>
                   </c:choose> 

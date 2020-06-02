@@ -40,6 +40,8 @@ $(function(){
 		
 		reader.readAsDataURL(this.files[0]);
 	});
+	
+
 });
 
 	//회원정보 유효성검사
@@ -215,16 +217,16 @@ $(function(){
 	<form onsubmit="return pwdcheck()" action="editCheck.do" method="post" enctype="multipart/form-data">
 		<div class="row" style="margin-left: 4%; margin-right: 2%; margin-top: 1%">
 			<div class="media align-items-center mb-4">
-					<c:choose>
+						<c:choose>
 						<c:when test="${img==null}">
-							<img id="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
 							<input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
 						</c:when>
 						<c:otherwise>
                              <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/upload/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
                              <input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
 						</c:otherwise>
-					</c:choose>                        
+					</c:choose>              
                                 </div>
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
@@ -242,7 +244,7 @@ $(function(){
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}">
     		<br>
     		<label for="name">포인트</label>
-    		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.point}" disabled="disabled">
+    		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" value="${member.point}" disabled="disabled">
     		<input type="submit" id="address_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
     		
     		</div>

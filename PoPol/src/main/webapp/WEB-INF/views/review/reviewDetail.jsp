@@ -244,6 +244,7 @@ border-radius: 5px;
 		<br>
 		<div class="row" style="margin-right: 0;width:900px;">
         <div class="myissueDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
+       	${review.rephoto}
        	${review.recontent}
         </div>
         <!-- <div class="col-sm-2"><span>네이버</span><br><img alt="logo" src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png" style="width: 50%"></div> -->
@@ -262,7 +263,7 @@ border-radius: 5px;
             <img class="img-circle" alt="프로필 사진" src="<c:url value="/resources/images/avatar/avatar.png"/>" style="width:40px;height: 40px;padding-top: 1%;margin-left: 10px;margin-right: 10px;">
             </c:when>
             <c:otherwise>
-            <img  class="img-circle" alt="프로필 사진 " src="<c:url value="/user/upload/${img}"/>" style="width:40px;height:40px;padding-top: 1%;margin-left: 10px;margin-right: 10px;">
+            <img  class="img-circle" alt="프로필 사진 " src="<c:url value="/user/profile/${img}"/>" style="width:40px;height:40px;padding-top: 1%;margin-left: 10px;margin-right: 10px;">
             </c:otherwise>
             </c:choose>
             </div>
