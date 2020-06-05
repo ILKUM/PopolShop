@@ -513,7 +513,7 @@ span {
           <form class="was-validated" action="insertMovie.do" enctype="multipart/form-data" method="Post">
           
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profile" name="mophoto" src="https://cdn.pixabay.com/photo/2019/09/22/18/12/wolf-4496659_960_720.jpg" width="15%" height="15%" align="center" >
+        	<img id="profile" name="mophoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" >
          </div>
   		
                             

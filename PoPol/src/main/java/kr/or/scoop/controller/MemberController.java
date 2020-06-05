@@ -309,53 +309,50 @@ public class MemberController {
 	}
 	
 	//회원정보 수정
-	@RequestMapping(value="editCheck.do" , method = RequestMethod.POST)
-	public String UpdateProfile(Member member,HttpServletRequest request,HttpSession session) {		    	
-				CommonsMultipartFile multifile = member.getFilesrc();
-				System.out.println("파일오긴해 ? " + member.getFilesrc());
-				String filename = multifile.getOriginalFilename();
-				System.out.println(filename + "인데?");
-				if(filename.equals("")) {
-					member.setProfile((String)session.getAttribute("img"));
-				}else {
-					member.setProfile(filename);
-				}
-				String path = request.getServletContext().getRealPath("/user/profile");
-				
-				String fpath = path + "\\"+ filename; 
-					
-					if(!filename.equals("")) { //실 파일 업로드
-						FileOutputStream fs = null;
+		@RequestMapping(value="memberEditCheck.do" , method = RequestMethod.POST)
+		public String UpdateProfile(Member member,HttpServletRequest request,HttpSession session) {
+			String viewpage = "redirect:/userindex.do";
+			CommonsMultipartFile multifile = member.getFilesrc();
+			System.out.println(multifile.isEmpty());
+			String filename = multifile.getOriginalFilename();	
+			String path = request.getServletContext().getRealPath("/user/profile");
+			System.out.println(path);
+			
+			String fpath = path + "\\"+ filename; 
+			if(filename.equals("")) {
+				member.setProfile((String)session.getAttribute("img"));
+			}else {
+				member.setProfile(filename);
+			}
+				if(!filename.equals("")) { //실 파일 업로드
+					FileOutputStream fs = null;
+					try {
+						fs = new FileOutputStream(fpath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+						
+					}finally {
 						try {
-							fs = new FileOutputStream(fpath);
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
+							fs.write(multifile.getBytes());
+							fs.close();
+						} catch (IOException e) {
 							e.printStackTrace();
-							
-						}finally {
-							try {
-								fs.write(multifile.getBytes());
-								fs.close();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 						}
 					}
+				}
 				
-		   MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		   System.out.println(member);
-		if(member.getPwd().equals("")) {
-			Member checkmember = dao.getMember((String)session.getAttribute("email"));
-			member.setPwd(checkmember.getPwd());
-			dao.updateMember(member);
-		} else {
-			member.setPwd(this.bCryptPasswordEncoder.encode(member.getPwd()));
-			dao.updateMember(member);
+			   MemberDao dao = sqlsession.getMapper(MemberDao.class);
+			if(member.getPwd().equals("")) {
+				Member checkmember = dao.getMember((String)session.getAttribute("email"));
+				member.setPwd(checkmember.getPwd());
+				dao.updateMember(member);
+			} else {
+				member.setPwd(this.bCryptPasswordEncoder.encode(member.getPwd()));
+				dao.updateMember(member);
+			}
+			return viewpage;
 		}
-		return "redirect:/notice.do";
-	}
-	
+		
 	// 결재페이지
 	@RequestMapping(value = "/paymentPage.do")
 	public String paymentPage() {
@@ -430,7 +427,7 @@ public class MemberController {
 		String viewpage;
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);		
 			int chk = dao.checkCoupon(email);
-			System.out.println("chk = " + chk);
+			
 			if(chk == 0) {
 				result = dao.addCoupon(email);
 				result2 = dao.addCouponChk(email);

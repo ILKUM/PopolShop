@@ -48,7 +48,7 @@ public class ReviewController {
 	public String detailReview(int reseq,Model model) {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		List<RvReply> recom = dao.reviewCommentOk(reseq);
-		System.out.println(recom);
+	
 		int result = bService.rernumUp(reseq);
 		if(result > 0) {
 			Review re = dao.selectReview(reseq);
@@ -86,16 +86,18 @@ public class ReviewController {
 	}
 	
 	//리뷰 글작성
-			@RequestMapping(value="writeReview.do",method=RequestMethod.POST)
+			@RequestMapping(value="writeReview.do",method= {RequestMethod.POST , RequestMethod.GET})
 			public String reviewInsert(Review review,HttpServletRequest request,HttpSession session) {
-				
+				String viewpage;
 				CommonsMultipartFile multifile = review.getFilesrc();
+				System.out.println(multifile.isEmpty());
 				String filename = multifile.getOriginalFilename();		
-				String path = request.getServletContext().getRealPath("/upload/file");
-				
+				String path = request.getServletContext().getRealPath("/user/review");
+				String img = null;
 				String fpath = path + "\\"+ filename; 
+				
 				if(filename.equals("")) {
-					review.setRephoto((String)session.getAttribute("img"));
+					review.setRephoto(img);
 				}else {
 					review.setRephoto(filename);
 				}
@@ -104,7 +106,6 @@ public class ReviewController {
 						try {
 							fs = new FileOutputStream(fpath);
 						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 							
 						}finally {
@@ -112,12 +113,11 @@ public class ReviewController {
 								fs.write(multifile.getBytes());
 								fs.close();
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
 					}
-				String viewpage;
+					
 				int result = bService.insertReview(review);
 				if(result > 0) {
 					viewpage= "redirect:/review.do";

@@ -4,6 +4,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
     <c:set var="img" value="${sessionScope.img}" />
+    <c:set var="role" value="${sessionScope.role}" />
 <html>
 
 <head>
@@ -21,27 +22,11 @@
 
 $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
-	$('#profiles').click(function() { 
+	$('#profiles').click(function() {
+		console.log("뭐?");
 		$('#Photo').click();
 	});
  
-});
-
-
-$(function(){
-	
-	$('#Photo').change(function(){
-		var reader = new FileReader();
-		
-		reader.onload = function(e) {
-			
-			document.getElementById("profiles").src = e.target.result;
-		};
-		
-		reader.readAsDataURL(this.files[0]);
-	});
-	
-
 });
 
 	//회원정보 유효성검사
@@ -214,42 +199,51 @@ $(function(){
 		    </ul>
 		</div>
 		<hr style="margin-top: 0">
-	<form onsubmit="return pwdcheck()" action="editCheck.do" method="post" enctype="multipart/form-data">
+		
+	<form onsubmit="return pwdcheck()" action="memberEditCheck.do" method="post" enctype="multipart/form-data" >
 		<div class="row" style="margin-left: 4%; margin-right: 2%; margin-top: 1%">
 			<div class="media align-items-center mb-4">
-						<c:choose>
+					<c:choose>
 						<c:when test="${img==null}">
 							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-							<input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
+							<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input">
 						</c:when>
 						<c:otherwise>
-                             <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/upload/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-                             <input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
+                             <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+                             <input type="file" name="filesrc" id="Photo" accept="image/*">
 						</c:otherwise>
-					</c:choose>              
+					</c:choose>
+                                    <div class="media-body">
+                                        <h3 class="mb-0" style="padding-left: 2%;">${member.name}</h3>
+                                        <p class="text-muted mb-0" style="margin-left: 2%; width: 300px;">${member.email}</p>
+                                    </div>
                                 </div>
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
 		<div class="form-group" style="width: 100%">
     		<label for="email">이메일</label>
     		<input class="form-control myinfo" type="text" id="email" name="email" style="width: 60%" readonly="readonly" value="${member.email}">
-    		<br>
+    		<br>		
     		<label for="pwd">비밀번호</label>
     		<input class="form-control myinfo" type="password" id="pwd" name="pwd" style="width: 60%" ><br>
     		<label for="pwdchk">비밀번호 확인</label>
-    		<input class="form-control myinfo" type="password" id="pwdchk" name="pwdchk" style="width: 60%" >
+    		<input class="form-control myinfo" type="password" id="pwdchk" name="pwdchk" style="width: 60%" >   	
     		<div id="chkmsg" style="color: green;"><br></div>
     		<br>
-    		<label for="name">닉네임</label>
+    		<label for="name">이름</label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}">
     		<br>
-    		<label for="name">포인트</label>
-    		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" value="${member.point}" disabled="disabled">
+    		<label for="dname">부서</label>
+    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="${role}">
+    		<br>
+    		<label for="drank">직함</label>
+    		<input class="form-control myinfo" type="text" id="drank" name="drank" style="width: 60%" value="${member.point}">
+    		<br>   
     		<input type="submit" id="address_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
     		
     		</div>
     		</div>
-    		</form>	
+    		</form>		
     
     	</div>
     	
@@ -326,6 +320,20 @@ $('#pwdchk').keyup(function(event) {
 	
 
 		});
+	
+	$(function(){
+		
+		$('#Photo').change(function(){
+			var reader = new FileReader();
+			
+			reader.onload = function(e) {
+				
+				document.getElementById("profiles").src = e.target.result;
+			};
+			
+			reader.readAsDataURL(this.files[0]);
+		});
+	});
 	</script>
 </body>
 

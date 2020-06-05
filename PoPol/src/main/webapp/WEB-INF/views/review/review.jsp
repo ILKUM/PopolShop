@@ -54,13 +54,7 @@ function checkz() {
 return true;
 }
 
-$(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	$('#profiles').click(function() { 
-		$('#Photo').click();
-	});
- 
-});
+
 </script>
 <body>
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -158,17 +152,18 @@ $(function(){
           <form class="was-validated" action="writeReview.do" enctype="multipart/form-data" method="Post">
           <div class="col" width="33%" align="center" >리뷰 사진</div> 
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">
-        	<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" hidden="">
+        	<img id="profile" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">     	
          </div>
-  		
-                            
+         <br>
+   <input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required>           
   <hr class="my-4">
+  	
      <div class="row">   
+    
     </div>
   <div class="form-label-group">
         <label for="validationTextarea">리뷰 제목</label>
-        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">
+        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">  
   </div>   
   <div class="mb-3">
     <label for="validationTextarea">리뷰 내용</label>
@@ -272,12 +267,15 @@ $(function(){
 		
 		reader.onload = function(e) {
 			
-			document.getElementById("profiles").src = e.target.result;
+			document.getElementById("profile").src = e.target.result;
 		};
 		
 		reader.readAsDataURL(this.files[0]);
 	});
+	
+
 });
+
 </script>
 </body>
 </html>

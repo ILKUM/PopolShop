@@ -7,7 +7,7 @@ public class Movie {
 	private String moname; //영화 제목
 	private String mocontent; //영화 설명
 	private CommonsMultipartFile filesrc; //영화사진
-	private String mophoto;
+	private String mophoto; //영화 사진
 	private int molike; //영화 추천수	
 	private int monum; //영화 분류코드
 	private String modate; //영화 개봉날짜
