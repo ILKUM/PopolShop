@@ -20,15 +20,6 @@
 <script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script>
 
-$(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	$('#profiles').click(function() {
-		console.log("뭐?");
-		$('#Photo').click();
-	});
- 
-});
-
 	//회원정보 유효성검사
 	function pwdcheck() {
 			var getCheck = RegExp(/^[a-zA-Z0-9]{8,16}$/);
@@ -160,6 +151,8 @@ $(function(){
 .form-control[readonly]{
 	background-color: white;
 }
+
+
 </style>
 <body>
 
@@ -202,15 +195,18 @@ $(function(){
 		
 	<form onsubmit="return pwdcheck()" action="memberEditCheck.do" method="post" enctype="multipart/form-data" >
 		<div class="row" style="margin-left: 4%; margin-right: 2%; margin-top: 1%">
-			<div class="media align-items-center mb-4">
+			<div class="media align-items-center mb-4 filebox">
 					<c:choose>
 						<c:when test="${img==null}">
 							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-							<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input">
+							<label for="Photo">업로드</label> 
+							<input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);" >
+    						<input class="upload-name" value="파일선택">
 						</c:when>
 						<c:otherwise>
                              <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-                             <input type="file" name="filesrc" id="Photo" accept="image/*">
+                             <input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);" >
+                     
 						</c:otherwise>
 					</c:choose>
                                     <div class="media-body">
@@ -321,19 +317,22 @@ $('#pwdchk').keyup(function(event) {
 
 		});
 	
-	$(function(){
-		
-		$('#Photo').change(function(){
-			var reader = new FileReader();
-			
-			reader.onload = function(e) {
-				
-				document.getElementById("profiles").src = e.target.result;
-			};
-			
-			reader.readAsDataURL(this.files[0]);
+	function readURL(input) {
+		 if (input.files && input.files[0]) {
+		  var reader = new FileReader();
+		  
+		  reader.onload = function (e) {
+		   $('#profiles').attr('src', e.target.result);  
+		  }
+		  
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		  
+		$("#Photo").change(function(){
+		   readURL(this);
 		});
-	});
+		
 	</script>
 </body>
 
