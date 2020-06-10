@@ -24,8 +24,8 @@
 <script type="text/javascript">
 $(function(){
 	$('#commentMain').scrollTop($('#commentMain')[0].scrollHeight);
-	$('#teamCommentBtn').click(function(){
-		if($("#teamComment").val()==''){
+	$('#movieCommentBtn').click(function(){
+		if($("#movieComment").val()==''){
 			Swal.fire({
 				  title: '댓글을 작성해주세요!',
 				  showConfirmButton: false,
@@ -34,13 +34,13 @@ $(function(){
 			})
 			return;
 		}
-		var tiseqq = ${tissue.tiseq};
+		var moseqq = ${movie.moseq};
 		$.ajax({
 			
-			url:"teamComment.do",
+			url:"movieComment.do",
 			data:{
 				rcontent: $("#teamComment").val(),
-				tiseq: "${tissue.tiseq}",
+				tiseq: "${movie.moseq}",
 				email:"${sessionScope.email}"
 			},
 			success:function(data){
@@ -48,9 +48,9 @@ $(function(){
 				$.ajax({
 					type:"GET",
 					dataType:"json",
-					url:"teamCommentOk.do",
+					url:"movieCommentOk.do",
 					data:{
-						tiseq: "${tissue.tiseq}"						
+						moseq: "${tissue.tiseq}"						
 					},
 					success:function(event){
 						$('#commentMain').empty();
@@ -59,7 +59,7 @@ $(function(){
 		                     if(object.profile==''){
 		                        src = '/SCOOP/resources/images/avatar/avatar.png';
 		                     }else{
-		                        src = '/SCOOP/user/upload/'+object.profile;
+		                        src = '/SCOOP/user/profile/'+object.profile;
 		                     }
 							var xButton = '';
 							if(object.email=="${sessionScope.email}"){
@@ -69,7 +69,7 @@ $(function(){
 
 					            '<div class="row" style="margin:2% 3% 2% 3%;">'+
 					            '<div class="col-sm-1" style="margin-top: 5px;margin-right:10px;padding-left:0;">'+
-					            '<img class="img-circle" alt="멤버 프로필 사진 넣는 곳" src="'+src+'" style="width:40px;height: 40px;padding-top: 1%;margin-left: 10px;margin-right: 10px;">'+
+					            '<img class="img-circle" alt="회원 프로필 사진 넣는 곳" src="'+src+'" style="width:40px;height: 40px;padding-top: 1%;margin-left: 10px;margin-right: 10px;">'+
 					            '</div>'+
 					            '<div class="col-sm-10">'+
 					            '<div id="commentMain" style="margin: 3% 5% 3% 5%;" >'+
@@ -79,7 +79,7 @@ $(function(){
 					            '<br><div>'+object.rcontent+'</div></div></div></div></div>'
 						           
 							);
-						$('#teamComment').val("");
+						$('#movieComment').val("");
 						$('#commentMain').scrollTop($('#commentMain')[0].scrollHeight);
 						Swal.fire({
 							  title: '댓글작성 완료!',
@@ -131,13 +131,11 @@ $(function(){
 				
 		});
 	});
-	$('#editIssue').click(function(){
-		location.href = 'teamIssueEdit.do?tiseq='+${tissue.tiseq};
-	})
-	$('#deleteIssue').click(function(){
+
+	$('#deleteMovie').click(function(){
 	   Swal.fire({
-		   title: '정말로 이슈를 삭제하시겠습니까??',
-		   text: "삭제하시면 이슈의 모든 정보가 사라집니다!",
+		   title: '정말로 영화를 삭제하시겠습니까??',
+		   text: "삭제하시면 영화의 모든 정보가 사라집니다!",
 		   icon: 'warning',
 		   showCancelButton: true,
 		   confirmButtonColor: '#d33',
@@ -146,7 +144,7 @@ $(function(){
 		   cancelButtonText: '취소'
 		 }).then((result) => {
 		   if (result.value) {
-			   location.href = 'deleteTeamIssue.do?tiseq='+${tissue.tiseq}+'&tseq='+${tissue.tseq};
+			   location.href = 'deleteMovie.do?moseq='+${movie.moseq};
 		   }
 		 })
 	})
@@ -239,12 +237,17 @@ border-radius: 5px;
 			</c:choose>
 			
 		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
+		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
+		<a href="fileDownload.do?fileName=${movie.mophoto}">	
+		<span class="iconify" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;"></span>
+		</a>
+		</c:if>
 		<i class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
 			<c:if test="${role=='ROLE_ADMIN'}">
-	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 25px;"></span>
-				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 20px;"></span>
+	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
+				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
-				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 15px;"></span></a>
+				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			
 		</div>
