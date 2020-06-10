@@ -1,5 +1,6 @@
 package kr.or.scoop.controller;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -313,7 +315,6 @@ public class MemberController {
 		public String UpdateProfile(Member member,HttpServletRequest request,HttpSession session) {
 			String viewpage = "redirect:/userindex.do";
 			CommonsMultipartFile multifile = member.getFilesrc();
-			System.out.println(multifile.isEmpty());
 			String filename = multifile.getOriginalFilename();	
 			String path = request.getServletContext().getRealPath("/user/profile");
 			System.out.println(path);
@@ -418,7 +419,7 @@ public class MemberController {
 		
 	}
 	
-	//쿠폰
+	//쿠폰 등록
 	@RequestMapping(value = "couponReg.do", method = RequestMethod.POST)
 	public String couponRegsiter(String email, Model model) {
 		int result = 0;
@@ -445,6 +446,7 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	//다른유저 프로필 확인 
 	@RequestMapping(value="userProfile.do" , method = {RequestMethod.POST , RequestMethod.GET})
 	public String userProfile(String email, Model model,HttpSession session) {
 		String viewpage;
@@ -460,6 +462,32 @@ public class MemberController {
 		viewpage = "user/user-profile";
 		}		
 		return viewpage;
+	}
+	
+	//파일을 클릭하면 다운로드
+	@RequestMapping("/fileDownload.do")
+	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String realPath = "C:/SmartWeb/FinalProjectEclipse/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SCOOP_Project/upload/";
+		String p = "movie";
+		String f = request.getParameter("fileName");
+		
+		String fname = new String(f.getBytes("euc-kr"), "8859_1");
+		response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
+		// 파일명 전송
+		// 파일 내용전송
+		String fullpath = request.getServletContext().getRealPath(p + "/" + f);
+		FileInputStream fin = new FileInputStream(fullpath);
+		// 출력 도구 얻기 :response.getOutputStream()
+		ServletOutputStream sout = response.getOutputStream();
+		byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
+		int size = 0;
+		while ((size = fin.read(buf, 0, buf.length)) != -1) // buffer 에 1024byte
+		// 담고
+		{ // 마지막 남아있는 byte 담고 그다음 없으면 탈출
+			sout.write(buf, 0, size); // 1kbyte씩 출력
+		}
+		fin.close();
+		sout.close();
 	}
 	
 	
