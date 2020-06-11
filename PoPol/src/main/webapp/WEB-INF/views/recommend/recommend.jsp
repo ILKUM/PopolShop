@@ -92,7 +92,7 @@ $(function(){
       <c:forEach items="${recom}" var="rc">    
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
          <div class="col-sm-7 newissue">	
-         <a href="recommDetail.do?rcseq=${rc.rcseq}" style="margin-left: 5%;">${rc.rctitle}</a>     
+         <a href="recomDetail.do?rcseq=${rc.rcseq}" style="margin-left: 5%;">${rc.rctitle}</a>     
          </div>
          <div class="col-sm-2 newissue" >
          	${rc.name}
@@ -132,8 +132,9 @@ $(function(){
           <div class="col" width="33%" align="center" >추천 영화 사진</div> 
           <div class="form-label-group" text-align="center" align="center">
         	<img id="profiles" name="rcphoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="추천 사진을 올려주세요!">
-        	<input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" hidden="">
          </div>
+        	<br>
+        	<input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required="required" onchange="readURL(this);" >  
   		
                             
   <hr class="my-4">
@@ -238,19 +239,22 @@ $(document).ready(function(){
 
 });
 
-$(function(){
-	
-	$('#Photo').change(function(){
-		var reader = new FileReader();
-		
-		reader.onload = function(e) {
-			
-			document.getElementById("profiles").src = e.target.result;
-		};
-		
-		reader.readAsDataURL(this.files[0]);
+function readURL(input) {
+	 if (input.files && input.files[0]) {
+	  var reader = new FileReader();
+	  
+	  reader.onload = function (e) {
+	   $('#profiles').attr('src', e.target.result);  
+	  }
+	  
+	  reader.readAsDataURL(input.files[0]);
+	  }
+	}
+	  
+	$("#Photo").change(function(){
+	   readURL(this);
 	});
-});
+	
 </script>
 </body>
 </html>

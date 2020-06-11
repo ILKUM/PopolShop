@@ -467,8 +467,8 @@ public class MemberController {
 	//파일을 클릭하면 다운로드
 	@RequestMapping("/fileDownload.do")
 	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/movie/";
-		String p = "movie";
+		String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/movie/";
+		String p = "/user/movie";
 		String f = request.getParameter("fileName");
 		
 		String fname = new String(f.getBytes("euc-kr"), "8859_1");
@@ -476,7 +476,7 @@ public class MemberController {
 		// 파일명 전송
 		// 파일 내용전송
 		String fullpath = request.getServletContext().getRealPath(p + "/" + f);
-		System.out.println(fullpath);
+
 		FileInputStream fin = new FileInputStream(fullpath);
 		// 출력 도구 얻기 :response.getOutputStream()
 		ServletOutputStream sout = response.getOutputStream();

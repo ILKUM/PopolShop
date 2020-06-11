@@ -223,7 +223,8 @@ public class BoardController {
 			String email = (String)session.getAttribute("email");
 			result = mdao.addHistory(moseq, email);
 			Movie movie = dao.selectMovie(moseq);
-			if(result > 0 ) { 
+			System.out.println(" d " + movie);
+			if(result > 0 ) {
 				model.addAttribute("movie", movie);
 			}else {
 				System.out.println("이거는 ? " + movie);
@@ -239,48 +240,6 @@ public class BoardController {
 		  model.addAttribute("recom", rc);
 			 
 			return "recommend/recommend";
-		}
-		
-		//리뷰글 작성
-		@RequestMapping(value="writeLike.do",method=RequestMethod.POST)
-		public String reviewInsert(Recommend recom,HttpServletRequest request,HttpSession session) {
-			
-			CommonsMultipartFile multifile = recom.getFilesrc();
-			String filename = multifile.getOriginalFilename();		
-			String path = request.getServletContext().getRealPath("/upload/review");
-			
-			String fpath = path + "\\"+ filename; 
-			if(filename.equals("")) {
-				recom.setRcphoto((String)session.getAttribute("img"));
-			}else {
-				recom.setRcphoto(filename);
-			}
-				if(!filename.equals("")) { //실 파일 업로드
-					FileOutputStream fs = null;
-					try {
-						fs = new FileOutputStream(fpath);
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						
-					}finally {
-						try {
-							fs.write(multifile.getBytes());
-							fs.close();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				}
-			String viewpage;
-			int result = bService.insertRecomm(recom);
-			if(result > 0) {
-				viewpage= "recommend/recommend";
-			}else {
-				viewpage="recommend/recommend";
-			}
-			return viewpage;
 		}
 		
 	

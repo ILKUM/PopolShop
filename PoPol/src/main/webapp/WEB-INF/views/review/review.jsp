@@ -155,7 +155,7 @@ return true;
         	<img id="profile" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">     	
          </div>
          <br>
-   <input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required>           
+   <input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required="required" onchange="readURL(this);">           
   <hr class="my-4">
   	
      <div class="row">   
@@ -163,11 +163,11 @@ return true;
     </div>
   <div class="form-label-group">
         <label for="validationTextarea">리뷰 제목</label>
-        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">  
+        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="리뷰 제목을 입력해주세요" required="required">  
   </div>   
   <div class="mb-3">
     <label for="validationTextarea">리뷰 내용</label>
-    <textarea class="form-control is-invalid" id="comment" name="recontent" placeholder="영화 설명 300자이내로 설명해주세요." required></textarea>
+    <textarea class="form-control is-invalid" id="comment" name="recontent" placeholder="리뷰 설명 300자이내로 설명해주세요." required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
@@ -260,21 +260,21 @@ $(document).ready(function(){
 
 });
 
-$(function(){
-	
-	$('#Photo').change(function(){
-		var reader = new FileReader();
-		
-		reader.onload = function(e) {
-			
-			document.getElementById("profile").src = e.target.result;
-		};
-		
-		reader.readAsDataURL(this.files[0]);
+function readURL(input) {
+	 if (input.files && input.files[0]) {
+	  var reader = new FileReader();
+	  
+	  reader.onload = function (e) {
+	   $('#profiles').attr('src', e.target.result);  
+	  }
+	  
+	  reader.readAsDataURL(input.files[0]);
+	  }
+	}
+	  
+	$("#Photo").change(function(){
+	   readURL(this);
 	});
-	
-
-});
 
 </script>
 </body>

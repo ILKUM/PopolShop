@@ -45,11 +45,6 @@ $(document).ready(function(){
 	$('#load').mouseout(function(){
 		$(this).css("color","#464a53");
 	});
-	$(".project").click(function(){
-		let seq = $("#mos").val();
-		let email = $("#moa").val();
-		location.href="movieDetail.do?moseq="+seq;
-	});
 	var temp = 0;
 	var moreEventArray = document.querySelectorAll(".card > a > .row ");
 	if(moreEventArray.length<=10){
@@ -109,7 +104,9 @@ $(document).ready(function(){
 						
 		        			<div class="project">
 		        					<div class="img">
+		        						<a href="movieDetail.do?moseq=${m.moseq}">
 		        						<img src="<c:url value='/user/movie/${m.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
+		        						</a>
 		        					</div>        					
 		        						<div class="text">
 		        							<h4>

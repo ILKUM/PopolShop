@@ -347,7 +347,7 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="freeboard" /></span> <!-- <i class="icon-speedometer menu-icon"> -->
          </a></li> --%>
-         <li><a href="like.do" aria-expanded="false"> <span
+         <li><a href="recom.do" aria-expanded="false"> <span
                class="iconify" data-icon="bx:bx-like"
                data-inline="false" style="width: 17px; height: auto;font: bold;"> </span><span
                class="nav-text"> &nbsp;<spring:message code="like" /></span>

@@ -47,4 +47,7 @@ public interface BoardDao {
 	//리뷰 글 수정
 	public Review updateReview(int reseq);
 	
+	//추천 게시판 디테일
+	public Recommend detailRecomm(int rcseq);
+	
 }
