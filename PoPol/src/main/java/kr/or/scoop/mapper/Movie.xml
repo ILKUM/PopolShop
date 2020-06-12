@@ -45,4 +45,17 @@ select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modire
 <select id="getHistory" resultType="kr.or.scoop.dto.Movie">
 	select DISTINCT m.moseq , m.moname , m.mocontent , m.mophoto , m.molike , m.modate , m.monum , m.modirector , m.mpoint , m.iswish from movie m join history h on m.moseq = h.moseq where h.email = #{email}
 </select>
+<!-- 영화글 추천방지 -->
+	<select id="getmolike" resultType="int">
+		select count(*) from moviemem where email = #{param1} and moseq = #{param2}
+	</select>
+	<!-- 영화글 추천 중복방지  -->
+	<insert id="insertMolike" parameterType="kr.or.scoop.dto.Movie">
+		insert into moviemem(mcseq,moseq,email) 
+		values (MCSEQ_MOVIEMEM_SEQ.NEXTVAL,#{param1},#{param2})
+	</insert>
+	<!-- 영화 추천수 증가 -->
+	<update id="molikeCount" parameterType="kr.or.scoop.dto.Movie">
+		update movie set molike = molike+1 where moseq = #{moseq}
+	</update>
 </mapper>

@@ -7,30 +7,52 @@ import kr.or.scoop.dto.Movie;
 
 public interface MovieDao {	
 	
-	public int insertMovie(Movie movie); //영화 추가 
+	//영화 추가 
+	public int insertMovie(Movie movie); 
 	
-	public List<Movie> getMovieList(); //모든 영화 리스트
+	//모든 영화 리스트
+	public List<Movie> getMovieList(); 
 	
-	public List<Movie> getKorea(); //한국영화 리스트
+	//한국영화 리스트
+	public List<Movie> getKorea(); 
 	
-	public List<Movie> getAmerican();//미국영화 리스트
+	//미국영화 리스트
+	public List<Movie> getAmerican();
 	
-	public List<Movie> getChina();//중국영화 리스트
+	//중국영화 리스트
+	public List<Movie> getChina();
 	
-	public List<Movie> getEurope();//유럽영화 리스트
+	//유럽영화 리스트
+	public List<Movie> getEurope();
 	
-	public List<Movie> getJapan();//일본영화 리스트
+	//일본영화 리스트
+	public List<Movie> getJapan();
 	
-	public List<Movie> searchMovie(String word); //영화 검색
+	//영화 검색
+	public List<Movie> searchMovie(String word);
 	
-	public Movie selectMovie(int moseq);//영화 디테일
+	//영화 디테일
+	public Movie selectMovie(int moseq);
 	
-	public int addMovieJJim(int moseq,String email); //영화 찜 추가
+	//영화 찜 추가
+	public int addMovieJJim(int moseq,String email); 
 	
-	public int delMovieJJim(int moseq,String email); //영화 찜 삭제
+	//영화 찜 삭제
+	public int delMovieJJim(int moseq,String email); 
 	
-	public List<JJim> getMovieJJim(String email); //찜 리스트
+	//찜 리스트
+	public List<JJim> getMovieJJim(String email); 
 	
-	public List<Movie> getHistory(String email); //지난 영화리스트 
+	//지난 영화리스트 
+	public List<Movie> getHistory(String email); 
+	
+	//영화글 추천 중복방지
+	public int getmolike(String email, int moseq);
+		
+	//영화글 추천 중복방지
+	public int insertMolike(int moseq,String email);
+		
+	//영화글 추천 증가
+	public int molikeCount(int moseq);
 	
 }

@@ -4,6 +4,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Movie {
 	private int moseq; //영화 글번호
+	private int mcseq; //영화 추천방지 번호
 	private String moname; //영화 제목
 	private String mocontent; //영화 설명
 	private CommonsMultipartFile filesrc; //영화사진
@@ -16,6 +17,13 @@ public class Movie {
 	private int mpoint; //영화 가격
 	
 	
+	
+	public int getMcseq() {
+		return mcseq;
+	}
+	public void setMcseq(int mcseq) {
+		this.mcseq = mcseq;
+	}
 	public int getMoseq() {
 		return moseq;
 	}
@@ -87,10 +95,12 @@ public class Movie {
 	
 	@Override
 	public String toString() {
-		return "Movie [moseq=" + moseq + ", moname=" + moname + ", mocontent=" + mocontent + ", filesrc=" + filesrc
-				+ ", mophoto=" + mophoto + ", molike=" + molike + ", monum=" + monum + ", modate=" + modate
-				+ ", modirector=" + modirector + ", iswish=" + iswish + ", mpoint=" + mpoint + "]";
+		return "Movie [moseq=" + moseq + ", mcseq=" + mcseq + ", moname=" + moname + ", mocontent=" + mocontent
+				+ ", filesrc=" + filesrc + ", mophoto=" + mophoto + ", molike=" + molike + ", monum=" + monum
+				+ ", modate=" + modate + ", modirector=" + modirector + ", iswish=" + iswish + ", mpoint=" + mpoint
+				+ "]";
 	}
+	
 	
 	
 

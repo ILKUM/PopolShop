@@ -218,6 +218,7 @@ border-radius: 5px;
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
 		<input type="hidden" name="moseq" value="${movie.moseq}">
+		<input type="hidden" name="email" value="${sessionScope.email}">
 			<c:choose>
 				<c:when test="${movie.monum==1}">
 				<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">한국영화</div>
@@ -242,7 +243,7 @@ border-radius: 5px;
 		<span class="iconify" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;"></span>
 		</a>
 		</c:if>
-		<i class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
+		<i id="chuchun" class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
 			<c:if test="${role=='ROLE_ADMIN'}">
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
@@ -276,6 +277,7 @@ border-radius: 5px;
 		<img src="<c:url value='/user/movie/${movie.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
 		<br>
 		<div class="row" style="margin-right: 0;width:900px;">
+		
         <div class="myissueDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
         영화 설명 :       	${movie.mocontent}
         </div>
@@ -338,7 +340,43 @@ border-radius: 5px;
     <!--**********************************
         Scripts
     ***********************************-->
-   
+   <script type="text/javascript">
+   $(function(){
+		$('#chuchun').click(function(){
+			let chu = $(this);
+			
+			let moseq = chu.closest('div.row').children('input[name=moseq]').val();
+			let email = chu.closest('div.row').children('input[name=email]').val();
+			
+			$.ajax({
+				url : "molike.do",
+				type : "POST",
+				data : {"moseq" : moseq, 
+						"email" : email
+				       },
+				success : function(result){					
+						Swal.fire({
+				    		  title: "추천하기 성공",
+				    		  text: "추천하기 성공",
+				    		  icon: "success",
+				    		  button: "확인"
+				    		})
+					
+				},
+				error : function(err){
+					console.log('error' + err);
+					Swal.fire({
+			    		  title: "추천 중 에러",
+			    		  text: "추천 중 에러발생",
+			    		  icon: "error",
+			    		  button: "확인"
+			    		})
+					return false;
+				}
+			});
+		});
+	});
+   </script>
     
 	
     <script src="<c:url value="/resources/plugins/common/common.min.js" />"></script>

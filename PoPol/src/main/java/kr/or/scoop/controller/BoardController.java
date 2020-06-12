@@ -327,5 +327,28 @@ public class BoardController {
 			return "user/History";
 		}
 		
+		//추천 글 추천수 증가
+		@RequestMapping(value="/molike.do" , method = RequestMethod.POST)
+		public String updateMolike(int moseq,String email,Model model) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			int like = (int)dao.getmolike(email, moseq);
+			int result = 0;
+			String viewpage = "";
+			int chu = 0;
+			if(like > 0) {
+				model.addAttribute("on", like);
+			}else {
+				result = dao.insertMolike(moseq, email);
+				chu = dao.molikeCount(moseq);
+			}			
+		
+			if(chu > 0) {
+				viewpage = "redirect:/movieDetail.do?moseq=" + moseq;
+			}else {
+				viewpage = "redirect:/movieDetail.do?moseq=" + moseq;
+			}
+			return viewpage;
+		}
+		
 		
 }
