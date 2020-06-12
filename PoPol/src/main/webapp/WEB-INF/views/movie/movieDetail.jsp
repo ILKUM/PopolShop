@@ -247,7 +247,24 @@ border-radius: 5px;
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
-				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+			<c:choose>
+				<c:when test="${movie.monum==1}">
+				<a href="koreaGet.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+				</c:when>
+				<c:when test="${movie.monum==2}">
+				<a href="americanGet.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+				</c:when>
+				<c:when test="${movie.monum==3}">
+				<a href="chinaGet.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+				</c:when>
+				<c:when test="${movie.monum==4}">
+				<a href="europeGet.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+				</c:when>
+				<c:otherwise>
+				<a href="japanGet.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+				</c:otherwise>
+			</c:choose>
+				
 				</div>				
 			
 		</div>
