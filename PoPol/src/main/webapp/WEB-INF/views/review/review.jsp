@@ -128,7 +128,7 @@ return true;
       </c:forEach>    
     
       		<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
-			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
+			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%; text-align: center;"  data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
 			</div>
             <!-- #/ container -->
             </div>
@@ -228,7 +228,7 @@ $(document).ready(function(){
 		$(this).css("color","#464a53");
 	});
 	var temp = 0;
-	var moreEventArray = document.querySelectorAll(".card > #row ");
+	var moreEventArray = document.querySelectorAll(".card > a > .row");
 	if(moreEventArray.length<=10){
 		 $('#load').remove();
       $('#loadPlus').remove();

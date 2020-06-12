@@ -135,16 +135,18 @@ $(document).ready(function(){
 								
 							<c:choose>
 							<c:when test="${mark}">
-							<i class="jjim far fa-heart" id="like" name="likeoff" data-inline="false" style="cursor: pointer; font-size: 20px;"></i>		
+							<i class="jjim far fa-heart" id="like" name="likeoff"  style="cursor: pointer; font-size: 20px;"></i>		
 							</c:when>
 							<c:otherwise>		
-							<i class="jjim fas fa-heart" id="like" name="likeon" data-inline="false" style="cursor: pointer; font-size: 20px;"></i>	
+							<i class="jjim fas fa-heart" id="like" name="likeon"  style="cursor: pointer; font-size: 20px;"></i>	
 							</c:otherwise>
 							</c:choose>
 		        								
 		        			</div>					
 		        			</div>
 		        			</c:forEach>
+		        			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
+			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
 		        			</div>
 							
 		        			
