@@ -8,6 +8,7 @@ import kr.or.scoop.dto.RvReply;
 
 public interface BoardDao {
 	
+	
 	//리뷰 작성
 	public int insertReview(Review review);
 	
@@ -32,17 +33,19 @@ public interface BoardDao {
 	//리뷰글 추천 삭제
 	public int deleteRelike(int reseq,String email);
 	
-	//추천 작성
-	public int insertRecomm(Recommend recom);
-	
-	//추천 리스트
-	public List<Recommend> getRecomm();
-
 	//댓글 등록
 	public int reviewComment(int reseq,String rvrcontent,String email);
 	
 	//댓글 처리
 	public List<RvReply> reviewCommentOk(int reseq);
+	
+	//추천글작성
+	public int insertRecomm(Recommend recom);
+	
+	//추천 리스트
+	public List<Recommend> getRecomm();
+
+	/////////////////////// 	리뷰         	///////////////////////////////////////////////
 	
 	//리뷰 글 수정
 	public Review updateReview(int reseq);
@@ -50,4 +53,12 @@ public interface BoardDao {
 	//추천 게시판 디테일
 	public Recommend detailRecomm(int rcseq);
 	
+	//추천글 추천 중복방지
+	public int getrclike(String email, int rcseq);
+	
+	//추천글 추천 중복방지
+	public int insertRclike(int rcseq,String email);
+	
+	//추천 글 추천 증가
+	public int rclikeCount(int rcseq);
 }

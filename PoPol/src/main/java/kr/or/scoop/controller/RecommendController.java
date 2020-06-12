@@ -53,7 +53,7 @@ public class RecommendController {
 	
 	//리뷰글 작성
 			@RequestMapping(value="writeLike.do",method=RequestMethod.POST)
-			public String reviewInsert(Recommend recom,HttpServletRequest request,HttpSession session) {
+			public String recomInsert(Recommend recom,HttpServletRequest request,HttpSession session) {
 				
 				CommonsMultipartFile multifile = recom.getFilesrc();
 				String filename = multifile.getOriginalFilename();		
@@ -89,6 +89,29 @@ public class RecommendController {
 					viewpage= "redirect:/recom.do";
 				}else {
 					viewpage="redirect:/recom.do";
+				}
+				return viewpage;
+			}
+			
+			//추천 글 추천수 증가
+			@RequestMapping(value="/rclike.do" , method = RequestMethod.POST)
+			public String updateRclike(int rcseq,String email,Model model) {
+				BoardDao dao = sqlSession.getMapper(BoardDao.class);
+				int like = (int)dao.getrclike(email,rcseq);
+				int result = 0;
+				String viewpage = "";
+				int chu = 0;
+				if(like > 0) {
+					model.addAttribute("on", like);
+				}else {
+					result = dao.insertRclike(rcseq, email);
+					chu = dao.rclikeCount(rcseq);
+				}			
+			
+				if(chu > 0) {
+					viewpage = "redirect:/recomDetail.do?rcseq=" + rcseq;
+				}else {
+					viewpage = "redirect:/recomDetail.do?rcseq=" + rcseq;
 				}
 				return viewpage;
 			}

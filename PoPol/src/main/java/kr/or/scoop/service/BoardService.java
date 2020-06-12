@@ -63,15 +63,7 @@ public class BoardService {
 			result = dao.relikeCount(reseq);
 			return result;
 		}
-		
-		//아직 미구현
-		public int insertRelike(int reseq, String email) {
-			int result = 0;
-			BoardDao dao = sqlsession.getMapper(BoardDao.class);
-			result = dao.insertRelike(reseq, email);
-			return result;
-		}
-		
+
 		//공지사항 조회수 증가
 		public int nrnumUp(int noseq) {
 			int result = 0;

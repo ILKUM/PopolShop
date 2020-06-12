@@ -6,6 +6,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Recommend {
 	private int rcseq; //추천글번호
+	private int rlseq; //추천방지번호
 	private String rctitle; //추천글제목
 	private String rccontent; //추천글내용
 	private CommonsMultipartFile filesrc;
@@ -16,6 +17,13 @@ public class Recommend {
 	private String name; //글쓴이 이름
 	private int rcrnum; //조회수
 	
+	
+	public int getRlseq() {
+		return rlseq;
+	}
+	public void setRlseq(int rlseq) {
+		this.rlseq = rlseq;
+	}
 	public int getRcseq() {
 		return rcseq;
 	}
@@ -76,12 +84,15 @@ public class Recommend {
 	public void setRcrnum(int rcrnum) {
 		this.rcrnum = rcrnum;
 	}
+	
 	@Override
 	public String toString() {
-		return "Recommend [rcseq=" + rcseq + ", rctitle=" + rctitle + ", rccontent=" + rccontent + ", filesrc="
-				+ filesrc + ", rcphoto=" + rcphoto + ", rctime=" + rctime + ", email=" + email + ", rclike=" + rclike
-				+ ", name=" + name + ", rcrnum=" + rcrnum + "]";
+		return "Recommend [rcseq=" + rcseq + ", rlseq=" + rlseq + ", rctitle=" + rctitle + ", rccontent=" + rccontent
+				+ ", filesrc=" + filesrc + ", rcphoto=" + rcphoto + ", rctime=" + rctime + ", email=" + email
+				+ ", rclike=" + rclike + ", name=" + name + ", rcrnum=" + rcrnum + "]";
 	}
+	
+	
 	
 	
 	

@@ -3,18 +3,30 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.BoardDao">
-
+ <!-- 추천글 작성 -->
 	<insert id="insertRecomm" parameterType="kr.or.scoop.dto.Recommend">
 	insert into recommend (rcseq,rctitle,rccontent,rcphoto,email,rclike,rcrnum,rctime)
   		values (RCSEQ_RCOMMEND_SEQ.NEXTVAL, #{rctitle,jdbcType=VARCHAR}, #{rccontent,jdbcType=VARCHAR}, #{rcphoto,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{rclike,jdbcType=INTEGER},#{rcrnum,jdbcType=INTEGER},SYSDATE)
 	</insert>
-	
+	<!-- 추천 리스트  -->
 	<select id="getRecomm" resultType="kr.or.scoop.dto.Recommend">
 	select m.name, r.rcseq , r.rctitle, r.rctime , r.rclike, r.rcrnum from member m join recommend r on m.email = r.email
 	</select>
-	
+	<!-- 추천글 디테일  -->
 	<select id="detailRecomm" resultType="kr.or.scoop.dto.Recommend">
 		select r.rctitle,r.rcseq,r.rccontent,r.rctime,r.rclike,r.rcphoto,r.email, m.name from recommend r join member m on r.email = m.email where r.rcseq = #{rcseq}
 	</select>
-	
+	<!-- 추천글 추천방지 -->
+	<select id="getrclike" resultType="int">
+		select count(*) from recommem where email = #{param1} and rcseq = #{param2}
+	</select>
+	<!-- 리뷰글 추천 중복방지  -->
+	<insert id="insertRclike" parameterType="kr.or.scoop.dto.Recommend">
+		insert into recommem(rlseq,rcseq,email) 
+		values (RLSEQ_RECOMMEM_SEQ.NEXTVAL,#{param1},#{param2})
+	</insert>
+	<!-- 추천수 증가 -->
+	<update id="rclikeCount" parameterType="kr.or.scoop.dto.Recommend">
+		update recommend set rclike = rclike+1 where rcseq = #{rcseq}
+	</update>
 	</mapper>

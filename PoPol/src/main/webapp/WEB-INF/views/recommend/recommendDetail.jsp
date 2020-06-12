@@ -222,7 +222,7 @@ border-radius: 5px;
 		<input type="hidden" name="rcseq" value="${rec.rcseq}" id="rcseq">
 		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
 			
-			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
+			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">추천 게시판</div>
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${rec.rclike}</i>
@@ -230,7 +230,7 @@ border-radius: 5px;
 	        	<span class="fas fa-cog"  id="editReview" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteReview" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
-				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
+				<a href="recom.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			
 		</div>
