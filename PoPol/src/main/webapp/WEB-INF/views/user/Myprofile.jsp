@@ -229,11 +229,21 @@
     		<label for="name">이름</label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}">
     		<br>
-    		<label for="dname">부서</label>
-    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="${role}">
+    		<label for="dname">등급</label>
+    		<c:choose>
+    		<c:when test="${role=='ROLE_ADMIN'}">
+    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="운영자">
+    		</c:when>
+    		<c:when test="${role=='ROLE_CHARGE'}">
+    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="프리미엄">
+    		</c:when>
+    		<c:otherwise>
+    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="일반">
+    		</c:otherwise>
+    		</c:choose>
     		<br>
-    		<label for="drank">직함</label>
-    		<input class="form-control myinfo" type="text" id="drank" name="drank" style="width: 60%" value="${member.point}">
+    		<label for="drank">포인트</label>
+    		<input class="form-control myinfo" type="text" id="drank" name="drank" style="width: 60%" value="${member.point} P">
     		<br>   
     		<input type="submit" id="address_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
     		
