@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="img" value="${sessionScope.img}" />
+<c:set var="count" value="${requestScope.count}" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -220,6 +221,7 @@ border-radius: 5px;
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
 		<input type="hidden" name="reseq" value="${review.reseq}" id="reseq">
+			<input type="hidden" id="count" value="${count}">
 		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
 			
 			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
@@ -315,7 +317,16 @@ border-radius: 5px;
 				
 				let reseq = chu.closest('div.row').children('input[name=reseq]').val();
 				let email = chu.closest('div.row').children('input[name=email]').val();
-				
+				let count = $("#count").val();
+				if(count == 1){
+					Swal.fire({
+						  title : '추천 실패',
+						  text : '이미 추천을 누르셨습니다.',
+						  icon : 'warning',
+						  confirmButtonColor: '#d33'
+					})
+					return false;
+				}else{
 				$.ajax({
 					url : "relike.do",
 					type : "POST",
@@ -342,6 +353,8 @@ border-radius: 5px;
 						return false;
 					}
 				});
+				
+				}
 			});
 		});
 		

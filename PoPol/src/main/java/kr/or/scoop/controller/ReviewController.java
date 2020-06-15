@@ -45,12 +45,14 @@ public class ReviewController {
 	
 	//리뷰 디테일 이동
 	@RequestMapping(value="reviewDetail.do",method = RequestMethod.GET)
-	public String detailReview(int reseq,Model model) {
+	public String detailReview(int reseq,Model model,HttpServletRequest request,HttpSession session) {
+		String email = (String)session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		List<RvReply> recom = dao.reviewCommentOk(reseq);
-	
+		int count = dao.getrelike(email, reseq);
 		int result = bService.rernumUp(reseq);
 		if(result > 0) {
+			request.setAttribute("count", count);
 			Review re = dao.selectReview(reseq);
 			model.addAttribute("recom", recom);
 			model.addAttribute("review", re);

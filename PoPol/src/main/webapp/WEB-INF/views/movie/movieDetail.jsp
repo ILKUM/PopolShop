@@ -361,7 +361,6 @@ border-radius: 5px;
 			let moseq = chu.closest('div.row').children('input[name=moseq]').val();
 			let email = chu.closest('div.row').children('input[name=email]').val();
 			let count = $("#count").val();
-			console.log(count);
 			if(count == 1){
 				Swal.fire({
 					  title : '추천 실패',
