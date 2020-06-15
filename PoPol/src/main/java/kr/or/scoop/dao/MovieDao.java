@@ -55,4 +55,5 @@ public interface MovieDao {
 	//영화글 추천 증가
 	public int molikeCount(int moseq);
 	
+	
 }

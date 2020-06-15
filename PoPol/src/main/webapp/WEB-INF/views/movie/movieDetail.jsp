@@ -7,6 +7,7 @@
 <html lang="en">
 <c:set var="role" value="${sessionScope.role}" />
 <c:set var="img" value="${sessionScope.img}" />
+<c:set var="count" value="${requestScope.count}" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -218,6 +219,7 @@ border-radius: 5px;
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
 		<input type="hidden" name="moseq" value="${movie.moseq}">
+		<input type="hidden" id="count" value="${count}">
 		<input type="hidden" name="email" value="${sessionScope.email}">
 			<c:choose>
 				<c:when test="${movie.monum==1}">
@@ -243,7 +245,14 @@ border-radius: 5px;
 		<span class="iconify" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;"></span>
 		</a>
 		</c:if>
-		<i id="chuchun" class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
+		<c:choose>
+		<c:when test="${count == 1 }">
+		<i id="chuchun" class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>
+		</c:when>
+		<c:otherwise>
+		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
+		</c:otherwise>
+		</c:choose>
 			<c:if test="${role=='ROLE_ADMIN'}">
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
@@ -341,39 +350,60 @@ border-radius: 5px;
         Scripts
     ***********************************-->
    <script type="text/javascript">
+ 
+   
    $(function(){
 		$('#chuchun').click(function(){
+			
+			
 			let chu = $(this);
 			
 			let moseq = chu.closest('div.row').children('input[name=moseq]').val();
 			let email = chu.closest('div.row').children('input[name=email]').val();
-			
-			$.ajax({
-				url : "molike.do",
-				type : "POST",
-				data : {"moseq" : moseq, 
-						"email" : email
-				       },
-				success : function(result){					
+			let count = $("#count").val();
+			console.log(count);
+			if(count == 1){
+				Swal.fire({
+					  title : '추천 실패',
+					  text : '이미 추천을 누르셨습니다.',
+					  icon : 'warning',
+					  confirmButtonColor: '#d33'
+				})
+				return false;
+			}else{
+				$.ajax({
+					url : "molike.do",
+					type : "POST",
+					data : {"moseq" : moseq, 
+							"email" : email
+					       },
+					
+					success : function(result){	
+							Swal.fire({
+					    		  title: "추천하기 성공",
+					    		  text: "추천하기 성공",
+					    		  icon: "success",
+					    		  button: "확인"
+					    		})				
+					},
+					error : function(err){
+						console.log('error' + err);
 						Swal.fire({
-				    		  title: "추천하기 성공",
-				    		  text: "추천하기 성공",
-				    		  icon: "success",
+				    		  title: "추천 중 에러",
+				    		  text: "추천 중 에러발생",
+				    		  icon: "error",
 				    		  button: "확인"
 				    		})
-					
-				},
-				error : function(err){
-					console.log('error' + err);
-					Swal.fire({
-			    		  title: "추천 중 에러",
-			    		  text: "추천 중 에러발생",
-			    		  icon: "error",
-			    		  button: "확인"
-			    		})
-					return false;
-				}
-			});
+						return false;
+					}
+				
+				});
+			}
+				
+			
+				
+			
+			
 		});
 	});
    </script>

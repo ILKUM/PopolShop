@@ -214,17 +214,19 @@ public class BoardController {
 		}
 		
 		
-		
+		//영화 디테일 
 		@RequestMapping(value="movieDetail.do",method=RequestMethod.GET)
-		public String movieDetail(int moseq,Model model,HttpSession session) {
+		public String movieDetail(int moseq,Model model,HttpSession session,HttpServletRequest request) {
 			int result = 0;
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			MemberDao mdao = sqlSession.getMapper(MemberDao.class);
 			String email = (String)session.getAttribute("email");
 			result = mdao.addHistory(moseq, email);
+			int count = dao.getmolike(email, moseq);
+			System.out.println(count);
 			Movie movie = dao.selectMovie(moseq);
-			System.out.println(" d " + movie);
 			if(result > 0 ) {
+				request.setAttribute("count", count);
 				model.addAttribute("movie", movie);
 			}else {
 				System.out.println("이거는 ? " + movie);
@@ -339,6 +341,7 @@ public class BoardController {
 				model.addAttribute("on", like);
 			}else {
 				result = dao.insertMolike(moseq, email);
+				System.out.println(result);
 				chu = dao.molikeCount(moseq);
 			}			
 		
@@ -349,6 +352,7 @@ public class BoardController {
 			}
 			return viewpage;
 		}
+		
 		
 		
 }

@@ -99,11 +99,12 @@ $(document).ready(function(){
         <div class="card" style="min-height: 1080px">
         	<div class="row">
         	<c:forEach items="${jjimlist}" var="jjim">
-        	<input type="hidden" name="monum" value="${jjim.monum}"> 
+        	
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
 						
 		        			<div class="project">
-		        			
+		        				<input type="text" name="moseq" value="${jjim.moseq}" hidden=""> 
+        						<input type="text" name="monum" value="${jjim.monum}" hidden="">
 		        					<div class="img">
 		        					<a href="movieDetail.do?moseq=${jjim.moseq}">
 		        						<img src="<c:url value='/user/movie/${jjim.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
@@ -145,6 +146,7 @@ $(document).ready(function(){
 		        								
 		        			</div>
 		        			</div>
+		        		 
 		        			</c:forEach>
 		        			</div>
 		        			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
