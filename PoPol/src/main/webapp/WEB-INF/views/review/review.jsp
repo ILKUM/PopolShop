@@ -152,7 +152,7 @@ return true;
           <form class="was-validated" action="writeReview.do" enctype="multipart/form-data" method="Post">
           <div class="col" width="33%" align="center" >리뷰 사진</div> 
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profile" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">     	
+        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">     	
          </div>
          <br>
    <input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required="required" onchange="readURL(this);">           

@@ -448,16 +448,16 @@ public class MemberController {
 	
 	//다른유저 프로필 확인 
 	@RequestMapping(value="userProfile.do" , method = {RequestMethod.POST , RequestMethod.GET})
-	public String userProfile(String email, Model model,HttpSession session) {
+	public String userProfile(String email, Model model,HttpSession session,HttpServletRequest request) {
 		String viewpage;
 		if(email.equals(session.getAttribute("email"))) {
 			viewpage = "redirect:/memberEdit.do?email="+email;
 		}else {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		Member member = dao.getMember(email);
-		
+		String img = member.getProfile();
 		model.addAttribute("member",member);
-		model.addAttribute("img", member.getProfile());
+		request.setAttribute("img", img);
 		
 		viewpage = "user/user-profile";
 		}		

@@ -89,21 +89,23 @@ $(function(){
          	추천수
          </div>
       </div>
-      <c:forEach items="${recom}" var="rc">    
+      <c:forEach items="${recom}" var="rc">   
+       <a href="recomDetail.do?rcseq=${rc.rcseq}"> 
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
          <div class="col-sm-7 newissue">	
-         <a href="recomDetail.do?rcseq=${rc.rcseq}" style="margin-left: 5%;">${rc.rctitle}</a>     
+        <p style="margin-left: 60px;"> ${fn:substring(rc.rctitle,0,25)}</p>    
          </div>
          <div class="col-sm-2 newissue" >
          	${rc.name}
          </div>
          <div class="col-sm-2 newissue">
-         ${fn:substring(rc.rctime,0,19)}  
+         ${fn:substring(rc.rctime,0,10)}
          </div>
-				<div class="col-sm-1 newissue" style="padding-left: 30px;">
-					${rc.rclike}
-				</div>
+			<div class="col-sm-1 newissue" style="padding-left: 30px;">
+				${rc.rclike}	
+			</div>
       </div>
+      </a>
       </c:forEach>
     
       		<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >

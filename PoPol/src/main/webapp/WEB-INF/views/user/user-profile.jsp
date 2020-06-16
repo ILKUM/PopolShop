@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-    <c:set var="img" value="${sessionScope.img}" />
+    <c:set var="img" value="${requestScope.img}" />
 <html>
 
 <head>
@@ -18,30 +18,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script>
-
-$(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	$('#profiles').click(function() { 
-		$('#Photo').click();
-	});
- 
-});
-
-
-$(function(){
-	
-	$('#Photo').change(function(){
-		var reader = new FileReader();
-		
-		reader.onload = function(e) {
-			
-			document.getElementById("profiles").src = e.target.result;
-		};
-		
-		reader.readAsDataURL(this.files[0]);
-	});
-});
-
 	//회원정보 유효성검사
 	function pwdcheck() {
 			var getCheck = RegExp(/^[a-zA-Z0-9]{8,16}$/);
@@ -195,21 +171,8 @@ $(function(){
         <div class="card" style="min-height: 1080px">
 		<div class="row" style="margin:2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 1%;">내 정보</h3>
+				<h3 style="padding-left: 1%;">${member.name} 님 프로필</h3>
 			</div>
-		</div>
-		<div class="row" style="margin-left: 2%;">
-			<ul class="nav nav-pills">
-			    <li class="nav-item">
-			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #E71D36;">내 정보</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="paymentPage.do">가격 및 결제</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
-			    </li>
-		    </ul>
 		</div>
 		<hr style="margin-top: 0">
 	<form onsubmit="return pwdcheck()" action="editCheck.do" method="post" enctype="multipart/form-data">
@@ -217,10 +180,10 @@ $(function(){
 			<div class="media align-items-center mb-4">
 					<c:choose>
 						<c:when test="${img==null}">
-							<img id="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+							<img id="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom">
 						</c:when>
 						<c:otherwise>
-                             <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/upload/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+                             <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom">
 						</c:otherwise>
 					</c:choose>                        
                                 </div>
