@@ -41,8 +41,8 @@ border-radius: 5px;
 </style>
 <script type="text/javascript">
 $(function(){
-$('#editCheckIssue').click(function(){
-	$('#editIssue').click();
+$('#editCheckNotice').click(function(){
+	$('#editNotice').click();
 })
 })
 </script>
@@ -64,24 +64,24 @@ $('#editCheckIssue').click(function(){
         <div class="content-body"style="height: 680px;">
         <div class="container-fluid" ">
         <div class="card">
-        <form action="noticeEditOk.do?bnseq=${n.bnseq}" method="POST">
+        <form action="noticeEditOk.do?noseq=${n.noseq}" method="POST">
         <%-- <input type="hidden" name="tseq" value="${tissue.tseq}"> --%>
-        <input type="hidden" name="bnseq" value="${n.bnseq}">
+        <input type="hidden" name="noseq" value="${n.noseq}">
 		<div class="row"style="margin:2% 2% 0 2%" >
 		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #E71D36;" data-icon="ant-design:notification-outlined" data-inline="false"></span>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" name="bntitle" value="${n.bntitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;">
+			<input type="text" class="form-control" name="notitle" value="${n.notitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;">
 		</div>
 		<div class="col-sm-1">
 		</div>
 		<div class="col-sm-2" style="padding-right: 0">
 		</div>
 		<div class="col-sm-2" style="padding-left: 0; text-align: right">
-		<span id="editCheckIssue">
+		<span id="editCheckNotice">
 		<span class="iconify" data-icon="fa-solid:check" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 20px;margin-left: 20px;"></span>
 		</span>
-			<input type="submit" class="form-control editdelete" value="완료" id="editIssue" hidden="">
-		<span id="returnIssue">
+			<input type="submit" class="form-control editdelete" value="완료" id="editNotice" hidden="">
+		<span id="returnNotice">
 		<span class="iconify" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 35px;margin-bottom: 15px;margin-left: 15px;"></span>
 		</span>
 		</div>
@@ -90,8 +90,7 @@ $('#editCheckIssue').click(function(){
 		<div id="edittodoresult">
 		</div>
         <div class="myissueDetail" style="height:520px;margin: 2%;padding:1%; border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;">
-        <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%;" id="editIssuecontent" name="bncontent">${n.bncontent}</textarea>
-        <img src="resources/images/logo/ScoopTitle.png" style="width:500px;height: auto;opacity:0.5;position:absolute;left: 30%;margin-top: 5%;">
+        <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 100%;" id="editIssuecontent" name="nocontent">${n.nocontent}</textarea>
         </div>
             </form>
             </div> 
@@ -145,8 +144,8 @@ $('#editCheckIssue').click(function(){
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
 
-$('#returnIssue').click(function(){
-	location.href ='noticeDetail.do?bnseq='+${n.bnseq};
+$('#returnNotice').click(function(){
+	location.href ='noticeDetail.do?noseq='+${n.noseq};
 });
 $('.divDelete').click(function(){
 	var dValue = $(this).parent().next().attr('value');

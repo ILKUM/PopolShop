@@ -25,11 +25,11 @@
 $(function(){
 		console.log("${myissue.email}");
 		console.log("${sessionScope.email}");
-		$('#editIssue').click(function(){
-			location.href = 'noticeEdit.do?bnseq='+${notice.noseq};
+		$('#editNotice').click(function(){
+			location.href = 'editNotice.do?noseq='+${notice.noseq};
 		})
 		
-		$('#deleteIssue').click(function(){
+		$('#deleteNotice').click(function(){
 			   Swal.fire({
 				   title: '정말로 공지사항을 삭제하시겠습니까??',
 				   text: "삭제하시면 공지사항의 모든 정보가 사라집니다!",
@@ -91,13 +91,14 @@ border-radius: 5px;
 		</div>
 		<div class="col-sm-2" style="padding-top: 2%;padding-left: 8%;">
 		<c:if test="${role == 'ROLE_ADMIN'}">
-		<span data-toggle="tooltip" data-placement="top" title="프라이빗 이슈 수정" >
-        	<span class="fas fa-cog"  id="editIssue" style="margin-left: 5px;cursor: pointer; font-size: 25px"   ></span>
+		<span data-toggle="tooltip" data-placement="top" title="공지사항 수정" >
+        	<span class="fas fa-cog"  id="editNotice" style="margin-left: 5px;cursor: pointer; font-size: 25px"   ></span>
          </span>
-         <span data-toggle="tooltip" data-placement="top" title="프라이빗 이슈 삭제">
-			<span class="iconify" id="deleteIssue" data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 12px;margin-left: 20px;"></span>
+         <span data-toggle="tooltip" data-placement="top" title="공지사항 삭제">
+			<span class="iconify" id="deleteNotice" data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 12px;margin-left: 20px;"></span>
 		</span>
 		</c:if>
+		<a href="notice.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 		</div>
 		
 		</div>	

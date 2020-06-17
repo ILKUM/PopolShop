@@ -11,9 +11,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values (noseq_notice_seq.nextval,#{notitle},#{nocontent},systimestamp,#{email},0) 
 </insert>
 <select id="detailNotice" resultType="kr.or.scoop.dto.Notice">
-	select notitle,nocontent,email,notime,nrnum from notice where noseq=#{noseq}
+	select noseq,notitle,nocontent,email,notime,nrnum from notice where noseq=#{noseq}
 	</select>
 	<update id="nrnumCount">
 		 update notice set nrnum=nrnum+1 where noseq = #{noseq}
+	</update>
+	<!-- 전체공지사항 수정 -->
+	<update id="updateNotice" parameterType="int">
+		UPDATE notice 
+		set notitle=#{notitle}, nocontent=#{nocontent} where noseq=#{noseq}
 	</update>
 </mapper>

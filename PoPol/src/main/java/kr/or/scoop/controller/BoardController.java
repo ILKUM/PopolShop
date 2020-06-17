@@ -77,8 +77,24 @@ public class BoardController {
 				model.addAttribute("notice",notice);	
 				viewpage = "notice/noticeDetail";
 			}else {
-				System.out.println("실패");
+				viewpage = "notice/noticeDetail";
 			}
+			
+			return viewpage;
+		}
+		
+		//공지사항 수정
+		@RequestMapping(value = "editNotice.do",method = RequestMethod.GET)
+		public String editNoice(int noseq,Model model) {
+			String viewpage = "";
+	
+			NoticeDao dao = sqlSession.getMapper(NoticeDao.class);
+			
+				Notice notice = dao.detailNotice(noseq); //공지사항 디테일
+				model.addAttribute("n",notice);	
+				viewpage = "notice/noticeEdit";
+			
+	
 			
 			return viewpage;
 		}
