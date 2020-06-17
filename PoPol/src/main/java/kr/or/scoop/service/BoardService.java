@@ -86,4 +86,13 @@ public class BoardService {
 			List<RvReply> result = dao.reviewCommentOk(reseq);
 			return result;
 		}
+		
+		//추천글 조회수 증가
+		public int rcrnumUp(int rcseq) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.rcrnumCount(rcseq);
+			return result;
+					
+		}
 }

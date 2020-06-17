@@ -61,4 +61,7 @@ public interface BoardDao {
 	
 	//추천 글 추천 증가
 	public int rclikeCount(int rcseq);
+	
+	//추천 글 조회수 증가
+	public int rcrnumCount(int rcseq);
 }

@@ -20,13 +20,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getrclike" resultType="int">
 		select count(*) from recommem where email = #{param1} and rcseq = #{param2}
 	</select>
-	<!-- 리뷰글 추천 중복방지  -->
+	<!-- 추천글 추천 중복방지  -->
 	<insert id="insertRclike" parameterType="kr.or.scoop.dto.Recommend">
 		insert into recommem(rlseq,rcseq,email) 
 		values (RLSEQ_RECOMMEM_SEQ.NEXTVAL,#{param1},#{param2})
 	</insert>
-	<!-- 추천수 증가 -->
+	<!-- 추천글 추천수 증가 -->
 	<update id="rclikeCount" parameterType="kr.or.scoop.dto.Recommend">
 		update recommend set rclike = rclike+1 where rcseq = #{rcseq}
+	</update>
+	<!-- 추천글 조회수 증가 -->
+	<update id="rcrnumCount">
+		 update recommend set rcrnum=rcrnum+1 where rcseq = #{rcseq}
 	</update>
 	</mapper>

@@ -96,7 +96,7 @@ $(document).ready(function(){
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
 				<h3 style="padding-left: 15px;">공지사항</h3>
-				<h6 style="padding-left: 15px;">스쿱의 새로운 소식을 전해드립니다.</h6>
+				<h6 style="padding-left: 15px;">모플렉스의 새로운 소식을 전해드립니다.</h6>
 			</div>
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
     <c:set var="img" value="${requestScope.img}" />
 <html>
@@ -191,6 +192,7 @@
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
 		<div class="form-group" style="width: 100%">
     		<label for="email">이메일</label>
+  
     		<input class="form-control myinfo" type="text" id="email" name="email" style="width: 60%" readonly="readonly" value="${member.email}" disabled="disabled">   		
     		<br>
     		<label for="name">닉네임</label>

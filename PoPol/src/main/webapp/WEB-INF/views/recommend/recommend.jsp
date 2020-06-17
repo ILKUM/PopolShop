@@ -76,7 +76,7 @@ $(function(){
       </div>     
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
-         <div class="col-sm-7 newissue" style="padding-left: 87px;" >
+         <div class="col-sm-6 newissue" style="padding-left: 87px;" >
          	제목
          </div>
          <div class="col-sm-2 newissue">
@@ -86,13 +86,16 @@ $(function(){
          	작성시간 
          </div>
          <div class="col-sm-1 newissue">
+         	조회수
+         </div>
+         <div class="col-sm-1 newissue">
          	추천수
          </div>
       </div>
       <c:forEach items="${recom}" var="rc">   
        <a href="recomDetail.do?rcseq=${rc.rcseq}"> 
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
-         <div class="col-sm-7 newissue">	
+         <div class="col-sm-6 newissue">	
         <p style="margin-left: 60px;"> ${fn:substring(rc.rctitle,0,25)}</p>    
          </div>
          <div class="col-sm-2 newissue" >
@@ -101,6 +104,9 @@ $(function(){
          <div class="col-sm-2 newissue">
          ${fn:substring(rc.rctime,0,10)}
          </div>
+			<div class="col-sm-1 newissue">
+				${rc.rcrnum}	
+			</div>
 			<div class="col-sm-1 newissue" style="padding-left: 30px;">
 				${rc.rclike}	
 			</div>

@@ -44,14 +44,20 @@ public class RecommendController {
 	//추천 게시판 디테일 
 	@RequestMapping(value="recomDetail.do" , method=RequestMethod.GET)
 	public String DetailLike(Model model,int rcseq,HttpServletRequest request,HttpSession session) {
+		String viewpage;
 		String email = (String)session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		Recommend recom = dao.detailRecomm(rcseq);
 		int count = dao.getrclike(email, rcseq);
-		request.setAttribute("count", count);
-		model.addAttribute("rec", recom);
-		
-		return "recommend/recommendDetail";
+		int result = bService.rcrnumUp(rcseq);
+		if(result > 0) {
+			request.setAttribute("count", count);
+			model.addAttribute("rec", recom);	
+			viewpage = "recommend/recommendDetail";
+		}else {
+			viewpage = "recommend/recommendDetail";
+		}
+		return viewpage;
 	}
 	
 	//리뷰글 작성
