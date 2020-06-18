@@ -64,10 +64,14 @@ $('#editCheckNotice').click(function(){
         <div class="content-body">
         <div class="container-fluid">
         <div class="card" >
+        <form action="editNoticeCheck.do?noseq=${n.noseq}" method="POST">
 		<div class="row"style="margin:2% 2% 0 2%" >
 		<div class="col-sm-9">
-		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #E71D36;" data-icon="ant-design:notification-outlined" data-inline="false"></span>
-		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;">${n.notitle}</span>
+		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #E71D36;" data-icon="ant-design:notification-outlined" data-inline="false">
+		</span>
+		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="notitle" value="${n.notitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
+		
+		
 		</div>
 		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">	
 		<span id="editCheckNotice">
@@ -77,14 +81,15 @@ $('#editCheckNotice').click(function(){
 		<span class="iconify" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 35px;margin-bottom: 15px;margin-left: 15px;"></span>
 		</span>
 		</div>
-		
+		<input type="submit" class="form-control editdelete" value="완료" id="editNotice" hidden="">
 		</div>	
 		<hr>
 		<div style="height:520px ;border: 1px solid rgba(0,0,0,0.5);margin-left: 2%;margin-right: 2%;border-radius: 0.5rem;padding: 1% 2% 1% 2%;margin-bottom: 80px;">
 	        <div class="NoticeDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
-	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 100%;" id="editIssuecontent" name="nocontent">${n.nocontent}</textarea>
+	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 479px;" id="editIssuecontent" name="nocontent">${n.nocontent}</textarea>
 	        </div>    
 		</div>
+		  </form>
             <!-- #/ container -->
             </div> 
             

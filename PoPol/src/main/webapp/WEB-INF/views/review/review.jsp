@@ -174,8 +174,8 @@ return true;
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
   <input type="hidden" name="rernum" value="0">
   <input type="hidden" name="relike" value="0">
-  <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" name="counter" id="counter"></span>
-  <br> 
+  <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" id="counter"></span>
+  
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>

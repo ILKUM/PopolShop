@@ -154,13 +154,14 @@ $(function(){
   </div>   
   <div class="mb-3">
     <label for="validationTextarea">추천 글 내용</label>
-    <textarea class="form-control is-invalid" id="comment" name="rccontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
+    <textarea class="form-control is-invalid" id="content" name="rccontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
   <input type="hidden" name="rclike" value="0">
   <input type="hidden" name="rcrnum" value="0">
+  <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" id="counter"></span>
     <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
@@ -262,6 +263,15 @@ function readURL(input) {
 	$("#Photo").change(function(){
 	   readURL(this);
 	});
+	
+	$('#content').keyup(function (e){
+	      var content = $(this).val();       
+	      $('#counter').val(300-content.length);
+
+	          if(content.length > 300) {
+	            $(this).val($(this).val().substring(0, 300));
+	          }
+	      });
 	
 </script>
 </body>

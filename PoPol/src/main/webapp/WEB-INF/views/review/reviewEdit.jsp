@@ -39,6 +39,11 @@ cursor: pointer;
 border-radius: 5px;
 }
 </style>
+<script type="text/javascript">
+$('#profiles').click(function(){
+	$('#Photo').click();
+})
+</script>
 <body>
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -54,35 +59,41 @@ border-radius: 5px;
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body"style="height: 680px;">
+        <div class="content-body">
         <div class="container-fluid">
-        <div class="card">
-        <form action="editNoticeCheck.do?noseq=${n.noseq}" method="POST">
-        <%-- <input type="hidden" name="tseq" value="${tissue.tseq}"> --%>
-        <input type="hidden" name="noseq" value="${n.noseq}">
+        <div class="card" >
+        <form action="reviewEditCheck.do?noseq=${review.reseq}" method="POST" enctype="multipart/form-data">
 		<div class="row"style="margin:2% 2% 0 2%" >
-		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #140af5;" data-icon="ant-design:like-outlined" data-inline="false"></span>
-		<div class="col-sm-6">
-			<input type="text" class="form-control" name="notitle" value="${n.notitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;">
+		<div class="col-sm-9">
+		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #2e1bf5;" data-icon="ant-design:like-outlined" data-inline="false">
+		</span>
+		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="notitle" value="${review.retitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
+		
+		
 		</div>
-		<div class="col-sm-2" style="padding-left: 0; text-align: right">
+		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">	
 		<span id="editCheckReview">
 		<span class="iconify" data-icon="fa-solid:check" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 20px;margin-left: 20px;"></span>
-		</span>
-			<input type="submit" class="form-control editdelete" value="완료" id="editNotice" hidden="">
-		<span id="returnReview">
+         </span>
+         <span id="returnReview">
 		<span class="iconify" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 35px;margin-bottom: 15px;margin-left: 15px;"></span>
 		</span>
 		</div>
-		</div>
+		<input type="submit" class="form-control editdelete" value="완료" id="editReview" hidden="">
+		</div>	
 		<hr>
-		<div id="edittodoresult">
+		<div style="height:520px ;border: 1px solid rgba(0,0,0,0.5);margin-left: 2%;margin-right: 2%;border-radius: 0.5rem;padding: 1% 2% 1% 2%;margin-bottom: 80px;">            
+	         <img id ="profiles" src="<c:url value='/user/review/${review.rephoto}' />" alt="" name="rephoto" style="width: 150px; height: 213.675px;cursor: pointer;" data-placement="bottom">
+	        <input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
+	        <div class="NoticeDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
+	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editIssuecontent" name="nocontent">${review.recontent}</textarea>
+	        </div>    
 		</div>
-        <div class="ReviewDetail" style="height:520px;margin: 2%;padding:1%; border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;">
-        <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 100%;" id="editIssuecontent" name="nocontent">${n.nocontent}</textarea>
-        </div>
-            </form>
+		  </form>
+            <!-- #/ container -->
             </div> 
+            
+            
             </div>
         </div>
         <!--**********************************
@@ -129,10 +140,13 @@ border-radius: 5px;
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
-
+$(function(){
 $('#editCheckReview').click(function(){
 	$('#editNotice').click();
 })
+
+
+
 $('#returnReview').click(function(){
 	history.back();
 })
@@ -151,6 +165,6 @@ $('#returnReview').click(function(){
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	
+}
 </script>
 </html>
