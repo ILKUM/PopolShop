@@ -98,6 +98,22 @@ public class BoardController {
 			
 			return viewpage;
 		}
+		@RequestMapping(value = "editNoticeCheck.do" ,method = RequestMethod.POST)
+		public String editNoticeCheck(int noseq,Notice notice,Model model) {
+			int result = 0;
+			String viewpage = "";
+			notice.setNocontent(notice.getNocontent().replace("\r\n", "<br>"));
+			result = bService.updateNotice(notice);
+			if(result > 0) {
+				model.addAttribute("notice",notice);
+				viewpage = "redirect:/noticeDetail.do?noseq="+noseq;
+				
+			}else {
+				viewpage = "notice/notice";
+			}
+				
+			return viewpage;
+		}
 		
 		//공지사항 삭제
 		@RequestMapping(value="deleteNoitce.do",method = RequestMethod.POST)

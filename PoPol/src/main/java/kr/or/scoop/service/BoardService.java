@@ -95,4 +95,12 @@ public class BoardService {
 			return result;
 					
 		}
+		//공지사항 수정 체크
+		public int updateNotice(Notice notice) {
+			int result = 0;
+			NoticeDao dao = sqlsession.getMapper(NoticeDao.class);
+			result = dao.updateNotice(notice);
+			
+			return result;
+		}
 }

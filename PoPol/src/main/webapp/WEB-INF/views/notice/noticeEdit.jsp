@@ -64,7 +64,7 @@ $('#editCheckNotice').click(function(){
         <div class="content-body"style="height: 680px;">
         <div class="container-fluid" ">
         <div class="card">
-        <form action="noticeEditOk.do?noseq=${n.noseq}" method="POST">
+        <form action="editNoticeCheck.do?noseq=${n.noseq}" method="POST">
         <%-- <input type="hidden" name="tseq" value="${tissue.tseq}"> --%>
         <input type="hidden" name="noseq" value="${n.noseq}">
 		<div class="row"style="margin:2% 2% 0 2%" >
