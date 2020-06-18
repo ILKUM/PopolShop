@@ -131,7 +131,7 @@ $(function(){
 		});
 	});
 	$('#editReview').click(function(){
-		location.href = 'ReviewEdit.do?reseq='+${review.reseq};
+		location.href = 'editReview.do?reseq='+${review.reseq};
 	});
 	$('#deleteReview').click(function(){
 	   Swal.fire({

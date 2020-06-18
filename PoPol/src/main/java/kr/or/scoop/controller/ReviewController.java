@@ -158,7 +158,7 @@ public class ReviewController {
 			}
 			
 			//리뷰 수정 이동
-			@RequestMapping(value="editReview.do",method = RequestMethod.POST)
+			@RequestMapping(value="editReview.do",method = RequestMethod.GET)
 			public String reviewEdit(int reseq,Model model) {
 				BoardDao dao = sqlSession.getMapper(BoardDao.class);
 				Review re = dao.selectReview(reseq);
