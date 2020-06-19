@@ -53,4 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE reboard 
 		set retitle=#{retitle}, recontent=#{recontent} ,rephoto = #{rephoto} where reseq=#{reseq}
 	</update>
+	<delete id="deleteReview">
+	DELETE FROM reboard  WHERE reseq = #{reseq}
+	</delete>
 </mapper>

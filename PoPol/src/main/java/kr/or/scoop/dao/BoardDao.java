@@ -52,6 +52,9 @@ public interface BoardDao {
 	//리뷰 글 사진
 	public String getReviewImg(int reseq);
 	
+	//리뷰 글 삭제
+	public int deleteReview(int reseq);
+	
 	/////////////// 	추천          	//////////////////
 	
 	

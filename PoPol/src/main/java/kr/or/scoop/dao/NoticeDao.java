@@ -23,4 +23,5 @@ public interface NoticeDao {
 	
 	//공지사항 수정
 	public int updateNotice(Notice notice);
+	
 }

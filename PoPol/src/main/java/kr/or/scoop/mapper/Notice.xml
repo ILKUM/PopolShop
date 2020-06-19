@@ -21,4 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE notice 
 		set notitle=#{notitle}, nocontent=#{nocontent} where noseq=#{noseq}
 	</update>
+	<delete id="deleteNotice">
+	DELETE FROM notice  WHERE noseq = #{noseq}
+	</delete>
 </mapper>

@@ -143,7 +143,7 @@ $(function(){
 		   cancelButtonColor: '#c8c8c8',
 		   confirmButtonText: '확인',
 		   cancelButtonText: '취소'
-		 }).then((result) =>  {
+		 }).then((result) => {
 		   if (result.value) {
 			   location.href = 'deleteReview.do?reseq='+${review.reseq};
 		   }

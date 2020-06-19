@@ -166,17 +166,15 @@ public class ReviewController {
 				return "review/reviewEdit";
 			}
 			
+			//리뷰 글 수정 체크 
 			@RequestMapping(value="reviewEditCheck.do" , method = RequestMethod.POST)
 			public String reviewEditCheck(int reseq,Review review, HttpServletRequest request) {
 				String viewpage;
 				CommonsMultipartFile multifile = review.getFilesrc();
 				BoardDao dao = sqlSession.getMapper(BoardDao.class);
 				String img = dao.getReviewImg(reseq);
-				System.out.println("dd" + img);
 				String filename = multifile.getOriginalFilename();	
-				System.out.println("ss" + filename);
 				String path = request.getServletContext().getRealPath("/user/review");
-				System.out.println("111");
 				String fpath = path + "\\"+ filename; 
 				
 				if(filename.equals("")) {
@@ -203,13 +201,27 @@ public class ReviewController {
 					
 				int result = bService.updateReview(review);
 				if(result > 0) {
-					viewpage= "redirect:/review.do";
+					viewpage = "redirect:/reviewDetail.do?reseq=" + reseq;
 				}else {
-					viewpage="redirect:/review.do";
+					viewpage = "redirect:/reviewDetail.do?reseq=" + reseq;
 				}
 				return viewpage;
 				
 				
+			}
+			
+			@RequestMapping(value="deleteReview.do",method=RequestMethod.GET)
+			public String deleteReview(int reseq) {
+				String viewpage;
+				int result = bService.deleteReview(reseq);
+				
+				if(result > 0) {
+					viewpage= "redirect:/review.do";
+				}else {
+					viewpage= "redirect:/review.do";
+				}
+				
+				return viewpage;
 			}
 	
 }

@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css" />">
     <!-- Custom Stylesheet -->
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-<script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
@@ -97,7 +97,7 @@ $(document).ready(function(){
         <div class="card" style="min-height: 1080px">
         	<div class="row">
         	<c:forEach items="${movie}" var="m">
-        	<input type="hidden" name="moseq" value="${m.moseq}" id="mos"> 
+        	<input type="text" name="moseq" value="${m.moseq}" id="mos" hidden=""> 
         	<input type="hidden" name="monum" value="${m.monum}"> 
         	<input type="hidden" name="email" value="${sessionScope.email}" id="moa"> 
 			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
