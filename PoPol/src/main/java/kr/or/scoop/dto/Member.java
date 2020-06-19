@@ -18,6 +18,7 @@ public class Member {
 	private int cpseq; //쿠폰 등록멤버 번호
 	private int cpoint; //쿠폰여부
 	
+	
 	public String getEmail() {
 		return email;
 	}

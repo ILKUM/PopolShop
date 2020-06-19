@@ -40,9 +40,7 @@ border-radius: 5px;
 }
 </style>
 <script type="text/javascript">
-$('#profiles').click(function(){
-	$('#Photo').click();
-})
+
 </script>
 <body>
 
@@ -62,16 +60,16 @@ $('#profiles').click(function(){
         <div class="content-body">
         <div class="container-fluid">
         <div class="card" >
-        <form action="reviewEditCheck.do?noseq=${review.reseq}" method="POST" enctype="multipart/form-data">
+        <form action="reviewEditCheck.do?reseq=${review.reseq}" method="POST" enctype="multipart/form-data">
 		<div class="row"style="margin:2% 2% 0 2%" >
 		<div class="col-sm-9">
 		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #2e1bf5;" data-icon="ant-design:like-outlined" data-inline="false">
 		</span>
-		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="notitle" value="${review.retitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
+		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="retitle" value="${review.retitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
 		
 		
 		</div>
-		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">	
+		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">
 		<span id="editCheckReview">
 		<span class="iconify" data-icon="fa-solid:check" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 20px;margin-left: 20px;"></span>
          </span>
@@ -82,11 +80,12 @@ $('#profiles').click(function(){
 		<input type="submit" class="form-control editdelete" value="완료" id="editReview" hidden="">
 		</div>	
 		<hr>
+	       <p style="margin-left: 25px;margin-bottom: 16px; "> 사진변경 : <input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);"></p>
 		<div style="height:520px ;border: 1px solid rgba(0,0,0,0.5);margin-left: 2%;margin-right: 2%;border-radius: 0.5rem;padding: 1% 2% 1% 2%;margin-bottom: 80px;">            
-	         <img id ="profiles" src="<c:url value='/user/review/${review.rephoto}' />" alt="" name="rephoto" style="width: 150px; height: 213.675px;cursor: pointer;" data-placement="bottom">
-	        <input type="file" name="filesrc" id="Photo" accept="image/*" hidden="">
-	        <div class="NoticeDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
-	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editIssuecontent" name="nocontent">${review.recontent}</textarea>
+	   
+	        <img id ="profiles" src="<c:url value='/user/review/${review.rephoto}' />" width="120" height="120" alt="" name="rephoto" style="width: 150px; height: 213.675px;cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+	        <div class="ReviewDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
+	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editReviewcontent" name="recontent">${review.recontent}</textarea>
 	        </div>    
 		</div>
 		  </form>
@@ -140,31 +139,34 @@ $('#profiles').click(function(){
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
-$(function(){
+
 $('#editCheckReview').click(function(){
-	$('#editNotice').click();
+	$('#editReview').click();
 })
 
-
+$('#profiles').click(function(){
+	$('#Photo').click();
+});
 
 $('#returnReview').click(function(){
 	history.back();
 })
 
 	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$('#imgpreview').attr('src', e.target.result);
-				if (e.target.result.substring(5, 10) == 'image') {
-					//$('#imgpreview').show();
-				} else {
-					$('#imgpreview').hide();
-				}
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
+	 if (input.files && input.files[0]) {
+	  var reader = new FileReader();
+	  
+	  reader.onload = function (e) {
+	   $('#profiles').attr('src', e.target.result);  
+	  }
+	  
+	  reader.readAsDataURL(input.files[0]);
+	  }
 	}
-}
+	  
+	$("#Photo").change(function(){
+	   readURL(this);
+	});
+	
 </script>
 </html>

@@ -165,5 +165,51 @@ public class ReviewController {
 				model.addAttribute("review", re);
 				return "review/reviewEdit";
 			}
+			
+			@RequestMapping(value="reviewEditCheck.do" , method = RequestMethod.POST)
+			public String reviewEditCheck(int reseq,Review review, HttpServletRequest request) {
+				String viewpage;
+				CommonsMultipartFile multifile = review.getFilesrc();
+				BoardDao dao = sqlSession.getMapper(BoardDao.class);
+				String img = dao.getReviewImg(reseq);
+				System.out.println("dd" + img);
+				String filename = multifile.getOriginalFilename();	
+				System.out.println("ss" + filename);
+				String path = request.getServletContext().getRealPath("/user/review");
+				System.out.println("111");
+				String fpath = path + "\\"+ filename; 
+				
+				if(filename.equals("")) {
+					review.setRephoto(img);
+				}else {
+					review.setRephoto(filename);
+				}
+					if(!filename.equals("")) { //실 파일 업로드
+						FileOutputStream fs = null;
+						try {
+							fs = new FileOutputStream(fpath);
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+							
+						}finally {
+							try {
+								fs.write(multifile.getBytes());
+								fs.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					
+				int result = bService.updateReview(review);
+				if(result > 0) {
+					viewpage= "redirect:/review.do";
+				}else {
+					viewpage="redirect:/review.do";
+				}
+				return viewpage;
+				
+				
+			}
 	
 }

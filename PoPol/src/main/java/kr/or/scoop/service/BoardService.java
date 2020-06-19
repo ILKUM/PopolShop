@@ -103,4 +103,12 @@ public class BoardService {
 			
 			return result;
 		}
+		
+		//리뷰글 수정 체크
+		public int updateReview(Review review) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.updateReview(review);
+			return result;
+		}
 }

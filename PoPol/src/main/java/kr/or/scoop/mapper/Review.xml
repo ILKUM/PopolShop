@@ -46,4 +46,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.RvReply">
 	select r.rvrseq,r.reseq,r.rvrcontent,r.rvrtime,m.email,m.name from rvreply r join member m on r.email=m.email where reseq = #{reseq}
 	</select>
+	<select id="getReviewImg" parameterType="kr.or.scoop.dto.Review" resultType="String">
+	select rephoto from reboard where reseq = #{reseq}
+	</select>
+	<update id="updateReview" parameterType="kr.or.scoop.dto.Review">
+		UPDATE reboard 
+		set retitle=#{retitle}, recontent=#{recontent} ,rephoto = #{rephoto} where reseq=#{reseq}
+	</update>
 </mapper>

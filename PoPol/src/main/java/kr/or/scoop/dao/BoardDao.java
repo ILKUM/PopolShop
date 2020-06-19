@@ -7,7 +7,8 @@ import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.RvReply;
 
 public interface BoardDao {
-	
+
+	///////////////// 리뷰 /////////////////////////
 	
 	//리뷰 작성
 	public int insertReview(Review review);
@@ -45,10 +46,14 @@ public interface BoardDao {
 	//추천 리스트
 	public List<Recommend> getRecomm();
 
-	/////////////////////// 	리뷰         	///////////////////////////////////////////////
-	
 	//리뷰 글 수정
-	public Review updateReview(int reseq);
+	public int updateReview(Review review);
+	
+	//리뷰 글 사진
+	public String getReviewImg(int reseq);
+	
+	/////////////// 	추천          	//////////////////
+	
 	
 	//추천 게시판 디테일
 	public Recommend detailRecomm(int rcseq);
@@ -64,4 +69,6 @@ public interface BoardDao {
 	
 	//추천 글 조회수 증가
 	public int rcrnumCount(int rcseq);
+	
+	
 }
