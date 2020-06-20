@@ -210,6 +210,7 @@ public class ReviewController {
 				
 			}
 			
+			//리뷰글 삭제 
 			@RequestMapping(value="deleteReview.do",method=RequestMethod.GET)
 			public String deleteReview(int reseq) {
 				String viewpage;
@@ -219,6 +220,21 @@ public class ReviewController {
 					viewpage= "redirect:/review.do";
 				}else {
 					viewpage= "redirect:/review.do";
+				}
+				
+				return viewpage;
+			}
+			
+			//내가 작성한 글에서 리뷰글 삭제
+			@RequestMapping(value="deleteMyReview.do", method=RequestMethod.GET)
+			public String deleteMyReview(int reseq) {
+				String viewpage;
+				int result = bService.deleteReview(reseq);
+				
+				if(result > 0) {
+					viewpage= "redirect:/writeMyreview.do";
+				}else {
+					viewpage= "redirect:/writeMyreview.do";
 				}
 				
 				return viewpage;

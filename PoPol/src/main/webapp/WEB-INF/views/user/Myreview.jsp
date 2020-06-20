@@ -94,7 +94,7 @@ function writeDelete() {
 			   if (result.value) {
 					$.ajax({
 						type : 'post',
-						url : 'deleteMyRecom.do',
+						url : 'deleteMyReview.do',
 						data : {				
 							rcseq:$("#del").val()
 						},
@@ -135,10 +135,10 @@ function writeDelete() {
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeRecom.do">추천 게시판</a>
+			      <a class="nav-link" href="writeMyRecom.do">추천 게시판</a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeReview.do" style="color: #E71D36;">리뷰 게시판</a>
+			      <a class="nav-link" href="writeMyReview.do" style="color: #E71D36;">리뷰 게시판</a>
 			    </li>		
 		    </ul>
 		</div>
