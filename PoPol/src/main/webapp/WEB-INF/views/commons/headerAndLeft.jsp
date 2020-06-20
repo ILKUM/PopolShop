@@ -294,9 +294,9 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="historys" /></span>
          </a></li>
-         <li><a href="writeRecom.do" aria-expanded="false"> <span class="iconify" data-icon="jam:write"
+         <li><a href="writeMyRecom.do" aria-expanded="false"> <span class="iconify" data-icon="jam:write"
           data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
-             &nbsp;<spring:message code="mywrites" /></span>
+             &nbsp;<spring:message code="mywrite" /></span>
          </a></li>
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span

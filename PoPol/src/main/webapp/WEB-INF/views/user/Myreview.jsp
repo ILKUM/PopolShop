@@ -80,7 +80,7 @@ $(document).ready(function(){
 
 function writeDelete() {
 	$('.deleteWrite').click(function(){
-		   var memDiv = $(this).parents(".writeRecom");
+		   var memDiv = $(this).parents(".writeReview");
 		   Swal.fire({
 			   title: '정말로 삭제하시겠습니까?',
 			   text: "확인을 누르시면 되돌릴수 없습니다!",
@@ -129,13 +129,13 @@ function writeDelete() {
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">자신이 쓴 글 목록</h3>
+				<h3 style="padding-left: 15px;">자신이 쓴 리뷰 글 목록</h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeRecom.do" style="color: #E71D36;">추천 게시판</a>
+			      <a class="nav-link" href="writeRecom.do">추천 게시판</a>
 			    </li>		
 			    <li class="nav-item">
 			      <a class="nav-link" href="writeReview.do" style="color: #E71D36;">리뷰 게시판</a>
@@ -163,23 +163,23 @@ function writeDelete() {
 		     
       </div>
 		
-		<div class="row writeRecom" style="margin-left: 2%; margin-right: 2%" id="row">	
-		<c:forEach items="${recom}" var="rc">	
+		<div class="row writeReview" style="margin-left: 2%; margin-right: 2%" id="row">	
+		<c:forEach items="${rev}" var="rv">	
 		<div class="col-sm-7 listwrite" style="padding-left: 60px;" >
-         	${rc.rctitle}
+         	${rv.retitle}
          </div>
          <div class="col-sm-2 listwrite">
-         	${fn:substring(rc.rctime,0,10)}
+         	${fn:substring(rv.retime,0,10)}
          </div>
          <div class="col-sm-1 listwrite">
-         	${rc.rcrnum}
+         	${rv.rernum}
          </div>
          <div class="col-sm-1 listwrite">
-         	${rc.rclike}
+         	${rv.relike}
          </div>
          <div class="col-sm-1 listwrite">
          	<a class=deleteWrite href="javascript:writeDelete();">삭제</a>
-				<input type="hidden" name="rcseq" value="${rc.rcseq}" id="del">		
+				<input type="hidden" name="reseq" value="${rv.reseq}" id="del">		
          </div>
 			</c:forEach>  
       </div>	

@@ -129,16 +129,16 @@ function writeDelete() {
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">자신이 쓴 글 목록</h3>
+				<h3 style="padding-left: 15px;">자신이 추천 글 목록</h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeRecom.do" style="color: #E71D36;">추천 게시판</a>
+			      <a class="nav-link" href="writeMyRecom.do" style="color: #E71D36;">추천 게시판</a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeReview.do" style="color: #E71D36;">리뷰 게시판</a>
+			      <a class="nav-link" href="writeMyReview.do"">리뷰 게시판</a>
 			    </li>		
 		    </ul>
 		</div>

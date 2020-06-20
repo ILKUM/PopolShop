@@ -494,8 +494,8 @@ public class MemberController {
 	}
 	
 	//내가 작성한 추천글
-	@RequestMapping(value = "writeRecom.do",method = RequestMethod.GET)
-	public String writeRecom(String email,HttpSession session,Model model) {
+	@RequestMapping(value = "writeMyRecom.do",method = RequestMethod.GET)
+	public String MywriteRecom(String email,HttpSession session,Model model) {
 		email = (String)session.getAttribute("email");
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		List<Recommend> recom = dao.getWriteRecom(email);
@@ -503,8 +503,9 @@ public class MemberController {
 		return "user/Myrecom";
 	}
 	
-	@RequestMapping(value="writeReview.do", method = RequestMethod.GET)
-	public String writeReview(String email,HttpSession session,Model model) {
+	//내가 작성한 리뷰글
+	@RequestMapping(value="writeMyReview.do", method = RequestMethod.GET)
+	public String MywriteReview(String email,HttpSession session,Model model) {
 		email = (String)session.getAttribute("email");
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		List<Review> rev = dao.getWriteReview(email);
