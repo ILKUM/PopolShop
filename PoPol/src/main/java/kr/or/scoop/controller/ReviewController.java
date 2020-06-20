@@ -226,7 +226,7 @@ public class ReviewController {
 			}
 			
 			//내가 작성한 글에서 리뷰글 삭제
-			@RequestMapping(value="deleteMyReview.do", method=RequestMethod.GET)
+			@RequestMapping(value="deleteMyReview.do", method= {RequestMethod.GET, RequestMethod.POST})
 			public String deleteMyReview(int reseq) {
 				String viewpage;
 				int result = bService.deleteReview(reseq);
