@@ -27,7 +27,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 
 <style>
-.listmem{
+.listwrite{
 	border-bottom: 1px solid #c8c8c8;
 	padding-top: 0.7%;
 	padding-bottom: 0.7%;
@@ -78,6 +78,37 @@ $(document).ready(function(){
 
 });
 
+function writeDelete() {
+	$('.deleteWrite').click(function(){
+		   var memDiv = $(this).parents(".writeRecom");
+		   Swal.fire({
+			   title: '정말로 삭제하시겠습니까?',
+			   text: "확인을 누르시면 되돌릴수 없습니다!",
+			   icon: 'warning',
+			   showCancelButton: true,
+			   confirmButtonColor: '#d33',
+			   cancelButtonColor: '#c8c8c8',
+			   confirmButtonText: '확인',
+			   cancelButtonText: '취소'
+			 }).then((result) => {
+			   if (result.value) {
+					$.ajax({
+						type : 'post',
+						url : 'deleteMyRecom.do',
+						data : {				
+							rcseq:$("#del").val()
+						},
+						success : function(data) {
+							console.log("ajax success"+data);
+							console.log(memDiv);
+							$(memDiv).remove();
+						}
+					});
+			   }
+			 })
+			})
+			
+	}
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -112,43 +143,46 @@ $(document).ready(function(){
 		    </ul>
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
-		 <div class="row" style="margin-left: 2%; margin-right: 2%">      
-         <div class="col-sm-6 newissue" style="padding-left: 87px;" >
+		 <div class="row" style="margin-left: 2%; margin-right: 2%">
+		 
+         <div class="col-sm-7 listwrite" style="padding-left: 87px;" >
          	제목
          </div>
-         <div class="col-sm-2 newissue">
-         	작성자 
+         <div class="col-sm-2 listwrite">
+         	작성시간
          </div>
-         <div class="col-sm-2 newissue">
-         	작성시간 
+         <div class="col-sm-1 listwrite">
+         	조회수 
          </div>
-         <div class="col-sm-1 newissue">
-         	조회수
-         </div>
-         <div class="col-sm-1 newissue">
+         <div class="col-sm-1 listwrite">
          	추천수
          </div>
+         <div class="col-sm-1 listwrite">
+         	관리
+         </div>
+		     
       </div>
 		
-		<div class="row search_member resultmember" style="margin-left: 2%; margin-right: 2%" id="row">	
-			
-		<div class="col-sm-6 newissue" style="padding-left: 87px;" >
-         	제목
+		<div class="row writeRecom" style="margin-left: 2%; margin-right: 2%" id="row">	
+		<c:forEach items="${recom}" var="rc">	
+		<div class="col-sm-7 listwrite" style="padding-left: 60px;" >
+         	${rc.rctitle}
          </div>
-         <div class="col-sm-2 newissue">
-         	작성자 
+         <div class="col-sm-2 listwrite">
+         	${fn:substring(rc.rctime,0,10)}
          </div>
-         <div class="col-sm-2 newissue">
-         	작성시간 
+         <div class="col-sm-1 listwrite">
+         	${rc.rcrnum}
          </div>
-         <div class="col-sm-1 newissue">
-         	조회수
+         <div class="col-sm-1 listwrite">
+         	${rc.rclike}
          </div>
-         <div class="col-sm-1 newissue">
-         	추천수
+         <div class="col-sm-1 listwrite">
+         	<a class=deleteWrite href="javascript:writeDelete();">삭제</a>
+				<input type="hidden" name="rcseq" value="${rc.rcseq}" id="del">		
          </div>
+			</c:forEach>  
       </div>	
-			
 			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
 			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
 			</div>

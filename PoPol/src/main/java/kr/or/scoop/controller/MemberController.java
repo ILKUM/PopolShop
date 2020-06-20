@@ -35,6 +35,8 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dto.Member;
+import kr.or.scoop.dto.Recommend;
+import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.Role;
 import kr.or.scoop.service.MemberService;
 import kr.or.scoop.utils.Mail;
@@ -491,6 +493,27 @@ public class MemberController {
 		sout.close();
 	}
 	
+	//내가 작성한 추천글
+	@RequestMapping(value = "writeRecom.do",method = RequestMethod.GET)
+	public String writeRecom(String email,HttpSession session,Model model) {
+		email = (String)session.getAttribute("email");
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		List<Recommend> recom = dao.getWriteRecom(email);
+		model.addAttribute("recom", recom);
+		return "user/Myrecom";
+	}
+	
+	@RequestMapping(value="writeReview.do", method = RequestMethod.GET)
+	public String writeReview(String email,HttpSession session,Model model) {
+		email = (String)session.getAttribute("email");
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		List<Review> rev = dao.getWriteReview(email);
+		model.addAttribute("rev" , rev);
+		
+		
+		return "user/Myreview";	
+	
+	}
 	
 	
 }

@@ -124,5 +124,19 @@ public class RecommendController {
 				}
 				return viewpage;
 			}
+			
+			//내가 작성한 글에서 삭제 할 때 
+			@RequestMapping(value="deleteMyRecom.do" ,method = RequestMethod.GET)
+			public String deleteRecom(int rcseq) {
+				int result = bService.deleteRecom(rcseq);
+				String viewpage;
+				if(result > 0) {
+					viewpage = "redirect:/writeRecom.do";
+				}else {
+					viewpage = "redirect:/writeRecom.do";
+				}
+				
+				return viewpage;
+			}
 	
 }

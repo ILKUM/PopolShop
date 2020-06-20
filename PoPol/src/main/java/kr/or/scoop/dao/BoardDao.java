@@ -73,5 +73,8 @@ public interface BoardDao {
 	//추천 글 조회수 증가
 	public int rcrnumCount(int rcseq);
 	
+	//추천 글 삭제
+	public int deleteRecom(int rcseq);
+	
 	
 }

@@ -129,4 +129,13 @@ public class BoardService {
 			return result;
 			
 		}
+		
+		//추천글 삭제
+		public int deleteRecom(int rcseq) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.deleteRecom(rcseq);
+			return result;
+			
+		}
 }
