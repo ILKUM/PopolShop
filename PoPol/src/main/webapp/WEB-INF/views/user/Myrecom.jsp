@@ -19,15 +19,15 @@
     <link rel="stylesheet" href="<c:url value="/resources/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css" />">
     <!-- Custom Stylesheet -->
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
-</head>
+<script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
 
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> -->
 
 <style>
-.newissue{
+.listmem{
 	border-bottom: 1px solid #c8c8c8;
 	padding-top: 0.7%;
 	padding-bottom: 0.7%;
@@ -74,9 +74,10 @@ $(document).ready(function(){
 			
 	}); 
 	
-	
+	 
 
 });
+
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -94,147 +95,73 @@ $(document).ready(function(){
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-        <div class="card" style="min-height: 1080px">
-        	<div class="row">
-        	<c:forEach items="${movie}" var="m">
-        	<input type="text" name="moseq" value="${m.moseq}" hidden=""> 
-        	<input type="hidden" name="monum" value="${m.monum}"> 
-        	<input type="hidden" name="email" value="${sessionScope.email}" id="moa"> 
-			<div class="col-md-4 col-lg-3 ftco-animate fadeInUp ftco-animated" style="padding-left: 30px; padding-top: 15px;">
-						
-		        			<div class="project">
-		        					<div class="img">
-		        						<a href="movieDetail.do?moseq=${m.moseq}">
-		        						<img src="<c:url value='/user/movie/${m.mophoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 150px; height: 213.675px;">
-		        						</a>
-		        					</div>        					
-		        						<div class="text">
-		        							<h4>
-		        								${m.moname}
-		        								</h4>	     								
-		        								<h4>${m.modirector}</h4>
-		        								<h4>${m.mpoint}P</h4>
-		        								<h4><c:out value="${fn:substring(m.modate,0,10)}"/></h4>
-												<h6>
-		        									<span>추천수 : </span>
-		        									${m.molike}
-		        									</h6>
-		        									</div>
-		        									
-		        									
-		        									
-		        			<c:set var="mark" value="true" />
-							<c:set var="loop" value="false" />
-							<c:forEach items="${jjimlist}" var="jjim">
-							<c:if test="${not loop}" />
-							<c:if test="${m.moseq == jjim.jseq}">
-								<c:set var="mark" value="false" />
-								<c:set var="loop" value="true" />
-							</c:if>
-				         	</c:forEach>
-								
-							<c:choose>
-							<c:when test="${mark}">
-							<i class="jjim far fa-heart" id="like" name="likeoff"  style="cursor: pointer; font-size: 20px;"></i>		
-							</c:when>
-							<c:otherwise>		
-							<i class="jjim fas fa-heart" id="like" name="likeon"  style="cursor: pointer; font-size: 20px;"></i>	
-							</c:otherwise>
-							</c:choose>
-		        								
-		        			</div>					
-		        			</div>
-		        			</c:forEach>
-		        			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
-			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
-		        			</div>
-							
-		        			
-							
-		        			</div>
-		        		
-							
-		        			
-		        			
-		        			
-		        		
+        <div class="card">
+		<div class="row" style="margin: 2% 2% 15px 2%">
+			<div class="col-sm-12" style="padding-left: 0">
+				<h3 style="padding-left: 15px;">자신이 쓴 글 목록</h3>
+			</div>
+		</div>
+		<div class="row" style="margin-left: 2%;">
+			<ul class="nav nav-pills">
+			    <li class="nav-item">
+			      <a class="nav-link" href="writeRecom.do" style="color: #E71D36;">추천 게시판</a>
+			    </li>		
+			    <li class="nav-item">
+			      <a class="nav-link" href="writeReview.do" style="color: #E71D36;">리뷰 게시판</a>
+			    </li>		
+		    </ul>
+		</div>
+		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
+		 <div class="row" style="margin-left: 2%; margin-right: 2%">      
+         <div class="col-sm-6 newissue" style="padding-left: 87px;" >
+         	제목
+         </div>
+         <div class="col-sm-2 newissue">
+         	작성자 
+         </div>
+         <div class="col-sm-2 newissue">
+         	작성시간 
+         </div>
+         <div class="col-sm-1 newissue">
+         	조회수
+         </div>
+         <div class="col-sm-1 newissue">
+         	추천수
+         </div>
+      </div>
+		
+		<div class="row search_member resultmember" style="margin-left: 2%; margin-right: 2%" id="row">	
 			
-            </div>
+		<div class="col-sm-6 newissue" style="padding-left: 87px;" >
+         	제목
+         </div>
+         <div class="col-sm-2 newissue">
+         	작성자 
+         </div>
+         <div class="col-sm-2 newissue">
+         	작성시간 
+         </div>
+         <div class="col-sm-1 newissue">
+         	조회수
+         </div>
+         <div class="col-sm-1 newissue">
+         	추천수
+         </div>
+      </div>	
+			
+			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
+			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
+			</div>
+			</div>
+		
+            <!-- #/ container -->
+            
             </div>
 		</div>
-		 <script type="text/javascript">
-		$(function(){
-			$('.jjim').click(function(){
-				let like = $(this);
-				
-				let icon = like.attr('class').split(' ');
-				let status = like.attr('name');
-				let moseq = like.closest('div.row').children('input[name=moseq]').val();
-				let monum = like.closest('div.row').children('input[name=monum]').val();
-				
-
-				console.log(icon);
-				console.log(status);
-				console.log(moseq);
-				
-				let dat;
-				let mark;
-				
-				$.ajax({
-					url : "jjimMovie.do",
-					type : "POST",
-					data : {"moseq" : moseq, 
-							"status" : status,
-							"monum" : monum
-					       },
-					success : function(datadata){
-						mark = like.attr('class').split(' ');
-						if(status == "likeoff"){
-							console.log('likeclass ? ' + like.attr('class'));
-							console.log('icon : ' + mark);
-							console.log('likeoff if');
-							like.removeAttr('name').attr('name', 'likeon');
-							like.removeClass(mark[1]+" "+mark[2]).addClass("fas fa-heart");
-
-							Swal.fire({
-					    		  title: "찜하기 성공",
-					    		  text: "찜하기 성공",
-					    		  icon: "success",
-					    		  button: "확인"
-					    		})
-						}else if(status == "likeon"){
-							console.log('likeon if');
-							like.removeAttr("name").attr("name", "likeoff");
-							like.removeClass(mark[1]+" "+mark[2]).addClass("far fa-heart");
-
-							Swal.fire({
-					    		  title: "찜하기 취소",
-					    		  text: "찜하기 취소",
-					    		  icon: "warning",
-					    		  button: "확인"
-					    		})
-						}
-						
-
-					},
-					error : function(err){
-						console.log('error' + err);
-						Swal.fire({
-				    		  title: "찜하기 중 에러",
-				    		  text: "찜하기 중 에러발생",
-				    		  icon: "error",
-				    		  button: "확인"
-				    		})
-						return false;
-					}
-				});
-			});
-		});
 		
-		
-	</script> 
         	
-    
+        </div>
+        
         <!--**********************************
             Content body end
         ***********************************-->

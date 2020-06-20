@@ -294,18 +294,22 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="historys" /></span>
          </a></li>
+         <li><a href="myWriting.do" aria-expanded="false"> <span class="iconify" data-icon="jam:write"
+          data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
+             &nbsp;<spring:message code="mywrite" /></span>
+         </a></li>
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span
                class="iconify" data-icon="wpf:administrator" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="privateadmins" /></span>
+                  &nbsp;<spring:message code="admin" /></span>
          </a></li>
          </c:if>
          <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
          <li><a href="wishlist.do?email=${sessionScope.email}" aria-expanded="false" id="wish"> <span
                class="iconify" data-icon="el:heart" data-inline="false" id="wish"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="private.wish" /></span>
+                  &nbsp;<spring:message code="wish" /></span>
          </a></li>
          </c:if>       
         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movietitle" /></b></li>
@@ -471,7 +475,7 @@ span {
     </div>
        <div class="form-label-group">
         <label for="validationTextarea">영화 가격</label>
-        <input type="text" id="mpoint" name="mpoint" class="form-control is-invalid" placeholder="포인트를 입력 해주세요." required="required" style="width: 50%;">
+        <input type="text" id="mpoint" name="mpoint" class="form-control is-invalid" placeholder="포인트를 입력 해주세요." required="required" style="width: 50%;" numberOnly>
   </div>
     <hr class="my-4">
      <select id="monum" name="monum" class="form-control">                
@@ -523,6 +527,11 @@ span {
 $('#logout').click(function(){
 		location.href="logout.do";
     });  
+
+$("input:text[numberOnly]").on("keyup", function() {
+    $(this).val($(this).val().replace(/[^0-9]/g,""));
+});
+
 
 //사진 변경
 $(function(){
@@ -582,6 +591,7 @@ if($("#cpoint").val() == 1) {
 	})
 	return false;
 }
+
 Swal.fire({
 	  title : '등록 성공',
 	  text : '쿠폰이 등록 되었습니다.',
