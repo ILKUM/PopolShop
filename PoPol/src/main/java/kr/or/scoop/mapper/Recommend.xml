@@ -33,4 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="rcrnumCount">
 		 update recommend set rcrnum=rcrnum+1 where rcseq = #{rcseq}
 	</update>
+	<delete id="deleteRecom">
+		delete from recommend where rcseq = #{rcseq}
+	</delete>
 	</mapper>

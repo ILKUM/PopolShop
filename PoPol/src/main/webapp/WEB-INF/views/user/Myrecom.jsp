@@ -78,37 +78,6 @@ $(document).ready(function(){
 
 });
 
-function writeDelete() {
-	$('.deleteWrite').click(function(){
-		   var memDiv = $(this).parents(".writeRecom");
-		   Swal.fire({
-			   title: '정말로 삭제하시겠습니까?',
-			   text: "확인을 누르시면 되돌릴수 없습니다!",
-			   icon: 'warning',
-			   showCancelButton: true,
-			   confirmButtonColor: '#d33',
-			   cancelButtonColor: '#c8c8c8',
-			   confirmButtonText: '확인',
-			   cancelButtonText: '취소'
-			 }).then((result) => {
-			   if (result.value) {
-					$.ajax({
-						type : 'post',
-						url : 'deleteMyRecom.do',
-						data : {				
-							rcseq:$("#del").val()
-						},
-						success : function(data) {
-							console.log("ajax success"+data);
-							console.log(memDiv);
-							$(memDiv).remove();
-						}
-					});
-			   }
-			 })
-			})
-			
-	}
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -163,23 +132,36 @@ function writeDelete() {
 		     
       </div>
 		
+		<c:forEach items="${recom}" var="rc">
+		
 		<div class="row writeRecom" style="margin-left: 2%; margin-right: 2%" id="row">	
-		<c:forEach items="${recom}" var="rc">	
 		<div class="col-sm-7 listwrite" style="padding-left: 60px;" >
+		<a href="recomDetail.do?rcseq=${rc.rcseq}">
          	${rc.rctitle}
+		</a>
          </div>
          <div class="col-sm-2 listwrite">
+         <a href="recomDetail.do?rcseq=${rc.rcseq}">
          	${fn:substring(rc.rctime,0,10)}
+         	</a>
          </div>
          <div class="col-sm-1 listwrite">
+         	<a href="recomDetail.do?rcseq=${rc.rcseq}">
          	${rc.rcrnum}
+         	</a>
          </div>
          <div class="col-sm-1 listwrite">
+         	<a href="recomDetail.do?rcseq=${rc.rcseq}">
          	${rc.rclike}
+         	</a>
          </div>
+	
+			
          <div class="col-sm-1 listwrite">
-         	<a class=deleteWrite href="javascript:writeDelete();">삭제</a>
-				<input type="hidden" name="rcseq" value="${rc.rcseq}" id="del">		
+		<a href="deleteMyRecom.do?rcseq=${rc.rcseq}">
+         	삭제
+		</a>   
+		</div>      
          </div>
 			</c:forEach>  
       </div>	
@@ -192,9 +174,9 @@ function writeDelete() {
             
             </div>
 		</div>
+ 
 		
         	
-        </div>
         
         <!--**********************************
             Content body end

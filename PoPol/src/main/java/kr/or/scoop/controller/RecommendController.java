@@ -131,9 +131,9 @@ public class RecommendController {
 				int result = bService.deleteRecom(rcseq);
 				String viewpage;
 				if(result > 0) {
-					viewpage = "redirect:/writeRecom.do";
+					viewpage = "redirect:/writeMyRecom.do";
 				}else {
-					viewpage = "redirect:/writeRecom.do";
+					viewpage = "redirect:/writeMyRecom.do";
 				}
 				
 				return viewpage;
