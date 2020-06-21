@@ -232,9 +232,9 @@ public class ReviewController {
 				int result = bService.deleteReview(reseq);
 				
 				if(result > 0) {
-					viewpage= "redirect:/writeMyreview.do";
+					viewpage= "redirect:/writeMyReview.do";
 				}else {
-					viewpage= "redirect:/writeMyreview.do";
+					viewpage= "redirect:/writeMyReview.do";
 				}
 				
 				return viewpage;

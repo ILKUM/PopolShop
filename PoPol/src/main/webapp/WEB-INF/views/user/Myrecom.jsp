@@ -155,8 +155,6 @@ $(document).ready(function(){
          	${rc.rclike}
          	</a>
          </div>
-	
-			
          <div class="col-sm-1 listwrite">
 		<a href="deleteMyRecom.do?rcseq=${rc.rcseq}">
          	삭제
