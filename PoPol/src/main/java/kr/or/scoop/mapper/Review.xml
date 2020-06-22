@@ -56,4 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteReview">
 	DELETE FROM reboard  WHERE reseq = #{reseq}
 	</delete>
+	<!-- 내가 작성한 리뷰 글 -->
+	<select id="getWriteReview" resultType="kr.or.scoop.dto.Review">
+	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email where m.email = #{email}
+	</select>
 </mapper>

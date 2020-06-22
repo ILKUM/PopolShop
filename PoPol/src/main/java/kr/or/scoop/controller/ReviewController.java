@@ -239,5 +239,17 @@ public class ReviewController {
 				
 				return viewpage;
 			}
+			
+			//내가 작성한 리뷰글
+			@RequestMapping(value="writeMyReview.do", method = RequestMethod.GET)
+			public String MywriteReview(String email,HttpSession session,Model model) {
+				email = (String)session.getAttribute("email");
+				BoardDao dao = sqlSession.getMapper(BoardDao.class);
+				List<Review> rev = dao.getWriteReview(email);
+				model.addAttribute("rev" , rev);
+				
+				
+				return "user/Myreview";	
+			}
 	
 }

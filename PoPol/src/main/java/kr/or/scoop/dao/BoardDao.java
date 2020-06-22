@@ -49,6 +49,9 @@ public interface BoardDao {
 	//리뷰 글 삭제
 	public int deleteReview(int reseq);
 	
+	//내가 작성한 리뷰글
+	public List<Review> getWriteReview(String email);
+	
 	/////////////// 	추천          	//////////////////
 	
 	//추천글작성
@@ -81,5 +84,10 @@ public interface BoardDao {
 	
 	//추천 글 사진
 	public String getRecomImg(int rcseq);
+	
+	//내가 작성한 추천글
+	public List<Recommend> getWriteRecom(String email);
+		
+	
 	
 }

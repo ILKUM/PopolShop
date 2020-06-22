@@ -39,9 +39,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<update id="updateRecom" parameterType="kr.or.scoop.dto.Recommend">
 		UPDATE recommend 
-		set rctitle=#{retitle}, rccontent=#{rccontent} ,rcphoto = #{rcphoto} where rcseq=#{rcseq}
+		set rctitle=#{rctitle}, rccontent=#{rccontent} ,rcphoto = #{rcphoto} where rcseq=#{rcseq}
 	</update>
 	<delete id="deleteRecom">
 		delete from recommend where rcseq = #{rcseq}
 	</delete>
+	<!-- 내가 작성한 추천 글 -->
+	<select id="getWriteRecom" resultType="kr.or.scoop.dto.Recommend">
+	 select m.name, r.rcseq , r.rctitle, r.rctime , r.rclike, r.rcrnum from member m join recommend r on m.email = r.email where m.email = #{email}
+	</select>
 	</mapper>

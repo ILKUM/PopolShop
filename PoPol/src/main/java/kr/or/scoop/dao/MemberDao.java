@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.or.scoop.dto.Member;
-import kr.or.scoop.dto.Recommend;
-import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.Role;
 
 
@@ -63,11 +61,7 @@ public interface MemberDao {
 	//지난기록 인서트
 	public int addHistory(int moseq, String email);
 	
-	//내가 작성한 추천글
-	public List<Recommend> getWriteRecom(String email);
 	
-	//내가 작성한 리뷰글
-	public List<Review> getWriteReview(String email);
 	
 	
 }

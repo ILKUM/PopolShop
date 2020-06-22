@@ -183,7 +183,7 @@ public class RecommendController {
 			
 			//내가 작성한 글에서 삭제 할 때 
 			@RequestMapping(value="deleteMyRecom.do" ,method = {RequestMethod.GET , RequestMethod.POST})
-			public String deleteRecom(int rcseq) {
+			public String deleteMyRecom(int rcseq) {
 				int result = bService.deleteRecom(rcseq);
 				String viewpage;
 				if(result > 0) {
@@ -193,6 +193,30 @@ public class RecommendController {
 				}
 				
 				return viewpage;
+			}
+			
+			//추천 글 삭제
+			@RequestMapping(value="deleteRecom.do" ,method = {RequestMethod.GET , RequestMethod.POST})
+			public String deleteRecom(int rcseq) {
+				int result = bService.deleteRecom(rcseq);
+				String viewpage;
+				if(result > 0) {
+					viewpage = "redirect:/recom.do";
+				}else {
+					viewpage = "redirect:/recom.do";
+				}
+				
+				return viewpage;
+			}
+			
+			//내가 작성한 추천글
+			@RequestMapping(value = "writeMyRecom.do",method = RequestMethod.GET)
+			public String MywriteRecom(String email,HttpSession session,Model model) {
+				email = (String)session.getAttribute("email");
+				BoardDao dao = sqlSession.getMapper(BoardDao.class);
+				List<Recommend> recom = dao.getWriteRecom(email);
+				model.addAttribute("recom", recom);
+				return "user/Myrecom";
 			}
 	
 }
