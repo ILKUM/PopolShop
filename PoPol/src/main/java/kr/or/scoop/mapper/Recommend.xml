@@ -25,6 +25,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into recommem(rlseq,rcseq,email) 
 		values (RLSEQ_RECOMMEM_SEQ.NEXTVAL,#{param1},#{param2})
 	</insert>
+	<!-- 추천글 이미지 -->
+	<select id="getRecomImg" parameterType="kr.or.scoop.dto.Recommend" resultType="String">
+	select rcphoto from recommend where rcseq = #{rcseq}
+	</select>
 	<!-- 추천글 추천수 증가 -->
 	<update id="rclikeCount" parameterType="kr.or.scoop.dto.Recommend">
 		update recommend set rclike = rclike+1 where rcseq = #{rcseq}
@@ -32,6 +36,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 추천글 조회수 증가 -->
 	<update id="rcrnumCount">
 		 update recommend set rcrnum=rcrnum+1 where rcseq = #{rcseq}
+	</update>
+	<update id="updateRecom" parameterType="kr.or.scoop.dto.Recommend">
+		UPDATE recommend 
+		set rctitle=#{retitle}, rccontent=#{rccontent} ,rcphoto = #{rcphoto} where rcseq=#{rcseq}
 	</update>
 	<delete id="deleteRecom">
 		delete from recommend where rcseq = #{rcseq}

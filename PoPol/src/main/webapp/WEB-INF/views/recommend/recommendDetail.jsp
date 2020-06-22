@@ -131,9 +131,9 @@ $(function(){
 		});
 	});
 	$('#editRecommend').click(function(){
-		location.href = 'RecommendEdit.do?rcseq='+${rec.rcseq};
+		location.href = 'recomEdit.do?rcseq='+${rec.rcseq};
 	});
-	$('#deleteReview').click(function(){
+	$('#deleteRecom').click(function(){
 	   Swal.fire({
 		   title: '정말로 리뷰를 삭제하시겠습니까??',
 		   text: "삭제하시면 리뷰의 모든 정보가 사라집니다!",
@@ -143,9 +143,9 @@ $(function(){
 		   cancelButtonColor: '#c8c8c8',
 		   confirmButtonText: '확인',
 		   cancelButtonText: '취소'
-		 }).then((result) =>  {
+		 }).then((result) => {
 		   if (result.value) {
-			   location.href = 'deleteReview.do?rcseq='+${rec.rcseq};
+			   location.href = 'deleteRecom.do?rcseq='+${rec.rcseq};
 		   }
 		 })
 	});
@@ -189,7 +189,7 @@ $(function(){
 	padding-top: 0.7%;
 	padding-bottom: 0.7%;
 }
-.myissueDetail{
+.RecomDetail{
 	font-size: 15px;
 	margin-left: 3%;
 	margin-bottom:1%;
@@ -229,8 +229,8 @@ border-radius: 5px;
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${rec.rclike}</i>
 			<c:if test="${rec.email==sessionScope.email}">
-	        	<span class="fas fa-cog"  id="editReview" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
-				<span class="iconify" id="deleteReview" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+	        	<span class="fas fa-cog"  id="editRecommend" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
+				<span class="iconify" id="deleteRecom" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
 				<a href="recom.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
@@ -238,14 +238,14 @@ border-radius: 5px;
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
 			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${rec.rctitle}</span>
-			<a href="userProfile.do?email=${rec.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${rec.name}</a></span><span style="float: right;padding-right: 5%;padding-top:1%;">${rec.rctime}</span>
+			<a href="userProfile.do?email=${rec.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${rec.name}</span></a><span style="float: right;padding-right: 5%;padding-top:1%;">${rec.rctime}</span>
 			</div>
 		
 		
 		<hr style="margin:10px 2% 0 0;">	
 		<br>
 		<div class="row" style="margin-right: 0;width:900px;">
-        <div class="myissueDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
+        <div class="RecomDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
        	${rec.rcphoto}
        	${rec.rccontent}
         </div>

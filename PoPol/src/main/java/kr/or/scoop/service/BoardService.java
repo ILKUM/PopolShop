@@ -112,6 +112,14 @@ public class BoardService {
 			return result;
 		}
 		
+		//추천글 수정 체크
+		public int updateRecom(Recommend recom) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.updateRecom(recom);
+			return result;
+		}
+		
 		//리뷰 글 삭제
 		public int deleteReview(int reseq) {
 			int result = 0;

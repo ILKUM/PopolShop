@@ -26,7 +26,7 @@
 	padding-top: 0.7%;
 	padding-bottom: 0.7%;
 }
-.ReviewDetail{
+.RecomDetail{
 	font-size: 15px;
 	margin-left: 3%;
 	margin-bottom:1%;
@@ -60,32 +60,32 @@ border-radius: 5px;
         <div class="content-body">
         <div class="container-fluid">
         <div class="card" >
-        <form action="reviewEditCheck.do?reseq=${review.reseq}" method="POST" enctype="multipart/form-data">
+        <form action="recomEditCheck.do?rcseq=${recom.rcseq}" method="POST" enctype="multipart/form-data">
 		<div class="row"style="margin:2% 2% 0 2%" >
 		<div class="col-sm-9">
-		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #2e1bf5;" data-icon="ic:outline-rate-review" data-inline="false">
+		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #2e1bf5;" data-icon="ant-design:like-outlined" data-inline="false">
 		</span>
-		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="retitle" value="${review.retitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
+		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="rctitle" value="${recom.rctitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
 		
 		
 		</div>
 		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">
-		<span id="editCheckReview">
+		<span id="editCheckRecom">
 		<span class="iconify" data-icon="fa-solid:check" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 20px;margin-left: 20px;"></span>
          </span>
          <span id="returnReview">
 		<span class="iconify" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 35px;margin-bottom: 15px;margin-left: 15px;"></span>
 		</span>
 		</div>
-		<input type="submit" class="form-control editdelete" value="완료" id="editReview" hidden="">
+		<input type="submit" class="form-control editdelete" value="완료" id="editRecom" hidden="">
 		</div>	
 		<hr>
 	       <p style="margin-left: 25px;margin-bottom: 16px; "> 사진변경 : <input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);"></p>
 		<div style="height:520px ;border: 1px solid rgba(0,0,0,0.5);margin-left: 2%;margin-right: 2%;border-radius: 0.5rem;padding: 1% 2% 1% 2%;margin-bottom: 80px;">            
 	   
-	        <img id ="profiles" src="<c:url value='/user/review/${review.rephoto}' />" width="120" height="120" alt="" name="rephoto" style="width: 150px; height: 213.675px;cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-	        <div class="ReviewDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
-	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editReviewcontent" name="recontent">${review.recontent}</textarea>
+	        <img id ="profiles" src="<c:url value='/user/recomm/${recom.rcphoto}' />" width="120" height="120" alt="" name="rephoto" style="width: 150px; height: 213.675px;cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+	        <div class="RecomDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
+	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editReviewcontent" name="rccontent">${recom.rccontent}</textarea>
 	        </div>    
 		</div>
 		  </form>
@@ -140,8 +140,8 @@ border-radius: 5px;
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
 
-$('#editCheckReview').click(function(){
-	$('#editReview').click();
+$('#editCheckRecom').click(function(){
+	$('#editRecom').click();
 })
 
 $('#profiles').click(function(){

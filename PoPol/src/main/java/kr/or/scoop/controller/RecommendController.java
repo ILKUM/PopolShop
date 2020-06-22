@@ -60,6 +60,62 @@ public class RecommendController {
 		return viewpage;
 	}
 	
+	//추천글 수정 이동 
+	@RequestMapping(value="recomEdit.do" , method=RequestMethod.GET)
+	public String EditRecom(Model model,int rcseq,HttpServletRequest request,HttpSession session) {		
+		
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		Recommend recom = dao.detailRecomm(rcseq);
+		model.addAttribute("recom", recom);	
+		
+		
+		return "recommend/recommendEdit";
+	}
+	
+	//리뷰 글 수정 체크 
+	@RequestMapping(value="recomEditCheck.do" , method = RequestMethod.POST)
+	public String reviewEditCheck(int rcseq,Recommend recom, HttpServletRequest request) {
+		String viewpage;
+		CommonsMultipartFile multifile = recom.getFilesrc();
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		String img = dao.getRecomImg(rcseq);
+		String filename = multifile.getOriginalFilename();	
+		String path = request.getServletContext().getRealPath("/user/recomm");
+		String fpath = path + "\\"+ filename; 
+		
+		if(filename.equals("")) {
+			recom.setRcphoto(img);
+		}else {
+			recom.setRcphoto(filename);
+		}
+			if(!filename.equals("")) { //실 파일 업로드
+				FileOutputStream fs = null;
+				try {
+					fs = new FileOutputStream(fpath);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+					
+				}finally {
+					try {
+						fs.write(multifile.getBytes());
+						fs.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+		int result = bService.updateRecom(recom);
+		if(result > 0) {
+			viewpage = "redirect:/recomDetail.do?rcseq=" + rcseq;
+		}else {
+			viewpage = "redirect:/recomDetail.do?rcseq=" + rcseq;
+		}
+		return viewpage;
+		
+		
+	}
+	
 	//리뷰글 작성
 			@RequestMapping(value="writeLike.do",method=RequestMethod.POST)
 			public String recomInsert(Recommend recom,HttpServletRequest request,HttpSession session) {

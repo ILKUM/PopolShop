@@ -38,14 +38,8 @@ public interface BoardDao {
 	public int reviewComment(int reseq,String rvrcontent,String email);
 	
 	//댓글 처리
-	public List<RvReply> reviewCommentOk(int reseq);
+	public List<RvReply> reviewCommentOk(int reseq);		
 	
-	//추천글작성
-	public int insertRecomm(Recommend recom);
-	
-	//추천 리스트
-	public List<Recommend> getRecomm();
-
 	//리뷰 글 수정
 	public int updateReview(Review review);
 	
@@ -57,6 +51,12 @@ public interface BoardDao {
 	
 	/////////////// 	추천          	//////////////////
 	
+	//추천글작성
+	public int insertRecomm(Recommend recom);
+	
+	//추천 리스트
+	public List<Recommend> getRecomm();
+
 	
 	//추천 게시판 디테일
 	public Recommend detailRecomm(int rcseq);
@@ -76,5 +76,10 @@ public interface BoardDao {
 	//추천 글 삭제
 	public int deleteRecom(int rcseq);
 	
+	//추천글 수정
+	public int updateRecom(Recommend recom);
+	
+	//추천 글 사진
+	public String getRecomImg(int rcseq);
 	
 }
