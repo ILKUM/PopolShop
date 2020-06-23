@@ -17,6 +17,7 @@ public class Member {
 	private int point; //유저 포인트
 	private int cpseq; //쿠폰 등록멤버 번호
 	private int cpoint; //쿠폰여부
+	private int mpoint; //영화 가격
 	
 	public String getEmail() {
 		return email;
@@ -78,13 +79,21 @@ public class Member {
 	public void setCpoint(int cpoint) {
 		this.cpoint = cpoint;
 	}
+	public int getMpoint() {
+		return mpoint;
+	}
+	public void setMpoint(int mpoint) {
+		this.mpoint = mpoint;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Member [email=" + email + ", pwd=" + pwd + ", name=" + name + ", filesrc=" + filesrc + ", iddate="
 				+ iddate + ", profile=" + profile + ", rname=" + rname + ", point=" + point + ", cpseq=" + cpseq
-				+ ", cpoint=" + cpoint + "]";
+				+ ", cpoint=" + cpoint + ", mpoint=" + mpoint + "]";
 	}
+	
 	
 	
 	

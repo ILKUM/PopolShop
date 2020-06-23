@@ -89,5 +89,6 @@ public interface BoardDao {
 	public List<Recommend> getWriteRecom(String email);
 		
 	
+
 	
 }

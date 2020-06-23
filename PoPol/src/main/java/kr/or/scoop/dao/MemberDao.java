@@ -61,6 +61,11 @@ public interface MemberDao {
 	//지난기록 인서트
 	public int addHistory(int moseq, String email);
 	
+	//영화 다운시 포인트 차감
+	public int updatePoint(String email,int mpoint);
+	
+	//회원 포인트 
+	public int getPoint(String email);
 	
 	
 	

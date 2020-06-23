@@ -254,9 +254,11 @@ public class BoardController {
 			String email = (String)session.getAttribute("email");
 			result = mdao.addHistory(moseq, email);
 			int count = dao.getmolike(email, moseq);
+			int point = mdao.getPoint(email);
 			System.out.println(count);
 			Movie movie = dao.selectMovie(moseq);
 			if(result > 0 ) {
+				request.setAttribute("point", point);
 				request.setAttribute("count", count);
 				model.addAttribute("movie", movie);
 			}else {

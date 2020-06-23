@@ -87,11 +87,21 @@ public class MemberService {
 		return result;
 	}
 	
+	//회원 강퇴
 	public int banMember(String email) {
 		int result = 0;
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		result = dao.banMember(email);
 		return result;
 	}
+	
+	public int updatePoint(String email,int mpoint) {
+		int result = 0;
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		result = dao.updatePoint(email,mpoint);
+		return result;
+	}
+	
+	
 	
 }

@@ -466,29 +466,38 @@ public class MemberController {
 	
 	//파일을 클릭하면 다운로드
 	@RequestMapping("/fileDownload.do")
-	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/movie/";
-		String p = "/user/movie";
-		String f = request.getParameter("fileName");
-		
-		String fname = new String(f.getBytes("euc-kr"), "8859_1");
-		response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
-		// 파일명 전송
-		// 파일 내용전송
-		String fullpath = request.getServletContext().getRealPath(p + "/" + f);
+	public void fileDownload(HttpServletRequest request, HttpServletResponse response,HttpSession session,int mpoint) throws Exception {
+		String email = (String)session.getAttribute("email");
+		int result = service.updatePoint(email,mpoint);
+		System.out.println("DD" + result);
+		if(result > 0) {
+			String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/movie/";
+			String p = "/user/movie";
+			String f = request.getParameter("fileName");
+			
+			String fname = new String(f.getBytes("euc-kr"), "8859_1");
+			response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
+			// 파일명 전송
+			// 파일 내용전송
+			String fullpath = request.getServletContext().getRealPath(p + "/" + f);
 
-		FileInputStream fin = new FileInputStream(fullpath);
-		// 출력 도구 얻기 :response.getOutputStream()
-		ServletOutputStream sout = response.getOutputStream();
-		byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
-		int size = 0;
-		while ((size = fin.read(buf, 0, buf.length)) != -1) // buffer 에 1024byte
-		// 담고
-		{ // 마지막 남아있는 byte 담고 그다음 없으면 탈출
-			sout.write(buf, 0, size); // 1kbyte씩 출력
+			FileInputStream fin = new FileInputStream(fullpath);
+			// 출력 도구 얻기 :response.getOutputStream()
+			ServletOutputStream sout = response.getOutputStream();
+			byte[] buf = new byte[1024]; // 전체를 다읽지 않고 1204byte씩 읽어서
+			int size = 0;
+			while ((size = fin.read(buf, 0, buf.length)) != -1) // buffer 에 1024byte
+			// 담고
+			{ // 마지막 남아있는 byte 담고 그다음 없으면 탈출
+				sout.write(buf, 0, size); // 1kbyte씩 출력
+			}
+			fin.close();
+			sout.close();
+		}else {
+			System.out.println("오류남");
 		}
-		fin.close();
-		sout.close();
+		
+		
 	}
 	
 	

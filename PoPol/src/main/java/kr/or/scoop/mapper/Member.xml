@@ -69,6 +69,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addHistory" parameterType="kr.or.scoop.dto.History">
 	 insert into history (hseq,email,moseq) values (hseq_history_seq.nextval,#{param2},#{param1})
 	</insert>
-	
+	<update id="updatePoint" parameterType="kr.or.scoop.dto.Member">
+		update member set point = point - #{mpoint} where email = #{email}
+	</update>
+	<select id="getPoint" resultType="int">
+		select point from member where email = #{email}
+	</select>
 	
 </mapper>

@@ -8,6 +8,7 @@
 <c:set var="role" value="${sessionScope.role}" />
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="count" value="${requestScope.count}" />
+<c:set var="count" value="${requestScope.point}" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -180,6 +181,22 @@ $(function(){
 
 });
 
+$("#download").click(function(){
+	let point = $("#point").val();
+	let mpoint = $("#mpoint").val();
+	if(point > mpoint) {
+		location.href = "fileDownload.do?fileName="+${movie.mophoto};
+	}else {
+		Swal.fire({
+			  title: '댓글을 작성해주세요!',
+			  showConfirmButton: false,
+			  icon: 'warning',
+			  timer: 1000
+		})
+		return false;
+	}
+	
+});
 </script>
 <style>
 .newissue{
@@ -220,6 +237,8 @@ border-radius: 5px;
 		<div class="row" style="margin:2% 2% 0 2%;">
 		<input type="hidden" name="moseq" value="${movie.moseq}">
 		<input type="hidden" id="count" value="${count}">
+		<input type="hidden" id="point" value="${point}">
+		<input type="hidden" id="mpoint" name="mpoint" value="${movie.mpoint}">
 		<input type="hidden" name="email" value="${sessionScope.email}">
 			<c:choose>
 				<c:when test="${movie.monum==1}">
@@ -240,10 +259,8 @@ border-radius: 5px;
 			</c:choose>
 			
 		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
-		<a href="fileDownload.do?fileName=${movie.mophoto}">	
-		<span class="iconify" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;"></span>
-		</a>
+		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">		
+		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>	
 		</c:if>
 		<c:choose>
 		<c:when test="${count == 1 }">
