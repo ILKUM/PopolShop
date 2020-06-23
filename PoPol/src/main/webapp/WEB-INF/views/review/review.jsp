@@ -88,7 +88,7 @@ return true;
       </div>     
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
-         <div class="col-sm-6 newissue" style="padding-left: 18px;" >
+         <div class="col-sm-6 newissue" style="padding-left: 87px;" >
          	제목
          </div>
          <div class="col-sm-2 newissue">
@@ -108,8 +108,8 @@ return true;
       <c:forEach items="${review}" var="rev" >
       <a href="reviewDetail.do?reseq=${rev.reseq}">
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
-         <div class="col-sm-6 newissue">      
-         ${rev.retitle}   
+         <div class="col-sm-6 newissue" >
+          <p style="margin-left: 60px;"> ${fn:substring(rev.retitle,0,25)}</p>              
          </div>
          <div class="col-sm-2 newissue" >
          ${rev.name}

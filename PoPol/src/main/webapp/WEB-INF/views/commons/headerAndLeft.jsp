@@ -110,24 +110,48 @@ span {
 <!--**********************************
             Nav header start
         ***********************************-->
+<c:choose>
+<c:when test="${role == 'ROLE_USER'}">
 <div id="pagelogo" class="nav-header">
    <div class="brand-logo">
       <a href="userindex.do" style="padding-top: 0px;"> <b
          class="logo-abbr"><img class="img-responsive center-block"
-            src="<c:url value="/resources/images/logo/ScoopTitle.png" />"
+            src="<c:url value="/resources/images/logo/MoflexTitle.png" />"
             alt="mini"
             style="width: 100px; height: auto; padding-top: 0; margin-top: 30px;">
       </b> <span class="logo-compact"><img
             class="img-responsive center-block"
-            src="<c:url value="/resources/images/logo/Foodybig.png" />" alt=""
+            src="<c:url value="/resources/images/logo/MOFLEXbig.png" />" alt=""
             style="margin-top: 20px; text-align: center;"></span> <span
          class="brand-title"> <img class="img-responsive center-block"
-            src="<c:url value="/resources/images/logo/Foodybig.png" />" alt=""
+            src="<c:url value="/resources/images/logo/MOFLEXbig.png" />" alt=""
             style="margin-top: 3%;">
       </span>
       </a>
    </div>
 </div>
+</c:when>
+<c:otherwise>
+<div id="pagelogo" class="nav-header">
+   <div class="brand-logo">
+      <a href="userindex.do" style="padding-top: 0px;"> <b
+         class="logo-abbr"><img class="img-responsive center-block"
+            src="<c:url value="/resources/images/logo/MoflexTitle.png" />"
+            alt="mini"
+            style="width: 100px; height: auto; padding-top: 0; margin-top: 30px;">
+      </b> <span class="logo-compact"><img
+            class="img-responsive center-block"
+            src="<c:url value="/resources/images/logo/MOFLEXbigPremium.png" />" alt=""
+            style="margin-top: 20px; text-align: center;"></span> <span
+         class="brand-title"> <img class="img-responsive center-block"
+            src="<c:url value="/resources/images/logo/MOFLEXbigPremium.png" />" alt=""
+            style="margin-top: 3%;">
+      </span>
+      </a>
+   </div>
+</div>
+</c:otherwise>
+</c:choose>
 <!--**********************************
             Nav header end
         ***********************************-->
@@ -157,10 +181,10 @@ span {
                <c:choose>
                   <c:when test="${role == 'ROLE_ADMIN'}">
                <input type="button"class="form-control"
-               style="background-color: #E71D36; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
+               style="background-color: #0f4eef; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
                value="공지사항 작성" data-toggle="modal" data-target="#makenotice">
                <input type="button"class="form-control"
-               style="background-color: #E71D36; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
+               style="background-color: #0f4eef; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
                value="영화 추가" data-toggle="modal" data-target="#addMovie">
                </c:when>
                </c:choose>
@@ -187,13 +211,6 @@ span {
                      </ul>
                   </div>
                </div></li>
-
-            <li class="icons dropdown d-none d-md-flex"><i
-               class="fas fa-user-plus" data-toggle="modal" id="inviteModal_id"
-               data-target="#inviteModal"
-               style="cursor: pointer; color: #535359; font-size: 18px; padding-bottom: 12px;"></i>
-
-            </li>
             <li class="icons dropdown">
                <div class="user-img c-pointer position-relative"
                   data-toggle="dropdown">
@@ -231,14 +248,9 @@ span {
                         	<span>&nbsp;&nbsp;<%=session.getAttribute("point")%>P</span>
                         	</span>
                         </li>
-                        <li>
-                        	<span id="fileopen" style="cursor: pointer;">
-                        	<span class="iconify" data-icon="ion:folder-open-outline" data-inline="false"style="font-size: 15px"></span> 
-                        	<span>&nbsp;&nbsp;파일함</span></span>
-                        </li>                 
                           		<li>
                           			<span id="logout" style="cursor: pointer;">
-                              			<span class="icon-key"></span> 
+                              			<span class="iconify" data-icon="bx:bx-door-open" data-inline="false" style="font-size: 15px"></span> 
                               			<span>&nbsp;&nbsp;로그아웃</span>
                               		</span>
                               	</li>						                    
@@ -388,9 +400,9 @@ span {
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
+                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
                <button type="button" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;"
                   data-dismiss="modal">취소</button>
                </div>
             </div>
@@ -422,9 +434,9 @@ span {
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
+                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
                <button type="button" class="btn btn-secondary"
-                  style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;"
                   data-dismiss="modal">취소</button>
                </div>
             </div>
@@ -510,7 +522,9 @@ span {
       </div>
     </div>
     
+    
   </div>
+  
 <script type="text/javascript">
 		//내정보 열기 (드롭다운)
 		$('#myprofileEdit').click(function(){

@@ -644,7 +644,7 @@ function idOver(a) {
      	   <button type="button" id="scoop_input" data-toggle="modal" data-target="#signUp"class="btn btn-primary"><spring:message code="register" /></button>     
          </div>
             <span><spring:message code="login.content" /></span>
-            <a href="" data-toggle="modal" data-target="#login"style="color:#cf455c;"><spring:message code="login.main" /></a>    
+            <a href="" data-toggle="modal" data-target="#login"style="color:#0c2f88;"><spring:message code="login.main" /></a>    
         </form>
         <!-- Platforms-->
         <div class="platforms d-none d-lg-block"><span class="platforms-title">Compatible with</span>
@@ -710,9 +710,9 @@ function idOver(a) {
 									<li><spring:message code="payment.ea" /></li>
 									<li>20MB</li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #E71D36;"></span></li>
+										data-inline="false" style="color: #0f4eef;"></span></li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #E71D36;"></span></li>
+										data-inline="false" style="color: #0f4eef;"></span></li>
 									<li>-</li>
 									
 								</ul>
@@ -729,9 +729,9 @@ function idOver(a) {
 									<li><spring:message code="payment.unlimited" /></li>
 									<li>100MB</li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #E71D36;"></span></li>
+										data-inline="false" style="color: #0f4eef;"></span></li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #E71D36;"></span></li>
+										data-inline="false" style="color: #0f4eef;"></span></li>
 									<li><spring:message code="payment.googledrive" /></li>
 								</ul>
 								<a href="requestPay" data-toggle="modal" data-target="#login" class="btn btn-primary"> <spring:message code="payment.start" /> </a>
@@ -791,7 +791,7 @@ function idOver(a) {
       <div class="row">
         <div class="col-lg-10 mx-auto">
          <h3><spring:message code="intro.title" /></h3>
-         <p class="lead"><spring:message code="intro.sub1" /> <span style="color:#E71D36;"><spring:message code="scoop" /></span><spring:message code="intro.sub2" /></p>
+         <p class="lead"><spring:message code="intro.sub1" /> <span style="color:#0f4eef;"><spring:message code="scoop" /></span><spring:message code="intro.sub2" /></p>
          <div class="row" style="padding-left: 20%; padding-top: 5%;">
          <div class="col-sm-3">
           <img src="resources/images/icon/idea.png" style="width: 100px;height: auto;">

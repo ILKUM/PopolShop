@@ -238,7 +238,7 @@ border-radius: 5px;
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
 			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${review.retitle}</span>
-			<a href="userProfile.do?email=${review.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${review.name}</a></span><span style="float: right;padding-right: 5%;padding-top:1%;">${review.retime}</span>
+			<a href="userProfile.do?email=${review.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${review.name}</a></span><span style="float: right;padding-right: 5%;padding-top:1%;">${fn:substring(review.retime,0,19)}</span>
 			</div>
 		
 		

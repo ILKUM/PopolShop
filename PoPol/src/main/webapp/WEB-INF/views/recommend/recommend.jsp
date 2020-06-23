@@ -104,7 +104,7 @@ $(function(){
          <div class="col-sm-2 newissue">
          ${fn:substring(rc.rctime,0,10)}
          </div>
-			<div class="col-sm-1 newissue">
+			<div class="col-sm-1 newissue" style="padding-left: 30px;">
 				${rc.rcrnum}	
 			</div>
 			<div class="col-sm-1 newissue" style="padding-left: 30px;">

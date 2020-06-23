@@ -238,7 +238,7 @@ border-radius: 5px;
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
 			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${rec.rctitle}</span>
-			<a href="userProfile.do?email=${rec.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${rec.name}</span></a><span style="float: right;padding-right: 5%;padding-top:1%;">${rec.rctime}</span>
+			<a href="userProfile.do?email=${rec.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${rec.name}</span></a><span style="float: right;padding-right: 5%;padding-top:1%;">${fn:substring(rec.rctime,0,19)}</span>
 			</div>
 		
 		
