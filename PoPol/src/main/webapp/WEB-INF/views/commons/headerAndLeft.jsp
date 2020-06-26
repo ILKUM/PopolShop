@@ -181,10 +181,10 @@ span {
                <c:choose>
                   <c:when test="${role == 'ROLE_ADMIN'}">
                <input type="button"class="form-control"
-               style="background-color: #0f4eef; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
+               style="background-color: #ba90c4; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
                value="공지사항 작성" data-toggle="modal" data-target="#makenotice">
                <input type="button"class="form-control"
-               style="background-color: #0f4eef; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
+               style="background-color: #ba90c4; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
                value="영화 추가" data-toggle="modal" data-target="#addMovie">
                </c:when>
                </c:choose>
@@ -300,6 +300,10 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="review" /></span>
          </a></li>     
+         <li><a href="file.do" aria-expanded="false"> <span class="iconify" data-icon="mdi:cloud-upload" 
+         data-inline="false" style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="upload" /></span>
+         </a></li>     
          <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
          <li><a href="history.do" aria-expanded="false"> <span
                class="iconify" data-icon="ic:baseline-history" data-inline="false"
@@ -400,9 +404,9 @@ span {
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
                <button type="button" class="btn btn-secondary"
-                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
                   data-dismiss="modal">취소</button>
                </div>
             </div>
@@ -434,9 +438,9 @@ span {
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
                <button type="button" class="btn btn-secondary"
-                  style="background-color: #0f4eef; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
                   data-dismiss="modal">취소</button>
                </div>
             </div>

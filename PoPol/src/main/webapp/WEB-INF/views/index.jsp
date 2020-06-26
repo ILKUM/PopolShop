@@ -710,9 +710,9 @@ function idOver(a) {
 									<li><spring:message code="payment.ea" /></li>
 									<li>20MB</li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #0f4eef;"></span></li>
+										data-inline="false" style="color: #ba90c4;"></span></li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #0f4eef;"></span></li>
+										data-inline="false" style="color: #ba90c4;"></span></li>
 									<li>-</li>
 									
 								</ul>
@@ -729,9 +729,9 @@ function idOver(a) {
 									<li><spring:message code="payment.unlimited" /></li>
 									<li>100MB</li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #0f4eef;"></span></li>
+										data-inline="false" style="color: #ba90c4;"></span></li>
 									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #0f4eef;"></span></li>
+										data-inline="false" style="color: #ba90c4;"></span></li>
 									<li><spring:message code="payment.googledrive" /></li>
 								</ul>
 								<a href="requestPay" data-toggle="modal" data-target="#login" class="btn btn-primary"> <spring:message code="payment.start" /> </a>
@@ -791,25 +791,24 @@ function idOver(a) {
       <div class="row">
         <div class="col-lg-10 mx-auto">
          <h3><spring:message code="intro.title" /></h3>
-         <p class="lead"><spring:message code="intro.sub1" /> <span style="color:#0f4eef;"><spring:message code="scoop" /></span><spring:message code="intro.sub2" /></p>
+         <p class="lead"><spring:message code="intro.sub1" /> <span style="color:#ba90c4;"><spring:message code="scoop" /></span><spring:message code="intro.sub2" /></p>
          <div class="row" style="padding-left: 20%; padding-top: 5%;">
          <div class="col-sm-3">
-          <img src="resources/images/icon/idea.png" style="width: 100px;height: auto;">
+          <img src="resources/images/icon/share.png" style="width: 100px;height: auto;">
           <p style="padding-top: 10px;"><spring:message code="intro.cont1" /></p>
          </div>
          <div class="col-sm-3">
-         <img src="resources/images/icon/presentation.png" style="width: 110px;height: auto;">
+         <img src="resources/images/icon/download.png" style="width: 110px;height: auto;">
          <p><spring:message code="intro.cont2" /></p>
          </div>
          <div class="col-sm-3">
-         <img src="resources/images/icon/technical-support.png" style="width: 80px;height: auto;padding-top:10px; ">
-         <p style="padding-top:20px;"><spring:message code="intro.cont3" /></p>
+         <img src="resources/images/icon/upload.png" style="width: 90px;height: auto;padding-top:10px; ">
+         <p style="padding-top:10px;"><spring:message code="intro.cont3" /></p>
          </div>
-         </div>
-         
+         </div>       
          <div class="row" style="padding-left: 30%; padding-top: 3%;">
          <div class="col-sm-4" style="padding-left: 0px;" >
-         	<img src="resources/images/icon/pass.png" style="width: 80px;height: auto;">
+         	<img src="resources/images/icon/update.png" style="width: 80px;height: auto;">
          	<p style="padding-top: 15px;"><spring:message code="intro.cont4" /></p>
          </div>
          <div class="col-sm-4"style=" padding-right: 70px;padding-left: 0px;">
