@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.scoop.dao.BoardDao">
+<select id="getFileBoard" resultType="kr.or.scoop.dto.File">
+	select m.name, f.fseq , f.ftitle, f.ftime , f.flike, f.frnum,f.fdnum from member m join fileboard f on m.email = f.email
+</select>
+<insert id="insertFile" parameterType="kr.or.scoop.dto.File">
+	insert into FILEBOARD (fseq,ftitle,fcontent,filename,email,flike,frnum,fdnum,ftime)
+  		values (FSEQ_FILEBOARD_SEQ.NEXTVAL, #{ftitle,jdbcType=VARCHAR}, #{fcontent,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{flike,jdbcType=INTEGER},#{frnum,jdbcType=INTEGER},#{fdnum,jdbcType=INTEGER},SYSDATE)
+	</insert>
+	<update id="minusPoint">
+	 update member set point = point - 500 where email = #{email}
+	</update>
+</mapper>

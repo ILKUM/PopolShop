@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.NoticeDao;
+import kr.or.scoop.dto.File;
 import kr.or.scoop.dto.Notice;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
@@ -38,7 +39,7 @@ public class BoardService {
 		return result;
 	}
 	
-	//추천작성 
+		//추천작성 
 		public int insertRecomm(Recommend recom) {
 			int result = 0;
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
@@ -145,5 +146,20 @@ public class BoardService {
 			result = dao.deleteRecom(rcseq);
 			return result;
 			
+		}
+		
+		//파일 글 작성
+		public int insertFile(File file) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.insertFile(file);			
+			return result;
+		}
+		
+		public int minusPoint(String email) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.minusPoint(email);
+			return result;
 		}
 }

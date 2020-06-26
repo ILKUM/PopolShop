@@ -466,11 +466,7 @@ public class MemberController {
 	
 	//파일을 클릭하면 다운로드
 	@RequestMapping("/fileDownload.do")
-	public void fileDownload(HttpServletRequest request, HttpServletResponse response,HttpSession session,int mpoint) throws Exception {
-		String email = (String)session.getAttribute("email");
-		int result = service.updatePoint(email,mpoint);
-		System.out.println("DD" + result);
-		if(result > 0) {
+	public void fileDownload(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
 			String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/movie/";
 			String p = "/user/movie";
 			String f = request.getParameter("fileName");
@@ -493,16 +489,9 @@ public class MemberController {
 			}
 			fin.close();
 			sout.close();
-		}else {
-			System.out.println("오류남");
 		}
 		
-		
-	}
-	
-	
-	
-	
+
 	
 	
 }

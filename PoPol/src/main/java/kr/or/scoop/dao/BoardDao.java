@@ -2,6 +2,7 @@ package kr.or.scoop.dao;
 
 import java.util.List;
 
+import kr.or.scoop.dto.File;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.RvReply;
@@ -59,7 +60,6 @@ public interface BoardDao {
 	
 	//추천 리스트
 	public List<Recommend> getRecomm();
-
 	
 	//추천 게시판 디테일
 	public Recommend detailRecomm(int rcseq);
@@ -89,6 +89,16 @@ public interface BoardDao {
 	public List<Recommend> getWriteRecom(String email);
 		
 	
+	//////////////// 파일 //////////////////////
+	
+	//파일 게시판 리스트
+	public List<File> getFileBoard();
+	
+	//파일 글 작성
+	public int insertFile(File file);
+	
+	//파일 글 작성시 포인트 차감
+	public int minusPoint(String email);
 
 	
 }
