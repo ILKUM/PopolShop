@@ -139,7 +139,7 @@ $(function(){
           <form class="was-validated" action="writeFile.do" enctype="multipart/form-data" method="Post">
           <div class="col" width="33%" align="center" >추천 영화 사진</div> 
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profiles" name="filename" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="추천 사진을 올려주세요!">
+        	<span id="profiles"></span>
          </div>
         	<br>
         	<input type="file" id="Photo" name="filesrc" class="form-control is-invalid" required="required" onchange="readURL(this);" >  
@@ -274,6 +274,17 @@ function readURL(input) {
 	          }
 	      });
 	
+	 $(document).ready(function(){
+
+         $('input[type="file"]').change(function(e){
+
+             var fileName = e.target.files[0].name; //getting the file name 
+             var display = $("#profiles"); //where to display
+             display.html(fileName);
+
+         });
+
+     });
 </script>
 </body>
 </html>

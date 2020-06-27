@@ -156,10 +156,19 @@ public class BoardService {
 			return result;
 		}
 		
+		//파일 글 작성시 포인트 차감
 		public int minusPoint(String email) {
 			int result = 0;
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			result = dao.minusPoint(email);
+			return result;
+		}
+		
+		//파일 글 삭제
+		public int deleteFile(int fseq) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.deleteFile(fseq);
 			return result;
 		}
 }

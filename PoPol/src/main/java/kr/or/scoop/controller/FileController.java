@@ -29,6 +29,7 @@ public class FileController {
 	@Autowired
 	BoardService bService;
 	
+	//파일공유 게시판 이동
 	@RequestMapping(value = "file.do",method=RequestMethod.GET)
 	public String getFileBoard(Model model) {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
@@ -38,6 +39,7 @@ public class FileController {
 		return "file/file";
 	}
 	
+	//파일공유 글 작성
 	@RequestMapping(value="writeFile.do",method=RequestMethod.POST)
 	public String FileInsert(File file,HttpServletRequest request,HttpSession session) {
 		String viewpage = null;
@@ -84,4 +86,17 @@ public class FileController {
 		
 		return viewpage;
 	}
+	
+	@RequestMapping(value="deleteFile.do",method= {RequestMethod.GET,RequestMethod.POST})
+	public String deleteFile(int fseq) {
+		String viewpage;
+		int result = bService.deleteFile(fseq);
+		if(result > 0) {
+			viewpage="redirect:/file.do";
+		}else {
+			viewpage="redirect:/file.do";
+		}
+		return viewpage;
+	}
+	
 }

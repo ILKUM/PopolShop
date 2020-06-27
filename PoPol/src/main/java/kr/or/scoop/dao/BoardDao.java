@@ -99,6 +99,9 @@ public interface BoardDao {
 	
 	//파일 글 작성시 포인트 차감
 	public int minusPoint(String email);
+	
+	//파일 글 삭제
+	public int deleteFile(int fseq);
 
 	
 }
