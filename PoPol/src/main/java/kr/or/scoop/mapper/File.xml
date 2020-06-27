@@ -19,7 +19,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="detailFile" resultType="kr.or.scoop.dto.File">
 		select m.name, f.fseq,f.email , f.ftitle, f.ftime , f.flike, f.frnum,f.fdnum,f.filename from member m join fileboard f on m.email = f.email where f.fseq = #{fseq}
 	</select>
-	<select id="checkfile" resultType="int">
-		select count(*) from filemem where email = #{email}
+	<select id="checkFile" resultType="int">
+		select count(*) from filemem where fseq = #{param1} and email = #{param2}
 	</select>
+	<insert id="insertFlike" parameterType="kr.or.scoop.dto.File">
+		insert into FILEMEM(fmseq,fseq,email) 
+		values (FMSEQ_FILEMEM_SEQ.NEXTVAL,#{param1},#{param2})
+	</insert>
+	<update id="flikeUp" parameterType="kr.or.scoop.dto.File">
+		update Fileboard set flike = flike+1 where fseq = #{fseq}
+	</update>
 </mapper>

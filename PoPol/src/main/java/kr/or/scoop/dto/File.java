@@ -16,6 +16,10 @@ public class File {
 	private int flike; //파일 글 추천수
 	private String email; // 작성자 
 	private String name; //작성자 닉네임
+	private int fmseq; //추천한 멤버번호
+	private int frseq; //덧글번호
+	private String frcontent; //덧글내용 
+	private Timestamp frtime; //덧글 작성시간
 	
 	public int getFseq() {
 		return fseq;
@@ -83,13 +87,38 @@ public class File {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public int getFmseq() {
+		return fmseq;
+	}
+	public void setFmseq(int fmseq) {
+		this.fmseq = fmseq;
+	}
+	public int getFrseq() {
+		return frseq;
+	}
+	public void setFrseq(int frseq) {
+		this.frseq = frseq;
+	}
+	public String getFrcontent() {
+		return frcontent;
+	}
+	public void setFrcontent(String frcontent) {
+		this.frcontent = frcontent;
+	}
+	public Timestamp getFrtime() {
+		return frtime;
+	}
+	public void setFrtime(Timestamp frtime) {
+		this.frtime = frtime;
+	}
 	@Override
 	public String toString() {
 		return "File [fseq=" + fseq + ", ftitle=" + ftitle + ", fcontent=" + fcontent + ", ftime=" + ftime
 				+ ", filename=" + filename + ", filesrc=" + filesrc + ", fdnum=" + fdnum + ", frnum=" + frnum
-				+ ", flike=" + flike + ", email=" + email + ", name=" + name + "]";
+				+ ", flike=" + flike + ", email=" + email + ", name=" + name + ", fmseq=" + fmseq + ", frseq=" + frseq
+				+ ", frcontent=" + frcontent + ", frtime=" + frtime + "]";
 	}
+	
 	
 	
 	

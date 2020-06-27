@@ -95,7 +95,7 @@
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="basenames">
 			<list>
-				<value>messages.lang</value>
+				<value>messages.lang</value>			
 			</list>
 		</property>
 	</bean>

@@ -105,7 +105,7 @@ public class FileController {
 		String email = (String)session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		File file = dao.detailFile(fseq);
-		int count = dao.checkFile(email);
+		int count = dao.checkFile(fseq,email);
 		request.setAttribute("count", count);
 		model.addAttribute("file", file);
 		viewpage = "file/fileDetail";
@@ -117,15 +117,15 @@ public class FileController {
 	@RequestMapping(value="/flike.do" , method = RequestMethod.POST)
 	public String updateFlike(int fseq,String email,Model model) {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
-		int like = dao.getFlike(fseq, email);
+		int like = dao.checkFile(fseq,email);
 		int result = 0;
 		String viewpage = "";
 		int chu = 0;
 		if(like > 0) {
 			model.addAttribute("on", like);
 		}else {
-			result = dao.insertRclike(fseq, email);
-			chu = dao.rclikeCount(fseq);
+			result = dao.insertFlike(fseq, email);
+			chu = dao.flikeUp(fseq);
 		}			
 	
 		if(chu > 0) {

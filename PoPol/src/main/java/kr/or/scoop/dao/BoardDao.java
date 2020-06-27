@@ -107,10 +107,12 @@ public interface BoardDao {
 	public File detailFile(int fseq);
 	
 	//파일 글 추천 확인
-	public int checkFile(String email);
+	public int checkFile(int fseq,String email);
 	
-	//파일 글 추천 중복방비
-	public int getFlike(int fseq,String email);
-
+	//파일글 추천 중복방지
+	public int insertFlike(int fseq,String email);
+	
+	//파일글 추천수 증가
+	public int flikeUp(int fseq);
 	
 }
