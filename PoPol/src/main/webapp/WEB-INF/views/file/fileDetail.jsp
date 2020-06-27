@@ -34,11 +34,11 @@ $(function(){
 			})
 			return;
 		}
-		var reseqq = $("#reseq").val();
+		var fseqq = $("#fseq").val();
 		$.ajax({			
 			url:"reComment.do",
 			data:{
-				reseq: $("#reseq").val(),
+				fseq: $("#fseq").val(),
 				email:$("#email").val(),
 				rvrcontent: $("#reComment").val()
 			},
@@ -130,13 +130,13 @@ $(function(){
 				
 		});
 	});
-	$('#editReview').click(function(){
-		location.href = 'editReview.do?reseq='+${review.reseq};
+	$('#editFile').click(function(){
+		location.href = 'editFile.do?fseq='+${file.fseq};
 	});
-	$('#deleteReview').click(function(){
+	$('#deleteFile').click(function(){
 	   Swal.fire({
-		   title: '정말로 리뷰를 삭제하시겠습니까??',
-		   text: "삭제하시면 리뷰의 모든 정보가 사라집니다!",
+		   title: '정말로 공유글을 삭제하시겠습니까??',
+		   text: "삭제하시면 공유글의 모든 정보가 사라집니다!",
 		   icon: 'warning',
 		   showCancelButton: true,
 		   confirmButtonColor: '#d33',
@@ -145,7 +145,7 @@ $(function(){
 		   cancelButtonText: '취소'
 		 }).then((result) => {
 		   if (result.value) {
-			   location.href = 'deleteReview.do?reseq='+${review.reseq};
+			   location.href = 'deleteFile.do?fseq='+${file.fseq};
 		   }
 		 })
 	});
@@ -189,7 +189,7 @@ $(function(){
 	padding-top: 0.7%;
 	padding-bottom: 0.7%;
 }
-.myissueDetail{
+.fileDetail{
 	font-size: 15px;
 	margin-left: 3%;
 	margin-bottom:1%;
@@ -220,34 +220,34 @@ border-radius: 5px;
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
-		<input type="hidden" name="reseq" value="${review.reseq}" id="reseq">
-			<input type="hidden" id="count" value="${count}">
+		<input type="hidden" name="fseq" value="${file.fseq}" id="reseq">
+		<input type="hidden" id="count" value="${count}">
 		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
 			
-			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">리뷰 게시판</div>
+			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">파일공유 게시판</div>
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${review.relike}</i>
-			<c:if test="${review.email==sessionScope.email}">
+				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${file.flike}</i>
+			<c:if test="${file.email==sessionScope.email}">
 	        	<span class="fas fa-cog"  id="editReview" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
-				<span class="iconify" id="deleteReview" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+				<span class="iconify" id="deleteFile" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
 				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
-			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${review.retitle}</span>
-			<a href="userProfile.do?email=${review.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${review.name}</a></span><span style="float: right;padding-right: 5%;padding-top:1%;">${fn:substring(review.retime,0,19)}</span>
+			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${file.ftitle}</span>
+			<a href="userProfile.do?email=${file.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${file.name}</span></a><span style="float: right;padding-right: 5%;padding-top:1%;">${fn:substring(file.ftime,0,19)}</span>
 			</div>
 		
 		
 		<hr style="margin:10px 2% 0 0;">	
 		<br>
 		<div class="row" style="margin-right: 0;width:900px;">
-        <div class="myissueDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
-       	${review.rephoto}
-       	${review.recontent}
+        <div class="fileDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
+       	${file.filename}
+       	${file.fcontent}
         </div>
         <!-- <div class="col-sm-2"><span>네이버</span><br><img alt="logo" src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png" style="width: 50%"></div> -->
         </div>
@@ -255,7 +255,7 @@ border-radius: 5px;
             </div> 
             <div class="card" style="height: 600px;float:right;background-color: #fff;margin-left:10px;padding-left: 0px;padding-right: 0px;width:400px;">
             <div id="commentMain" style="height:450px;padding-left: 3%;padding-top: 5%;padding-right: 3%;padding-bottom: 5%;overflow: auto;margin:5%;">
-           <c:forEach items="${recoment}" var="recom">
+           <c:forEach items="${frcoment}" var="fr">
             
             <div class="row" style="margin:2% 3% 2% 3%;">
             
@@ -272,14 +272,14 @@ border-radius: 5px;
             <div class="col-sm-10">
             <div id="commentMain" style="margin: 3% 5% 3% 5%;" >
             <div style="margin-bottom: 1%;width: 260px;">
-            <span>${review.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${recom.rvrtime}</span>
+            <span>${file.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${fr.frtime}</span>
             <c:if test="${review.email==sessionScope.email}">
-            <span id="${recom.rvrseq}" class="deleteComment">
+            <span id="${fr.frseq}" class="deleteComment">
             <span class="iconify" id="deleteComment"  data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size:15px;margin-bottom: 3px;"></span>
             </span>
             </c:if>
             <br>
-            <div>${recom.rvrcontent}</div>
+            <div>${fr.frcontent}</div>
             </div>
             </div>
             </div>
@@ -315,7 +315,7 @@ border-radius: 5px;
 			$('#chuchun').click(function(){
 				let chu = $(this);
 				
-				let reseq = chu.closest('div.row').children('input[name=reseq]').val();
+				let fseq = chu.closest('div.row').children('input[name=fseq]').val();
 				let email = chu.closest('div.row').children('input[name=email]').val();
 				let count = $("#count").val();
 				if(count == 1){
@@ -328,9 +328,9 @@ border-radius: 5px;
 					return false;
 				}else{
 				$.ajax({
-					url : "relike.do",
+					url : "flike.do",
 					type : "POST",
-					data : {"reseq" : reseq, 
+					data : {"fseq" : fseq, 
 							"email" : email
 					       },
 					success : function(result){					

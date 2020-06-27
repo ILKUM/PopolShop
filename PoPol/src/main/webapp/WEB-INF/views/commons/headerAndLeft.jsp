@@ -302,7 +302,7 @@ span {
          </a></li>     
          <li><a href="file.do" aria-expanded="false"> <span class="iconify" data-icon="mdi:cloud-upload" 
          data-inline="false" style="width: 20px; height: auto;"> </span><span class="nav-text">
-                  &nbsp;<spring:message code="uploads" /></span>
+                  &nbsp;<spring:message code="upload" /></span>
          </a></li>     
          <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="private.title" /></b></li>
          <li><a href="history.do" aria-expanded="false"> <span

@@ -93,7 +93,7 @@ $(function(){
          </div>
       </div>
       <c:forEach items="${file}" var="f">   
-       <a href="recomDetail.do?rcseq=${rc.rcseq}"> 
+       <a href="detailFile.do?fseq=${f.fseq}"> 
          <div class="row" style="margin-left: 2%; margin-right: 2%" id="row">
          <div class="col-sm-6 newissue">	
         <p style="margin-left: 60px;"> ${fn:substring(f.ftitle,0,25)}</p>    

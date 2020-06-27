@@ -102,6 +102,15 @@ public interface BoardDao {
 	
 	//파일 글 삭제
 	public int deleteFile(int fseq);
+	
+	//파일 글 디테일 
+	public File detailFile(int fseq);
+	
+	//파일 글 추천 확인
+	public int checkFile(String email);
+	
+	//파일 글 추천 중복방비
+	public int getFlike(int fseq,String email);
 
 	
 }

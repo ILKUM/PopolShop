@@ -99,4 +99,41 @@ public class FileController {
 		return viewpage;
 	}
 	
+	@RequestMapping(value="detailFile.do", method=RequestMethod.GET)
+	public String detailFile(int fseq,Model model,HttpServletRequest request,HttpSession session) {
+		String viewpage;
+		String email = (String)session.getAttribute("email");
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		File file = dao.detailFile(fseq);
+		int count = dao.checkFile(email);
+		request.setAttribute("count", count);
+		model.addAttribute("file", file);
+		viewpage = "file/fileDetail";
+		
+		return viewpage;
+	}
+	
+	//파일공유 글 추천수 증가
+	@RequestMapping(value="/flike.do" , method = RequestMethod.POST)
+	public String updateFlike(int fseq,String email,Model model) {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		int like = dao.getFlike(fseq, email);
+		int result = 0;
+		String viewpage = "";
+		int chu = 0;
+		if(like > 0) {
+			model.addAttribute("on", like);
+		}else {
+			result = dao.insertRclike(fseq, email);
+			chu = dao.rclikeCount(fseq);
+		}			
+	
+		if(chu > 0) {
+			viewpage = "redirect:/detailFile.do?fseq=" + fseq;
+		}else {
+			viewpage = "redirect:/detailFile.do?fseq=" + fseq;
+		}
+		return viewpage;
+	}
+	
 }
