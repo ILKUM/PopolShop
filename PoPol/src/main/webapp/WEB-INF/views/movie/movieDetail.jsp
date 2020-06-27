@@ -262,14 +262,7 @@ border-radius: 5px;
 		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">		
 		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>	
 		</c:if>
-		<c:choose>
-		<c:when test="${count == 1 }">
-		<i id="chuchun" class="chuchun fas fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>
-		</c:when>
-		<c:otherwise>
-		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>	
-		</c:otherwise>
-		</c:choose>
+		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>		
 			<c:if test="${role=='ROLE_ADMIN'}">
 	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>

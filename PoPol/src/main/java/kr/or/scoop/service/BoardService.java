@@ -171,4 +171,12 @@ public class BoardService {
 			result = dao.deleteFile(fseq);
 			return result;
 		}
+		
+		//파일글 조회수 업
+		public int readFile(int fseq) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.readFile(fseq);
+			return result;
+		}
 }

@@ -115,4 +115,7 @@ public interface BoardDao {
 	//파일글 추천수 증가
 	public int flikeUp(int fseq);
 	
+	//파일글 조회수 증가
+	public int readFile(int fseq);
+	
 }

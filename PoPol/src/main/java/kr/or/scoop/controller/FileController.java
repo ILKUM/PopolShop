@@ -101,14 +101,19 @@ public class FileController {
 	
 	@RequestMapping(value="detailFile.do", method=RequestMethod.GET)
 	public String detailFile(int fseq,Model model,HttpServletRequest request,HttpSession session) {
-		String viewpage;
+		String viewpage = "";
 		String email = (String)session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		File file = dao.detailFile(fseq);
 		int count = dao.checkFile(fseq,email);
-		request.setAttribute("count", count);
-		model.addAttribute("file", file);
-		viewpage = "file/fileDetail";
+		int read = bService.readFile(fseq);
+		if(read>0) {
+			request.setAttribute("count", count);
+			model.addAttribute("file", file);
+			viewpage = "file/fileDetail";
+		}else {
+			
+		}
 		
 		return viewpage;
 	}
