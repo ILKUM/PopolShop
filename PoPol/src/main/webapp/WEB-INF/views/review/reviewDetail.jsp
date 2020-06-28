@@ -22,9 +22,20 @@
 </head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
+$(function(){
+$('#reCommentBtn').click(function(){
+	if($("#reComment").val()==''){
+		Swal.fire({
+			  title: '댓글을 작성해주세요!',
+			  showConfirmButton: false,
+			  icon: 'warning',
+			  timer: 1000
+		})
+		return false;
+	}
+});
 
-	
-
+})
 </script>
 <style>
 .newissue{
@@ -115,7 +126,7 @@ border-radius: 5px;
             <div class="col-sm-10">
             <div id="commentMain" style="margin: 3% 5% 3% 5%;" >
             <div style="margin-bottom: 1%;width: 260px;">
-            <span>${review.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${re.rvrtime}</span>
+            <span>${review.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#ba90c4 "></i>${fn:substring(re.rvrtime,0,19)}</span>
             <c:if test="${review.email==sessionScope.email}">
             <span id="${re.rvrseq}" class="deleteComment">
             <span class="iconify" id="deleteComment"  data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size:15px;margin-bottom: 3px;"></span>
@@ -135,8 +146,8 @@ border-radius: 5px;
             <input type="hidden" value="${review.reseq}" name="reseq">
             <input type="hidden" value="${sessionScope.email}" name="email">
             <img src="resources/images/logo/ScoopTitle.png" style="width:150px;height: auto;opacity:0.3;position:absolute;top:25%;left: 32%;">
-            <textarea id="reComment" rows="5" name="rvrcontent" placeholder="말하지 않아도 아는것은 초코파이뿐입니다                        댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:370px;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
-            <input id="reCommentBtn" type="submit" value="저장" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #E71D36;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
+            <textarea id="reComment" rows="5" name="rvrcontent" placeholder="덧글 입력후 입력버튼을 눌러 주세요." style="resize: none;height:180px;width:370px;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
+            <input id="reCommentBtn" type="submit" value="입력" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #ba90c4;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
             </form>
             </div>
             </div>
