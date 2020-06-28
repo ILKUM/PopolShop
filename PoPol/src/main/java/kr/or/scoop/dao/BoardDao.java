@@ -53,6 +53,9 @@ public interface BoardDao {
 	//내가 작성한 리뷰글
 	public List<Review> getWriteReview(String email);
 	
+	//리뷰 댓글 삭제
+	public int delReviewComment(int rvrseq);
+	
 	/////////////// 	추천          	//////////////////
 	
 	//추천글작성

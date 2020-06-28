@@ -179,4 +179,11 @@ public class BoardService {
 			result = dao.readFile(fseq);
 			return result;
 		}
+		
+		//리뷰 댓글 삭제
+		public int delReviewComment(int rvrseq) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			int result = dao.delReviewComment(rvrseq);
+			return result;
+		}
 }

@@ -60,4 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getWriteReview" resultType="kr.or.scoop.dto.Review">
 	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email where m.email = #{email}
 	</select>
+	<delete id="delReviewComment">
+	delete RVREPLY where rvrseq=#{rvrseq}
+</delete>
 </mapper>

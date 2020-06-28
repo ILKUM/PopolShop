@@ -236,5 +236,24 @@ public class ReviewController {
 				
 				return "user/Myreview";	
 			}
+			
+			//팀이슈 댓글 삭제
+			@RequestMapping(value = "delComment.do",method = {RequestMethod.POST,RequestMethod.GET})
+			public String delComment(int rvrseq,Model model) {
+				int result = 0;	
+				String viewpage = "";
+				result = bService.delReviewComment(rvrseq);
+				
+				if(result > 0) {
+					model.addAttribute("ajax","댓글 성공");
+					viewpage = "utils/ajax";
+					
+				}else {
+					model.addAttribute("ajax","댓글 실패");
+					viewpage = "utils/ajax";
+				}
+				return viewpage;
+			}
+			
 	
 }
