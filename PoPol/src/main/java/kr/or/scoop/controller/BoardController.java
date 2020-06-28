@@ -19,14 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.JJim;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
-import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.service.BoardService;
 
 @Controller
@@ -266,18 +264,7 @@ public class BoardController {
 				System.out.println("이거는 ? " + movie);
 			}
 			return "movie/movieDetail";
-		}
-		
-		@RequestMapping(value="like.do" , method=RequestMethod.GET)
-		public String getLike(Model model,Recommend recom) {
-			
-		  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
-		  List<Recommend> rc =  dao.getRecomm(); 
-		  model.addAttribute("recom", rc);
-			 
-			return "recommend/recommend";
-		}
-		
+		}	
 	
 		//찜하기 
 		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)

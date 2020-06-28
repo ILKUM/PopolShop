@@ -9,6 +9,8 @@ public class RvReply {
  	private Timestamp rvrtime; //리뷰댓글 작성시간
 	private String email; //리뷰댓글 이메일
 	private String name; //리뷰작성자 이름
+	private String profile; //작성자 이미지
+	
 	
 	
 	public int getReseq() {
@@ -46,12 +48,19 @@ public class RvReply {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}	
+	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	
 	@Override
 	public String toString() {
 		return "RvReply [reseq=" + reseq + ", rvrseq=" + rvrseq + ", rvrcontent=" + rvrcontent + ", rvrtime=" + rvrtime
-				+ ", email=" + email + ", name=" + name + "]";
+				+ ", email=" + email + ", name=" + name + ", profile=" + profile + "]";
 	}
 	
 	

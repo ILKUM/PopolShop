@@ -39,12 +39,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<!-- 리뷰글 덧글 등록 -->
 	<insert id="reviewComment" parameterType="kr.or.scoop.dto.RvReply">
-	insert into RVREPLY(rvrseq, rvrcontent, email, rvrtime, reseq)
-  	values(rvrseq_rvreply_seq.nextval, #{param3}, #{param2}, sysdate, #{param1})
+	insert into RVREPLY(rvrseq,reseq,email,rvrcontent, rvrtime)
+  	values(RVRSEQ_RVREPLY_SEQ.NEXTVAL, #{param1}, #{param3},#{param2}, sysdate)
 	</insert>
 	<!-- 리뷰글 덧글 리스트 출력  -->
 	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.RvReply">
-	select r.rvrseq,r.reseq,r.rvrcontent,r.rvrtime,m.email,m.name from rvreply r join member m on r.email=m.email where reseq = #{reseq}
+	select * from rvreply r join member m on r.email=m.email where r.reseq = #{reseq}
 	</select>
 	<select id="getReviewImg" parameterType="kr.or.scoop.dto.Review" resultType="String">
 	select rephoto from reboard where reseq = #{reseq}

@@ -36,7 +36,7 @@ public interface BoardDao {
 	public int deleteRelike(int reseq,String email);
 	
 	//댓글 등록
-	public int reviewComment(int reseq,String rvrcontent,String email);
+	public int reviewComment(int reseq,String email,String rvrcontent);
 	
 	//댓글 처리
 	public List<RvReply> reviewCommentOk(int reseq);		

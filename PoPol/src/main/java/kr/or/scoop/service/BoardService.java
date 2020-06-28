@@ -77,7 +77,7 @@ public class BoardService {
 		//댓글 처리
 		public int reviewComment(int reseq,String rvrcontent,String email) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
-			int result = dao.reviewComment(reseq,rvrcontent,email);
+			int result = dao.reviewComment(reseq,email,rvrcontent);
 			return result;
 		}
 		

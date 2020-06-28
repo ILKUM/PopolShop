@@ -20,7 +20,6 @@ import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.RvReply;
 import kr.or.scoop.service.BoardService;
-import net.sf.json.JSONArray;
 
 
 @Controller
@@ -49,6 +48,7 @@ public class ReviewController {
 		String email = (String)session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		List<RvReply> recom = dao.reviewCommentOk(reseq);
+		System.out.println(recom);
 		int count = dao.getrelike(email, reseq);
 		int result = bService.rernumUp(reseq);
 		if(result > 0) {
@@ -131,32 +131,17 @@ public class ReviewController {
 			
 			//리뷰 댓글작성
 			@RequestMapping(value = "reComment.do", method = {RequestMethod.POST,RequestMethod.GET})
-			public String reviewComent(int reseq,String email,String rvrcontent,Model model) {
-				System.out.println("등록은함? " + reseq + " " + email + " " + rvrcontent);
-				int result = 0;	
+			public String reviewComent(int reseq,String email,String rvrcontent,Model model) {				
+				int result = 0;					
 				String viewpage = "";
-				result = bService.reviewComment(reseq, rvrcontent, email);
-				if(result > 0) {
-					model.addAttribute("ajax","댓글 성공");
-					viewpage = "utils/ajax";				
+				result = bService.reviewComment(reseq,email,rvrcontent);
+				if(result > 0) {					
+					viewpage = "redirect:/reviewDetail.do?reseq="+reseq;				
 				}else {
-					model.addAttribute("ajax","댓글 실패");
-					viewpage = "utils/ajax";
+					viewpage = "redirect:/reCommentOk.do";	
 				}
 				return viewpage;
-			}
-			
-			//리뷰댓글 뿌리기
-			@RequestMapping(value = "reCommentOk.do",method = {RequestMethod.POST,RequestMethod.GET})
-			public String reviewCommentOk(int reseq,Model model) {
-				String viewpage = "utils/ajax";
-				List<RvReply> recoment = bService.reviewCommentOk(reseq);
-				System.out.println("아님 여기냐 ?  " + recoment);
-				JSONArray jsonlist = JSONArray.fromObject(recoment);
-				model.addAttribute("ajax",jsonlist);
-				return viewpage;
-			}
-			
+			}		
 			//리뷰 수정 이동
 			@RequestMapping(value="editReview.do",method = RequestMethod.GET)
 			public String reviewEdit(int reseq,Model model) {
