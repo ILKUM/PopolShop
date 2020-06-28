@@ -192,5 +192,19 @@ public class BoardService {
 			int result = dao.delMovieComment(morseq);
 			return result;
 		}
+		
+		//추천 댓글 처리
+		public int recomComment(int rcseq, String rcrcontent, String email) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			int result = dao.recomComment(rcseq, email, rcrcontent);
+			return result;
+		}
+		
+		// 추천 댓글 삭제
+		public int delRecomComment(int rcrseq) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			int result = dao.delReviewComment(rcrseq);
+			return result;
+		}
 
 }

@@ -404,7 +404,7 @@ public class BoardController {
 				sout.close();
 			}
 		
-		//리뷰 댓글작성
+		//영화 댓글작성
 		@RequestMapping(value = "moComment.do", method = {RequestMethod.POST,RequestMethod.GET})
 		public String reviewComent(int moseq,String email,String morcontent,Model model) {				
 			int result = 0;					

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.scoop.dao.BoardDao;
+import kr.or.scoop.dto.RcReply;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.service.BoardService;
 
@@ -48,11 +49,13 @@ public class RecommendController {
 		String email = (String)session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		Recommend recom = dao.detailRecomm(rcseq);
+		List<RcReply> rccom = dao.recomCommentOk(rcseq);
 		int count = dao.getrclike(email, rcseq);
 		int result = bService.rcrnumUp(rcseq);
 		if(result > 0) {
 			request.setAttribute("count", count);
 			model.addAttribute("rec", recom);	
+			model.addAttribute("rccom", rccom);	
 			viewpage = "recommend/recommendDetail";
 		}else {
 			viewpage = "recommend/recommendDetail";
@@ -217,6 +220,38 @@ public class RecommendController {
 				List<Recommend> recom = dao.getWriteRecom(email);
 				model.addAttribute("recom", recom);
 				return "user/Myrecom";
+			}
+			
+			//추천 댓글작성
+			@RequestMapping(value = "rcComment.do", method = {RequestMethod.POST,RequestMethod.GET})
+			public String reviewComent(int rcseq,String email,String rcrcontent,Model model) {				
+				int result = 0;					
+				String viewpage = "";
+				result = bService.recomComment(rcseq, rcrcontent, email);
+				if(result > 0) {					
+					viewpage = "redirect:/recomDetail.do?rcseq="+rcseq;				
+				}else {
+					viewpage = "redirect:/movieDetail.do";	
+				}
+				return viewpage;
+			}
+			
+			//추천 댓글 삭제
+			@RequestMapping(value = "delRecomComment.do",method = {RequestMethod.POST,RequestMethod.GET})
+			public String delComment(int rcrseq,Model model) {
+				int result = 0;	
+				String viewpage = "";
+				result = bService.delRecomComment(rcrseq);
+				
+				if(result > 0) {
+					model.addAttribute("ajax","댓글 성공");
+					viewpage = "utils/ajax";
+					
+				}else {
+					model.addAttribute("ajax","댓글 실패");
+					viewpage = "utils/ajax";
+				}
+				return viewpage;
 			}
 	
 }

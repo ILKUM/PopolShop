@@ -48,4 +48,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getWriteRecom" resultType="kr.or.scoop.dto.Recommend">
 	 select m.name, r.rcseq , r.rctitle, r.rctime , r.rclike, r.rcrnum from member m join recommend r on m.email = r.email where m.email = #{email}
 	</select>
+	<!-- 추천글 덧글 등록 -->
+	<insert id="recomComment" parameterType="kr.or.scoop.dto.RcReply">
+	insert into RCREPLY(rcrseq,rcseq,email,rcrcontent, rcrtime)
+  	values(RCRSEQ_RCREPLY_SEQ.NEXTVAL, #{param1}, #{param2},#{param3}, sysdate)
+	</insert>
+	<!-- 추천글 덧글 리스트 출력  -->
+	<select id="recomCommentOk" resultType="kr.or.scoop.dto.RcReply">
+	select * from rcreply r join member m on r.email=m.email where r.rcseq = #{rcseq}
+	</select>
+	<!-- 추천 댓글 삭제 -->
+	<delete id="delRecomComment">
+	delete RCREPLY where rcrseq=#{rcrseq}
+	</delete>
 	</mapper>

@@ -23,112 +23,17 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('#commentMain').scrollTop($('#commentMain')[0].scrollHeight);
+	
 	$('#reCommentBtn').click(function(){
-		if($("#reComment").val()==''){
+		if($("#rcComment").val()==''){
 			Swal.fire({
 				  title: '댓글을 작성해주세요!',
 				  showConfirmButton: false,
 				  icon: 'warning',
 				  timer: 1000
 			})
-			return;
+			return false;
 		}
-		var rcseqq = $("#rcseq").val();
-		$.ajax({			
-			url:"reComment.do",
-			data:{
-				rcseq: $("#rcseq").val(),
-				email:$("#email").val(),
-				rcrcontent: $("#rcComment").val()
-			},
-			success:function(data){
-				console.log(data);
-				$.ajax({
-					type:"GET",
-					dataType:"json",
-					url:"reCommentOk.do",
-					data:{
-						rcseq: $("#rcseq").val()						
-					},
-					success:function(event){
-						$('#commentMain').empty();
-						$.each(event,function(index,object){
-							var src = "";
-		                     if(object.profile==''){
-		                        src = '/SCOOP/resources/images/avatar/avatar.png';
-		                     }else{
-		                        src = '/SCOOP/user/profile/'+object.profile;
-		                     }
-							var xButton = '';
-							if(object.email=="${sessionScope.email}"){
-								xButton = '<span id="'+object.replyseq+'" class="deleteComment"><span class="iconify" id="deleteComment"  data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size:15px;margin-bottom: 3px;"></span></span>';
-								}
-						$('#commentMain').append(
-
-					            '<div class="row" style="margin:2% 3% 2% 3%;">'+
-					            '<div class="col-sm-1" style="margin-top: 5px;margin-right:10px;padding-left:0;">'+
-					            '<img class="img-circle" alt="멤버 프로필 사진 넣는 곳" src="'+src+'" style="width:40px;height: 40px;padding-top: 1%;margin-left: 10px;margin-right: 10px;">'+
-					            '</div>'+
-					            '<div class="col-sm-10">'+
-					            '<div id="commentMain" style="margin: 3% 5% 3% 5%;" >'+
-					            '<div style="margin-bottom: 1%;width: 260px;">'+
-					            '<span>'+object.name+'</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>'+object.rdate.substring(0,16)+'</span>'+
-					            xButton +
-					            '<br><div>'+object.rcontent+'</div></div></div></div></div>'
-						           
-							);
-						$('#reComment').val("");
-						$('#commentMain').scrollTop($('#commentMain')[0].scrollHeight);
-						Swal.fire({
-							  title: '댓글작성 완료!',
-							  showConfirmButton: false,
-							  icon: 'success',
-							  timer: 1000
-						})
-						
-						});
-						
-						//댓글 삭제 
-						$('.deleteComment').click(function(){
-							var temp=$(this);
-							$.ajax({
-								type:"GET",
-								url:"delComment.do",
-								data:{
-									rvrseq: $(this).attr("id")				
-								},
-								success:function(event){
-									
-									temp.closest(".row").remove();
-									Swal.fire({
-						 				  title: '댓글삭제 완료!',
-						 				  showConfirmButton: false,
-						 				  icon: 'success',
-						 				  timer: 1000
-						 			})
-								},
-								error:function(error){
-									alert("에러");
-								}
-									
-							});
-							
-						});
-			            
-					},
-					error:function(error){
-						alert("에러");
-					}
-						
-				});
-	            
-			},
-			error:function(error){
-				alert(error);
-			}
-				
-		});
 	});
 	$('#editRecommend').click(function(){
 		location.href = 'recomEdit.do?rcseq='+${rec.rcseq};
@@ -154,9 +59,9 @@ $(function(){
 		var temp=$(this);
 		$.ajax({
 			type:"GET",
-			url:"delComment.do",
+			url:"delRecomComment.do",
 			data:{
-				replyseq: $(this).attr("id")				
+				rcrseq: $(this).attr("id")				
 			},
 			success:function(event){
 				temp.closest(".row").remove();
@@ -216,7 +121,7 @@ border-radius: 5px;
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body"style="height: 680px;">
+        <div class="content-body"style="height: 750px;">
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
@@ -255,7 +160,7 @@ border-radius: 5px;
             </div> 
             <div class="card" style="height: 600px;float:right;background-color: #fff;margin-left:10px;padding-left: 0px;padding-right: 0px;width:400px;">
             <div id="commentMain" style="height:450px;padding-left: 3%;padding-top: 5%;padding-right: 3%;padding-bottom: 5%;overflow: auto;margin:5%;">
-           <c:forEach items="${recoment}" var="recom">
+           <c:forEach items="${rccom}" var="recom">
             
             <div class="row" style="margin:2% 3% 2% 3%;">
             
@@ -272,14 +177,14 @@ border-radius: 5px;
             <div class="col-sm-10">
             <div id="commentMain" style="margin: 3% 5% 3% 5%;" >
             <div style="margin-bottom: 1%;width: 260px;">
-            <span>${rec.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${rccom.rcrtime}</span>
+            <span>${rec.name}</span><span style="padding-left:3%"><i class="far fa-clock" style="color:#E71D36 "></i>${fn:substring(recom.rcrtime,0,19)}</span>
             <c:if test="${rec.email==sessionScope.email}">
-            <span id="${rccom.rcrseq}" class="deleteComment">
+            <span id="${recom.rcrseq}" class="deleteComment">
             <span class="iconify" id="deleteComment"  data-icon="octicon:x" data-inline="false" style="cursor: pointer;font-size:15px;margin-bottom: 3px;"></span>
             </span>
             </c:if>
             <br>
-            <div>${rccom.rcrcontent}</div>
+            <div>${recom.rcrcontent}</div>
             </div>
             </div>
             </div>
@@ -289,9 +194,13 @@ border-radius: 5px;
             
             
             </div>
+            <form action="rcComment.do">
+           <input type="hidden" value="${rec.rcseq}" name="rcseq">
+            <input type="hidden" value="${sessionScope.email}" name="email">
             <img src="resources/images/logo/ScoopTitle.png" style="width:150px;height: auto;opacity:0.3;position:absolute;top:25%;left: 32%;">
-            <textarea id="rcComment" rows="5" name="rcrcontent" placeholder="말하지 않아도 아는것은 초코파이뿐입니다                        댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:auto;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
+            <textarea id="rcComment" rows="5" name="rcrcontent" placeholder="댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:370px;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
             <input id="rcCommentBtn" type="submit" value="저장" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #E71D36;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
+            </form>
             </div>
             </div>
         </div>
