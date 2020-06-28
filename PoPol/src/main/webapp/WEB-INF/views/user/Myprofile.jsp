@@ -126,7 +126,7 @@
 	function getOutMember(){
 	 Swal.fire({
 		   title: '정말로 회원 탈퇴하시겠습니까??',
-		   text: "삭제하시면 스쿱의 모든 정보가 사라집니다!",
+		   text: "삭제하시면 모플렉스의 모든 정보가 사라집니다!",
 		   icon: 'warning',
 		   showCancelButton: true,
 		   confirmButtonColor: '#d33',
@@ -181,7 +181,7 @@
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #E71D36;">내 정보</a>
+			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #ba90c4;">내 정보</a>
 			    </li>
 			    <li class="nav-item">
 			      <a class="nav-link" href="paymentPage.do">가격 및 결제</a>
@@ -198,10 +198,8 @@
 			<div class="media align-items-center mb-4 filebox">
 					<c:choose>
 						<c:when test="${img==null}">
-							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
-							<label for="Photo">업로드</label> 
+							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">						 
 							<input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);" >
-    						<input class="upload-name" value="파일선택">
 						</c:when>
 						<c:otherwise>
                              <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
@@ -211,7 +209,7 @@
 					</c:choose>
                                     <div class="media-body">
                                         <h3 class="mb-0" style="padding-left: 2%;">${member.name}</h3>
-                                        <p class="text-muted mb-0" style="margin-left: 2%; width: 300px;">${member.email}</p>
+                                        <p class="mb-0" style="margin-left: 2%; width: 300px;color:#ba90c4; ">${member.email}</p>
                                     </div>
                                 </div>
 		</div>

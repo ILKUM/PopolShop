@@ -85,7 +85,7 @@ function requestPay(){
 function getOutMember(){
 	 Swal.fire({
 		   title: '정말로 회원 탈퇴하시겠습니까??',
-		   text: "삭제하시면 스쿱의 모든 정보가 사라집니다!",
+		   text: "삭제하시면 모플렉스의 모든 정보가 사라집니다!",
 		   icon: 'warning',
 		   showCancelButton: true,
 		   confirmButtonColor: '#d33',
@@ -140,7 +140,7 @@ function getOutMember(){
 							<li class="nav-item"><a class="nav-link"
 								href="memberEdit.do?${sessionScope.email}">내 정보</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="paymentPage.do" style="color: #E71D36;">가격 및 결제</a></li>
+								href="paymentPage.do" style="color: #ba90c4;">가격 및 결제</a></li>
 							<li class="nav-item">
 								<a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
 						    </li>
