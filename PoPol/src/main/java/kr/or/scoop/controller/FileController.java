@@ -211,5 +211,23 @@ public class FileController {
 		}
 		return viewpage;
 	}
+	
+	//파일 댓글 삭제
+	@RequestMapping(value = "delFileComment.do",method = {RequestMethod.POST,RequestMethod.GET})
+	public String delComment(int frseq,Model model) {
+		int result = 0;	
+		String viewpage = "";
+		result = bService.delFileComment(frseq);
+		
+		if(result > 0) {
+			model.addAttribute("ajax","댓글 성공");
+			viewpage = "utils/ajax";
+			
+		}else {
+			model.addAttribute("ajax","댓글 실패");
+			viewpage = "utils/ajax";
+		}
+		return viewpage;
+	}
 
 }

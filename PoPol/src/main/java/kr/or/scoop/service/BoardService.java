@@ -214,5 +214,11 @@ public class BoardService {
 		return result;
 	}
 	
+	// 파일 댓글 삭제
+		public int delFileComment(int frseq) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			int result = dao.delFileComment(frseq);
+			return result;
+		}
 
 }
