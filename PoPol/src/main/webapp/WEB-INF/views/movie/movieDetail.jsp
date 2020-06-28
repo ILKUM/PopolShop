@@ -8,7 +8,7 @@
 <c:set var="role" value="${sessionScope.role}" />
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="count" value="${requestScope.count}" />
-<c:set var="count" value="${requestScope.point}" />
+<c:set var="point" value="${requestScope.point}" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -182,21 +182,8 @@ $(function(){
 });
 
 $("#download").click(function(){
-	let point = $("#point").val();
-	let mpoint = $("#mpoint").val();
-	if(point > mpoint) {
-		location.href = "fileDownload.do?fileName="+${movie.mophoto};
-	}else {
-		Swal.fire({
-			  title: '댓글을 작성해주세요!',
-			  showConfirmButton: false,
-			  icon: 'warning',
-			  timer: 1000
-		})
-		return false;
-	}
-	
-});
+	location.href = "movieDownload.do?fileName="+${movie.mophoto};	
+})
 </script>
 <style>
 .newissue{
@@ -259,8 +246,10 @@ border-radius: 5px;
 			</c:choose>
 			
 		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">		
+		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
+		<a href="movieDownload.do?fileName=${movie.mophoto}">
 		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>	
+		</a>	
 		</c:if>
 		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>		
 			<c:if test="${role=='ROLE_ADMIN'}">

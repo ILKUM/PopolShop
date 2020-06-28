@@ -220,15 +220,17 @@ border-radius: 5px;
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">
-		<input type="hidden" name="fseq" value="${file.fseq}" id="reseq">
+		<input type="hidden" name="fseq" value="${file.fseq}" id="fseq">
 		<input type="hidden" id="count" value="${count}">
 		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
 			
 			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">파일공유 게시판</div>
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
-				<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">		
+				<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">	
+				<a href="dataDownload.do?fileName=${file.filename}">
 		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;">${file.fdnum}</span>	
+			</a>
 		</c:if>
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${file.flike}</i>
 			<c:if test="${file.email==sessionScope.email}">
