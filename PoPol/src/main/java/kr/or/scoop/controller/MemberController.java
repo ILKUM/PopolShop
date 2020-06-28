@@ -463,13 +463,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "mailSending.do")
-	public String mailSending(HttpServletRequest request,HttpSession session,String tosend) {
+	public String mailSending(HttpServletRequest request,HttpSession session) {
 		String setfrom = (String)session.getAttribute("email");	
 		String title = request.getParameter("mtitle"); // 제목
 		String content = request.getParameter("mcontent"); // 내용
-		String tomail = "";
-		if(tosend.equals("모플렉스")) {
-			tomail = "chdl1229@naver.com";
+		String tosend = request.getParameter("tosend"); //받는사람
+		String tomail = ""; 
+		if(tosend == null) { //이메일 비공개
+			tomail = "chdl1229@gmail.com"; //관리자 이메일 대입
 		}else {
 			
 		}

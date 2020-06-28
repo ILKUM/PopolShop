@@ -431,7 +431,7 @@ span {
 
          <!-- Modal body -->
          <form action="mailSending.do" method="post">
-         </form>
+         
             <div class="row" style="margin-bottom: 1%;" id="inviteContent">
                <div class="col-sm-6"
                   style="border-right: 1px solid rgba(0,0,0,0.5); padding-left: 20px;">
@@ -440,9 +440,8 @@ span {
 		              <spring:message code="invite.content1" /><br> 
 		              <spring:message code="invite.content2" />
                      </p>
-                     <label for="title"><spring:message code="invite.subject" /></label> <input
-                        class="form-control createmodal" type="text" id="invite_Submit"                      
-                        style="width: 100%; border-radius: 0.25rem;" value="모플렉스" name="tosend" disabled="disabled">
+                     <label for="title"><spring:message code="invite.subject" /></label> 
+                     <input class="form-control createmodal" type="text" id="invite_Submit" style="width: 100%; border-radius: 0.25rem;" value="모플렉스" name="tosend" disabled="disabled">
                      <p style="font-size: 13px; margin-top: 2%; margin-left: 1%;">
                      	<spring:message code="invite.subcon" />
                      </p>
@@ -470,7 +469,7 @@ span {
                      style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer; margin-left: 100px; padding-left: 75px; padding-right: 75px;">
                </div>
             </div>
-
+</form>
 
 
       </div>
