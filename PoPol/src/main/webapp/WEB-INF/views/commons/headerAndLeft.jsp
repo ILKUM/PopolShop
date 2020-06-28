@@ -430,7 +430,7 @@ span {
          </div>
 
          <!-- Modal body -->
-         <form action="inviteTeam.do" method="post" id="inviteForm">
+         <form action="mailSending.do" method="post">
          </form>
             <div class="row" style="margin-bottom: 1%;" id="inviteContent">
                <div class="col-sm-6"
@@ -441,9 +441,8 @@ span {
 		              <spring:message code="invite.content2" />
                      </p>
                      <label for="title"><spring:message code="invite.subject" /></label> <input
-                        class="form-control createmodal" type="text" id="invite_Submit"
-                        placeholder="<spring:message code='invite.holder' />"
-                        style="width: 100%; border-radius: 0.25rem;">
+                        class="form-control createmodal" type="text" id="invite_Submit"                      
+                        style="width: 100%; border-radius: 0.25rem;" value="모플렉스" name="tosend" disabled="disabled">
                      <p style="font-size: 13px; margin-top: 2%; margin-left: 1%;">
                      	<spring:message code="invite.subcon" />
                      </p>
@@ -451,11 +450,11 @@ span {
                         style="min-width: 35%; border: 1px solid #c8c8c8; border-radius: 0.25rem; background-color: #fff; display: none; position: absolute; top: 145px; left: 18px;">
 
                      </div>
-                     <label for="content"><spring:message code="invite.team" /></label> <select id="select_invite"
-                        name="tseq" class="form-control" style="border-radius: 0.25rem;">
-                        <c:forEach items="${pjtlist}" var="p">
-                           <option value="${p.tseq}">${p.pname}</option>
-                        </c:forEach>
+                     <label for="content"><spring:message code="invite.team" /></label> 
+                     <select id="select_invite" name="mtitle" class="form-control" style="border-radius: 0.25rem;">                     
+                           <option value="버그제보(Bug Report)"><spring:message code="mail.sel1" /></option>                    
+                           <option value="모플렉스 문의 (Moflex Inquiry)"><spring:message code="mail.sel2" /></option>                    
+                           <option value="모플렉스 피드백(Moflex FeedBack)"><spring:message code="mail.sel3" /></option>                    
                      </select>
                   </div>
                </div>
@@ -465,20 +464,10 @@ span {
                   </label>
                   <div id="invite_Input"
                      style="border: 2px solid rgba(0,0, 0, 0.3); border-radius: 0.5rem; margin-right: 3%; height: 280px; overflow: auto; margin-bottom: 10px;">
-                     <span id="invite_Input1"
-                        style="margin-left: 35%; margin-top: 18%;"> <img
-                        src="<c:url value="/resources/images/icon/mail.png" />"
-                        style="width: 75px; height: 75px; margin-left: 40%;' ">
-                     </span>
-                     <p id="invite_Input2" style="text-align: center;">
-                       <spring:message code="invite.listcon1" /><br>
-                       <spring:message code="invite.listcon2" />
-                     </p>
+                     <textarea style="width:437px;height: 270px;resize: none;" name="mcontent"></textarea>
                   </div>
-                  <input type="hidden" name="invitecnt" id="invitecnt">
-                  <button type="submit" class="btn btn-secondary" id="invitebtn"
-                     style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; margin-left: 100px; padding-left: 75px; padding-right: 75px;"
-                     disabled="disabled"><spring:message code="invite.invite" /></button>
+                  <input type="submit" class="btn btn-secondary" id="invitebtn" value="<spring:message code="invite.invite" />"
+                     style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer; margin-left: 100px; padding-left: 75px; padding-right: 75px;">
                </div>
             </div>
 

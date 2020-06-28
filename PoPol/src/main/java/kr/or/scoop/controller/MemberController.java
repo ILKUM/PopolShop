@@ -462,6 +462,36 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	@RequestMapping(value = "mailSending.do")
+	public String mailSending(HttpServletRequest request,HttpSession session,String tosend) {
+		String setfrom = (String)session.getAttribute("email");	
+		String title = request.getParameter("mtitle"); // 제목
+		String content = request.getParameter("mcontent"); // 내용
+		String tomail = "";
+		if(tosend.equals("모플렉스")) {
+			tomail = "chdl1229@naver.com";
+		}else {
+			
+		}
+	
+
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+					true, "UTF-8");
+
+			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
+			messageHelper.setTo(tomail); // 받는사람 이메일
+			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+			messageHelper.setText(content); // 메일 내용
+
+			mailSender.send(message);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return "redirect:/notice.do";
+	}
 	
 		
 
