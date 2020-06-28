@@ -23,6 +23,7 @@ import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.JJim;
+import kr.or.scoop.dto.MoReply;
 import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
 import kr.or.scoop.service.BoardService;
@@ -254,10 +255,12 @@ public class BoardController {
 			MemberDao mdao = sqlSession.getMapper(MemberDao.class);
 			String email = (String)session.getAttribute("email");
 			result = mdao.addHistory(moseq, email);
+			List<MoReply> mocom = dao.movieCommentOk(moseq);
 			int count = dao.getmolike(email, moseq);
 			System.out.println(count);
 			Movie movie = dao.selectMovie(moseq);
 			if(result > 0 ) {
+				model.addAttribute("mocom", mocom);
 				request.setAttribute("count", count);
 				model.addAttribute("movie", movie);
 			}else {
@@ -400,6 +403,38 @@ public class BoardController {
 				fin.close();
 				sout.close();
 			}
+		
+		//리뷰 댓글작성
+		@RequestMapping(value = "moComment.do", method = {RequestMethod.POST,RequestMethod.GET})
+		public String reviewComent(int moseq,String email,String morcontent,Model model) {				
+			int result = 0;					
+			String viewpage = "";
+			result = bService.movieComment(moseq, morcontent, email);
+			if(result > 0) {					
+				viewpage = "redirect:/movieDetail.do?moseq="+moseq;				
+			}else {
+				viewpage = "redirect:/movieDetail.do";	
+			}
+			return viewpage;
+		}	
+		
+		//영화 댓글 삭제
+		@RequestMapping(value = "delMovieComment.do",method = {RequestMethod.POST,RequestMethod.GET})
+		public String delComment(int morseq,Model model) {
+			int result = 0;	
+			String viewpage = "";
+			result = bService.delMovieComment(morseq);
+			
+			if(result > 0) {
+				model.addAttribute("ajax","댓글 성공");
+				viewpage = "utils/ajax";
+				
+			}else {
+				model.addAttribute("ajax","댓글 실패");
+				viewpage = "utils/ajax";
+			}
+			return viewpage;
+		}
 		
 		
 }

@@ -62,5 +62,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<delete id="delReviewComment">
 	delete RVREPLY where rvrseq=#{rvrseq}
-</delete>
+	</delete>
 </mapper>

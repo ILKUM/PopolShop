@@ -3,6 +3,7 @@ package kr.or.scoop.dao;
 import java.util.List;
 
 import kr.or.scoop.dto.JJim;
+import kr.or.scoop.dto.MoReply;
 import kr.or.scoop.dto.Movie;
 
 public interface MovieDao {	
@@ -55,5 +56,13 @@ public interface MovieDao {
 	//영화글 추천 증가
 	public int molikeCount(int moseq);
 	
+	//영화 댓글
+	public int movieComment(int moseq,String email,String morcontent);
+	
+	//댓글 리스트
+	public List<MoReply> movieCommentOk(int moseq);
+	
+	//영화 댓글 삭제
+	public int delMovieComment(int morseq);
 	
 }

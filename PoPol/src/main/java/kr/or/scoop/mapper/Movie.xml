@@ -58,4 +58,16 @@ select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modire
 	<update id="molikeCount" parameterType="kr.or.scoop.dto.Movie">
 		update movie set molike = molike+1 where moseq = #{moseq}
 	</update>
+	<!-- 영화 덧글 등록 -->
+	<insert id="movieComment" parameterType="kr.or.scoop.dto.MoReply">
+	insert into moreply(morseq,moseq,email,morcontent, mortime)
+  	values(MORSEQ_MOREPLY_SEQ.NEXTVAL, #{param1}, #{param2},#{param3}, sysdate)
+	</insert>
+	<!-- 영화 덧글 리스트 출력  -->
+	<select id="movieCommentOk" resultType="kr.or.scoop.dto.MoReply">
+	select * from moreply r join member m on r.email=m.email where r.moseq = #{moseq}
+	</select>
+	<delete id="delMovieComment">
+	delete MOREPLY where morseq=#{morseq}
+	</delete>
 </mapper>

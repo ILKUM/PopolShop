@@ -67,6 +67,9 @@ public interface MemberDao {
 	//회원 포인트 
 	public int getPoint(String email);
 	
+	//영화 댓글
+	public int movieComment(int moseq,String email,String morcontent);
+	
 	
 	
 }

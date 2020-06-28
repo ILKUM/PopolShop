@@ -39,7 +39,7 @@ $('.deleteComment').click(function(){
 	var temp=$(this);
 	$.ajax({
 		type:"GET",
-		url:"delComment.do",
+		url:"delReviewComment.do",
 		data:{
 			rvrseq: $(this).attr("id")				
 		},

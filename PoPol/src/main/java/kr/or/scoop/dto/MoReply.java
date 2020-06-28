@@ -8,6 +8,8 @@ public class MoReply {
  	private Timestamp mortime; //영화댓글 작성시간
  	private String email; //영화댓글 작성자
  	private String name; //영화댓글 작성자 이름
+ 	private int moseq; //영화번호
+ 	private String profile; //프로필 이미지
  	
 	public int getMorseq() {
 		return morseq;
@@ -39,6 +41,26 @@ public class MoReply {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getMoseq() {
+		return moseq;
+	}
+	public void setMoseq(int moseq) {
+		this.moseq = moseq;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	
+	@Override
+	public String toString() {
+		return "MoReply [morseq=" + morseq + ", morcontent=" + morcontent + ", mortime=" + mortime + ", email=" + email
+				+ ", name=" + name + ", moseq=" + moseq + ", profile=" + profile + "]";
+	}
+	
+	
  	
  	
 }

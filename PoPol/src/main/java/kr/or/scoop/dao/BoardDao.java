@@ -38,7 +38,7 @@ public interface BoardDao {
 	//댓글 등록
 	public int reviewComment(int reseq,String email,String rvrcontent);
 	
-	//댓글 처리
+	//댓글 리스트
 	public List<RvReply> reviewCommentOk(int reseq);		
 	
 	//리뷰 글 수정

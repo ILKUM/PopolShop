@@ -237,8 +237,8 @@ public class ReviewController {
 				return "user/Myreview";	
 			}
 			
-			//팀이슈 댓글 삭제
-			@RequestMapping(value = "delComment.do",method = {RequestMethod.POST,RequestMethod.GET})
+			//리뷰 댓글 삭제
+			@RequestMapping(value = "delReviewComment.do",method = {RequestMethod.POST,RequestMethod.GET})
 			public String delComment(int rvrseq,Model model) {
 				int result = 0;	
 				String viewpage = "";
