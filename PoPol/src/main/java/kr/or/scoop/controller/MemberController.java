@@ -233,7 +233,7 @@ public class MemberController {
 			model.put("title", "영화를 즐기는 MOFLEX 본인 인증 이메일입니다");
 			// model.put("password", temp);
 			String mailBody = VelocityEngineUtils.mergeTemplateIntoString(velocityEngineFactoryBean.createVelocityEngine(), "forgotPwd.vm", "UTF-8", model);
-			messageHelper.setFrom("leeyong1321@gmail.com");
+			messageHelper.setFrom("chdl1229@gmail.com");
 			messageHelper.setTo(email);
 			messageHelper.setSubject("회원님의 MOFLEX 계정의 본인 인증 이메일입니다");
 			messageHelper.setText(mailBody, true);
@@ -467,10 +467,11 @@ public class MemberController {
 		String setfrom = (String)session.getAttribute("email");	
 		String title = request.getParameter("mtitle"); // 제목
 		String content = request.getParameter("mcontent"); // 내용
+		String content2 = request.getParameter("tohave"); // 내용
 		String tosend = request.getParameter("tosend"); //받는사람
 		String tomail = ""; 
 		if(tosend == null) { //이메일 비공개
-			tomail = "chdl1229@gmail.com"; //관리자 이메일 대입
+			tomail = "chdl1229@naver.com"; //관리자 이메일 대입
 		}else {
 			
 		}
@@ -484,7 +485,8 @@ public class MemberController {
 			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
 			messageHelper.setTo(tomail); // 받는사람 이메일
 			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-			messageHelper.setText(content); // 메일 내용
+			messageHelper.setText(content + "<br>답변받는 이메일 : " + content2); // 메일 내용
+			
 
 			mailSender.send(message);
 		} catch (Exception e) {

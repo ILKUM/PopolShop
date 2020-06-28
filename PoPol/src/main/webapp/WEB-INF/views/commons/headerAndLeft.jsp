@@ -455,6 +455,8 @@ span {
                            <option value="모플렉스 문의 (Moflex Inquiry)"><spring:message code="mail.sel2" /></option>                    
                            <option value="모플렉스 피드백(Moflex FeedBack)"><spring:message code="mail.sel3" /></option>                    
                      </select>
+                     <label for="tohave" style="margin-top: 8px;"><spring:message code="mail.have" /></label>
+                    <input class="form-control createmodal" type="text" id="tohave" style="width: 100%; border-radius: 0.25rem;" value="${sessionScope.email}" name="tohave"> 
                   </div>
                </div>
                <div class="col-sm-6">
