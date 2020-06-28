@@ -21,6 +21,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dto.File;
+import kr.or.scoop.dto.FileReply;
 import kr.or.scoop.service.BoardService;
 
 @Controller
@@ -101,18 +102,21 @@ public class FileController {
 		}
 		return viewpage;
 	}
-
+	
+	//파일 글 상세보기
 	@RequestMapping(value = "detailFile.do", method = RequestMethod.GET)
 	public String detailFile(int fseq, Model model, HttpServletRequest request, HttpSession session) {
 		String viewpage = "";
 		String email = (String) session.getAttribute("email");
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		File file = dao.detailFile(fseq);
+		List<FileReply> fre = dao.fileCommentOk(fseq);
 		int count = dao.checkFile(fseq, email);
 		int read = bService.readFile(fseq);
 		if (read > 0) {
 			request.setAttribute("count", count);
 			model.addAttribute("file", file);
+			model.addAttribute("fre", fre);
 			viewpage = "file/fileDetail";
 		} else {
 
@@ -190,6 +194,20 @@ public class FileController {
 			viewpage = "redirect:/writeMyFile.do";
 		} else {
 			viewpage = "redirect:/writeMyFile.do";
+		}
+		return viewpage;
+	}
+	
+	//추천 댓글작성
+	@RequestMapping(value = "fileComment.do", method = {RequestMethod.POST,RequestMethod.GET})
+	public String reviewComent(int fseq,String email,String frcontent,Model model) {				
+		int result = 0;					
+		String viewpage = "";
+		result = bService.fileComment(fseq, frcontent, email);
+		if(result > 0) {					
+			viewpage = "redirect:/detailFile.do?fseq="+fseq;				
+		}else {
+			viewpage = "redirect:/detailFile.do";	
 		}
 		return viewpage;
 	}

@@ -3,6 +3,7 @@ package kr.or.scoop.dao;
 import java.util.List;
 
 import kr.or.scoop.dto.File;
+import kr.or.scoop.dto.FileReply;
 import kr.or.scoop.dto.RcReply;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
@@ -133,5 +134,14 @@ public interface BoardDao {
 	
 	//내가 작성한 파일글
 	public List<File> getWriteFile(String email);
+	
+	//파일 댓글 등록
+	public int fileComment(int fseq,String email,String frcontent);
+	
+	//추천 댓글 리스트
+	public List<FileReply> fileCommentOk(int fseq);
+	
+	//리뷰 댓글 삭제
+	public int delFileComment(int frseq);
 	
 }

@@ -36,4 +36,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getWriteFile" resultType="kr.or.scoop.dto.File">
 	 select * from member m join fileboard f on m.email = f.email where m.email = #{email}
 	</select>
+	<!-- 파일글 덧글 등록 -->
+	<insert id="fileComment" parameterType="kr.or.scoop.dto.FileReply">
+	insert into fREPLY(frseq, fseq, email , frcontent , frtime)
+  	values(FRSEQ_FREPLY_SEQ.NEXTVAL , #{param1}, #{param2}, #{param3} , sysdate)
+	</insert>
+	<!-- 추천글 덧글 리스트 출력  -->
+	<select id="fileCommentOk" resultType="kr.or.scoop.dto.FileReply">
+	select * from freply f join member m on f.email=m.email where f.fseq = #{fseq}
+	</select>
 </mapper>
