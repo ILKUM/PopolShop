@@ -170,5 +170,28 @@ public class FileController {
 		fin.close();
 		sout.close();
 	}
+	
+	//내가 작성한 파일글
+	@RequestMapping(value = "writeMyFile.do",method = RequestMethod.GET)
+	public String MywriteRecom(String email,HttpSession session,Model model) {
+		email = (String)session.getAttribute("email");
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		List<File> file = dao.getWriteFile(email);
+		model.addAttribute("file", file);
+		return "user/MyFile";
+	}
+	
+	//내가 작성한 파일글에서 삭제
+	@RequestMapping(value = "deleteMyFile.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteMyFile(int fseq) {
+		String viewpage;
+		int result = bService.deleteFile(fseq);
+		if (result > 0) {
+			viewpage = "redirect:/writeMyFile.do";
+		} else {
+			viewpage = "redirect:/writeMyFile.do";
+		}
+		return viewpage;
+	}
 
 }

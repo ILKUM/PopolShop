@@ -40,7 +40,7 @@
 $(document).ready(function(){
 	//더보기 스타일 변경
 	$('#load').mouseover(function(){
-		$(this).css("color","#E71D36");
+		$(this).css("color","#ba90c4");
 	});
 	$('#load').mouseout(function(){
 		$(this).css("color","#464a53");
@@ -107,7 +107,10 @@ $(document).ready(function(){
 			      <a class="nav-link" href="writeMyRecom.do">추천 게시판</a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyReview.do" style="color: #E71D36;">리뷰 게시판</a>
+			      <a class="nav-link" href="writeMyReview.do" style="color: #ba90c4;">리뷰 게시판</a>
+			    </li>		
+			    <li class="nav-item">
+			      <a class="nav-link" href="writeMyFile.do">파일공유 게시판</a>
 			    </li>		
 		    </ul>
 		</div>

@@ -100,7 +100,7 @@ $(function(){
 	margin-bottom:1%;
 }
 .editdelete{
-background-color: #E71D36;
+background-color: #ba90c4;
 border-color: #CCCCCC;
 color: #fff;
 cursor: pointer;

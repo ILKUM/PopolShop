@@ -131,4 +131,7 @@ public interface BoardDao {
 	//파일글 조회수 증가
 	public int readFile(int fseq);
 	
+	//내가 작성한 파일글
+	public List<File> getWriteFile(String email);
+	
 }

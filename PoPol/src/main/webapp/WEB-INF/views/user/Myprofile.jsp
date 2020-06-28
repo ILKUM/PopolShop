@@ -243,7 +243,7 @@
     		<label for="drank">포인트</label>
     		<input class="form-control myinfo" type="text" id="drank" name="drank" style="width: 60%" value="${member.point} P">
     		<br>   
-    		<input type="submit" id="address_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
+    		<input type="submit" id="address_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
     		
     		</div>
     		</div>

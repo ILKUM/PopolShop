@@ -32,4 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="readFile">
 		update Fileboard set frnum = frnum+1 where fseq = #{fseq}
 	</update>
+	<!-- 내가 작성한 파일 글 -->
+	<select id="getWriteFile" resultType="kr.or.scoop.dto.File">
+	 select * from member m join fileboard f on m.email = f.email where m.email = #{email}
+	</select>
 </mapper>

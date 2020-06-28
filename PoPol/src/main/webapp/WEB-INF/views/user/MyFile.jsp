@@ -40,13 +40,13 @@
 $(document).ready(function(){
 	//더보기 스타일 변경
 	$('#load').mouseover(function(){
-		$(this).css("color","#E71D36");
+		$(this).css("color","#ba90c4");
 	});
 	$('#load').mouseout(function(){
 		$(this).css("color","#464a53");
 	});
 	var temp = 0;
-	var moreEventArray = document.querySelectorAll(".card > a > .row ");
+	var moreEventArray = document.querySelectorAll(".card > .writeFile ");
 	if(moreEventArray.length<=10){
 		 $('#load').remove();
          $('#loadPlus').remove();
@@ -98,19 +98,19 @@ $(document).ready(function(){
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">자신이 추천 글 목록</h3>
+				<h3 style="padding-left: 15px;">자신이 쓴 파일 글 목록</h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyRecom.do" style="color: #ba90c4;">추천 게시판</a>
+			      <a class="nav-link" href="writeMyRecom.do">추천 게시판</a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyReview.do">리뷰 게시판</a>
+			      <a class="nav-link" href="writeMyReview.do" >리뷰 게시판</a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyFile.do">파일공유 게시판</a>
+			      <a class="nav-link" href="writeMyFile.do" style="color: #ba90c4;">파일공유 게시판</a>
 			    </li>		
 		    </ul>
 		</div>
@@ -135,37 +135,33 @@ $(document).ready(function(){
 		     
       </div>
 		
-		<c:forEach items="${recom}" var="rc">
-		
-		<div class="row writeRecom" style="margin-left: 2%; margin-right: 2%" id="row">	
+		<c:forEach items="${file}" var="f">	
+		<div class="row writeFile" style="margin-left: 2%; margin-right: 2%" id="row">	
 		<div class="col-sm-7 listwrite" style="padding-left: 60px;" >
-		<a href="recomDetail.do?rcseq=${rc.rcseq}">
-         	${rc.rctitle}
+		<a href="detailFile.do?fseq=${f.fseq}">
+         	${f.ftitle}
 		</a>
          </div>
          <div class="col-sm-2 listwrite">
-         <a href="recomDetail.do?rcseq=${rc.rcseq}">
-         	${fn:substring(rc.rctime,0,10)}
+         <a href="detailFile.do?fseq=${f.fseq}">
+         	${fn:substring(f.ftime,0,10)}
          	</a>
          </div>
          <div class="col-sm-1 listwrite">
-         	<a href="recomDetail.do?rcseq=${rc.rcseq}">
-         	${rc.rcrnum}
+         	<a href="detailFile.do?fseq=${f.fseq}">
+         	${f.frnum}
          	</a>
          </div>
          <div class="col-sm-1 listwrite">
-         	<a href="recomDetail.do?rcseq=${rc.rcseq}">
-         	${rc.rclike}
+         	<a href="detailFile.do?fseq=${f.fseq}">
+         	${f.flike}
          	</a>
          </div>
          <div class="col-sm-1 listwrite">
-		<a href="deleteMyRecom.do?rcseq=${rc.rcseq}">
-         	삭제
-		</a>   
-		</div>      
+         	<a href="deleteMyFile.do?fseq=${f.fseq}">삭제</a>
          </div>
-			</c:forEach>  
       </div>	
+			</c:forEach>  
 			<div id="loadPlus" data-toggle="tooltip" data-placement="bottom" title="더 보기" >
 			<div id="load" class="iconify" style="font-size: 40px; color:#464a53;cursor: pointer; margin-left: 627px; margin-top: 1%;" data-icon="mdi:chevron-double-down" data-inline="false">더 보기</div>
 			</div>
@@ -175,9 +171,9 @@ $(document).ready(function(){
             
             </div>
 		</div>
- 
 		
         	
+        </div>
         
         <!--**********************************
             Content body end
