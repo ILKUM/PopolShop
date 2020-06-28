@@ -573,13 +573,14 @@ function idOver(a) {
          <input type="text" class="form-control" id="name" name ="name" placeholder="7자까지 입력가능합니다" required>
         <!--  <input type="hidden" class="form-control" id="point" name ="point" value="300"> -->
          <input type="hidden" class="form-control" id="cpoint" name ="cpoint" value="0">
+         <input type="hidden" class="form-control" id="mlike" name ="mlike" value="0">
         </div>
         <div class="form-group mb-4">
          <label>Password</label>
          <input type="password" class="form-control" id="tbPwd" name="pwd" placeholder="8~16자리를 입력해주세요" required>
         </div>
         <div class="form-group" style="margin-left:27%;margin-right: 30%;">
-        		<input type="submit" id="signUpBtn" value="<spring:message code='register.start' />" class="btn btn-primary" style="width: 300px;height:38px;text-align: center;padding-top: 5px;" disabled="disabled">
+        <input type="submit" id="signUpBtn" value="<spring:message code='register.start' />" class="btn btn-primary" style="width: 300px;height:38px;text-align: center;padding-top: 5px;" disabled="disabled">
         </div>
         <div>
         </div>

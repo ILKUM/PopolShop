@@ -211,6 +211,11 @@ span {
                      </ul>
                   </div>
                </div></li>
+               <li class="icons dropdown d-none d-md-flex"><i
+               class="fas fa-envelope" data-toggle="modal" id="inviteModal_id"
+               data-target="#adminMail"
+               style="cursor: pointer; color: #535359; font-size: 18px; padding-bottom: 12px;"></i>
+            </li>
             <li class="icons dropdown">
                <div class="user-img c-pointer position-relative"
                   data-toggle="dropdown">
@@ -414,7 +419,74 @@ span {
       </div>
    </div>
    </div>
-   
+   <div class="modal fade" id="adminMail">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-fullsize"
+         style="border-radius: 0.5rem;">
+         <!-- Modal Header -->
+         <div class="modal-header" style="padding-bottom: 0px;height: 67px;">
+            <h5 style="padding-top: 2%; padding-left: 5px;"><spring:message code="invite.title" /></h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+
+         <!-- Modal body -->
+         <form action="inviteTeam.do" method="post" id="inviteForm">
+         </form>
+            <div class="row" style="margin-bottom: 1%;" id="inviteContent">
+               <div class="col-sm-6"
+                  style="border-right: 1px solid rgba(0,0,0,0.5); padding-left: 20px;">
+                  <div class="modal-body">
+                     <p style="font-size: 12px">
+		              <spring:message code="invite.content1" /><br> 
+		              <spring:message code="invite.content2" />
+                     </p>
+                     <label for="title"><spring:message code="invite.subject" /></label> <input
+                        class="form-control createmodal" type="text" id="invite_Submit"
+                        placeholder="<spring:message code='invite.holder' />"
+                        style="width: 100%; border-radius: 0.25rem;">
+                     <p style="font-size: 13px; margin-top: 2%; margin-left: 1%;">
+                     	<spring:message code="invite.subcon" />
+                     </p>
+                     <div id="invite_email_append"
+                        style="min-width: 35%; border: 1px solid #c8c8c8; border-radius: 0.25rem; background-color: #fff; display: none; position: absolute; top: 145px; left: 18px;">
+
+                     </div>
+                     <label for="content"><spring:message code="invite.team" /></label> <select id="select_invite"
+                        name="tseq" class="form-control" style="border-radius: 0.25rem;">
+                        <c:forEach items="${pjtlist}" var="p">
+                           <option value="${p.tseq}">${p.pname}</option>
+                        </c:forEach>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-sm-6">
+                  <label for="content" style="margin-top: 3%; margin-bottom: 0px;">
+                  	<spring:message code="invite.list" />
+                  </label>
+                  <div id="invite_Input"
+                     style="border: 2px solid rgba(0,0, 0, 0.3); border-radius: 0.5rem; margin-right: 3%; height: 280px; overflow: auto; margin-bottom: 10px;">
+                     <span id="invite_Input1"
+                        style="margin-left: 35%; margin-top: 18%;"> <img
+                        src="<c:url value="/resources/images/icon/mail.png" />"
+                        style="width: 75px; height: 75px; margin-left: 40%;' ">
+                     </span>
+                     <p id="invite_Input2" style="text-align: center;">
+                       <spring:message code="invite.listcon1" /><br>
+                       <spring:message code="invite.listcon2" />
+                     </p>
+                  </div>
+                  <input type="hidden" name="invitecnt" id="invitecnt">
+                  <button type="submit" class="btn btn-secondary" id="invitebtn"
+                     style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer; margin-left: 100px; padding-left: 75px; padding-right: 75px;"
+                     disabled="disabled"><spring:message code="invite.invite" /></button>
+               </div>
+            </div>
+
+
+
+      </div>
+   </div>
+</div>
 <div class="modal fade" id="couponon">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
