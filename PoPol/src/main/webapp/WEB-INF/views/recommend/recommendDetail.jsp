@@ -197,7 +197,7 @@ border-radius: 5px;
             <form action="rcComment.do">
            <input type="hidden" value="${rec.rcseq}" name="rcseq">
             <input type="hidden" value="${sessionScope.email}" name="email">
-            <img src="resources/images/logo/ScoopTitle.png" style="width:150px;height: auto;opacity:0.3;position:absolute;top:25%;left: 32%;">
+            <img src="resources/images/logo/MoflexTitle.png" style="width:150px;height: auto;opacity:0.3;position:absolute;top:25%;left: 32%;">
             <textarea id="rcComment" rows="5" name="rcrcontent" placeholder="댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:370px;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
             <input id="rcCommentBtn" type="submit" value="저장" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #E71D36;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
             </form>

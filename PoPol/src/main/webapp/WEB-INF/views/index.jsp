@@ -437,7 +437,7 @@ function idOver(a) {
 <header class="header">
   <nav class="navbar navbar-expand-lg">
    <div class="container">
-     <!-- Navbar brand--><a href="index.do" class="navbar-nav font-weight-bold"><img src="resources/images/logo/ScoopBig.png" style="width:200px;height: 75px; " alt="..." ></a>
+     <!-- Navbar brand--><a href="index.do" class="navbar-nav font-weight-bold"><img src="resources/images/logo/MOFLEXbig.png" style="width:200px;height: 75px; " alt="..." ></a>
      <!-- Navbar toggler button-->
      <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="icon ion-md-list ml-2"></i></button>
      <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -535,7 +535,7 @@ function idOver(a) {
       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
      </div>
      <div class="modal-body p-4 p-lg-5">
-      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/ScoopBig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
+      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
       <form onsubmit="return checkz2()" action="login.do" class="login-form text-left" method="post">
         <h4><spring:message code="login.menu" /></h4>
         <div class="form-group mb-4">
@@ -570,7 +570,7 @@ function idOver(a) {
       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
      </div>
      <div class="modal-body p-4 p-lg-5">
-      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/ScoopBig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
+      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
       <form onsubmit="return checkz()" action="frontpage.do" class="login-form text-left" method="post">
         <h4><spring:message code="register.title" /></h4>
         <div class="form-group mb-4">
@@ -609,7 +609,7 @@ function idOver(a) {
       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
      </div>
      <div class="modal-body p-4 p-lg-5">
-      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/ScoopBig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
+      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
      <!--  <form class="login-form text-left" id="pwdchg" name="pwdchg" onsubmit="return chgpwdchk();"> -->
         <div class="form-group mb-4">
          <label>Email address</label>
