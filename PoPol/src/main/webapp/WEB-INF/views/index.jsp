@@ -465,21 +465,21 @@ function idOver(a) {
       <div id="table">
       <div class="rowdrop">
          <span class="celldrop col1drop"><a href="" class="dropdown-item">
-         	<spring:message code="detail.collabo" /><br>
-         	<span style="color: gray;font-size:13px"><spring:message code="detail.collabo1" /><br><spring:message code="detail.collabo2" /></span>
+         	<spring:message code="detail.review" /><br>
+         	<span style="color: gray;font-size:13px"><spring:message code="detail.review1" /><br><spring:message code="detail.review2" /></span>
          	<br>
          	</a></span>
       
          <span class="celldrop col2drop"><a href="" class="dropdown-item">
-         	<spring:message code="detail.issue" /><br>
-         	<span style="color: gray;font-size:13px"><spring:message code="detail.issue1" /> <br><spring:message code="detail.issue2" /></span>
+         	<spring:message code="detail.recom" /><br>
+         	<span style="color: gray;font-size:13px"><spring:message code="detail.recom1" /> <br><spring:message code="detail.recom2" /></span>
          
          </a></span>
       </div>
       <div class="rowdrop">
-         <span class="celldrop col1drop"><a href="index.html" class="dropdown-item">
-         	<spring:message code="detail.chat" /><br>
-         	<span style="color: gray;font-size:13px"><spring:message code="detail.chat1" /> <br><spring:message code="detail.chat2" /></span>
+         <span class="celldrop col1drop"><a href="" class="dropdown-item">
+         	<spring:message code="detail.movie" /><br>
+         	<span style="color: gray;font-size:13px"><spring:message code="detail.movie1" /> <br><spring:message code="detail.movie2" /></span>
          	</a></span>
          <span class="celldrop col2drop"><a href="" class="dropdown-item">
          	<spring:message code="detail.update" /><br>
@@ -488,25 +488,14 @@ function idOver(a) {
       </div>
        <div class="rowdrop">
          <span class="celldrop col1drop"><a href="index.html" class="dropdown-item">
-         	<spring:message code="detail.cal" /><br>
-         	<span style="color: gray;font-size:13px"><spring:message code="detail.cal1" /><br><spring:message code="detail.cal2" /></span>
+         	<spring:message code="detail.history" /><br>
+         	<span style="color: gray;font-size:13px"><spring:message code="detail.history1" /><br><spring:message code="detail.history2" /></span>
          	</a></span>
-         <span class="celldrop col2drop"><a href="" class="dropdown-item">
-         	<spring:message code="detail.kanban" /><br>
-         	<span style="color: gray;font-size:13px"><spring:message code="detail.kanban1" /><br><spring:message code="detail.kanban2" /></span>
-         	</a></span>
-      </div>
-      <div class="rowdrop">
-         <span class="celldrop col1drop"><a href="" class="dropdown-item">
-         	<spring:message code="detail.content" /><br>
-         	<span style="color: gray;font-size:13px"><spring:message code="detail.content1" /> <br><spring:message code="detail.content2" /></span>
-         </a></span>
-         <span class="celldrop col2drop"><a href="" class="dropdown-item">
+        <span class="celldrop col2drop"><a href="" class="dropdown-item">
          	<spring:message code="detail.admin" /><br>
          	<span style="color: gray;font-size:13px"><spring:message code="detail.admin1" /><br><spring:message code="detail.admin2" /></span>
          </a></span>
-      </div>
-      
+      </div>  
          <hr>
          <a href="" class="dropdown-item" style="text-align: center;">
          	<spring:message code="detail.security" /><br>
@@ -635,7 +624,7 @@ function idOver(a) {
      <div class="row align-items-center">
       <div class="col-lg-6">
         <h1 class="hero-heading"><spring:message code="main.title" /></h1>
-        <p class="lead mt-5 font-weight-light"><spring:message code="main.content" />🍿</p>
+        <p class="lead mt-5 font-weight-light"><spring:message code="main.content" />🌽</p>
         <!-- Subscription form-->
         <form action="#" class="subscription-form mt-5">
          <div class="form-group" style="border: 1px solid #656a6f; border-radius: 0.25rem;">
@@ -670,9 +659,9 @@ function idOver(a) {
 		<div class="container">	
 			<div class="row">
 				<div class="col-md-7 mx-auto text-center">
-					<h2><spring:message code="payment.title" /></h2>
+					<h3><spring:message code="payment.title" /></h3>
 					<br>
-					<p class="text-muted lead"><spring:message code="payment.content" /></p>
+					
 				</div>
 			</div>
 			<!--pricing tables-->
@@ -685,12 +674,12 @@ function idOver(a) {
 								<h2 class="card-title pt-4"  style="color:#0E2866">PRICE</h2>
 								<div class="text-muted mt-4"><spring:message code="payment.date" /></div>
 								<ul class="list-unstyled pricing-list">
-									<li><spring:message code="payment.alam" /></li>
-									<li><spring:message code="payment.team" /></li>
-									<li><spring:message code="payment.upload" /></li>
+									<li><spring:message code="payment.file" /></li>
+								
+									<li><spring:message code="payment.download" /></li>
 									<li><spring:message code="payment.teamMgm" /></li>
 									<li><spring:message code="payment.cs" /></li>
-									<li><spring:message code="payment.api" /></li>
+									
 									
 								</ul>
 								<h5> <spring:message code="payment.start" /> </h5>
@@ -707,13 +696,11 @@ function idOver(a) {
 								</div>
 								<ul class="list-unstyled pricing-list">
 									<li>-</li>
-									<li><spring:message code="payment.ea" /></li>
-									<li>20MB</li>
-									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #ba90c4;"></span></li>
-									<li><span class="iconify" data-icon="bx:bx-check"
-										data-inline="false" style="color: #ba90c4;"></span></li>
 									<li>-</li>
+									<li>-</li>
+									<li><span class="iconify" data-icon="bx:bx-check"
+										data-inline="false" style="color: #ba90c4;"></span></li>
+							
 									
 								</ul>
 								<a href="#" data-toggle="modal" data-target="#login" class="btn btn-secondary"> <spring:message code="payment.start" /> </a>
@@ -726,13 +713,13 @@ function idOver(a) {
 								<div class="text-muted mt-4"><spring:message code="payment.period" /></div>
 								<ul class="list-unstyled pricing-list">
 									<li><spring:message code="payment.unlimited" /></li>
-									<li><spring:message code="payment.unlimited" /></li>
-									<li>100MB</li>
+									<li><span class="iconify" data-icon="ion:infinite-sharp"
+										data-inline="false"></span></li>
 									<li><span class="iconify" data-icon="bx:bx-check"
 										data-inline="false" style="color: #ba90c4;"></span></li>
 									<li><span class="iconify" data-icon="bx:bx-check"
 										data-inline="false" style="color: #ba90c4;"></span></li>
-									<li><spring:message code="payment.googledrive" /></li>
+									
 								</ul>
 								<a href="requestPay" data-toggle="modal" data-target="#login" class="btn btn-primary"> <spring:message code="payment.start" /> </a>
 
@@ -751,8 +738,7 @@ function idOver(a) {
 						</div>
 						<button class="accordion" style="font-size: 23px;color: #000;">1. <spring:message code="qna.title1" /></button>
 						<div class="panel"  style="width: 1000px;">
-						  <p>- <spring:message code="qna.fircontent1" /><br><br>
-						     - <spring:message code="qna.fircontent2" /></p>
+						  <p>- <spring:message code="qna.fircontent1" /><br><br>						  
 						</div>
 						
 						<button class="accordion" style="font-size: 23px;color: #000;">2. <spring:message code="qna.title2" /></button>
@@ -762,11 +748,8 @@ function idOver(a) {
 							- <spring:message code="qna.seccontent1" /> <br><br>
 							<b>2) <spring:message code="qna.sec2" /></b><br>
 							- <spring:message code="qna.seccontent2" /><br> 
-							<spring:message code="qna.seccontent2.1" />	<br><br>
 							<b>3) <spring:message code="qna.sec3" /></b><br>
-							- <spring:message code="qna.seccontent3" /><br><br>
-							<b>4) <spring:message code="qna.sec4" /></b><br>
-							- <spring:message code="qna.seccontent4" /> 
+							- <spring:message code="qna.seccontent3" /><br><br>							
 						</p>
 						</div>
 						<button class="accordion" style="font-size: 23px;color: #000;">3. <spring:message code="qna.title3" /></button>
@@ -791,7 +774,7 @@ function idOver(a) {
       <div class="row">
         <div class="col-lg-10 mx-auto">
          <h3><spring:message code="intro.title" /></h3>
-         <p class="lead"><spring:message code="intro.sub1" /> <span style="color:#ba90c4;"><spring:message code="scoop" /></span><spring:message code="intro.sub2" /></p>
+         
          <div class="row" style="padding-left: 20%; padding-top: 5%;">
          <div class="col-sm-3">
           <img src="resources/images/icon/share.png" style="width: 100px;height: auto;">
