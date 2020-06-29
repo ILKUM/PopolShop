@@ -95,6 +95,7 @@ public class MemberService {
 		return result;
 	}
 	
+	
 	public int updatePoint(String email,int mpoint) {
 		int result = 0;
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -102,6 +103,12 @@ public class MemberService {
 		return result;
 	}
 	
-	
+	//추천여부 증가
+	public int updateIsmlike(String email) {
+		int result = 0;
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		result = dao.myMlike(email);
+		return result;
+	}
 	
 }

@@ -227,22 +227,24 @@
     		<label for="name">이름</label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}">
     		<br>
-    		<label for="dname">등급</label>
+    		<label for="rank">등급</label>
     		<c:choose>
     		<c:when test="${role=='ROLE_ADMIN'}">
-    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="운영자">
+    		<input class="form-control myinfo" type="text" style="width: 60%" value="운영자">
     		</c:when>
     		<c:when test="${role=='ROLE_CHARGE'}">
-    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="프리미엄">
+    		<input class="form-control myinfo" type="text" style="width: 60%" value="프리미엄">
     		</c:when>
     		<c:otherwise>
-    		<input class="form-control myinfo" type="text" id="dname" name="dname" style="width: 60%" value="일반">
+    		<input class="form-control myinfo" type="text" style="width: 60%" value="일반">
     		</c:otherwise>
     		</c:choose>
     		<br>
-    		<label for="drank">포인트</label>
-    		<input class="form-control myinfo" type="text" id="drank" name="drank" style="width: 60%" value="${member.point} P">
+    		<label for="point">포인트</label>
+    		<input class="form-control myinfo" type="text" name="point" style="width: 60%" value="${member.point} P" disabled="disabled">
     		<br>   
+    		<label for="mlike">추천수</label>
+    		<input class="form-control myinfo" type="text" name="mlike" style="width: 60%" value="${member.mlike} 명" disabled="disabled">
     		<input type="submit" id="address_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
     		
     		</div>

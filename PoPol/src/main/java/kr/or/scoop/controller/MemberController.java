@@ -193,8 +193,10 @@ public class MemberController {
 		Member member = memberdao.getMember((String)session.getAttribute("email")); //로그인한 사람 정보 불러오기
 		Role role = memberdao.getRole(email); //로그인한 사람 등급 불러오기
 		String img = memberdao.getProfile(email); //로그인한 사람 프로필사진 불러오기
+		int ismlike = memberdao.getMlike(email);
 		
 		session.setAttribute("point", member.getPoint());
+		session.setAttribute("ismlike", ismlike);
 		session.setAttribute("cpoint", member.getCpoint());
 		session.setAttribute("email", member.getEmail());
 		session.setAttribute("name", member.getName()); //이름 세션저장
@@ -496,8 +498,33 @@ public class MemberController {
 		return "redirect:/notice.do";
 	}
 	
-		
-
+	@RequestMapping(value = "MlikeReg.do" , method = {RequestMethod.POST,RequestMethod.GET})
+	public String mlikeReg(HttpServletRequest request,HttpSession session) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		String email = request.getParameter("email");
+		String viewpage = "";
+		int result = dao.mlikeUp(email);
+		if(result > 0) {
+			viewpage = "redirect:/isMlike.do";
+		}else {
+			System.out.println("실패");
+		}
+		return viewpage;
+	}
 	
+	@RequestMapping(value = "isMlike.do" , method = {RequestMethod.POST,RequestMethod.GET})
+	public String isMlikeup(HttpServletRequest request,HttpSession session) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		String email = (String)session.getAttribute("email");
+		String viewpage = null;
+		int result = service.updateIsmlike(email);
+		if(result > 0) {
+			viewpage = "redirect:/notice.do";
+		}else {
+			System.out.println("실패");
+		}
+		
+		return viewpage;
+	}
 	
 }

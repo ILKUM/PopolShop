@@ -573,7 +573,8 @@ function idOver(a) {
          <input type="text" class="form-control" id="name" name ="name" placeholder="7자까지 입력가능합니다" required>
         <!--  <input type="hidden" class="form-control" id="point" name ="point" value="300"> -->
          <input type="hidden" class="form-control" id="cpoint" name ="cpoint" value="0">
-         <input type="hidden" class="form-control" id="mlike" name ="mlike" value="0">
+         <input type="hidden" class="form-control"  name ="mlike" value="0">
+         <input type="hidden" class="form-control"  name ="islike" value="0">
         </div>
         <div class="form-group mb-4">
          <label>Password</label>

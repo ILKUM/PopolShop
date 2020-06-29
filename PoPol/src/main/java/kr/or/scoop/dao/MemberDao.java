@@ -66,10 +66,14 @@ public interface MemberDao {
 	
 	//회원 포인트 
 	public int getPoint(String email);
+		
+	//추천 여부
+	public int getMlike(String email);
 	
-	//영화 댓글
-	public int movieComment(int moseq,String email,String morcontent);
+	//추천 여부 증가
+	public int myMlike(String email);
 	
-	
+	//추천수 증가
+	public int mlikeUp(String email);
 	
 }

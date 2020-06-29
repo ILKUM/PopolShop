@@ -198,8 +198,11 @@
     		<label for="name">닉네임</label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}" disabled="disabled">
     		<br>
-    		<label for="name">포인트</label>
-    		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.point}" disabled="disabled">
+    		<label for="point">포인트</label>
+    		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" value="${member.point} P" disabled="disabled">
+    		<br>
+    		<label for="mlike">추천수</label>
+    		<input class="form-control myinfo" type="text" id="point" name="mlike" style="width: 60%" value="${member.mlike} 명" disabled="disabled">
     		<input type="button" id="home_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="홈으로">   		
     		</div>
     		</div>

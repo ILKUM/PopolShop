@@ -10,6 +10,7 @@
 <c:set var="status" value="${sessionScope.status}" />
 <c:set var="email" value="${sessionScope.email}"/>
 <c:set var="point" value="${sessionScope.point}"/>
+<c:set var="ismlike" value="${sessionScope.ismlike}"/>
 <style>
 input::placeholder {
    color: #fff;
@@ -44,12 +45,22 @@ input::placeholder {
       $('#logout').click(function(){
 			location.href="logout.do";
           });  
+	
+      //추천인 열기
+      $('#mlikeopen').click(function(){
+    	  $('#mlikeon').modal();
+          });
 
-	 
+    //쿠폰 열기
+      $('#couponopen').click(function(){
+    	  $('#couponon').modal();
+          });
+		
+   
 	   
 	});
-					
-	
+
+   
 
      
 </script>
@@ -248,6 +259,12 @@ span {
                         	</span>
                         </li>
                         <li>
+                        	<span id="mlikeopen" style="cursor: pointer;">
+                        	<span class="iconify" data-icon="whh:addfriend" data-inline="false" style="font-size: 15px"></span> 
+                        	<span>&nbsp;&nbsp;추천인 등록</span>
+                        	</span>
+                        </li>
+                        <li>
                         	<span id="couponopen" style="cursor: pointer;">
                         	<span class="iconify" data-icon="emojione-monotone:money-with-wings" data-inline="false" style="font-size: 15px"></span> 
                         	<span>&nbsp;&nbsp;<%=session.getAttribute("point")%>P</span>
@@ -419,6 +436,7 @@ span {
       </div>
    </div>
    </div>
+   
    <div class="modal fade" id="adminMail">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal-fullsize"
@@ -477,6 +495,7 @@ span {
       </div>
    </div>
 </div>
+
 <div class="modal fade" id="couponon">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -494,9 +513,9 @@ span {
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
                <label for="cotitle">쿠폰번호</label> <input
                   class="form-control createmodal" type="text" id="couponnum"
-                  name="coupon" style="width: 100%;border-radius: 0.5rem;" placeholder="번호 입력해주세요.">                
-                  <input type="hidden" name="email" value="${sessionScope.email}">      
-                  <input type="hidden" id="cpoint" name="cpoint" value="${sessionScope.cpoint}">      
+                  name="coupon" style="width: 100%;border-radius: 0.5rem;" placeholder="번호을 입력 해주세요.">                              
+                     <input type="hidden" name="email" value="${sessionScope.email}">      
+                  <input type="hidden" id="cpoint" name="cpoint" value="${sessionScope.cpoint}">       
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
@@ -510,7 +529,7 @@ span {
       </div>
    </div>
    </div>
-   
+    
    <div class="modal fade" id="addMovie">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -590,6 +609,37 @@ span {
     
     
   </div>
+    <div class="modal fade" id="mlikeon">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h3 class="modal-title">추천인 등록</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+   
+         <form onsubmit="return checkMlike()" action="MlikeReg.do" method="POST">
+            <!-- Modal body -->
+            <div class="modal-body">             
+               <label for="motitle">추천인</label> <input
+                  class="form-control createmodal" type="text" id="toEmail"
+                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일 입력 해주세요.">                
+                  <input type="hidden" name="email" value="${sessionScope.email}">      
+                  <input type="hidden" id="ismlike" name="ismlike" value="${sessionScope.ismlike}">      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
+               <button type="button" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  data-dismiss="modal">취소</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+  </div>
   
 <script type="text/javascript">
 		//내정보 열기 (드롭다운)
@@ -597,11 +647,8 @@ span {
 	  location.href="memberEdit.do?${sessionScope.email}";
 		    });
 	
-		//쿠폰 열기
-	      $('#couponopen').click(function(){
-	    	  $('#couponon').modal();
-	          });
-
+		
+	      
 
 //일반 회원 로그아웃 (드롭다운)
 $('#logout').click(function(){
@@ -650,34 +697,71 @@ return true;
 } 
 
 function checkCoupon() {
-//쿠폰번호 공백 확인
- if($("#couponnum").val() == ""){
-    Swal.fire("번호를 입력해주세요.");
-   $("#couponnum").focus();
-   return false;
- }
+   	//쿠폰번호 공백 확인
+   	 if($("#couponnum").val() == ""){
+   	    Swal.fire("번호를 입력해주세요.");
+   	   $("#couponnum").focus();
+   	   return false;
+   	 }
+   		
+   	if($("#couponnum").val() !="50005000"){
+   		Swal.fire("번호를 확인해주세요.");
+   		return false;
+   	}
+
+   	if($("#cpoint").val() == 1) {
+   		Swal.fire({
+   			  title : '등록 실패',
+   			  text : '이미 쿠폰을 등록 하셨습니다.',
+   			  icon : 'warning',
+   			  confirmButtonColor: '#d33'
+   		})
+   		return false;
+   	}
+
+   	Swal.fire({
+   		  title : '등록 성공',
+   		  text : '쿠폰이 등록 되었습니다.',
+   		  icon : 'success',
+   		  confirmButtonColor: '#d33'
+   	})
+   		return true;
+   	} 
+     
+     function checkMlike() {
+   		let email = ${sessionScope.email}
+   		//쿠폰번호 공백 확인
+   		 if($("#toEmail").val() == ""){
+   		    Swal.fire("이메일을 입력해주세요.");
+   		   $("#toEmail").focus();
+   		   return false;
+   		 }
+   			
+   		if($("#toEmail").val() == email){
+   			Swal.fire("자기 자신은 추천을 못합니다.");
+   			return false;
+   		}
+
+   		if($("#ismlike").val() == 1) {
+   			Swal.fire({
+   				  title : '등록 실패',
+   				  text : '이미 추천인을 등록 하셨습니다.',
+   				  icon : 'warning',
+   				  confirmButtonColor: '#d33'
+   			})
+   			return false;
+   		}
+
+   		Swal.fire({
+   			  title : '등록 성공',
+   			  text : '추천인이 등록 되었습니다.',
+   			  icon : 'success',
+   			  confirmButtonColor: '#d33'
+   		})
+   			return true;
+   		} 
 	
-if($("#couponnum").val() !="50005000"){
-	Swal.fire("번호를 확인해주세요.");
-	return false;
-}
 
-if($("#cpoint").val() == 1) {
-	Swal.fire({
-		  title : '등록 실패',
-		  text : '이미 쿠폰을 등록 하셨습니다.',
-		  icon : 'warning',
-		  confirmButtonColor: '#d33'
-	})
-	return false;
-}
 
-Swal.fire({
-	  title : '등록 성공',
-	  text : '쿠폰이 등록 되었습니다.',
-	  icon : 'success',
-	  confirmButtonColor: '#d33'
-})
-	return true;
-} 
+
 </script>
