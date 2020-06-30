@@ -108,12 +108,12 @@ function filter() {
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body" style="height: 900px;">
             <div class="container-fluid">
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">멤버관리</h3>
+				<h3 style="padding-left: 15px;">추천인 랭킹</h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">

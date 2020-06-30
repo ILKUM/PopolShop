@@ -78,7 +78,7 @@ input::placeholder {
 	        return false;
 	      }
 	    
-	     //이슈 설명 공백 확인
+	     //자기 자신 추천 금지 validation
 	     if($("#toEmail").val() == mail){
 	        Swal.fire("자기 자신은 추천이 불가능 합니다.");
 	       $("#toEmail").focus();

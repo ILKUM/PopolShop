@@ -95,4 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="likeRank" resultType="kr.or.scoop.dto.Member">
 		SELECT * FROM member ORDER BY mlike desc
 	</select>
+	<update id="addAdmin">
+		update role set rname = 'ROLE_ADMIN' where email = #{email}
+	</update>
 </mapper>

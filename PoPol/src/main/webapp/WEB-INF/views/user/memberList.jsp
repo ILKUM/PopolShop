@@ -74,6 +74,9 @@ $(document).ready(function(){
 			
 	}); 
 	
+	$("#adminadd").click(function(){
+		$("#addAdmin").modal();
+	})
 	 
 
 });
@@ -93,6 +96,41 @@ function filter() {
     }
  }
 
+
+function checkadmin() {
+	   var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+	   var mail = "<%=session.getAttribute("email")%>";
+	    //이메일 공백 확인
+	     if($("#toEmail").val() == ""){
+	        Swal.fire("이메일을 입력해주세요.");
+	       $("#toEmail").focus();
+	       return false;
+	     }
+	    
+	   //이메일 유효성 검사
+	      if(!getMail.test($("#toEmail").val())){
+	    	Swal.fire("이메일 형식에 맞게 입력해주세요."); 
+	        $("#toEmail").val("");
+	        $("#toEmail").focus();
+	        return false;
+	      }
+	    
+	//자기 자신 validation
+	     if($("#toEmail").val() == mail){
+	        Swal.fire("자기 자신은 추천이 불가능 합니다.");
+	       $("#toEmail").focus();
+	       return false;
+	     }
+	     
+	     Swal.fire({
+	   		  title : '등록 성공',
+	   		  text : '관리자가 추가 되었습니다.',
+	   		  icon : 'success',
+	   		  confirmButtonColor: '#ba90c4'
+	   	})
+
+	   return true;
+	   } 
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -108,7 +146,7 @@ function filter() {
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body" style="height: 900px;">
             <div class="container-fluid">
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
@@ -119,7 +157,10 @@ function filter() {
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="admin.do" style="color: #E71D36;">회원관리</a>
+			      <a class="nav-link" href="admin.do" style="color: #ba90c4;">회원관리</a>
+			    </li>		
+			    <li class="nav-item">
+			      <a class="nav-link" style="cursor: pointer;" id="adminadd">관리자 추가</a>
 			    </li>		
 		    </ul>
 		</div>
@@ -177,6 +218,37 @@ function filter() {
 		
         	
         </div>
+        <div class="modal fade" id="addAdmin">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h3 class="modal-title">관리자 추가</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+   
+         <form onsubmit="return checkadmin();" action="addAdmin.do" method="POST">
+            <!-- Modal body -->
+            <div class="modal-body">
+               <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
+             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
+               <label for="etitle">이메일</label> <input
+                  class="form-control createmodal" type="text" id="toEmail"
+                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일을 입력 해주세요.">                              
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
+               <button type="button" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  data-dismiss="modal">취소</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   </div>
         
         <!--**********************************
             Content body end
