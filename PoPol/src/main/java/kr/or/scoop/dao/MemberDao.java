@@ -76,4 +76,7 @@ public interface MemberDao {
 	//추천수 증가
 	public int mlikeUp(String email);
 	
+	//추천인 이메일 확인
+	public int checkmail(String email);
+	
 }

@@ -58,11 +58,95 @@ input::placeholder {
 		
    
 	   
-	});
+	});	
 
+   function checkm() {
+	   var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+	   var mail = "<%=session.getAttribute("email")%>";
+	    //이메일 공백 확인
+	     if($("#toEmail").val() == ""){
+	        Swal.fire("이메일을 입력해주세요.");
+	       $("#toEmail").focus();
+	       return false;
+	     }
+	    
+	   //이메일 유효성 검사
+	      if(!getMail.test($("#toEmail").val())){
+	    	Swal.fire("이메일 형식에 맞게 입력해주세요."); 
+	        $("#toEmail").val("");
+	        $("#toEmail").focus();
+	        return false;
+	      }
+	    
+	     //이슈 설명 공백 확인
+	     if($("#toEmail").val() == mail){
+	        Swal.fire("자기 자신은 추천이 불가능 합니다.");
+	       $("#toEmail").focus();
+	       return false;
+	     }
+	     
+	     Swal.fire({
+	   		  title : '등록 성공',
+	   		  text : '추천인이 등록 되었습니다.',
+	   		  icon : 'success',
+	   		  confirmButtonColor: '#ba90c4'
+	   	})
+
+	   return true;
+	   } 
    
+ //공지사항작성 validation
+   function checknotice() {
+      //협업공간 이름 확인
+       if($("#notitle").val() == ""){
+          Swal.fire("제목을 입력해주세요.");
+         $("#notitle").focus();
+         return false;
+       }
 
-     
+       //협업공간 내용 확인
+       if($("#nocontent").val() == ""){
+          Swal.fire("내용을 입력해주세요.");
+         $("#nocontent").focus();
+         return false;
+       }
+
+     return true;
+     }
+   
+ //쿠폰 validation
+   function checkCoupon() {
+	   	//쿠폰번호 공백 확인
+	   	 if($("#couponnum").val() == ""){
+	   	    Swal.fire("번호를 입력해주세요.");
+	   	   $("#couponnum").focus();
+	   	   return false;
+	   	 }
+	   		
+	   	if($("#couponnum").val() !="50005000"){
+	   		Swal.fire("번호를 확인해주세요.");
+	   		return false;
+	   	}
+
+	   	if($("#cpoint").val() == 1) {
+	   		Swal.fire({
+	   			  title : '등록 실패',
+	   			  text : '이미 쿠폰을 등록 하셨습니다.',
+	   			  icon : 'warning',
+	   			  confirmButtonColor: '#ba90c4'
+	   		})
+	   		return false;
+	   	}
+
+	   	Swal.fire({
+	   		  title : '등록 성공',
+	   		  text : '쿠폰이 등록 되었습니다.',
+	   		  icon : 'success',
+	   		  confirmButtonColor: '#ba90c4'
+	   	})
+	   		return true;
+	   	} 
+
 </script>
 <style>
 .modal-content.modal-fullsize {
@@ -253,7 +337,7 @@ span {
                         	</span>
                         </li>
                         <li>
-                        	<span id="couponopen" style="cursor: pointer;">
+                        	<span id="couponopen" style="cursor: pointer;" data-toggle="modal" data-target="#couponon">
                         	<span class="iconify" data-icon="emojione-monotone:admission-tickets" data-inline="false" style="font-size: 15px"></span> 
                         	<span>&nbsp;&nbsp;쿠폰 등록</span>
                         	</span>
@@ -495,7 +579,37 @@ span {
       </div>
    </div>
 </div>
+<div class="modal fade" id="mlikeon">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
 
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h3 class="modal-title">추천인 등록</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+   
+         <form action="MlikeReg.do" method="POST" onsubmit="return checkm();">
+            <!-- Modal body -->
+            <div class="modal-body">             
+               <label for="motitle">추천인</label> <input
+                  class="form-control createmodal" type="text" id="toEmail"
+                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일 입력 해주세요.">                
+                  <input type="hidden" name="email" value="${sessionScope.email}">      
+                  <input type="hidden" id="ismlike" name="ismlike" value="${sessionScope.ismlike}">      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <input type="submit" class="btn btn-secondary" id="mlikego"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;" value="등록">
+               <button type="button" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  data-dismiss="modal">취소</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+  </div>
 <div class="modal fade" id="couponon">
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -506,7 +620,7 @@ span {
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
-         <form onsubmit="return checkCoupon()" action="couponReg.do" method="POST">
+         <form onsubmit="return checkCoupon();" action="couponReg.do" method="POST">
             <!-- Modal body -->
             <div class="modal-body">
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
@@ -609,37 +723,7 @@ span {
     
     
   </div>
-    <div class="modal fade" id="mlikeon">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-         <!-- Modal Header -->
-         <div class="modal-header">
-            <h3 class="modal-title">추천인 등록</h3>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-         </div>
-   
-         <form onsubmit="return checkMlike()" action="MlikeReg.do" method="POST">
-            <!-- Modal body -->
-            <div class="modal-body">             
-               <label for="motitle">추천인</label> <input
-                  class="form-control createmodal" type="text" id="toEmail"
-                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일 입력 해주세요.">                
-                  <input type="hidden" name="email" value="${sessionScope.email}">      
-                  <input type="hidden" id="ismlike" name="ismlike" value="${sessionScope.ismlike}">      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-               <button type="submit" class="btn btn-secondary"
-                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
-               <button type="button" class="btn btn-secondary"
-                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
-               </div>
-            </div>
-         </form>
-      </div>
-   </div>
-  </div>
+  
   
 <script type="text/javascript">
 		//내정보 열기 (드롭다운)
@@ -677,89 +761,12 @@ $(function(){
 
 });
 
-//공지사항작성 validation
-function checknotice() {
-	  //이슈 제목 공백 확인
-    if($("#notitle").val() == ""){
-       Swal.fire("제목을 입력해주세요.");
-      $("#notitle").focus();
-      return false;
-    }
 
-    //이슈 설명 공백 확인
-    if($("#nocontent").val() == ""){
-       Swal.fire("내용을 입력해주세요.");
-      $("#nocontent").focus();
-      return false;
-    }
-    
-return true;
-} 
 
-function checkCoupon() {
-   	//쿠폰번호 공백 확인
-   	 if($("#couponnum").val() == ""){
-   	    Swal.fire("번호를 입력해주세요.");
-   	   $("#couponnum").focus();
-   	   return false;
-   	 }
-   		
-   	if($("#couponnum").val() !="50005000"){
-   		Swal.fire("번호를 확인해주세요.");
-   		return false;
-   	}
 
-   	if($("#cpoint").val() == 1) {
-   		Swal.fire({
-   			  title : '등록 실패',
-   			  text : '이미 쿠폰을 등록 하셨습니다.',
-   			  icon : 'warning',
-   			  confirmButtonColor: '#d33'
-   		})
-   		return false;
-   	}
 
-   	Swal.fire({
-   		  title : '등록 성공',
-   		  text : '쿠폰이 등록 되었습니다.',
-   		  icon : 'success',
-   		  confirmButtonColor: '#d33'
-   	})
-   		return true;
-   	} 
      
-     function checkMlike() {
-   		let email = ${sessionScope.email}
-   		//쿠폰번호 공백 확인
-   		 if($("#toEmail").val() == ""){
-   		    Swal.fire("이메일을 입력해주세요.");
-   		   $("#toEmail").focus();
-   		   return false;
-   		 }
-   			
-   		if($("#toEmail").val() == email){
-   			Swal.fire("자기 자신은 추천을 못합니다.");
-   			return false;
-   		}
-
-   		if($("#ismlike").val() == 1) {
-   			Swal.fire({
-   				  title : '등록 실패',
-   				  text : '이미 추천인을 등록 하셨습니다.',
-   				  icon : 'warning',
-   				  confirmButtonColor: '#d33'
-   			})
-   			return false;
-   		}
-
-   		Swal.fire({
-   			  title : '등록 성공',
-   			  text : '추천인이 등록 되었습니다.',
-   			  icon : 'success',
-   			  confirmButtonColor: '#d33'
-   		})
-   			return true;
-   		} 
+      
 	
 
 

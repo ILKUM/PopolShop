@@ -501,13 +501,18 @@ public class MemberController {
 	@RequestMapping(value = "MlikeReg.do" , method = {RequestMethod.POST,RequestMethod.GET})
 	public String mlikeReg(HttpServletRequest request,HttpSession session) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		String email = request.getParameter("email");
 		String viewpage = "";
+		String email = request.getParameter("email");
 		int result = dao.mlikeUp(email);
-		if(result > 0) {
-			viewpage = "redirect:/isMlike.do";
+		int check = dao.checkmail(email);
+		if(check > 0) {
+			if(result > 0) {
+				viewpage = "redirect:/isMlike.do";
+			}else {
+				System.out.println("실패");
+			}	
 		}else {
-			System.out.println("실패");
+			viewpage = "redirect:/notice.do";
 		}
 		return viewpage;
 	}
