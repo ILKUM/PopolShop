@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.scoop.dao.MemberDao">
 	<!-- 일반회원가입 -->
     <insert id="insertMember" parameterType="kr.or.scoop.dto.Member">
-       insert into member(email, pwd, name,iddate,point,cpoint)
-       values (#{email},#{pwd},#{name},SYSDATE,300,#{cpoint})
+       insert into member(email, pwd, name,iddate,point,cpoint,mlike,ismlike)
+       values (#{email},#{pwd},#{name},SYSDATE,300,#{cpoint},#{mlike},#{ismlike})
     </insert>
 	<!-- 회원가입 중복체크 -->
 	<select id="loginCheck" resultType="int">
@@ -26,14 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 멤버정보 가져오기 -->
 	<select id="getMember" resultType="kr.or.scoop.dto.Member">
-		select email,name,pwd,profile,iddate,point,cpoint from member 
+		select email,name,pwd,profile,iddate,point,cpoint,mlike from member 
 		where email = #{email}
 	</select>
 	<!-- 멤버 등급  -->
 	<select id="getRole" resultType="kr.or.scoop.dto.Role">
 	select m.email , r.RNAME from member m join role r on m.email = r.email where r.email= #{email,jdbcType=VARCHAR}
 	</select>
-	<!-- 프로필 조회 -->
+	<!-- 프로필 사진  -->
 	<select id="getProfile" parameterType="kr.or.scoop.dto.Member" resultType="String">
 		select profile from member where email = #{email}
 	</select>
@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 멤버 조회 -->
 	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
-		select email , name,iddate,point from member 
+		select email , name, iddate, point from member 
 	</select>
 	<!-- 멤버 탈퇴 -->
 	<delete id="banMember">
@@ -69,4 +69,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addHistory" parameterType="kr.or.scoop.dto.History">
 	 insert into history (hseq,email,moseq) values (hseq_history_seq.nextval,#{param2},#{param1})
 	</insert>
+	<!-- 글 작성시 포인트 차감 -->
+	<update id="updatePoint" parameterType="kr.or.scoop.dto.Member">
+		update member set point = point - #{mpoint} where email = #{email}
+	</update>
+	<!-- 자신 포인트  -->
+	<select id="getPoint" resultType="int">
+		select point from member where email = #{email}
+	</select>
+	<!-- 추천 여부  -->
+	<select id="getMlike" resultType="int">
+		select ismlike from member where email = #{email}
+	</select>
+	<!-- 추천여부 변경 -->
+	<update id="myMlike">
+		update member set ismlike = 1 , point = point + 500 where email = #{email}
+	</update>
+	<!-- 추천인 수 증가  -->
+	<update id="mlikeUp">
+		update member set mlike = mlike + 1 where email = #{email}
+	</update>
+	<select id="checkmail" resultType="int">
+		select count(*) from member where email = #{email}
+	</select>
+	<select id="likeRank" resultType="kr.or.scoop.dto.Member">
+		SELECT * FROM member ORDER BY mlike desc
+	</select>
 </mapper>

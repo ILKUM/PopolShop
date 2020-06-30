@@ -92,4 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkmail" resultType="int">
 		select count(*) from member where email = #{email}
 	</select>
+	<select id="likeRank" resultType="kr.or.scoop.dto.Member">
+		SELECT * FROM member ORDER BY mlike desc
+	</select>
 </mapper>

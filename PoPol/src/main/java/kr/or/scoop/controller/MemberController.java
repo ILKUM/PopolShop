@@ -532,4 +532,12 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	@RequestMapping(value="mlikeRank.do" , method = RequestMethod.GET)
+	public String mlikeRank(Model model) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		List<Member> mem = dao.likeRank();
+		model.addAttribute("mem", mem);
+		return "rank/mlikeRank";
+	}
+	
 }

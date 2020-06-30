@@ -81,7 +81,7 @@ border-radius: 5px;
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
+        <div class="content-body" style="height:900px;">
         <div class="container-fluid">
         <div class="card" >
 		<div class="row"style="margin:2% 2% 0 2%" >

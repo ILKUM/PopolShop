@@ -459,7 +459,13 @@ span {
                class="iconify" data-icon="bx:bxs-camera-movie" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="japan" /></span>
-         </a></li>    
+         </a></li>
+         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movietitle" /></b></li>
+         <li><a href="mlikeRank.do" aria-expanded="false"> <span
+               class="iconify" data-icon="whh:trophy" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="rank.mlike" /></span>
+         </a></li>   
       </ul>
    </div>
 </div>

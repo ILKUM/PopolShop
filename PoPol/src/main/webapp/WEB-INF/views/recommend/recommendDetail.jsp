@@ -121,7 +121,7 @@ border-radius: 5px;
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body"style="height: 750px;">
+        <div class="content-body" style="height:900px;">
         <div class="container-fluid row" style="padding-right: 0px; margin-right: 0px;margin-left: 0px; padding-left: 15px;">
         <div class="card" style="padding-left: 2%;padding-right: 0px; padding-top:1%;min-width:900px;height: auto;overflow: auto;">
 		<div class="row" style="margin:2% 2% 0 2%;">

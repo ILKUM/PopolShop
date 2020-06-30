@@ -79,4 +79,7 @@ public interface MemberDao {
 	//추천인 이메일 확인
 	public int checkmail(String email);
 	
+	//추천인 랭킹 
+	public List<Member> likeRank();
+	
 }
