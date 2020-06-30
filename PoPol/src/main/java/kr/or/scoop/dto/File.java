@@ -21,6 +21,7 @@ public class File {
 	private String frcontent; //덧글내용 
 	private Timestamp frtime; //덧글 작성시간
 	
+	
 	public int getFseq() {
 		return fseq;
 	}

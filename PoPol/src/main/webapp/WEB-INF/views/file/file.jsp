@@ -5,7 +5,7 @@
 <html lang="en">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-
+<c:set var="point" value="${sessionScope.point}"/>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,18 +30,37 @@
 </style>
 <script type="text/javascript">
 $('#writeletter').mouseover(function(){
-	 $('#write').attr("style","font-size: 20px;color:#E71D36;");
+	 $('#write').attr("style","font-size: 20px;color:#ba90c4;");
 });
-$('#writeletter').mouseout(function(){
+$('#letter').mouseout(function(){
 	 $('#write').attr("style","font-size: 20px;");
 });
 
+
+
 $(function(){
 	$('[data-toggle="tooltip"]').tooltip();
+	
 	$('#profiles').click(function() { 
 		$('#Photo').click();
 	});
- 
+ 	
+	$('#writeletter').click(function(){
+		 var point = "<%=session.getAttribute("point")%>";
+		     if(point < 500){
+		    	 Swal.fire({
+		   			  title : '포인트가 부족합니다.',
+		   			  text : '글을 작성 하실 포인트가 부족합니다.',
+		   			  icon : 'warning',
+		   			  confirmButtonColor: '#ba90c4'
+		   		})
+		     }else{
+			$("#likeWrite").modal();
+		  	 
+		   }
+	  });  
+
+	
 });
 </script>
 <body>
@@ -61,15 +80,16 @@ $(function(){
         <div class="container-fluid">
         <div class="card" style="min-height: 1080px;">
       <div class="row" style="margin: 2% 2% 15px 2%">
+      <input type="hidden" value="${sessionScope.point }" id="point">
          <div class="col-sm-10" style="padding-left: 0">
             <h3 style="padding-left: 1%;">자료 공유 게시판 		
             </h3>
             <p style="padding-left: 1%;margin-bottom: 0px;">자신의 자료를 공유 해주세요.</p>
          </div>
          <div class="col-sm-2" style="text-align: right">      	
-         		<span id="writeletter" style="cursor: pointer;">
-	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#likeWrite"></span> 
-	         	<span id="letter" data-toggle="modal" data-target="#likeWrite">자료 글쓰기</span>
+         		<span id="writeletter" style="cursor: pointer;" >
+	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" ></span> 
+	         	<span id="letter">자료 글쓰기</span>
          	</span>
 
          </div>
@@ -137,7 +157,7 @@ $(function(){
         <!-- Modal body -->
         <div class="modal-body">
           <form class="was-validated" action="writeFile.do" enctype="multipart/form-data" method="Post">
-          <div class="col" width="33%" align="center" >추천 영화 사진</div> 
+          <div class="col" width="33%" align="center" >공유 파일</div> 
           <div class="form-label-group" text-align="center" align="center">
         	<span id="profiles"></span>
          </div>
@@ -163,7 +183,7 @@ $(function(){
   <input type="hidden" name="frnum" value="0">
   <input type="hidden" name="fdnum" value="0">
   <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" id="counter"></span>
-    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
+    <input class="btn btn-sm btn-primary btn-block" type="submit" width="30%" value="작성완료" id="likego">
         <br>
       <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
 </form>
