@@ -481,14 +481,6 @@ span {
    background-color: white;
 }
 </style>
-
-   <div class="list-group" id="mentionlist" style="display: none;border:10px solid #cbc9d4">
-      <a href="#" class="list-group-item list-group-item-action menli" id="men1"style="padding: 5px;">@ 멘션</a> 
-      <a href="#" class="list-group-item list-group-item-action menli" id="men2"style="padding: 5px"><span class="iconify" data-icon="whh:googledrive" data-inline="false"></span> 구글 드라이브</a> 
-      <a href="#" class="list-group-item list-group-item-action menli" id="men3"style="padding: 5px"><span class="iconify" data-icon="si-glyph:file-box" data-inline="false"></span> 파일</a> 
-      <a href="#" class="list-group-item list-group-item-action menli" id="men4"style="padding: 5px"><span class="iconify" data-icon="bx:bx-check-circle" data-inline="false"></span> 할 일</a> 
-      <a href="#" class="list-group-item list-group-item-action menli" id="men5"style="padding: 5px"><span class="iconify" data-icon="bx:bx-calendar" data-inline="false"></span> 일정</a>
-   </div>
    <!--  -->
 <div class="modal fade" id="makenotice">
    <div class="modal-dialog modal-dialog-centered">
@@ -496,30 +488,28 @@ span {
 
          <!-- Modal Header -->
          <div class="modal-header">
-            <h3 class="modal-title">공지사항 작성</h3>
+            <h3 class="modal-title"><spring:message code="notice" /></h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
          <form action="noticeWrite.do" method="POST" onsubmit="return checknotice()">
             <!-- Modal body -->
             <div class="modal-body">
-               <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
-             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
-               <label for="notitle">공지사항</label> <input
+               <label for="notitle"><spring:message code="notice.title" /></label> <input
                   class="form-control createmodal" type="text" id="notitle"
-                  name="notitle" style="width: 100%;border-radius: 0.5rem;" placeholder="제목을 입력해 주세요.">
-               <br> <label for="noticecontent">공지 설명</label>
+                  name="notitle" style="width: 100%;border-radius: 0.5rem;" placeholder="<spring:message code="notice.tholder" />">
+               <br> <label for="noticecontent"><spring:message code="notice.content" /></label>
                <textarea class="form-control createmodal" rows="5"
                   id="nocontent" name="nocontent" style="width: 100%"
-                  placeholder="내용을 적어주세요."></textarea>   
+                  placeholder="<spring:message code="notice.cholder" />"></textarea>   
                   <input type="hidden" name="email" value="${sessionScope.email}">      
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">만들기</button>
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"><spring:message code="all.submit" /></button>
                <button type="button" class="btn btn-secondary"
                   style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
+                  data-dismiss="modal"><spring:message code="all.cancel" /></button>
                </div>
             </div>
          </form>
@@ -587,16 +577,16 @@ span {
 
          <!-- Modal Header -->
          <div class="modal-header">
-            <h3 class="modal-title">추천인 등록</h3>
+            <h3 class="modal-title"><spring:message code="like.title" /></h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
          <form action="MlikeReg.do" method="POST" onsubmit="return checkm();">
             <!-- Modal body -->
             <div class="modal-body">             
-               <label for="motitle">추천인</label> <input
+               <label for="motitle"><spring:message code="like.person" /></label> <input
                   class="form-control createmodal" type="text" id="toEmail"
-                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일 입력 해주세요.">                
+                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="<spring:message code="like.pholder" />">                
                   <input type="hidden" name="email" value="${sessionScope.email}">      
                   <input type="hidden" id="ismlike" name="ismlike" value="${sessionScope.ismlike}">      
             <!-- Modal footer -->

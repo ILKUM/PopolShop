@@ -5,7 +5,7 @@
 <html lang="en">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,14 +62,13 @@ $(function(){
         <div class="card" style="min-height: 1080px;">
       <div class="row" style="margin: 2% 2% 15px 2%">
          <div class="col-sm-10" style="padding-left: 0">
-            <h3 style="padding-left: 1%;">추천게시판 		
-            </h3>
-            <p style="padding-left: 1%;margin-bottom: 0px;">자신이 본 영화를 추천 해주세요.</p>
+            <h3 style="padding-left: 1%;"><spring:message code="recom.title" /></h3>
+            <p style="padding-left: 1%;margin-bottom: 0px;"><spring:message code="recom.main" /></p>
          </div>
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;">
 	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#likeWrite"></span> 
-	         	<span id="letter" data-toggle="modal" data-target="#likeWrite">추천 글쓰기</span>
+	         	<span id="letter" data-toggle="modal" data-target="#likeWrite"><spring:message code="recom.write" /></span>
          	</span>
 
          </div>
@@ -77,19 +76,19 @@ $(function(){
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
          <div class="col-sm-6 newissue" style="padding-left: 87px;" >
-         	제목
+         	<spring:message code="all.title" />
          </div>
          <div class="col-sm-2 newissue">
-         	작성자 
+         <spring:message code="all.write" />
          </div>
          <div class="col-sm-2 newissue">
-         	작성시간 
+         	<spring:message code="all.time" />
          </div>
          <div class="col-sm-1 newissue">
-         	조회수
+         	<spring:message code="all.num" />
          </div>
          <div class="col-sm-1 newissue">
-         	추천수
+         	<spring:message code="all.like" />
          </div>
       </div>
       <c:forEach items="${recom}" var="rc">   
