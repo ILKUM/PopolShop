@@ -6,6 +6,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="role" value="${sessionScope.role}" />
+<c:set var="email" value="${sessionScope.email}" />
 
 <head>
     <meta charset="utf-8">
@@ -98,38 +99,39 @@ function filter() {
 
 
 function checkadmin() {
-	   var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-	   var mail = "<%=session.getAttribute("email")%>";
+	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+	   var id = "<%=session.getAttribute("email")%>";
 	    //이메일 공백 확인
-	     if($("#toEmail").val() == ""){
+	     if($("#admin").val() == ""){
 	        Swal.fire("이메일을 입력해주세요.");
-	       $("#toEmail").focus();
+	       $("#admin").focus();
 	       return false;
 	     }
 	    
 	   //이메일 유효성 검사
-	      if(!getMail.test($("#toEmail").val())){
+	      if(!getMail.test($("#admin").val())){
 	    	Swal.fire("이메일 형식에 맞게 입력해주세요."); 
-	        $("#toEmail").val("");
-	        $("#toEmail").focus();
+	        $("#admin").val("");
+	        $("#admin").focus();
 	        return false;
 	      }
 	    
-	//자기 자신 validation
-	     if($("#toEmail").val() == mail){
-	        Swal.fire("자기 자신은 추천이 불가능 합니다.");
-	       $("#toEmail").focus();
+	     //자기 자신 변경 금지 validation
+	     if($("#admin").val() == id){
+	        Swal.fire("자기 자신은 변경이 불가능 합니다.");
+	       $("#admin").focus();
 	       return false;
 	     }
 	     
 	     Swal.fire({
 	   		  title : '등록 성공',
-	   		  text : '관리자가 추가 되었습니다.',
+	   		  text : '관리자가 등록 되었습니다.',
 	   		  icon : 'success',
 	   		  confirmButtonColor: '#ba90c4'
 	   	})
 
 	   return true;
+		  
 	   } 
 </script>	
 
@@ -176,10 +178,10 @@ function checkadmin() {
 				이름
 				</div>
 				<div class="col-sm-2 listmem">
-				보유 포인트
+				등급
 				</div>
 				<div class="col-sm-2 listmem">
-				가입날짜
+				보유 포인트
 				</div>
 				<div class="col-sm-1 listmem">
 				삭제
@@ -195,10 +197,20 @@ function checkadmin() {
            		${m.name}      
 			</div>
 			<div class="col-sm-2 listmem">
-				${m.point}
+				<c:choose>
+					<c:when test="${m.rname == 'ROLE_ADMIN'}">
+						운영자
+					</c:when>				
+					<c:when test="${m.rname == 'ROLE_CHARGE'}">
+						프리미엄
+					</c:when>
+					<c:otherwise>
+						일반
+					</c:otherwise>				
+				</c:choose>				
 			</div>		
 			<div class="col-sm-2 listmem">
-				${m.iddate}
+				${m.point}
 			</div>
 			<div class="col-sm-1 listmem">
 				<a href="banMember.do?email=${m.email}">탈퇴</a>
@@ -228,13 +240,13 @@ function checkadmin() {
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
-         <form onsubmit="return checkadmin();" action="addAdmin.do" method="POST">
+         <form action="addAdmin.do" method="POST" onsubmit="return checkadmin()">
             <!-- Modal body -->
             <div class="modal-body">
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
                <label for="etitle">이메일</label> <input
-                  class="form-control createmodal" type="text" id="toEmail"
+                  class="form-control createmodal" type="text" id="admin"
                   name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일을 입력 해주세요.">                              
             <!-- Modal footer -->
             <div class="modal-footer">

@@ -98,7 +98,7 @@ $(document).ready(function($) {
 	});
 
 	//이메일 아웃풋
-	$("#scoop_input").click(function(){
+	$("#moflex_in").click(function(){
 		$(".signup").val($("#emailTo").val());
 	});
 
@@ -524,7 +524,7 @@ function idOver(a) {
       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
      </div>
      <div class="modal-body p-4 p-lg-5">
-      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
+      <img class="img-responsive center-block" alt="Moflex로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
       <form onsubmit="return checkz2()" action="login.do" class="login-form text-left" method="post">
         <h4><spring:message code="login.menu" /></h4>
         <div class="form-group mb-4">
@@ -559,7 +559,7 @@ function idOver(a) {
       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
      </div>
      <div class="modal-body p-4 p-lg-5">
-      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
+      <img class="img-responsive center-block" alt="Moflex로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
       <form onsubmit="return checkz()" action="frontpage.do" class="login-form text-left" method="post">
         <h4><spring:message code="register.title" /></h4>
         <div class="form-group mb-4">
@@ -600,7 +600,7 @@ function idOver(a) {
       <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
      </div>
      <div class="modal-body p-4 p-lg-5">
-      <img class="img-responsive center-block" alt="Scoop로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
+      <img class="img-responsive center-block" alt="Moflex로고" src="resources/images/logo/MOFLEXbig.png" style="width:100%;height:auto;padding-right:15%;padding-left:15%;"/>
      <!--  <form class="login-form text-left" id="pwdchg" name="pwdchg" onsubmit="return chgpwdchk();"> -->
         <div class="form-group mb-4">
          <label>Email address</label>
@@ -632,7 +632,7 @@ function idOver(a) {
          <div class="form-group" style="border: 1px solid #656a6f; border-radius: 0.25rem;">
            <label>Email</label>
            <input type="text" name="email" id="emailTo" placeholder="E-mail@company.com" class="form-control">
-     	   <button type="button" id="scoop_input" data-toggle="modal" data-target="#signUp"class="btn btn-primary"><spring:message code="register" /></button>     
+     	   <button type="button" id="moflex_in" data-toggle="modal" data-target="#signUp"class="btn btn-primary"><spring:message code="register" /></button>     
          </div>
             <span><spring:message code="login.content" /></span>
             <a href="" data-toggle="modal" data-target="#login"style="color:#0c2f88;"><spring:message code="login.main" /></a>    
@@ -679,7 +679,7 @@ function idOver(a) {
 									<li><spring:message code="payment.file" /></li>
 								
 									<li><spring:message code="payment.download" /></li>
-									<li><spring:message code="payment.teamMgm" /></li>
+									<li><spring:message code="payment.wish" /></li>
 									<li><spring:message code="payment.cs" /></li>
 									
 									
@@ -827,7 +827,7 @@ function idOver(a) {
   <div class="container text-center">
    <!-- Copyrights-->
    <div class="copyrights">
-     <p class="copyrights-text mb-0">&copy; 2020 scoop Team Inc. All rights reserved. |  Privacy Policy&Terms of Service.
+     <p class="copyrights-text mb-0">&copy; 2020 moflex Team Inc. All rights reserved. |  Privacy Policy&Terms of Service.
      </p>
    </div>
   </div>

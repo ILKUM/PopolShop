@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 멤버 조회 -->
 	<select id="searchMember" resultType="kr.or.scoop.dto.Member">
-		select email , name, iddate, point from member 
+		select m.email , m.name , m.iddate, m.point, r.rname from member m join role r on m.email = r.email
 	</select>
 	<!-- 멤버 탈퇴 -->
 	<delete id="banMember">

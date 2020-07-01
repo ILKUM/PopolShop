@@ -269,7 +269,7 @@ span {
                   id="searchSubmitIcon"><i class="mdi mdi-magnify" style="cursor: pointer;"></i></span>
             </div>
             <form action="searchMovie.do" id="searchSubmit">
-            <input type="search" id="sIssue" name="word" class="form-control" placeholder="검색 후 Enter치세요"
+            <input type="search" id="sIssue" name="word" class="form-control" placeholder="<spring:message code="main.search" />"
                aria-label="Search">
             <input type="hidden" id="searchEmail" name="email" value=<%=session.getAttribute("email")%>>
             </form>          
@@ -277,10 +277,10 @@ span {
                   <c:when test="${role == 'ROLE_ADMIN'}">
                <input type="button"class="form-control"
                style="background-color: #ba90c4; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
-               value="공지사항 작성" data-toggle="modal" data-target="#makenotice">
+               value="<spring:message code="main.add1" />" data-toggle="modal" data-target="#makenotice">
                <input type="button"class="form-control"
                style="background-color: #ba90c4; border-color: #CCCCCC; margin-left: 2%; color: #fff; cursor: pointer;width: 126px;"
-               value="영화 추가" data-toggle="modal" data-target="#addMovie">
+               value="<spring:message code="main.add2" />" data-toggle="modal" data-target="#addMovie">
                </c:when>
                </c:choose>
             <div class="drop-down animated flipInX d-md-none">
@@ -333,19 +333,19 @@ span {
                         <li>
                         	<span id="myprofileEdit" style="cursor: pointer;">
                         	<span class="icon-user"></span> 
-                        	<span>&nbsp;&nbsp;내 정보</span>
+                        	<span>&nbsp;&nbsp;<spring:message code="main.drop1" /></span>
                         	</span>
                         </li>
                         <li>
                         	<span id="couponopen" style="cursor: pointer;" data-toggle="modal" data-target="#couponon">
                         	<span class="iconify" data-icon="emojione-monotone:admission-tickets" data-inline="false" style="font-size: 15px"></span> 
-                        	<span>&nbsp;&nbsp;쿠폰 등록</span>
+                        	<span>&nbsp;&nbsp;<spring:message code="main.drop2" /></span>
                         	</span>
                         </li>
                         <li>
                         	<span id="mlikeopen" style="cursor: pointer;">
                         	<span class="iconify" data-icon="whh:addfriend" data-inline="false" style="font-size: 15px"></span> 
-                        	<span>&nbsp;&nbsp;추천인 등록</span>
+                        	<span>&nbsp;&nbsp;<spring:message code="main.drop3" /></span>
                         	</span>
                         </li>
                         <li>
@@ -357,7 +357,7 @@ span {
                           		<li>
                           			<span id="logout" style="cursor: pointer;">
                               			<span class="iconify" data-icon="bx:bx-door-open" data-inline="false" style="font-size: 15px"></span> 
-                              			<span>&nbsp;&nbsp;로그아웃</span>
+                              			<span>&nbsp;&nbsp;<spring:message code="main.drop4" /></span>
                               		</span>
                               	</li>						                    
                      </ul>
@@ -460,7 +460,7 @@ span {
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="japan" /></span>
          </a></li>
-         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="movietitle" /></b></li>
+         <li class="nav-label" style="padding-bottom: 0"><b><spring:message code="ranktitle" /></b></li>
          <li><a href="mlikeRank.do" aria-expanded="false"> <span
                class="iconify" data-icon="whh:trophy" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
@@ -533,7 +533,7 @@ span {
          style="border-radius: 0.5rem;">
          <!-- Modal Header -->
          <div class="modal-header" style="padding-bottom: 0px;height: 67px;">
-            <h5 style="padding-top: 2%; padding-left: 5px;"><spring:message code="invite.title" /></h5>
+            <h5 style="padding-top: 2%; padding-left: 5px;"><spring:message code="mail.title" /></h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
 
@@ -545,20 +545,16 @@ span {
                   style="border-right: 1px solid rgba(0,0,0,0.5); padding-left: 20px;">
                   <div class="modal-body">
                      <p style="font-size: 12px">
-		              <spring:message code="invite.content1" /><br> 
-		              <spring:message code="invite.content2" />
+		              <spring:message code="mail.content1" /><br> 
+		              <spring:message code="mail.content2" />
                      </p>
-                     <label for="title"><spring:message code="invite.subject" /></label> 
-                     <input class="form-control createmodal" type="text" id="invite_Submit" style="width: 100%; border-radius: 0.25rem;" value="모플렉스" name="tosend" disabled="disabled">
-                     <p style="font-size: 13px; margin-top: 2%; margin-left: 1%;">
-                     	<spring:message code="invite.subcon" />
-                     </p>
-                     <div id="invite_email_append"
+                     <label for="title"><spring:message code="mail.email" /></label> 
+                     <input class="form-control createmodal" type="text" id="mail_to" style="width: 100%; border-radius: 0.25rem;" value="모플렉스" name="tosend" disabled="disabled">
+                     <div id="mail_append"
                         style="min-width: 35%; border: 1px solid #c8c8c8; border-radius: 0.25rem; background-color: #fff; display: none; position: absolute; top: 145px; left: 18px;">
-
                      </div>
-                     <label for="content"><spring:message code="invite.team" /></label> 
-                     <select id="select_invite" name="mtitle" class="form-control" style="border-radius: 0.25rem;">                     
+                     <label for="content"><spring:message code="mail.mtitle" /></label> 
+                     <select id="select_mail" name="mtitle" class="form-control" style="border-radius: 0.25rem;">                     
                            <option value="버그제보(Bug Report)"><spring:message code="mail.sel1" /></option>                    
                            <option value="모플렉스 문의 (Moflex Inquiry)"><spring:message code="mail.sel2" /></option>                    
                            <option value="모플렉스 피드백(Moflex FeedBack)"><spring:message code="mail.sel3" /></option>                    
@@ -569,13 +565,13 @@ span {
                </div>
                <div class="col-sm-6">
                   <label for="content" style="margin-top: 3%; margin-bottom: 0px;">
-                  	<spring:message code="invite.list" />
+              
                   </label>
                   <div id="invite_Input"
                      style="border: 2px solid rgba(0,0, 0, 0.3); border-radius: 0.5rem; margin-right: 3%; height: 280px; overflow: auto; margin-bottom: 10px;">
                      <textarea style="width:437px;height: 270px;resize: none;" name="mcontent"></textarea>
                   </div>
-                  <input type="submit" class="btn btn-secondary" id="invitebtn" value="<spring:message code="invite.invite" />"
+                  <input type="submit" class="btn btn-secondary" id="invitebtn" value="<spring:message code="mail.send" />"
                      style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer; margin-left: 100px; padding-left: 75px; padding-right: 75px;">
                </div>
             </div>
@@ -606,10 +602,10 @@ span {
             <!-- Modal footer -->
             <div class="modal-footer">
                <input type="submit" class="btn btn-secondary" id="mlikego"
-                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;" value="등록">
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;" value="<spring:message code="all.submit" />">
                <button type="button" class="btn btn-secondary"
                   style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
+                  data-dismiss="modal"><spring:message code="all.cancel" /></button>
                </div>
             </div>
          </form>
@@ -622,7 +618,7 @@ span {
 
          <!-- Modal Header -->
          <div class="modal-header">
-            <h3 class="modal-title">쿠폰 등록</h3>
+            <h3 class="modal-title"><spring:message code="coupon.title" /></h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
@@ -631,18 +627,18 @@ span {
             <div class="modal-body">
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
-               <label for="cotitle">쿠폰번호</label> <input
+               <label for="cotitle"><spring:message code="coupon.num" /></label> <input
                   class="form-control createmodal" type="text" id="couponnum"
-                  name="coupon" style="width: 100%;border-radius: 0.5rem;" placeholder="번호을 입력 해주세요.">                              
+                  name="coupon" style="width: 100%;border-radius: 0.5rem;" placeholder="<spring:message code="coupon.cholder" />">                              
                      <input type="hidden" name="email" value="${sessionScope.email}">      
                   <input type="hidden" id="cpoint" name="cpoint" value="${sessionScope.cpoint}">       
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"><spring:message code="all.submit" /></button>
                <button type="button" class="btn btn-secondary"
                   style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
+                  data-dismiss="modal"><spring:message code="all.cancel" /></button>
                </div>
             </div>
          </form>
@@ -656,7 +652,7 @@ span {
       
         <!-- Modal Header -->
         <div class="modal-header" align="center">
-          <h4><label for="validationTextarea">영화 추가</label></h4>
+          <h4><label for="validationTextarea"><spring:message code="main.add2" /></label></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -671,15 +667,15 @@ span {
                             
   <hr class="my-4">
      <div class="row">
-    <div class="col" width="33%" align="center" >영화 사진</div>
-    <div class="col" width="33%" align="center">개봉 날짜</div>
+    <div class="col" width="33%" align="center" ><spring:message code="movie.photo" /></div>
+    <div class="col" width="33%" align="center"><spring:message code="movie.date" /></div>
     <hr class="my-4">
     <div class="w-100"></div>
     <div class="col" width="33%">
       <div class="custom-file">
        <input type="file" name="filesrc" id="Photo" accept="image/*" class="custom-file-input" required>
-      <label class="custom-file-label" for="validatedCustomFile">영화사진</label>
-      <div class="invalid-feedback">선택해주세요 영화 포스터를</div>
+      <label class="custom-file-label" for="validatedCustomFile"><spring:message code="movie.photo" /></label>
+      <div class="invalid-feedback"><spring:message code="movie.selphoto" /></div>
     </div>
     </div>
 
@@ -691,36 +687,36 @@ span {
     </div>
     </div>
        <div class="form-label-group">
-        <label for="validationTextarea">영화 가격</label>
-        <input type="text" id="mpoint" name="mpoint" class="form-control is-invalid" placeholder="포인트를 입력 해주세요." required="required" style="width: 50%;" numberOnly>
+        <label for="validationTextarea"><spring:message code="movie.price" /></label>
+        <input type="text" id="mpoint" name="mpoint" class="form-control is-invalid" placeholder="<spring:message code="movie.pholder" />" required="required" style="width: 50%;" numberOnly>
   </div>
     <hr class="my-4">
      <select id="monum" name="monum" class="form-control">                
-                           <option value="1">한국영화</option>
-                            <option value="2">미국영화</option>
-                             <option value="3">중국영화</option>
-                              <option value="4">유럽영화</option>
-                               <option value="5">일본영화</option>
+                           <option value="1"><spring:message code="movie.from1" /></option>
+                            <option value="2"><spring:message code="movie.from2" /></option>
+                             <option value="3"><spring:message code="movie.from3" /></option>
+                              <option value="4"><spring:message code="movie.from4" /></option>
+                               <option value="5"><spring:message code="movie.from5" /></option>
      </select>
   <div class="form-label-group">
-        <label for="validationTextarea">영화 제목</label>
-        <input type="text" id="title" name="moname" class="form-control is-invalid" placeholder="영화 제목을 입력해주세요" required="required">
+        <label for="validationTextarea"><spring:message code="movie.title" /></label>
+        <input type="text" id="title" name="moname" class="form-control is-invalid" placeholder="<spring:message code="movie.tholder" />" required="required">
   </div>
     <div class="form-label-group">
-        <label for="validationTextarea">영화 감독</label>
-        <input type="text" id="release" name="modirector" class="form-control is-invalid" placeholder="영화 감독을 입력해주세요" required="required">
+        <label for="validationTextarea"><spring:message code="movie.dir" /></label>
+        <input type="text" id="release" name="modirector" class="form-control is-invalid" placeholder="<spring:message code="movie.dholder" />" required="required">
   </div>  
   <div class="mb-3">
-    <label for="validationTextarea">영화 설명</label>
-    <textarea class="form-control is-invalid" id="comment" name="mocontent" placeholder="영화 설명 300자이내로 설명해주세요." required></textarea>
+    <label for="validationTextarea"><spring:message code="movie.content" /></label>
+    <textarea class="form-control is-invalid" id="comment" name="mocontent" placeholder="<spring:message code="movie.cholder" />" required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
   <input type="text" name="monum" class="form-control is-invalid" hidden="" value="0">
   <input type="text" name="iswish" class="form-control is-invalid"  hidden="" value="0">
-    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">추가하기</button>
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%"><spring:message code="movie.submit" /></button>
         <br>
-      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%"><spring:message code="movie.cancel" /></button>
 </form>
         </div>
         

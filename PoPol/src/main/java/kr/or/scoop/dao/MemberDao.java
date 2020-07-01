@@ -82,5 +82,7 @@ public interface MemberDao {
 	//추천인 랭킹 
 	public List<Member> likeRank();
 	
+	//관리자 추가
 	public int addAdmin(String email);
+	
 }

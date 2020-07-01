@@ -540,16 +540,22 @@ public class MemberController {
 		return "rank/mlikeRank";
 	}
 	
-	@RequestMapping(value="addAdmin.do",method = RequestMethod.GET)
+	@RequestMapping(value="addAdmin.do",method = {RequestMethod.GET,RequestMethod.POST})
 	public String mlikeRank(String email) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		String viewpage = "";
 		int result = dao.addAdmin(email);
-		if(result > 0) {
-			viewpage = "redirect:/admin.do";
+		int check = dao.checkmail(email);
+		if(check > 0) {
+			if(result > 0) {
+				viewpage = "redirect:/admin.do";
+			}else {
+				System.out.println("변경실패");
+			}
 		}else {
-			System.out.println("변경실패");
+			viewpage="redirect:/admin.do";
 		}
+		
 		return viewpage;
 	}
 	
