@@ -5,7 +5,7 @@
 <html lang="en">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,14 +74,13 @@ return true;
         <div class="card" style="min-height: 1080px;">
       <div class="row" style="margin: 2% 2% 15px 2%">
          <div class="col-sm-10" style="padding-left: 0">
-            <h3 style="padding-left: 1%;">리뷰게시판  		
-            </h3>
-            <p style="padding-left: 1%;margin-bottom: 0px;">자신이 본 영화를 리뷰 해주세요.</p>
+            <h3 style="padding-left: 1%;"><spring:message code="review.title" /> </h3>
+            <p style="padding-left: 1%;margin-bottom: 0px;"><spring:message code="review.main" /></p>
          </div>
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;">
 	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#writereview"></span> 
-	         	<span id="letter" data-toggle="modal" data-target="#reviewWrite">리뷰 글쓰기</span>
+	         	<span id="letter" data-toggle="modal" data-target="#reviewWrite"><spring:message code="review.write" /></span>
          	</span>
 
          </div>
@@ -89,19 +88,19 @@ return true;
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
          <div class="col-sm-6 newissue" style="padding-left: 87px;" >
-         	제목
+         	<spring:message code="all.title" />
          </div>
          <div class="col-sm-2 newissue">
-         	작성자 
+         	<spring:message code="all.write" /> 
          </div>
          <div class="col-sm-2 newissue">
-         	작성시간 
+         	<spring:message code="all.time" />
          </div>
          <div class="col-sm-1 newissue">
-         	조회수
+         	<spring:message code="all.num" />
          </div>
          <div class="col-sm-1 newissue">
-         	추천수
+         	<spring:message code="all.like" />
          </div>
       </div>
       <c:set value="${review}" var="r"/>
@@ -143,16 +142,16 @@ return true;
       
         <!-- Modal Header -->
         <div class="modal-header" align="center">
-          <h4><label for="validationTextarea">리뷰 작성</label></h4>
+          <h4><label for="validationTextarea"><spring:message code="review.wmain" /></label></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
           <form class="was-validated" action="writeReview.do" enctype="multipart/form-data" method="Post">
-          <div class="col" width="33%" align="center" >리뷰 사진</div> 
+          <div class="col" width="33%" align="center" ><spring:message code="review.wphoto" /></div> 
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="리뷰용 사진을 올려주세요!">     	
+        	<img id="profiles" name="rephoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="<spring:message code="review.pholder" />">     	
          </div>
          <br>
    <input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required="required" onchange="readURL(this);">           
@@ -162,23 +161,23 @@ return true;
     
     </div>
   <div class="form-label-group">
-        <label for="validationTextarea">리뷰 제목</label>
-        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="리뷰 제목을 입력해주세요" required="required">  
+        <label for="validationTextarea"><spring:message code="review.wtitle" /></label>
+        <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="<spring:message code="review.tholder" />" required="required">  
   </div>   
   <div class="mb-3">
-    <label for="validationTextarea">리뷰 내용</label>
-    <textarea class="form-control is-invalid" id="content" name="recontent" placeholder="리뷰 설명 300자이내로 설명해주세요." required></textarea>
+    <label for="validationTextarea"><spring:message code="review.wcontent" /></label>
+    <textarea class="form-control is-invalid" id="content" name="recontent" placeholder="<spring:message code="review.cholder" />" required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
   <input type="hidden" name="rernum" value="0">
   <input type="hidden" name="relike" value="0">
-  <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" id="counter"></span>
+  <span class="txsub" style="margin-bottom: 16px;"><spring:message code="all.wnum" /> : <input type="text" readonly  value="300" id="counter"></span>
   
-    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%"><spring:message code="all.submit2" /></button>
         <br>
-      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%"><spring:message code="all.cancel" /></button>
 </form>
         </div>
         
