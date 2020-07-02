@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
     <c:set var="img" value="${sessionScope.img}" />
     <c:set var="role" value="${sessionScope.role}" />
@@ -175,19 +176,19 @@
         <div class="card" style="min-height: 1080px">
 		<div class="row" style="margin:2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 1%;">내 정보</h3>
+				<h3 style="padding-left: 1%;"><spring:message code="my.main" /></h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #ba90c4;">내 정보</a>
+			      <a class="nav-link" href="memberEdit.do?${sessionScope.email}" style="color: #ba90c4;"><spring:message code="my.main" /></a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="paymentPage.do">가격 및 결제</a>
+			      <a class="nav-link" href="paymentPage.do"><spring:message code="my.main2" /></a>
 			    </li>
 			    <li class="nav-item">
-			      <a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
+			      <a class="nav-link" href="javascript:getOutMember();"><spring:message code="my.main3" /></a>
 			    </li>
 		    </ul>
 		</div>
@@ -198,11 +199,11 @@
 			<div class="media align-items-center mb-4 filebox">
 					<c:choose>
 						<c:when test="${img==null}">
-							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">						 
+							<img id ="profiles" class="mr-3 img-circle" src="<c:url value='/resources/images/avatar/avatar.png' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom">						 
 							<input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);" >
 						</c:when>
 						<c:otherwise>
-                             <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom" data-toggle="tooltip" title="변경하려면 클릭하세요!">
+                             <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom">
                              <input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);" >
                      
 						</c:otherwise>
@@ -215,37 +216,37 @@
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
 		<div class="form-group" style="width: 100%">
-    		<label for="email">이메일</label>
+    		<label for="email"><spring:message code="admin.email" /></label>
     		<input class="form-control myinfo" type="text" id="email" name="email" style="width: 60%" readonly="readonly" value="${member.email}">
     		<br>		
-    		<label for="pwd">비밀번호</label>
+    		<label for="pwd"><spring:message code="my.pwd" /></label>
     		<input class="form-control myinfo" type="password" id="pwd" name="pwd" style="width: 60%" ><br>
-    		<label for="pwdchk">비밀번호 확인</label>
+    		<label for="pwdchk"><spring:message code="my.pwd2" /></label>
     		<input class="form-control myinfo" type="password" id="pwdchk" name="pwdchk" style="width: 60%" >   	
     		<div id="chkmsg" style="color: green;"><br></div>
     		<br>
-    		<label for="name">이름</label>
+    		<label for="name"><spring:message code="admin.name" /></label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}">
     		<br>
-    		<label for="rank">등급</label>
+    		<label for="rank"><spring:message code="admin.rank" /></label>
     		<c:choose>
     		<c:when test="${role=='ROLE_ADMIN'}">
-    		<input class="form-control myinfo" type="text" style="width: 60%" value="운영자">
+    		<input class="form-control myinfo" type="text" style="width: 60%" value="<spring:message code="admin.rank1" />">
     		</c:when>
     		<c:when test="${role=='ROLE_CHARGE'}">
-    		<input class="form-control myinfo" type="text" style="width: 60%" value="프리미엄">
+    		<input class="form-control myinfo" type="text" style="width: 60%" value="<spring:message code="admin.rank2" />">
     		</c:when>
     		<c:otherwise>
-    		<input class="form-control myinfo" type="text" style="width: 60%" value="일반">
+    		<input class="form-control myinfo" type="text" style="width: 60%" value="<spring:message code="admin.rank3" />">
     		</c:otherwise>
     		</c:choose>
     		<br>
-    		<label for="point">포인트</label>
+    		<label for="point"><spring:message code="admin.point" /></label>
     		<input class="form-control myinfo" type="text" name="point" style="width: 60%" value="${member.point} P" disabled="disabled">
     		<br>   
-    		<label for="mlike">추천수</label>
-    		<input class="form-control myinfo" type="text" name="mlike" style="width: 60%" value="${member.mlike} 명" disabled="disabled">
-    		<input type="submit" id="address_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="수정완료">
+    		<label for="mlike"><spring:message code="all.like" /></label>
+    		<input class="form-control myinfo" type="text" name="mlike" style="width: 60%" value="${member.mlike} <spring:message code="you.ea" />" disabled="disabled">
+    		<input type="submit" id="address_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="all.submit3" />">
     		
     		</div>
     		</div>
