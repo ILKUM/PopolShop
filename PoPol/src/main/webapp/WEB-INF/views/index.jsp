@@ -677,12 +677,9 @@ function idOver(a) {
 								<div class="text-muted mt-4"><spring:message code="payment.date" /></div>
 								<ul class="list-unstyled pricing-list">
 									<li><spring:message code="payment.file" /></li>
-								
 									<li><spring:message code="payment.download" /></li>
 									<li><spring:message code="payment.wish" /></li>
 									<li><spring:message code="payment.cs" /></li>
-									
-									
 								</ul>
 								<h5> <spring:message code="payment.start" /> </h5>
 							</div>

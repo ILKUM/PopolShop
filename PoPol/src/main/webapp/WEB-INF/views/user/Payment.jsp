@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="role" value="${sessionScope.role}" />
 <!DOCTYPE html>
 <html>
@@ -126,23 +127,23 @@ function getOutMember(){
 		<!--**********************************
             Content body start
         ***********************************-->
-		<div class="content-body">
+		<div class="content-body" style="height: 900px;">
 			
 			<div class="container-fluid">
 				<div class="card" >
 					<div class="row" style="margin: 2%">
 						<div class="col-sm-12" style="padding-left: 0">
-							<h3>결제 및 가격정보</h3>
+							<h3><spring:message code="my.main2" /></h3>
 						</div>
 					</div>
 					<div class="row" style="margin-left: 2%;">
 						<ul class="nav nav-pills">
 							<li class="nav-item"><a class="nav-link"
-								href="memberEdit.do?${sessionScope.email}">내 정보</a></li>
+								href="memberEdit.do?${sessionScope.email}"><spring:message code="my.main" /></a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="paymentPage.do" style="color: #ba90c4;">가격 및 결제</a></li>
+								href="paymentPage.do" style="color: #ba90c4;"><spring:message code="my.main2" /></a></li>
 							<li class="nav-item">
-								<a class="nav-link" href="javascript:getOutMember();">회원 탈퇴</a>
+								<a class="nav-link" href="javascript:getOutMember();"><spring:message code="my.main3" /></a>
 						    </li>
 						</ul>
 					</div>
@@ -157,7 +158,6 @@ function getOutMember(){
 									<h2>
 										<spring:message code="payment.title" />
 									</h2>
-									
 									<p class="text-muted lead">
 										<spring:message code="payment.content" />
 									</p>
@@ -175,12 +175,10 @@ function getOutMember(){
 													<spring:message code="payment.date" />
 												</div>
 												<ul class="list-unstyled pricing-list">
-													<li><spring:message code="payment.alam" /></li>
-													<li><spring:message code="payment.team" /></li>
-													<li><spring:message code="payment.upload" /></li>
-													<li><spring:message code="payment.teamMgm" /></li>
+													<li><spring:message code="payment.file" /></li>
+													<li><spring:message code="payment.download" /></li>
+													<li><spring:message code="payment.wish" /></li>
 													<li><spring:message code="payment.cs" /></li>
-													<li><spring:message code="payment.api" /></li>
 												</ul>
 												<h5>
 													<spring:message code="payment.start" />
@@ -198,13 +196,11 @@ function getOutMember(){
 												</div>
 												<ul class="list-unstyled pricing-list">
 													<li>-</li>
-													<li>3개</li>
-													<li>20MB</li>
-													<li><span class="iconify" data-icon="bx:bx-check"
-														data-inline="false" style="color: #E71D36;"></span></li>
-													<li><span class="iconify" data-icon="bx:bx-check"
-														data-inline="false" style="color: #E71D36;"></span></li>
 													<li>-</li>
+													<li><span class="iconify" data-icon="bx:bx-check"
+														data-inline="false" style="color: #ba90c4;"></span></li>
+													<li><span class="iconify" data-icon="bx:bx-check"
+														data-inline="false" style="color: #ba90c4;"></span></li>
 												</ul>
 												<c:choose>
 													<c:when test="${role == 'ROLE_CHARGE' || role == 'ROLE_ADMIN'}">
@@ -223,19 +219,20 @@ function getOutMember(){
 											<div class="card-body">
 												<h4 class="card-title text-primary pt-3">Premium</h4>
 												<h2 class="card-title text-primary pt-4">$4</h2>
-												<div class="text-muted mt-4">30일</div>
+												<div class="text-muted mt-4"><spring:message code="payment.period" /></div>
 												<ul class="list-unstyled pricing-list">
-													<li><spring:message code="payment.unlimited" /></li>
-													<li><spring:message code="payment.unlimited" /></li>
-													<li>100MB</li>
+													<li><span class="iconify" data-icon="ion:infinite-sharp"
+														data-inline="false"></span></li>
+													<li></li>
+													<li><span class="iconify" data-icon="ion:infinite-sharp"
+														data-inline="false"></span></li>
 													<li><span class="iconify" data-icon="bx:bx-check"
-														data-inline="false" style="color: #E71D36;"></span></li>
+														data-inline="false" style="color: #ba90c4;"></span></li>
 													<li><span class="iconify" data-icon="bx:bx-check"
-														data-inline="false" style="color: #E71D36;"></span></li>
-													<li>구글 드라이브</li>
+														data-inline="false" style="color: #ba90c4;"></span></li>
 												</ul>
 												<button class="btn btn-primary" onclick="charge();" 
-													type="button">사용 중</button>
+													type="button"><spring:message code="payment.use" /></button>
 												<!-- <a href="#" data-toggle="modal"
 													class="btn btn-primary" id="check_module"> Get
 													Started </a> -->
@@ -248,19 +245,20 @@ function getOutMember(){
 											<div class="card-body">
 												<h4 class="card-title text-primary pt-3">Premium</h4>
 												<h2 class="card-title text-primary pt-4">$4</h2>
-												<div class="text-muted mt-4">per month</div>
+												<div class="text-muted mt-4"><spring:message code="payment.period" /></div>
 												<ul class="list-unstyled pricing-list">
-													<li><spring:message code="payment.unlimited" /></li>
-													<li><spring:message code="payment.unlimited" /></li>
-													<li>100MB</li>
+													<li><span class="iconify" data-icon="ion:infinite-sharp"
+														data-inline="false"></span></li>
+													<li></li>
+													<li><span class="iconify" data-icon="ion:infinite-sharp"
+														data-inline="false"></span></li>
 													<li><span class="iconify" data-icon="bx:bx-check"
-														data-inline="false" style="color: #E71D36;"></span></li>
+														data-inline="false" style="color: #ba90c4;"></span></li>
 													<li><span class="iconify" data-icon="bx:bx-check"
-														data-inline="false" style="color: #E71D36;"></span></li>
-													<li>구글 드라이브</li>
+														data-inline="false" style="color: #ba90c4;"></span></li>
 												</ul>
 												<button class="btn btn-primary" onclick="requestPay()"
-													type="button">유료회원 전환</button>
+													type="button"><spring:message code="payment.period" /></button>
 												<!-- <a href="#" data-toggle="modal"
 													class="btn btn-primary" id="check_module"> Get
 													Started </a> -->
