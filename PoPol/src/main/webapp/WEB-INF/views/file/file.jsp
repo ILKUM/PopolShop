@@ -5,6 +5,7 @@
 <html lang="en">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="point" value="${sessionScope.point}"/>
 <head>
     <meta charset="utf-8">
@@ -82,14 +83,13 @@ $(function(){
       <div class="row" style="margin: 2% 2% 15px 2%">
       <input type="hidden" value="${sessionScope.point }" id="point">
          <div class="col-sm-10" style="padding-left: 0">
-            <h3 style="padding-left: 1%;">자료 공유 게시판 		
-            </h3>
-            <p style="padding-left: 1%;margin-bottom: 0px;">자신의 자료를 공유 해주세요.</p>
+            <h3 style="padding-left: 1%;"><spring:message code="file.title" /></h3>
+            <p style="padding-left: 1%;margin-bottom: 0px;"><spring:message code="recom.main" /></p>
          </div>
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;" >
 	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" ></span> 
-	         	<span id="letter">자료 글쓰기</span>
+	         	<span id="letter"><spring:message code="file.write" /></span>
          	</span>
 
          </div>
@@ -97,19 +97,19 @@ $(function(){
       <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%;margin-bottom:0;">
       <div class="row" style="margin-left: 2%; margin-right: 2%">      
          <div class="col-sm-6 newissue" style="padding-left: 87px;" >
-         	제목
+         	<spring:message code="all.title" />
          </div>
          <div class="col-sm-2 newissue">
-         	작성자 
+         	<spring:message code="all.write" /> 
          </div>
          <div class="col-sm-2 newissue">
-         	작성시간 
+         	<spring:message code="all.time" />
          </div>
          <div class="col-sm-1 newissue">
-         	조회수
+         	<spring:message code="all.num" />
          </div>
          <div class="col-sm-1 newissue">
-         	추천수
+         	<spring:message code="all.like" />
          </div>
       </div>
       <c:forEach items="${file}" var="f">   
@@ -150,14 +150,14 @@ $(function(){
       
         <!-- Modal Header -->
         <div class="modal-header" align="center">
-          <h4><label for="validationTextarea">파일공유 글 작성</label></h4>
+          <h4><label for="validationTextarea"><spring:message code="file.wmain" /></label></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
           <form class="was-validated" action="writeFile.do" enctype="multipart/form-data" method="Post">
-          <div class="col" width="33%" align="center" >공유 파일</div> 
+          <div class="col" width="33%" align="center" ><spring:message code="file.wfile" /></div> 
           <div class="form-label-group" text-align="center" align="center">
         	<span id="profiles"></span>
          </div>
@@ -169,12 +169,12 @@ $(function(){
      <div class="row">   
     </div>
   <div class="form-label-group">
-        <label for="validationTextarea">파일 글 제목</label>
-        <input type="text" id="title" name="ftitle" class="form-control is-invalid" placeholder="제목을 입력해주세요" required="required">
+        <label for="validationTextarea"><spring:message code="file.wtitle" /></label>
+        <input type="text" id="title" name="ftitle" class="form-control is-invalid" placeholder="<spring:message code="file.tholder" />" required="required">
   </div>   
   <div class="mb-3">
-    <label for="validationTextarea">파일 글 내용</label>
-    <textarea class="form-control is-invalid" id="content" name="fcontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
+    <label for="validationTextarea"><spring:message code="file.wcontent" /></label>
+    <textarea class="form-control is-invalid" id="content" name="fcontent" placeholder="<spring:message code="file.cholder" />" required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
@@ -182,10 +182,10 @@ $(function(){
   <input type="hidden" name="flike" value="0">
   <input type="hidden" name="frnum" value="0">
   <input type="hidden" name="fdnum" value="0">
-  <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" id="counter"></span>
-    <input class="btn btn-sm btn-primary btn-block" type="submit" width="30%" value="작성완료" id="likego">
+  <span class="txsub" style="margin-bottom: 16px;"><spring:message code="all.wnum" /> : <input type="text" readonly  value="300" id="counter"></span>
+    <input class="btn btn-sm btn-primary btn-block" type="submit" width="30%" value="<spring:message code="all.submit2" />" id="likego">
         <br>
-      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%"><spring:message code="all.cancel" /></button>
 </form>
         </div>
         

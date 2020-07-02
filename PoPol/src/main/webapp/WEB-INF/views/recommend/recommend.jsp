@@ -68,7 +68,7 @@ $(function(){
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;">
 	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#likeWrite"></span> 
-	         	<span id="letter" data-toggle="modal" data-target="#likeWrite"><spring:message code="recom.write" /></span>
+	         	<span id="letter" data-toggle="modal" data-target="#likeWrite"></span>
          	</span>
 
          </div>
@@ -129,16 +129,16 @@ $(function(){
       
         <!-- Modal Header -->
         <div class="modal-header" align="center">
-          <h4><label for="validationTextarea">추천 글 작성</label></h4>
+          <h4><label for="validationTextarea"><spring:message code="recom.wmain" /></label></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
           <form class="was-validated" action="writeLike.do" enctype="multipart/form-data" method="Post">
-          <div class="col" width="33%" align="center" >추천 영화 사진</div> 
+          <div class="col" width="33%" align="center" ><spring:message code="recom.wphoto" /></div> 
           <div class="form-label-group" text-align="center" align="center">
-        	<img id="profiles" name="rcphoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="추천 사진을 올려주세요!">
+        	<img id="profiles" name="rcphoto" src="<c:url value="/resources/images/default/default.jpg" />" width="15%" height="15%" align="center" data-toggle="tooltip" title="<spring:message code="recom.pholder" />">
          </div>
         	<br>
         	<input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required="required" onchange="readURL(this);" >  
@@ -148,22 +148,22 @@ $(function(){
      <div class="row">   
     </div>
   <div class="form-label-group">
-        <label for="validationTextarea">추천 글 제목</label>
-        <input type="text" id="title" name="rctitle" class="form-control is-invalid" placeholder="제목을 입력해주세요" required="required">
+        <label for="validationTextarea"><spring:message code="recom.wtitle" /></label>
+        <input type="text" id="title" name="rctitle" class="form-control is-invalid" placeholder="<spring:message code="recom.tholder" />" required="required">
   </div>   
   <div class="mb-3">
-    <label for="validationTextarea">추천 글 내용</label>
-    <textarea class="form-control is-invalid" id="content" name="rccontent" placeholder="글 내용 300자이내로 설명해주세요." required></textarea>
+    <label for="validationTextarea"><spring:message code="recom.wcontent" /></label>
+    <textarea class="form-control is-invalid" id="content" name="rccontent" placeholder="<spring:message code="recom.cholder" />" required></textarea>
     <div class="invalid-feedback">
     </div>
   </div>
   <input type="text" name="email" class="form-control is-invalid" hidden="" value="${sessionScope.email}">
   <input type="hidden" name="rclike" value="0">
   <input type="hidden" name="rcrnum" value="0">
-  <span class="txsub" style="margin-bottom: 16px;">남은글자수 : <input type="text" readonly  value="300" id="counter"></span>
-    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%">작성완료</button>
+  <span class="txsub" style="margin-bottom: 16px;"><spring:message code="all.wnum" /> : <input type="text" readonly  value="300" id="counter"></span>
+    <button class="btn btn-sm btn-primary btn-block" type="submit" width="30%"><spring:message code="all.submit2" /></button>
         <br>
-      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%">닫기</button>
+      <button class="btn btn-sm btn-primary btn-block" data-dismiss="modal" width="30%"><spring:message code="all.cancel2" /></button>
 </form>
         </div>
         

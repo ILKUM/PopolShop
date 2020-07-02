@@ -106,7 +106,7 @@ $(document).ready(function(){
 				<spring:message code="all.title" />
 				</div>
 				<div class="col-sm-6 newissue">
-				<spring:message code="all.content" />
+				<spring:message code="notice.content" />
 				</div>
 				<div class="col-sm-2 newissue">
 				<spring:message code="all.time" />
