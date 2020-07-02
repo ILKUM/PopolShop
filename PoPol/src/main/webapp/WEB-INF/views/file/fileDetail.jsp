@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="img" value="${sessionScope.img}" />
@@ -130,7 +131,7 @@ border-radius: 5px;
 		<input type="hidden" id="count" value="${count}">
 		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
 			
-			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;">파일공유 게시판</div>
+			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;"><spring:message code="file.title" /></div>
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">	
@@ -149,7 +150,7 @@ border-radius: 5px;
 		</div>
 			<div style="margin-right: 0; margin-left: 0;padding-top: 10px;">
 			<span id="myissueSubject" style="padding-left: 20px;font-size: 20px;">${file.ftitle}</span>
-			<a href="userProfile.do?email=${file.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile">작성자 : ${file.name}</span></a><span style="float: right;padding-right: 5%;padding-top:1%;">${fn:substring(file.ftime,0,19)}</span>
+			<a href="userProfile.do?email=${file.email}"><span style="float: right;padding-right: 5%;padding-top:1%;" id="userProfile"><spring:message code="all.write" /> : ${file.name}</span></a><span style="float: right;padding-right: 5%;padding-top:1%;">${fn:substring(file.ftime,0,19)}</span>
 			</div>
 		
 		
@@ -204,8 +205,8 @@ border-radius: 5px;
             <input type="hidden" value="${file.fseq}" name="fseq">
             <input type="hidden" value="${sessionScope.email}" name="email">
             <img src="resources/images/logo/MoflexTitle.png" style="width:150px;height: auto;opacity:0.3;position:absolute;top:25%;left: 32%;">
-            <textarea id="frComment" rows="5" name="frcontent" placeholder="댓글 입력 후 저장을 클릭해주세요" style="resize: none;height:180px;width:370px;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
-            <input id="frCommentBtn" type="submit" value="저장" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #ba90c4;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
+            <textarea id="frComment" rows="5" name="frcontent" placeholder="<spring:message code="all.rholder" />" style="resize: none;height:180px;width:370px;border: 1px solid rgba(0,0,0,0.5);border-radius: 0.5rem;margin-left: 15px;margin-bottom: 20px;margin-right: 15px;overflow:auto;padding: 4%"></textarea>
+            <input id="frCommentBtn" type="submit" value="<spring:message code="all.save" />" style="width: 90px;border-radius:0.5rem ;padding-top:7px;padding-bottom:7px; background-color: #ba90c4;color: #fff; cursor: pointer;position: absolute;top:585px;left: 290px;">
             </form>
             </div>
             </div>
