@@ -114,26 +114,26 @@ function filter() {
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">추천인 랭킹</h3>
+				<h3 style="padding-left: 15px;"><spring:message code="rank.main" /></h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="admin.do" style="color: #E71D36;">회원관리</a>
+			      <a class="nav-link" href="mlikeRank.do" style="color: #E71D36;"><spring:message code="rank.main" /></a>
 			    </li>		
 		    </ul>
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">		
 				<div class="col-sm-4 listmem" >
-				이름
+				<spring:message code="admin.name" />
 				</div>
 				<div class="col-sm-4 listmem">
-				보유포인트
+				<spring:message code="admin.point" />
 				</div>
 				<div class="col-sm-4 listmem">
-				추천수
+				<spring:message code="all.like" />
 				</div>
 		</div>
 		<c:forEach items="${mem}" var="m">
@@ -145,7 +145,7 @@ function filter() {
            		${m.point} P    
 			</div>
 			<div class="col-sm-4 listmem">
-				${m.mlike} 명
+				${m.mlike} <spring:message code="you.ea" />
 			</div>				
       </div>	
 			</c:forEach>
