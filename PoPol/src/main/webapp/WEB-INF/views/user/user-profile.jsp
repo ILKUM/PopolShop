@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
     <c:set var="img" value="${requestScope.img}" />
 <html>
@@ -172,7 +173,7 @@
         <div class="card" style="min-height: 1080px">
 		<div class="row" style="margin:2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 1%;">${member.name} 님 프로필</h3>
+				<h3 style="padding-left: 1%;">${member.name} <spring:message code="you.main" /></h3>
 			</div>
 		</div>
 		<hr style="margin-top: 0">
@@ -191,19 +192,19 @@
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
 		<div class="form-group" style="width: 100%">
-    		<label for="email">이메일</label>
+    		<label for="email"><spring:message code="admin.email" /></label>
   
     		<input class="form-control myinfo" type="text" id="email" name="email" style="width: 60%" readonly="readonly" value="${member.email}" disabled="disabled">   		
     		<br>
-    		<label for="name">닉네임</label>
+    		<label for="name"><spring:message code="admin.name" /></label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}" disabled="disabled">
     		<br>
-    		<label for="point">포인트</label>
+    		<label for="point"><spring:message code="admin.point" /></label>
     		<input class="form-control myinfo" type="text" id="point" name="point" style="width: 60%" value="${member.point} P" disabled="disabled">
     		<br>
-    		<label for="mlike">추천수</label>
-    		<input class="form-control myinfo" type="text" id="point" name="mlike" style="width: 60%" value="${member.mlike} 명" disabled="disabled">
-    		<input type="button" id="home_btn" class="btn" style="background-color: #E71D36; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="홈으로">   		
+    		<label for="mlike"><spring:message code="all.like" /></label>
+    		<input class="form-control myinfo" type="text" id="point" name="mlike" style="width: 60%" value="${member.mlike} <spring:message code="you.ea" />" disabled="disabled">
+    		<input type="button" id="home_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.home" />">   		
     		</div>
     		</div>
     		</form>	
