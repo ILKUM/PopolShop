@@ -99,19 +99,19 @@ $(document).ready(function(){
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">자신이 쓴 파일 글 목록</h3>
+				<h3 style="padding-left: 15px;"><spring:message code="myf.main" /></h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyRecom.do">추천 게시판</a>
+			      <a class="nav-link" href="writeMyRecom.do"><spring:message code="recom.title" /></a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyReview.do" >리뷰 게시판</a>
+			      <a class="nav-link" href="writeMyReview.do" ><spring:message code="review.title" /></a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" href="writeMyFile.do" style="color: #ba90c4;">파일공유 게시판</a>
+			      <a class="nav-link" href="writeMyFile.do" style="color: #ba90c4;"><spring:message code="file.title" /></a>
 			    </li>		
 		    </ul>
 		</div>
@@ -119,19 +119,19 @@ $(document).ready(function(){
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">
 		 
          <div class="col-sm-7 listwrite" style="padding-left: 87px;" >
-         	제목
+         	<spring:message code="all.title" />
          </div>
          <div class="col-sm-2 listwrite">
-         	작성시간
+         	<spring:message code="all.time" />
          </div>
          <div class="col-sm-1 listwrite">
-         	조회수 
+         	<spring:message code="all.num" />
          </div>
          <div class="col-sm-1 listwrite">
-         	추천수
+         	<spring:message code="all.like" />
          </div>
          <div class="col-sm-1 listwrite">
-         	관리
+         	<spring:message code="all.manage" />
          </div>
 		     
       </div>
