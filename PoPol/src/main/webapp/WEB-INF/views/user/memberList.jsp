@@ -5,6 +5,7 @@
 <html lang="en">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="role" value="${sessionScope.role}" />
 <c:set var="email" value="${sessionScope.email}" />
 
@@ -153,16 +154,16 @@ function checkadmin() {
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;">멤버관리</h3>
+				<h3 style="padding-left: 15px;"><spring:message code="admin.main" /></h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="admin.do" style="color: #ba90c4;">회원관리</a>
+			      <a class="nav-link" href="admin.do" style="color: #ba90c4;"><spring:message code="admin.main" /></a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" style="cursor: pointer;" id="adminadd">관리자 추가</a>
+			      <a class="nav-link" style="cursor: pointer;" id="adminadd"><spring:message code="admin.main2" /></a>
 			    </li>		
 		    </ul>
 		</div>
@@ -170,21 +171,21 @@ function checkadmin() {
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">
 		 <input
             onkeyup="filter()" type="search" id="searchemail" class="form-control"
-            style="border-radius: 0.25rem; height: 20px" placeholder="이메일 검색">
+            style="border-radius: 0.25rem; height: 20px" placeholder="<spring:message code="admin.eholder" />">
 				<div class="col-sm-4 listmem" >
-				이메일
+				<spring:message code="admin.email" />
 				</div>
 				<div class="col-sm-3 listmem">
-				이름
+				<spring:message code="admin.name" />
 				</div>
 				<div class="col-sm-2 listmem">
-				등급
+				<spring:message code="admin.rank" />
 				</div>
 				<div class="col-sm-2 listmem">
-				보유 포인트
+				<spring:message code="admin.point" />
 				</div>
 				<div class="col-sm-1 listmem">
-				삭제
+				<spring:message code="all.manage" />
 				</div>
 		</div>
 		<c:forEach items="${member}" var="m">
@@ -199,13 +200,13 @@ function checkadmin() {
 			<div class="col-sm-2 listmem">
 				<c:choose>
 					<c:when test="${m.rname == 'ROLE_ADMIN'}">
-						운영자
+						<spring:message code="admin.rank1" />
 					</c:when>				
 					<c:when test="${m.rname == 'ROLE_CHARGE'}">
-						프리미엄
+						<spring:message code="admin.rank2" />
 					</c:when>
 					<c:otherwise>
-						일반
+						<spring:message code="admin.rank3" />
 					</c:otherwise>				
 				</c:choose>				
 			</div>		
@@ -213,7 +214,7 @@ function checkadmin() {
 				${m.point}
 			</div>
 			<div class="col-sm-1 listmem">
-				<a href="banMember.do?email=${m.email}">탈퇴</a>
+				<a href="banMember.do?email=${m.email}"><spring:message code="admin.delete" /></a>
 			</div>
 		
       </div>	
@@ -236,7 +237,7 @@ function checkadmin() {
 
          <!-- Modal Header -->
          <div class="modal-header">
-            <h3 class="modal-title">관리자 추가</h3>
+            <h3 class="modal-title"><spring:message code="admin.main2" /></h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
    
@@ -245,16 +246,16 @@ function checkadmin() {
             <div class="modal-body">
                <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
              협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
-               <label for="etitle">이메일</label> <input
+               <label for="etitle"><spring:message code="admin.email" /></label> <input
                   class="form-control createmodal" type="text" id="admin"
-                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="이메일을 입력 해주세요.">                              
+                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="<spring:message code="admin.eholder" />">                              
             <!-- Modal footer -->
             <div class="modal-footer">
                <button type="submit" class="btn btn-secondary"
-                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;">등록</button>
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"><spring:message code="all.submit" /></button>
                <button type="button" class="btn btn-secondary"
                   style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
-                  data-dismiss="modal">취소</button>
+                  data-dismiss="modal"><spring:message code="all.cancel" /></button>
                </div>
             </div>
          </form>
