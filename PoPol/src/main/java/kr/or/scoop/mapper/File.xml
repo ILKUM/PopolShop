@@ -49,4 +49,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delFileComment">
 	delete FREPLY where frseq=#{frseq}
 	</delete>
+	<select id="getFilename" resultType="String">
+	select filename from fileboard where fseq = #{fseq}
+	</select>
+	<update id="updateFile" parameterType="kr.or.scoop.dto.File">
+		UPDATE Fileboard
+		set ftitle=#{ftitle}, fcontent=#{fcontent} ,filename = #{filename} where fseq=#{fseq}
+	</update>
 </mapper>

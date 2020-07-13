@@ -229,5 +229,58 @@ public class FileController {
 		}
 		return viewpage;
 	}
+	
+	//파일 글 수정이동
+		@RequestMapping(value = "editFile.do", method = RequestMethod.GET)
+		public String editFile(int fseq, Model model) {			
+			BoardDao dao = sqlSession.getMapper(BoardDao.class);
+			File file = dao.detailFile(fseq);
+			model.addAttribute("file", file);		
+			return "file/fileEdit";
+		}
+		
+		//파일 글 수정 체크 
+		@RequestMapping(value="fileEditCheck.do" , method = RequestMethod.POST)
+		public String fileEditCheck(int fseq,File file, HttpServletRequest request) {
+			String viewpage;
+			CommonsMultipartFile multifile = file.getFilesrc();
+			BoardDao dao = sqlSession.getMapper(BoardDao.class);
+			String files = dao.getFilename(fseq);
+			String filename = multifile.getOriginalFilename();	
+			String path = request.getServletContext().getRealPath("/user/file");
+			String fpath = path + "\\"+ filename; 
+			
+			if(filename.equals("")) {
+				file.setFilename(files);
+			}else {
+				file.setFilename(filename);
+			}
+				if(!filename.equals("")) { //실 파일 업로드
+					FileOutputStream fs = null;
+					try {
+						fs = new FileOutputStream(fpath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+						
+					}finally {
+						try {
+							fs.write(multifile.getBytes());
+							fs.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				
+			int result = bService.updateFile(file);
+			if(result > 0) {
+				viewpage = "redirect:/detailFile.do?fseq=" + fseq;
+			}else {
+				viewpage = "redirect:/detailFile.do?fseq=" + fseq;
+			}
+			return viewpage;
+			
+			
+		}
 
 }

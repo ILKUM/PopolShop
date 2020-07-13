@@ -220,5 +220,13 @@ public class BoardService {
 			int result = dao.delFileComment(frseq);
 			return result;
 		}
+		
+		//파일글 수정 체크
+		public int updateFile(File file) {
+			int result = 0;
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			result = dao.updateFile(file);
+			return result;
+		}
 
 }

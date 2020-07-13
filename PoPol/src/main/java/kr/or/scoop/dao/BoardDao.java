@@ -138,10 +138,16 @@ public interface BoardDao {
 	//파일 댓글 등록
 	public int fileComment(int fseq,String email,String frcontent);
 	
-	//추천 댓글 리스트
+	//파일 댓글 리스트
 	public List<FileReply> fileCommentOk(int fseq);
 	
-	//리뷰 댓글 삭제
+	//파일 댓글 삭제
 	public int delFileComment(int frseq);
+	
+	//파일 가져오기
+	public String getFilename(int fseq);
+	
+	//파일 글 수정 체크
+	public int updateFile(File file);
 	
 }

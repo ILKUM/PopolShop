@@ -134,10 +134,15 @@ border-radius: 5px;
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${rec.rclike}</i>
-			<c:if test="${rec.email==sessionScope.email}">
+			<c:choose>
+			<c:when test="${rec.email==sessionScope.email}">
 	        	<span class="fas fa-cog"  id="editRecommend" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteRecom" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
-			</c:if>
+			</c:when>
+			<c:when test="${role=='ROLE_ADMIN'}">
+			<span class="iconify" id="deleteRecom" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+			</c:when>
+			</c:choose>
 				<a href="recom.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			

@@ -8,6 +8,7 @@
 <html lang="en">
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="count" value="${requestScope.count}" />
+<c:set var="role" value="${sessionScope.role }"/>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +35,10 @@ $('#reCommentBtn').click(function(){
 		})
 		return false;
 	}
+});
+
+$('#editReview').click(function(){
+	location.href = 'editReview.do?reseq='+${review.reseq};
 });
 
 $('.deleteComment').click(function(){
@@ -109,10 +114,15 @@ border-radius: 5px;
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${review.relike}</i>
-			<c:if test="${review.email==sessionScope.email}">
+			<c:choose>
+			<c:when test="${review.email==sessionScope.email}">
 	        	<span class="fas fa-cog"  id="editReview" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteReview" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
-			</c:if>
+			</c:when>
+			<c:when test="${role == 'ROLE_ADMIN'}">
+			<span class="iconify" id="deleteReview" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+			</c:when>
+			</c:choose>
 				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			

@@ -794,7 +794,7 @@ function idOver(a) {
          	<p style="padding-top: 15px;"><spring:message code="intro.cont4" /></p>
          </div>
          <div class="col-sm-4"style=" padding-right: 70px;padding-left: 0px;">
-         	<img src="resources/images/icon/message.png" style="width: 80px;height: auto;padding-top:10px;">
+         	<img src="resources/images/icon/rank.png" style="width: 80px;height: auto;padding-top:10px;">
          	<p style="padding-top:3px;"><spring:message code="intro.cont5" /></p>
          </div>
          </div>

@@ -539,7 +539,7 @@ span {
 		              <spring:message code="mail.content2" />
                      </p>
                      <label for="title"><spring:message code="mail.email" /></label> 
-                     <input class="form-control createmodal" type="text" id="mail_to" style="width: 100%; border-radius: 0.25rem;" value="모플렉스" name="tosend" disabled="disabled">
+                     <input class="form-control createmodal" type="text" id="mail_to" style="width: 100%; border-radius: 0.25rem;" value="<spring:message code="moflex" />" name="tosend" disabled="disabled">
                      <div id="mail_append"
                         style="min-width: 35%; border: 1px solid #c8c8c8; border-radius: 0.25rem; background-color: #fff; display: none; position: absolute; top: 145px; left: 18px;">
                      </div>

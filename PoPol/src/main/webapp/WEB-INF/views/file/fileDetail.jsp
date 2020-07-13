@@ -136,14 +136,19 @@ border-radius: 5px;
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">	
 				<a href="dataDownload.do?fileName=${file.filename}">
-		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;">${file.fdnum}</span>	
+		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>${file.fdnum}	
 			</a>
 		</c:if>
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${file.flike}</i>
-			<c:if test="${file.email==sessionScope.email}">
-	        	<span class="fas fa-cog"  id="editReview" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
+			<c:choose>
+			<c:when test="${file.email==sessionScope.email}">
+	        	<span class="fas fa-cog"  id="editFile" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
 				<span class="iconify" id="deleteFile" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
-			</c:if>
+			</c:when>
+			<c:when test="${role == 'ROLE_ADMIN'}">
+			<span class="iconify" id="deleteFile" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+			</c:when>
+			</c:choose>
 				<a href="review.do"><span class="iconify" id="history" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 25px; margin-bottom: 10px;margin-left: 10px;"></span></a>
 				</div>				
 			
