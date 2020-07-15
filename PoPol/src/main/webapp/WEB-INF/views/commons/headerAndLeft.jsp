@@ -63,10 +63,21 @@ input::placeholder {
    function checkm() {
 	   var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 	   var mail = "<%=session.getAttribute("email")%>";
+	   var isval = "<%=session.getAttribute("ismlike")%>";
 	    //이메일 공백 확인
 	     if($("#toEmail").val() == ""){
 	        Swal.fire("이메일을 입력해주세요.");
 	       $("#toEmail").focus();
+	       return false;
+	     }
+	    
+	     if(isval == 1){
+	    	 Swal.fire({
+	   			  title : '등록 실패',
+	   			  text : '이미 추천인을 등록 하셨습니다.',
+	   			  icon : 'warning',
+	   			  confirmButtonColor: '#ba90c4'
+	   		})
 	       return false;
 	     }
 	    
