@@ -3,64 +3,85 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.BoardDao">
-<!-- 리뷰글 작성 -->
+	<!-- 리뷰글 작성 -->
 	<insert id="insertReview" parameterType="kr.or.scoop.dto.Review">
-	insert into reboard (reseq,retitle,recontent,rephoto,email,relike,rernum,retime)
-  		values (RESEQ_REBOARD_SEQ.NEXTVAL,#{retitle,jdbcType=VARCHAR},#{recontent,jdbcType=VARCHAR},#{rephoto,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{relike,jdbcType=INTEGER},#{rernum,jdbcType=INTEGER},SYSDATE)
+		insert into reboard
+		(reseq,retitle,recontent,rephoto,email,relike,rernum,retime)
+		values
+		(RESEQ_REBOARD_SEQ.NEXTVAL,#{retitle,jdbcType=VARCHAR},#{recontent,jdbcType=VARCHAR},#{rephoto,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{relike,jdbcType=INTEGER},#{rernum,jdbcType=INTEGER},SYSDATE)
 	</insert>
-	<!-- 리뷰글 리스트  -->
+	<!-- 리뷰글 리스트 -->
 	<select id="getReview" resultType="kr.or.scoop.dto.Review">
-	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email
+		select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m
+		join reboard r on m.email = r.email
 	</select>
 	<!-- 리뷰글 디테일 -->
 	<select id="selectReview" resultType="kr.or.scoop.dto.Review">
-		select r.retitle,r.reseq,r.recontent,r.retime,r.relike,r.rephoto,r.email, m.name from reboard r join member m on r.email = m.email where r.reseq = #{reseq}
+		select
+		r.retitle,r.reseq,r.recontent,r.retime,r.relike,r.rephoto,r.email,
+		m.name from reboard r join member m on r.email = m.email where r.reseq
+		= #{reseq}
 	</select>
 	<!-- 리뷰글 조회수 증가 -->
 	<update id="rernumCount">
-		 update reboard set rernum=rernum+1 where reseq = #{reseq}
+		update reboard set rernum=rernum+1 where reseq = #{reseq}
 	</update>
-	<!-- 리뷰글 추천 중복방지  -->
+	<!-- 리뷰글 추천 중복방지 -->
 	<insert id="insertRelike" parameterType="kr.or.scoop.dto.Review">
-		insert into reviewmem(rvseq,reseq,email) 
+		insert into
+		reviewmem(rvseq,reseq,email)
 		values (RVSEQ_REVIEWMEM_SEQ.NEXTVAL,#{param1},#{param2})
 	</insert>
-	<!-- 추천수 증가 -->
+	<!-- 리뷰 글 추천수 증가 -->
 	<update id="relikeCount" parameterType="kr.or.scoop.dto.Review">
-		update reboard set relike = relike+1 where reseq = #{reseq}
+		update reboard set relike
+		= relike+1 where reseq = #{reseq}
 	</update>
-	<!-- 추천 중복 방지 -->
+	<!-- 리뷰 추천 중복 방지 -->
 	<select id="getrelike" resultType="int">
-		select count(*) from reviewmem where email = #{param1} and reseq = #{param2}
+		select count(*) from reviewmem
+		where email = #{param1} and reseq = #{param2}
 	</select>
 	<!-- 리뷰글 삭제 -->
 	<delete id="deleteRelike">
-		delete from reviewmem where email = #{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
+		delete from reviewmem where email =
+		#{email,jdbcType=VARCHAR} and reseq = #{reseq,jdbcType=INTEGER}
 	</delete>
 	<!-- 리뷰글 덧글 등록 -->
-	<insert id="reviewComment" parameterType="kr.or.scoop.dto.RvReply">
-	insert into RVREPLY(rvrseq,reseq,email,rvrcontent, rvrtime)
-  	values(RVRSEQ_RVREPLY_SEQ.NEXTVAL, #{param1}, #{param3},#{param2}, sysdate)
+	<insert id="reviewComment"
+		parameterType="kr.or.scoop.dto.RvReply">
+		insert into RVREPLY(rvrseq,reseq,email,rvrcontent, rvrtime)
+		values(RVRSEQ_RVREPLY_SEQ.NEXTVAL, #{param1}, #{param3},#{param2},
+		sysdate)
 	</insert>
-	<!-- 리뷰글 덧글 리스트 출력  -->
-	<select id="reviewCommentOk" resultType="kr.or.scoop.dto.RvReply">
-	select * from rvreply r join member m on r.email=m.email where r.reseq = #{reseq}
+	<!-- 리뷰글 덧글 리스트 출력 -->
+	<select id="reviewCommentOk"
+		resultType="kr.or.scoop.dto.RvReply">
+		select * from rvreply r join member m on r.email=m.email where r.reseq =
+		#{reseq}
 	</select>
-	<select id="getReviewImg" parameterType="kr.or.scoop.dto.Review" resultType="String">
-	select rephoto from reboard where reseq = #{reseq}
+	<!-- 리뷰 글 이미지 가져오기 -->
+	<select id="getReviewImg" parameterType="kr.or.scoop.dto.Review"
+		resultType="String">
+		select rephoto from reboard where reseq = #{reseq}
 	</select>
+	<!-- 리뷰 글 수정 -->
 	<update id="updateReview" parameterType="kr.or.scoop.dto.Review">
-		UPDATE reboard 
-		set retitle=#{retitle}, recontent=#{recontent} ,rephoto = #{rephoto} where reseq=#{reseq}
+		UPDATE reboard
+		set retitle=#{retitle}, recontent=#{recontent} ,rephoto = #{rephoto}
+		where reseq=#{reseq}
 	</update>
+	<!-- 리뷰 글 삭제 -->
 	<delete id="deleteReview">
-	DELETE FROM reboard  WHERE reseq = #{reseq}
+		DELETE FROM reboard WHERE reseq = #{reseq}
 	</delete>
 	<!-- 내가 작성한 리뷰 글 -->
 	<select id="getWriteReview" resultType="kr.or.scoop.dto.Review">
-	select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m join reboard r on m.email = r.email where m.email = #{email}
+		select m.name,r.reseq,r.retitle,r.retime,r.relike,r.rernum from member m
+		join reboard r on m.email = r.email where m.email = #{email}
 	</select>
+	<!-- 리뷰 글 덧글 삭제 -->
 	<delete id="delReviewComment">
-	delete RVREPLY where rvrseq=#{rvrseq}
+		delete RVREPLY where rvrseq=#{rvrseq}
 	</delete>
 </mapper>
