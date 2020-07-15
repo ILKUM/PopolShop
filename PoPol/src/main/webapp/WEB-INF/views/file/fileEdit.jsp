@@ -164,5 +164,16 @@ function readURL(input) {
 	   readURL(this);
 	});
 	
+	$(document).ready(function(){
+
+        $('input[type="file"]').change(function(e){
+
+            var fileName = e.target.files[0].name; //getting the file name 
+            var display = $("#profiles"); //where to display
+            display.html(fileName);
+
+        });
+
+    });
 </script>
 </html>

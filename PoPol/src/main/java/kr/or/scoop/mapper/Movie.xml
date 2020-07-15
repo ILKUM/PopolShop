@@ -3,45 +3,58 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.scoop.dao.MovieDao">
+<!-- 영화 추가 -->
 <insert id="insertMovie" parameterType="kr.or.scoop.dto.Movie">
 	insert into movie (moseq,moname,mocontent,modate,modirector,molike,mophoto,monum,iswish,mpoint)
        values (moseq_movie_seq.nextval,#{moname},#{mocontent},#{modate},#{modirector},0,#{mophoto},#{monum},0,#{mpoint})
 </insert>
+<!-- 한국영화 리스트 -->
 <select id="getKorea" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 1
 </select>
+<!-- 미국영화 리스트 -->
 <select id="getAmerican" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 2
 </select>
+<!-- 중국영화 리스트 -->
 <select id="getChina" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 3
 </select>
+<!-- 유럽영화 리스트 -->
 <select id="getEurope" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 4
 </select>
+<!-- 일본영화 리스트 -->
 <select id="getJapan" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where monum = 5
 </select>
+<!-- 모든 영화 리스트 -->
 <select id="getMovieList" resultType="kr.or.scoop.dto.Movie">
 	select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie
 </select>
+<!-- 검색한 영화 리스트 -->
 <select id="searchMovie" resultType="kr.or.scoop.dto.Movie">
 		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where (moname like '%'||#{word}||'%')
-	</select>
-	<select id="selectMovie" resultType="kr.or.scoop.dto.Movie">
+</select>
+<!-- 영화 디테일  -->
+<select id="selectMovie" resultType="kr.or.scoop.dto.Movie">
 		select moseq,moname,mocontent,modate,modirector,molike,mophoto,iswish,monum,mpoint from movie where moseq = #{moseq}
-	</select>
-	<insert id="addMovieJJim" parameterType="kr.or.scoop.dto.JJim">
+</select>
+<!-- 찜한 영화 추가 -->
+<insert id="addMovieJJim" parameterType="kr.or.scoop.dto.JJim">
 	insert into JJIM(jseq, moseq, email) 
 	values(jseq_jjim_seq.nextval, #{param1},#{param2})
 </insert>
+<!-- 찜한 영화 삭제 -->
 <delete id="delMovieJJim">
 	delete from JJIM 
 	where moseq=#{param1} and email=#{param2}
 </delete>
+<!-- 찜한 영화 리스트  -->
 <select id="getMovieJJim" resultType="kr.or.scoop.dto.JJim">
 select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modirector,j.email,j.jseq,m.mpoint from movie m join jjim j on m.moseq = j.moseq where j.email = #{email}
 </select>
+<!-- 지난 기록 리스트  -->
 <select id="getHistory" resultType="kr.or.scoop.dto.Movie">
 	select DISTINCT m.moseq , m.moname , m.mocontent , m.mophoto , m.molike , m.modate , m.monum , m.modirector , m.mpoint , m.iswish from movie m join history h on m.moseq = h.moseq where h.email = #{email}
 </select>
@@ -67,6 +80,7 @@ select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modire
 	<select id="movieCommentOk" resultType="kr.or.scoop.dto.MoReply">
 	select * from moreply r join member m on r.email=m.email where r.moseq = #{moseq}
 	</select>
+	<!-- 영화 글 덧글 삭제 -->
 	<delete id="delMovieComment">
 	delete MOREPLY where morseq=#{morseq}
 	</delete>

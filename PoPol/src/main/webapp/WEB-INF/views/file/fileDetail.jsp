@@ -163,7 +163,7 @@ border-radius: 5px;
 		<br>
 		<div class="row" style="margin-right: 0;width:900px;">
         <div class="fileDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
-       	${file.filename}
+       	<div>파일 명 : ${file.filename}</div>
        	${file.fcontent}
         </div>
         <!-- <div class="col-sm-2"><span>네이버</span><br><img alt="logo" src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png" style="width: 50%"></div> -->

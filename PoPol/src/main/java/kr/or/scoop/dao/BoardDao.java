@@ -150,4 +150,7 @@ public interface BoardDao {
 	//파일 글 수정 체크
 	public int updateFile(File file);
 	
+	//파일 다운횟수 증가
+	public int downFile(int fseq);
+	
 }
