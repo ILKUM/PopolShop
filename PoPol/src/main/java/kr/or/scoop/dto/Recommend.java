@@ -16,6 +16,7 @@ public class Recommend {
 	private int rclike; //추천수
 	private String name; //글쓴이 이름
 	private int rcrnum; //조회수
+	private String rcname;//추천영화제목
 	
 	
 	public int getRlseq() {
@@ -84,13 +85,20 @@ public class Recommend {
 	public void setRcrnum(int rcrnum) {
 		this.rcrnum = rcrnum;
 	}
-	
+	public String getRcname() {
+		return rcname;
+	}
+	public void setRcname(String rcname) {
+		this.rcname = rcname;
+	}
 	@Override
 	public String toString() {
 		return "Recommend [rcseq=" + rcseq + ", rlseq=" + rlseq + ", rctitle=" + rctitle + ", rccontent=" + rccontent
 				+ ", filesrc=" + filesrc + ", rcphoto=" + rcphoto + ", rctime=" + rctime + ", email=" + email
-				+ ", rclike=" + rclike + ", name=" + name + ", rcrnum=" + rcrnum + "]";
+				+ ", rclike=" + rclike + ", name=" + name + ", rcrnum=" + rcrnum + ", rcname=" + rcname + "]";
 	}
+	
+	
 	
 	
 	

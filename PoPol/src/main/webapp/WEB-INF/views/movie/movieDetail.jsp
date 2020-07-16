@@ -37,6 +37,27 @@ $(function(){
 		}
 	});
 	
+	$('#editMovie').click(function(){
+		location.href = 'movieEdit.do?moseq='+${movie.moseq};
+	});
+	
+	$('#deleteMovie').click(function(){
+		   Swal.fire({
+			   title: '정말로 영화를 삭제하시겠습니까??',
+			   text: "삭제하시면 영화의 모든 정보가 사라집니다!",
+			   icon: 'warning',
+			   showCancelButton: true,
+			   confirmButtonColor: '#d33',
+			   cancelButtonColor: '#c8c8c8',
+			   confirmButtonText: '확인',
+			   cancelButtonText: '취소'
+			 }).then((result) => {
+			   if (result.value) {
+				   location.href = 'deleteMovie.do?moseq='+${movie.moseq};
+			   }
+			 })
+		});
+	
 	$('.deleteComment').click(function(){
 		var temp=$(this);
 		$.ajax({
@@ -132,8 +153,8 @@ border-radius: 5px;
 		</c:if>
 		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>		
 			<c:if test="${role=='ROLE_ADMIN'}">
-	        	<span class="fas fa-cog"  id="editIssue" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
-				<span class="iconify" id="deleteIssue" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
+	        	<span class="fas fa-cog"  id="editMovie" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
+				<span class="iconify" id="deleteMovie" data-icon="topcoat:delete" data-inline="false" style="cursor: pointer;font-size:25px; margin-bottom: 15px;margin-left: 10px;"></span>
 			</c:if>
 			<c:choose>
 				<c:when test="${movie.monum==1}">

@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.scoop.dao.BoardDao">
  <!-- 추천글 작성 -->
 	<insert id="insertRecomm" parameterType="kr.or.scoop.dto.Recommend">
-	insert into recommend (rcseq,rctitle,rccontent,rcphoto,email,rclike,rcrnum,rctime)
-  		values (RCSEQ_RCOMMEND_SEQ.NEXTVAL, #{rctitle,jdbcType=VARCHAR}, #{rccontent,jdbcType=VARCHAR}, #{rcphoto,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{rclike,jdbcType=INTEGER},#{rcrnum,jdbcType=INTEGER},SYSDATE)
+	insert into recommend (rcseq,rctitle,rccontent,rcphoto,email,rclike,rcrnum,rcname,rctime)
+  		values (RCSEQ_RCOMMEND_SEQ.NEXTVAL, #{rctitle,jdbcType=VARCHAR}, #{rccontent,jdbcType=VARCHAR}, #{rcphoto,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},#{rclike,jdbcType=INTEGER},#{rcrnum,jdbcType=INTEGER},#{rcname,jdbcType=VARCHAR},SYSDATE)
 	</insert>
 	<!-- 추천 리스트  -->
 	<select id="getRecomm" resultType="kr.or.scoop.dto.Recommend">
@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 추천글 디테일  -->
 	<select id="detailRecomm" resultType="kr.or.scoop.dto.Recommend">
-		select r.rctitle,r.rcseq,r.rccontent,r.rctime,r.rclike,r.rcphoto,r.email, m.name from recommend r join member m on r.email = m.email where r.rcseq = #{rcseq}
+		select r.rctitle,r.rcname,r.rcseq,r.rccontent,r.rctime,r.rclike,r.rcphoto,r.email, m.name from recommend r join member m on r.email = m.email where r.rcseq = #{rcseq}
 	</select>
 	<!-- 추천글 추천방지 -->
 	<select id="getrclike" resultType="int">

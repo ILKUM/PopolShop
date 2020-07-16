@@ -16,7 +16,7 @@ public class Review {
 	private String name; //작성자 이름
 	private int relike; //추천수
 	private int rernum; //조회수
-	
+	private String rvname; //리뷰 영화제목
 	
 	public int getRvseq() {
 		return rvseq;
@@ -84,13 +84,20 @@ public class Review {
 	public void setRernum(int rernum) {
 		this.rernum = rernum;
 	}
-	
+	public String getRvname() {
+		return rvname;
+	}
+	public void setRvname(String rvname) {
+		this.rvname = rvname;
+	}
 	@Override
 	public String toString() {
 		return "Review [reseq=" + reseq + ", rvseq=" + rvseq + ", retitle=" + retitle + ", recontent=" + recontent
 				+ ", retime=" + retime + ", filesrc=" + filesrc + ", rephoto=" + rephoto + ", email=" + email
-				+ ", name=" + name + ", relike=" + relike + ", rernum=" + rernum + "]";
+				+ ", name=" + name + ", relike=" + relike + ", rernum=" + rernum + ", rvname=" + rvname + "]";
 	}
+	
+	
 	
 	
 	

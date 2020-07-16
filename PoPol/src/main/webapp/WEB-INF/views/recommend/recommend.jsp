@@ -68,7 +68,7 @@ $(function(){
          <div class="col-sm-2" style="text-align: right">      	
          		<span id="writeletter" style="cursor: pointer;">
 	         	<span id="write" class="iconify" data-icon="jam:write-f" data-inline="false" style="font-size: 20px;" data-toggle="modal" data-target="#likeWrite"></span> 
-	         	<span id="letter" data-toggle="modal" data-target="#likeWrite"></span>
+	         	<span id="letter" data-toggle="modal" data-target="#likeWrite"><spring:message code="recom.write" /></span>
          	</span>
 
          </div>
@@ -148,6 +148,8 @@ $(function(){
      <div class="row">   
     </div>
   <div class="form-label-group">
+        <label for="validationTextarea"><spring:message code="recom.mname" /></label>
+        <input type="text" id="rcname" name="rcname" class="form-control is-invalid" placeholder="<spring:message code="recom.mholder" />" required="required">
         <label for="validationTextarea"><spring:message code="recom.wtitle" /></label>
         <input type="text" id="title" name="rctitle" class="form-control is-invalid" placeholder="<spring:message code="recom.tholder" />" required="required">
   </div>   

@@ -130,7 +130,7 @@ border-radius: 5px;
 		<input type="hidden" name="fseq" value="${file.fseq}" id="fseq">
 		<input type="hidden" id="count" value="${count}">
 		<input type="hidden" name="email" value="${sessionScope.email}" id="email">
-			
+
 			<div class="col-sm-7" style="font-size: 17px; padding-left: 1%;"><spring:message code="file.title" /></div>
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">

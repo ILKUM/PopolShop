@@ -156,11 +156,9 @@ return true;
          <br>
    <input type="file" id="Photo" name="filesrc" accept="image/*" class="form-control is-invalid" required="required" onchange="readURL(this);">           
   <hr class="my-4">
-  	
-     <div class="row">   
-    
-    </div>
   <div class="form-label-group">
+        <label for="validationTextarea"><spring:message code="review.mname" /></label>
+        <input type="text" id="rvname" name="rvname" class="form-control is-invalid" placeholder="<spring:message code="review.mholder" />" required="required">  
         <label for="validationTextarea"><spring:message code="review.wtitle" /></label>
         <input type="text" id="title" name="retitle" class="form-control is-invalid" placeholder="<spring:message code="review.tholder" />" required="required">  
   </div>   

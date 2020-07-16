@@ -135,10 +135,12 @@ border-radius: 5px;
 		
 		<hr style="margin:10px 2% 0 0;">	
 		<br>
+		<img src="<c:url value='/user/review/${review.rephoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 200; height: 200;">
 		<div class="row" style="margin-right: 0;width:900px;">
         <div class="myissueDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
-       	${review.rephoto}
-       	${review.recontent}
+        <div>영화 제목 : ${review.rvname}</div>
+        <hr>
+       	영화 설명 : ${review.recontent}
         </div>
         <!-- <div class="col-sm-2"><span>네이버</span><br><img alt="logo" src="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png" style="width: 50%"></div> -->
         </div>

@@ -63,7 +63,7 @@ border-radius: 5px;
         <form action="fileEditCheck.do?fseq=${file.fseq}" method="POST" enctype="multipart/form-data">
 		<div class="row"style="margin:2% 2% 0 2%" >
 		<div class="col-sm-9">
-		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #2e1bf5;" data-icon="ant-design:like-outlined" data-inline="false">
+		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #ba90c4;" data-icon="mdi:cloud-upload" data-inline="false">
 		</span>
 		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="ftitle" value="${file.ftitle}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
 		
