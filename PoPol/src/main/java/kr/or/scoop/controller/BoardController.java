@@ -268,6 +268,59 @@ public class BoardController {
 			}
 			return "movie/movieDetail";
 		}	
+		
+		//영화 수정 
+		@RequestMapping(value="movieEdit.do",method=RequestMethod.GET)
+		public String movieEdit(int moseq,Model model,HttpSession session,HttpServletRequest request) {
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			Movie movie = dao.selectMovie(moseq);
+			model.addAttribute("movie", movie);		
+			return "movie/movieEdit";
+		}
+		
+		//리뷰 글 수정 체크 
+		@RequestMapping(value="movieEditCheck.do" , method = RequestMethod.POST)
+		public String reviewEditCheck(int moseq,Movie movie, HttpServletRequest request) {
+			String viewpage;
+			CommonsMultipartFile multifile = movie.getFilesrc();
+			MovieDao dao = sqlSession.getMapper(MovieDao.class);
+			String img = dao.getMovieImg(moseq);
+			String filename = multifile.getOriginalFilename();	
+			String path = request.getServletContext().getRealPath("/user/movie");
+			String fpath = path + "\\"+ filename; 
+			
+			if(filename.equals("")) {
+				movie.setMophoto(img);
+			}else {
+				movie.setMophoto(filename);
+			}
+				if(!filename.equals("")) { //실 파일 업로드
+					FileOutputStream fs = null;
+					try {
+						fs = new FileOutputStream(fpath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+						
+					}finally {
+						try {
+							fs.write(multifile.getBytes());
+							fs.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				
+			int result = bService.updateMovie(movie);
+			if(result > 0) {
+				viewpage = "redirect:/movieDetail.do?moseq=" + moseq;
+			}else {
+				viewpage = "redirect:/movieDetail.do?moseq=" + moseq;
+			}
+			return viewpage;
+			
+			
+		}
 	
 		//찜하기 
 		@RequestMapping(value="/jjimMovie.do", method = RequestMethod.POST)

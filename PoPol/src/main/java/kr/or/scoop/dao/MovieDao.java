@@ -65,4 +65,11 @@ public interface MovieDao {
 	//영화 댓글 삭제
 	public int delMovieComment(int morseq);
 	
+	//영화 이미지
+	public String getMovieImg(int moseq);
+	
+	//영화 수정 체크
+	public int updateMovie(Movie movie);
+	
+	
 }

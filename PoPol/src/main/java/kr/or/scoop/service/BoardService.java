@@ -8,6 +8,7 @@ import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
 import kr.or.scoop.dto.File;
+import kr.or.scoop.dto.Movie;
 import kr.or.scoop.dto.Notice;
 import kr.or.scoop.dto.Recommend;
 import kr.or.scoop.dto.Review;
@@ -104,6 +105,14 @@ public class BoardService {
 		result = dao.updateReview(review);
 		return result;
 	}
+	
+	//영화 수정 체크
+		public int updateMovie(Movie movie) {
+			int result = 0;
+			MovieDao dao = sqlsession.getMapper(MovieDao.class);
+			result = dao.updateMovie(movie);
+			return result;
+		}
 
 	// 추천글 수정 체크
 	public int updateRecom(Recommend recom) {
