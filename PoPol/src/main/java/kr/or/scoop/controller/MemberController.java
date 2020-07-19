@@ -540,8 +540,9 @@ public class MemberController {
 		return "rank/mlikeRank";
 	}
 	
+	
 	@RequestMapping(value="addAdmin.do",method = {RequestMethod.GET,RequestMethod.POST})
-	public String mlikeRank(String email) {
+	public String addAdmin(String email) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		String viewpage = "";
 		int result = dao.addAdmin(email);
@@ -558,5 +559,25 @@ public class MemberController {
 		
 		return viewpage;
 	}
+	
+	@RequestMapping(value="deleteAdmin.do",method = {RequestMethod.GET,RequestMethod.POST})
+	public String deleteAdmin(String email) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		String viewpage = "";
+		int result = dao.addAdmin(email);
+		int check = dao.checkmail(email);
+		if(check > 0) {
+			if(result > 0) {
+				viewpage = "redirect:/admin.do";
+			}else {
+				System.out.println("변경실패");
+			}
+		}else {
+			viewpage="redirect:/admin.do";
+		}
+		
+		return viewpage;
+	}
+	
 	
 }

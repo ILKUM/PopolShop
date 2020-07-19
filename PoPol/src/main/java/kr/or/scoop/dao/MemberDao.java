@@ -85,4 +85,6 @@ public interface MemberDao {
 	//관리자 추가
 	public int addAdmin(String email);
 	
+	//관리자 삭제
+	public int deleteAdmin(String email);
 }

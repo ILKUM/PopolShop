@@ -76,13 +76,43 @@ $(document).ready(function(){
 			
 	}); 
 	
-	$("#adminadd").click(function(){
+	$("#adminAdd").click(function(){
 		$("#addAdmin").modal();
 	})
-	 
+	
+	$("#adminDelete").click(function(){
+		$("#deleteAdmin").modal();
+	})
+	
+	$('.banMember').click(function(){
+		   Swal.fire({
+			   title: '정말로 삭제하시겠습니까?',
+			   text: "확인을 누르시면 되돌릴수 없습니다!",
+			   icon: 'warning',
+			   showCancelButton: true,
+			   confirmButtonColor: '#d33',
+			   cancelButtonColor: '#c8c8c8',
+			   confirmButtonText: '확인',
+			   cancelButtonText: '취소'
+			 }).then((result) => {
+			   if (result.value) {
+					$.ajax({
+						type : 'post',
+						url : 'banMember.do',
+						data : {						
+							email:$("#target").val();
+						},
+						success : function(data) {
+							console.log("ajax success"+data);
+							console.log(memDiv);	
+						}
+					});
+			   }
+			 })
 
-});
+})
 
+})
 function filter() {
     var value, name, item, i;
     value = document.getElementById("searchemail").value.toUpperCase();
@@ -134,6 +164,42 @@ function checkadmin() {
 	   return true;
 		  
 	   } 
+	   
+function checkDelete() {
+	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+	   var id = "<%=session.getAttribute("email")%>";
+	    //이메일 공백 확인
+	     if($("#admin").val() == ""){
+	        Swal.fire("이메일을 입력해주세요.");
+	       $("#admin").focus();
+	       return false;
+	     }
+	    
+	   //이메일 유효성 검사
+	      if(!getMail.test($("#admin").val())){
+	    	Swal.fire("이메일 형식에 맞게 입력해주세요."); 
+	        $("#admin").val("");
+	        $("#admin").focus();
+	        return false;
+	      }
+	    
+	     //자기 자신 변경 금지 validation
+	     if($("#admin").val() == id){
+	        Swal.fire("자기 자신은 변경이 불가능 합니다.");
+	       $("#admin").focus();
+	       return false;
+	     }
+	     
+	     Swal.fire({
+	   		  title : '변경 성공',
+	   		  text : '관리자가 취소 되었습니다.',
+	   		  icon : 'success',
+	   		  confirmButtonColor: '#ba90c4'
+	   	})
+
+	   return true;
+		  
+	   } 
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -163,7 +229,10 @@ function checkadmin() {
 			      <a class="nav-link" href="admin.do" style="color: #ba90c4;"><spring:message code="admin.main" /></a>
 			    </li>		
 			    <li class="nav-item">
-			      <a class="nav-link" style="cursor: pointer;" id="adminadd"><spring:message code="admin.main2" /></a>
+			      <a class="nav-link" style="cursor: pointer;" id="adminAdd"><spring:message code="admin.main2" /></a>
+			    </li>		
+			    <li class="nav-item">
+			      <a class="nav-link" style="cursor: pointer;" id="adminDelete"><spring:message code="admin.main3" /></a>
 			    </li>		
 		    </ul>
 		</div>
@@ -213,8 +282,15 @@ function checkadmin() {
 			<div class="col-sm-2 listmem">
 				${m.point}
 			</div>
-			<div class="col-sm-1 listmem">
-				<a href="banMember.do?email=${m.email}"><spring:message code="admin.delete" /></a>
+			<div class="col-sm-1 listmem ">
+			<c:choose>
+				<c:when test="${m.rname == 'ROLE_ADMIN'}">
+						<spring:message code="admin.change" />
+				</c:when>
+				<c:otherwise>
+				<span class="iconify banMember" data-icon="bx:bxs-user-x" data-inline="false" style="cursor: pointer;" ><input type="hidden" name="${m.email}" id="target"></span>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		
       </div>	
@@ -244,8 +320,37 @@ function checkadmin() {
          <form action="addAdmin.do" method="POST" onsubmit="return checkadmin()">
             <!-- Modal body -->
             <div class="modal-body">
-               <!-- <p style="font-size: 12px">협업공간은 함께 일하는 멤버들끼리만 자료를 공유하고 협업할 수 있는 공간입니다.<br>
-             협업공간을 만들고 함께 일할 멤버들을 초대해보세요.</p> -->
+               <label for="etitle"><spring:message code="admin.email" /></label> <input
+                  class="form-control createmodal" type="text" id="admin"
+                  name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="<spring:message code="admin.eholder" />">                              
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"><spring:message code="all.submit" /></button>
+               <button type="button" class="btn btn-secondary"
+                  style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;"
+                  data-dismiss="modal"><spring:message code="all.cancel" /></button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   </div>
+   
+        <div class="modal fade" id="deleteAdmin">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h3 class="modal-title"><spring:message code="admin.main3" /></h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+   
+         <form action="deleteAdmin.do" method="POST" onsubmit="return checkDelete()">
+            <!-- Modal body -->
+            <div class="modal-body">
+
                <label for="etitle"><spring:message code="admin.email" /></label> <input
                   class="form-control createmodal" type="text" id="admin"
                   name="email" style="width: 100%;border-radius: 0.5rem;" placeholder="<spring:message code="admin.eholder" />">                              

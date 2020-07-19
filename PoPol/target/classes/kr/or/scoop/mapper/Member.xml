@@ -101,4 +101,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="addAdmin">
 		update role set rname = 'ROLE_ADMIN' where email = #{email}
 	</update>
+	<!-- 관리자 삭제  -->
+	<update id="deleteAdmin">
+		update role set rname = 'ROLE_USER' where email = #{email}
+	</update>
 </mapper>
