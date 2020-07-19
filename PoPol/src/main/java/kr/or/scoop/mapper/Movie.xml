@@ -87,8 +87,8 @@ select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modire
 	<select id="getMovieImg" resultType="String">
 	select mophoto from movie where moseq = #{moseq}
 	</select>
-	<update id="updateMovie">
+	<update id="updateMovie" parameterType="kr.or.scoop.dto.Movie">
 		UPDATE movie 
-		set moname=#{moname}, mocontent=#{mocontent} ,mophoto = #{mophoto},monum=#{monum},modirector=#{modirector} where moseq=#{moseq}
+		set moname=#{moname}, mocontent=#{mocontent} ,mophoto=#{mophoto} , monum=#{monum}, modirector=#{modirector}, modate=#{modate}, mpoint=#{mpoint} where moseq=#{moseq}
 	</update>
 </mapper>

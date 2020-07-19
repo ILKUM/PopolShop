@@ -17,7 +17,6 @@ public class Movie {
 	private int mpoint; //영화 가격
 	
 	
-	
 	public int getMcseq() {
 		return mcseq;
 	}

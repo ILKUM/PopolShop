@@ -66,26 +66,26 @@ border-radius: 5px;
 		<div class="col-sm-9">
 		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #ba90c4;" data-icon="ic:outline-rate-review" data-inline="false">
 		</span>
-		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="retitle" value="${movie.moname}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
+		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;"><input type="text" class="form-control" name="moname" value="${movie.moname}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;"></span>
 		
 		
 		</div>
 		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">
-		<span id="editCheckReview">
+		<span id="editCheckMovie">
 		<span class="iconify" data-icon="fa-solid:check" data-inline="false" style="cursor: pointer;font-size: 30px;margin-bottom: 20px;margin-left: 20px;"></span>
          </span>
-         <span id="returnReview">
+         <span id="returnMovie">
 		<span class="iconify" data-icon="entypo:back" data-inline="false" style="cursor: pointer; font-size: 35px;margin-bottom: 15px;margin-left: 15px;"></span>
 		</span>
 		</div>
-		<input type="submit" class="form-control editdelete" value="완료" id="editReview" hidden="">
+		<input type="submit" class="form-control editdelete" value="완료" id="editMovie" hidden="">
 		</div>	
 		<hr>
 		<div class="row" style="margin: 2% 2% 15px 2%">
-		<div class="col-sm-4">
+		<div class="col-sm-3">
 	       	 사진변경 : <input type="file" name="filesrc" id="Photo" accept="image/*" onchange="readURL(this);">
 	       </div>
-	       <div class="col-sm-4">
+	       <div class="col-sm-2">
 	       <select id="monum" name="monum" class="form-control">                
                            <option value="1"><spring:message code="movie.from1" /></option>
                             <option value="2"><spring:message code="movie.from2" /></option>
@@ -94,16 +94,22 @@ border-radius: 5px;
                                <option value="5"><spring:message code="movie.from5" /></option>
      </select>
      </div>
-     <div class="col-sm-4">
-     <label for="modirector"><spring:message code="movie.dir" /></label>
-     <input type="text" class="form-control" name="modirector" value="${movie.modirector}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;">
+     <div class="col-sm-3">
+	<spring:message code="movie.dir" /> <input type="text" class="form-control" name="modirector" value="${movie.modirector}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;">
      </div>
+     <div class="col-sm-2">
+	<spring:message code="movie.price" />
+     <input type="text" class="form-control" name="mpoint" value="${movie.mpoint}" style="border: 0px;font-size: 20px;padding-left: 0px;padding-bottom: 12px;">
+     </div>
+        <div class="col-sm-2">
+       <input type="date" id="servdate" name="modate" class="form-control" required>
+  	</div>
      </div>
 		<div style="height:520px ;border: 1px solid rgba(0,0,0,0.5);margin-left: 2%;margin-right: 2%;border-radius: 0.5rem;padding: 1% 2% 1% 2%;margin-bottom: 80px;">            
 	   
 	        <img id ="profiles" src="<c:url value='/user/movie/${movie.mophoto}' />" width="120" height="120" alt="" name="rephoto" style="width: 150px; height: 213.675px;" data-placement="bottom">
 	        <div class="MovieDetail" style="margin-left: 0px;margin-bottom: 0px;font-size: 17px;">
-	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editReviewcontent" name="recontent">${movie.mocontent}</textarea>
+	       <textarea rows="5" style="width:100%;border: 0; border-bottom: 1px solid #ced4da; padding: 1%; height: 270px;" id="editcontent" name="mocontent">${movie.mocontent}</textarea>
 	        </div>    
 		</div>
 		  </form>
@@ -158,11 +164,11 @@ border-radius: 5px;
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="text/javascript">
 
-$('#editCheckReview').click(function(){
-	$('#editReview').click();
+$('#editCheckMovie').click(function(){
+	$('#editMovie').click();
 })
 
-$('#returnReview').click(function(){
+$('#returnMovie').click(function(){
 	history.back();
 })
 
