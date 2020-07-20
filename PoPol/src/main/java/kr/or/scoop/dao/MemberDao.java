@@ -87,4 +87,10 @@ public interface MemberDao {
 	
 	//관리자 삭제
 	public int deleteAdmin(String email);
+	
+	//정지여부 
+	public int getStop(String email);
+	
+	//정지사유
+	public String getScontent(String email);
 }

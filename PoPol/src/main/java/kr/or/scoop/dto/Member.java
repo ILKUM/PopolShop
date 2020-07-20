@@ -20,6 +20,8 @@ public class Member {
 	private int mpoint; //영화 가격
 	private int mlike; //회원 추천수
 	private int ismlike; //추천 여부
+	private int isstop; //정지 여부
+	private String scontent; //정지사유
 	
 	public String getEmail() {
 		return email;
@@ -100,11 +102,26 @@ public class Member {
 		this.ismlike = ismlike;
 	}
 	
+	public int getIsstop() {
+		return isstop;
+	}
+	public void setIsstop(int isstop) {
+		this.isstop = isstop;
+	}
+	public String getScontent() {
+		return scontent;
+	}
+	public void setScontent(String scontent) {
+		this.scontent = scontent;
+	}
+	
 	@Override
 	public String toString() {
 		return "Member [email=" + email + ", pwd=" + pwd + ", name=" + name + ", filesrc=" + filesrc + ", iddate="
 				+ iddate + ", profile=" + profile + ", rname=" + rname + ", point=" + point + ", cpseq=" + cpseq
-				+ ", cpoint=" + cpoint + ", mpoint=" + mpoint + ", mlike=" + mlike + ", ismlike=" + ismlike + "]";
+				+ ", cpoint=" + cpoint + ", mpoint=" + mpoint + ", mlike=" + mlike + ", ismlike=" + ismlike
+				+ ", isstop=" + isstop + ", scontent=" + scontent + "]";
 	}
+	
 	
 }

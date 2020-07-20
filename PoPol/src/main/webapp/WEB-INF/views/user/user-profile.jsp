@@ -6,6 +6,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
     <c:set var="img" value="${requestScope.img}" />
+    <c:set var="role" value="${sessionScope.role}" />
+    
 <html>
 
 <head>
@@ -187,7 +189,11 @@
 						<c:otherwise>
                              <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom">
 						</c:otherwise>
-					</c:choose>                        
+					</c:choose>            
+					<div class="media-body">
+                                        <input type="button" id="home_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.home" />"> 
+                                        <input type="button" id="home_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.home" />"> 
+                                    </div>            
                                 </div>
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
@@ -204,6 +210,17 @@
     		<br>
     		<label for="mlike"><spring:message code="all.like" /></label>
     		<input class="form-control myinfo" type="text" id="point" name="mlike" style="width: 60%" value="${member.mlike} <spring:message code="you.ea" />" disabled="disabled">
+    		<br>
+    		<c:if test="${role=='ROLE_ADMIN'}">
+    		<c:if test="${member.isstop == 0}">
+    		<label for="mlike"><spring:message code="you.use" /></label>
+    		<input class="form-control myinfo" type="text" id="point" name="isstop" style="width: 60%" value="<spring:message code="you.use2" />" disabled="disabled">
+    		</c:if>
+    		<c:if test="${member.isstop == 1}">
+    		<label for="mlike"><spring:message code="you.use" /></label>
+    		<input class="form-control myinfo" type="text" id="point" name="isstop" style="width: 60%" value="<spring:message code="you.ban" />" disabled="disabled">
+    		</c:if>
+    		</c:if>
     		<input type="button" id="home_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.home" />">   		
     		</div>
     		</div>

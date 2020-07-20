@@ -187,6 +187,7 @@ public class MemberController {
 		session.setAttribute("language", language);
 		
 		String email = "";
+		String viewpage = "";
 		
 		email = (String)session.getAttribute("email");
 		MemberDao memberdao = sqlsession.getMapper(MemberDao.class);
@@ -194,17 +195,25 @@ public class MemberController {
 		Role role = memberdao.getRole(email); //로그인한 사람 등급 불러오기
 		String img = memberdao.getProfile(email); //로그인한 사람 프로필사진 불러오기
 		int ismlike = memberdao.getMlike(email);
+		int isstop = memberdao.getStop(email);
+		String scontent = memberdao.getScontent(email);
 		
-		session.setAttribute("point", member.getPoint());
-		session.setAttribute("ismlike", ismlike);
-		session.setAttribute("cpoint", member.getCpoint());
+		session.setAttribute("point", member.getPoint()); //자신 포인트 세션저장
+		session.setAttribute("ismlike", ismlike); //추천여부 
+		session.setAttribute("cpoint", member.getCpoint()); //쿠폰여부 
 		session.setAttribute("email", member.getEmail());
 		session.setAttribute("name", member.getName()); //이름 세션저장
 		session.setAttribute("img",img); //프로필사진 세션저장
 		session.setAttribute("role", role.getRname()); //등급 세션저장
+		request.setAttribute("scontent",scontent);
 		
-		
-		return "redirect:/notice.do";
+		if(isstop > 0) {
+			viewpage = "user/Disable";
+		}else {
+			viewpage = "redirect:/notice.do";
+		}
+			
+		return viewpage;
 	}
 
 	// 로그아웃
@@ -404,16 +413,18 @@ public class MemberController {
 	//회원 추방
 	@RequestMapping(value = "banMember.do", method = {RequestMethod.POST,RequestMethod.GET})
 	public String banMember(String email, Model model) {
+		System.out.println("이거" + email);
 		int result = 0;
 		String viewpage;
-		result = service.banMember(email);
-		
+		result = service.banMember(email);		
 		if(result > 0) {
-			model.addAttribute("ajax", "멤버탈퇴 성공했습니다");
-			viewpage = "utils/ajax";
+			/* model.addAttribute("ajax", "멤버탈퇴 성공했습니다"); */
+			/* viewpage = "utils/ajax"; */
+			viewpage = "user/memberList";
 		}else {
-			model.addAttribute("ajax", "멤버탈퇴 실패했습니다");
-			viewpage = "utils/ajax";
+			/* model.addAttribute("ajax", "멤버탈퇴 실패했습니다"); */
+			/* viewpage = "utils/ajax"; */
+			viewpage = "user/memberList";
 		}
 		return viewpage;
 		

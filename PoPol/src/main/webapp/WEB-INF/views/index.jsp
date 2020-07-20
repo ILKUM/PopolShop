@@ -575,6 +575,7 @@ function idOver(a) {
          <input type="hidden" class="form-control" id="cpoint" name ="cpoint" value="0">
          <input type="hidden" class="form-control"  name ="mlike" value="0">
          <input type="hidden" class="form-control"  name ="islike" value="0">
+         <input type="hidden" class="form-control"  name ="isstop" value="0">
         </div>
         <div class="form-group mb-4">
          <label>Password</label>

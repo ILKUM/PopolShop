@@ -84,33 +84,6 @@ $(document).ready(function(){
 		$("#deleteAdmin").modal();
 	})
 	
-	$('.banMember').click(function(){
-		   Swal.fire({
-			   title: '정말로 삭제하시겠습니까?',
-			   text: "확인을 누르시면 되돌릴수 없습니다!",
-			   icon: 'warning',
-			   showCancelButton: true,
-			   confirmButtonColor: '#d33',
-			   cancelButtonColor: '#c8c8c8',
-			   confirmButtonText: '확인',
-			   cancelButtonText: '취소'
-			 }).then((result) => {
-			   if (result.value) {
-					$.ajax({
-						type : 'post',
-						url : 'banMember.do',
-						data : {						
-							email:$("#target").val();
-						},
-						success : function(data) {
-							console.log("ajax success"+data);
-							console.log(memDiv);	
-						}
-					});
-			   }
-			 })
-
-})
 
 })
 function filter() {
@@ -167,7 +140,7 @@ function checkadmin() {
 	   
 function checkDelete() {
 	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-	   var id = "<%=session.getAttribute("email")%>";
+	   var ids = "<%=session.getAttribute("email")%>";
 	    //이메일 공백 확인
 	     if($("#admin").val() == ""){
 	        Swal.fire("이메일을 입력해주세요.");
@@ -184,7 +157,7 @@ function checkDelete() {
 	      }
 	    
 	     //자기 자신 변경 금지 validation
-	     if($("#admin").val() == id){
+	     if($("#admin").val() == ids){
 	        Swal.fire("자기 자신은 변경이 불가능 합니다.");
 	       $("#admin").focus();
 	       return false;
@@ -288,7 +261,7 @@ function checkDelete() {
 						<spring:message code="admin.change" />
 				</c:when>
 				<c:otherwise>
-				<span class="iconify banMember" data-icon="bx:bxs-user-x" data-inline="false" style="cursor: pointer;" ><input type="hidden" name="${m.email}" id="target"></span>
+				<a href="userProfile.do?email=${m.email}"><span class="iconify banMember" data-icon="bx:bxs-user-x" data-inline="false" style="cursor: pointer;" ></span></a>
 				</c:otherwise>
 			</c:choose>
 			</div>
