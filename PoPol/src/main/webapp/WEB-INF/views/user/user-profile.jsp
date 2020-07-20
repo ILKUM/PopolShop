@@ -21,126 +21,32 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-<script>
-	//회원정보 유효성검사
-	function pwdcheck() {
-			var getCheck = RegExp(/^[a-zA-Z0-9]{8,16}$/);
-			var getName= RegExp(/^[가-힣|a-z|A-Z]+$/);
-			if($('#name').val().length>7){
-				alert("name은 7자 까지 입력가능합니다.")
-				return false;
-			}
-			
-			 //이름 유효성
-		      if (!getName.test($("#name").val())) {
-		    	Swal.fire("이름 형식에 맞게 입력해주세요.");
-		        $("#name").val("");
-		        $("#name").focus();
-		        return false;
-		      }
-		    //이름 공백 확인
-		      if($("#name").val() == ""){
-		    	Swal.fire("이름을 입력해주세요");
-		        $("#name").focus();
-		        return false;
-		      }
-		      if($("#name").val() == "운영자"){
-		          alert("이 이름은 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "관리자"){
-		          alert("이 이름은 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "ADMIN"){
-		          alert("이 이름은 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "책임자"){
-		          alert("이 이름은 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "모플렉스"){
-		          alert("이 이름은 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "섹스"){
-		          alert("성적인 단어는 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "SEX"){
-		          alert("성적인 단어는 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "보지"){
-		          alert("성적인 단어는 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "운영"){
-		          alert("이 이름은 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-		      if($("#name").val() == "잠지"){
-		          alert("성적인 단어는 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		 
-		      if($("#name").val() == "자지"){
-		          alert("성적인 단어는 사용할 수 없습니다.");
-		          $("#name").focus();
-		          return false;
-		        }
-		      
-			
-			//회원가입 시 메일 보낼 때 얼럿창
+<script type="text/javascript">
+
+	$('#userDelete').click(function(){
+		Swal.fire({
+			   title: '정말로 회원을 탈퇴시키겠습니까??',
+			   text: "삭제하시면 모플렉스의 모든 정보가 사라집니다!",
+			   icon: 'warning',
+			   showCancelButton: true,
+			   confirmButtonColor: '#d33',
+			   cancelButtonColor: '#c8c8c8',
+			   confirmButtonText: '확인',
+			   cancelButtonText: '취소'
+			 }).then((result) => {
+			   if (result.value) {
+				   location.href = 'banMember.do?email='+${member.email};
+			   }
+			 })
+		});
+	
+	$("#home_btn").click(function(){
+		location.href = "userindex.do";
+	});
 
 
-	   		
-   			Swal.fire({
-   				  icon: 'success',
-   				  title: '정보수정 완료!',
-   				  showConfirmButton: false,
-   				  timer: 2000
-   				})
-			return true;
-	}
-
-
-	function getOutMember(){
-	 Swal.fire({
-		   title: '정말로 회원 탈퇴하시겠습니까??',
-		   text: "삭제하시면 스쿱의 모든 정보가 사라집니다!",
-		   icon: 'warning',
-		   showCancelButton: true,
-		   confirmButtonColor: '#d33',
-		   cancelButtonColor: '#c8c8c8',
-		   confirmButtonText: '확인',
-		   cancelButtonText: '취소'
-		 }).then((result) => {
-		   if (result.value) {
-			   location.href = 'memberDelete.do';
-		   }
-		 })
-		}
+	
+	
 
 </script>
 
@@ -189,18 +95,22 @@
 						<c:otherwise>
                              <img id ="profiles" class="mr-3 img-circle" src="<c:url value='/user/profile/${img}' />" width="120" height="120" alt="" name="profile" style="cursor: pointer;" data-placement="bottom">
 						</c:otherwise>
-					</c:choose>            
+					</c:choose>
+					<c:if test="${role=='ROLE_ADMIN'}">
 					<div class="media-body">
-                                        <input type="button" id="home_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.home" />"> 
-                                        <input type="button" id="home_btn" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.home" />"> 
+                                        <input type="button" id="userDelete" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.del" />"> 
+                                        <c:if test="${member.isstop == 0}">
+                                        <input type="button" id="userDisable" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.able2" />"> 
+                                        </c:if>
+                                        <c:if test="${member.isstop == 1}">
+                                        <input type="button" id="userAble" class="btn" style="background-color: #ba90c4; border-color: #CCCCCC; color: #fff; cursor: pointer;margin-top: 3%;" value="<spring:message code="you.able" />"> 
+                                        </c:if>
                                     </div>            
+					</c:if>            
                                 </div>
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
-		<div class="form-group" style="width: 100%">
-    		<label for="email"><spring:message code="admin.email" /></label>
-  
-    		<input class="form-control myinfo" type="text" id="email" name="email" style="width: 60%" readonly="readonly" value="${member.email}" disabled="disabled">   		
+		<div class="form-group" style="width: 100%">   		
     		<br>
     		<label for="name"><spring:message code="admin.name" /></label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}" disabled="disabled">
@@ -257,55 +167,6 @@
     <script src="<c:url value="/resources/js/settings.js" />"></script>
     <script src="<c:url value="/resources/js/gleek.js" />"></script>
     <script src="<c:url value="/resources/js/styleSwitcher.js" />"></script>
-	<script type="text/javascript">
-	$(function(){
-   		
-   		$('#pwd').keypress(function(event) {
-	if(event.keyCode==13){
-		$('#pwdchk').focus();
-	}
-});
-$('#pwdchk').keypress(function(){
-	if(event.keyCode==13){
-		$('#pwdBtn').submit();
-	}
-});
-$('#pwd').keyup(function(){
-	console.log('pwd');
-	let pwd = $('#pwd').val();
-	let chk = $('#pwdchk').val();
-	
-	if(chk != "") {
-		if(pwd != chk){
-			$('#chkmsg').empty().css("color", "red").text('비밀번호가 일치하지 않습니다.');
-		} else{
-			$('#chkmsg').empty().css("color", "#069e03").text('비밀번호가 일치합니다.');
-		} 
-	}
-	if(pwd == "" && chk == ""){
-		$('#chkmsg').empty().append('<br>');
-	}
-});
-
-$('#pwdchk').keyup(function(event) {
-	console.log('pwdchk');
-	let pwd = $('#pwd').val();
-	let chk = $('#pwdchk').val();
-
-	if(pwd != chk){
-		$('#chkmsg').empty().css("color", "red").text('비밀번호가 일치하지 않습니다');
-	} else{
-		$('#chkmsg').empty().css("color", "#069e03").text('비밀번호가 일치합니다');
-	} 
-});
-	
-
-		});
-	
-	$("#home_btn").click(function(){
-		location.href = "userindex.do";
-	});
-	</script>
 </body>
 
 </html>
