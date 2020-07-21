@@ -6,9 +6,19 @@
 <c:set var="email" value="${sessinScope.email}"/>
 <c:set var="name" value="${sessinScope.name}"/>
 <c:set var="scontent" value="${requestScope.scontent}"/>
-
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <jsp:include page="/WEB-INF/views/commons/title.jsp"></jsp:include>
+     <!-- Pignose Calender -->
+    <link href="<c:url value="/resources/plugins/pg-calendar/css/pignose.calendar.min.css" />" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="<c:url value="/resources/plugins/chartist/css/chartist.min.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css" />">
+    <!-- Custom Stylesheet -->
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+<script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <head>
-    <c:import url="/common/HeadTag.jsp" />
     <script type="text/javascript">
     	$(function(){
     		$("#frm").submit(submitFn);
@@ -38,10 +48,6 @@
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-    <!-- Top -->
-    <c:import url="/common/Top.jsp" />
-
     <!-- Contant -->
     <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
       <div class="container">
@@ -114,7 +120,7 @@
 		          		</div>
 		          		<div>
 			          		<h3 class="mb-3">Website</h3>
-				            <p><a href="#">www.이곳저곳.com</a></p>
+				            <p><a href="#">www.모플렉스.com</a></p>
 			            </div>
 			          </div>
 		          </div>
@@ -125,5 +131,30 @@
     </section>
 
 </body>
+ <script src="<c:url value="/resources/plugins/common/common.min.js" />"></script>
+    <script src="<c:url value="/resources/js/custom.min.js" />"></script>
+    <script src="<c:url value="/resources/js/settings.js" />"></script>
+    <script src="<c:url value="/resources/js/gleek.js" />"></script>
+    <script src="<c:url value="/resources/js/styleSwitcher.js" />"></script>
+
+    <!-- Chartjs -->
+    <script src="<c:url value="/resources/plugins/chart.js/Chart.bundle.min.js" />"></script>
+    <!-- Circle progress -->
+    <script src="<c:url value="/resources/plugins/circle-progress/circle-progress.min.js" />"></script>
+    <!-- Datamap -->
+    <script src="<c:url value="/resources/plugins/d3v3/index.js"/>"></script>
+    <script src="<c:url value="/resources/plugins/topojson/topojson.min.js"/>"></script>
+    <script src="<c:url value="/resources/plugins/datamaps/datamaps.world.min.js"/>"></script>
+    <!-- Morrisjs -->
+    <script src="<c:url value="/resources/plugins/raphael/raphael.min.js"/>"></script>
+    <script src="<c:url value="/resources/plugins/morris/morris.min.js"/>"></script>
+    <!-- Pignose Calender -->
+    <script src="<c:url value="/resources/plugins/moment/moment.min.js"/>"></script>
+    <script src="<c:url value="/resources/plugins/pg-calendar/js/pignose.calendar.min.js"/>"></script>
+    <!-- ChartistJS -->
+    <script src="<c:url value="/resources/plugins/chartist/js/chartist.min.js"/>"></script>
+    <script src="<c:url value="/resources/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"/>"></script>
+
+    <script src="<c:url value="/resources/js/dashboard/dashboard-1.js"/>"></script>
 
 </html>

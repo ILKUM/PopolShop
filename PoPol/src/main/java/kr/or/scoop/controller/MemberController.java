@@ -598,7 +598,7 @@ public class MemberController {
 	//사용자 활동정지
 	@RequestMapping(value="stopUser.do",method = {RequestMethod.GET,RequestMethod.POST})
 	public String stopUser(String email,String scontent , HttpServletRequest request) {
-		email = request.getParameter("email");
+		
 		System.out.println("1 " + email + "2" + scontent);
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		String viewpage;
