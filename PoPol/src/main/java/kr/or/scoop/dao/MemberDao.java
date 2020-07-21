@@ -93,4 +93,7 @@ public interface MemberDao {
 	
 	//정지사유
 	public String getScontent(String email);
+	
+	//정지처리
+	public int stopUser(String email , String scontent);
 }

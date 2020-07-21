@@ -111,4 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getScontent" resultType="String">
 	 	select scontent from member where email = #{email}
 	</select>
+	<update id="stopUser">
+		update member set isstop = 1 , scontent = #{param1,jdbcType=VARCHAR} where email= #{param2,jdbcType=VARCHAR}
+	</update>
 </mapper>

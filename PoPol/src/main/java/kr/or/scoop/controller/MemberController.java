@@ -466,7 +466,7 @@ public class MemberController {
 		}else {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		Member member = dao.getMember(email);
-		String img = member.getProfile();
+		String img = dao.getProfile(email);
 		model.addAttribute("member",member);
 		request.setAttribute("img", img);
 		
@@ -475,6 +475,7 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	//관리자 문의 메일 
 	@RequestMapping(value = "mailSending.do")
 	public String mailSending(HttpServletRequest request,HttpSession session) {
 		String setfrom = (String)session.getAttribute("email");	
@@ -498,7 +499,7 @@ public class MemberController {
 			messageHelper.setFrom(setfrom); // 보내는사람 생략하면 정상작동을 안함
 			messageHelper.setTo(tomail); // 받는사람 이메일
 			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-			messageHelper.setText(content + "<br>답변받는 이메일 : " + content2); // 메일 내용
+			messageHelper.setText(content + "답변받는 이메일 : " + content2); // 메일 내용
 			
 
 			mailSender.send(message);
@@ -509,6 +510,7 @@ public class MemberController {
 		return "redirect:/notice.do";
 	}
 	
+	//추천인 수 증가 
 	@RequestMapping(value = "MlikeReg.do" , method = {RequestMethod.POST,RequestMethod.GET})
 	public String mlikeReg(HttpServletRequest request,HttpSession session) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -528,6 +530,7 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	//추천인 중복 방지 
 	@RequestMapping(value = "isMlike.do" , method = {RequestMethod.POST,RequestMethod.GET})
 	public String isMlikeup(HttpServletRequest request,HttpSession session) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -543,6 +546,7 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	//랭킹 페이지 이동
 	@RequestMapping(value="mlikeRank.do" , method = RequestMethod.GET)
 	public String mlikeRank(Model model) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -551,7 +555,7 @@ public class MemberController {
 		return "rank/mlikeRank";
 	}
 	
-	
+	//관리자 권한 추가
 	@RequestMapping(value="addAdmin.do",method = {RequestMethod.GET,RequestMethod.POST})
 	public String addAdmin(String email) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -571,6 +575,7 @@ public class MemberController {
 		return viewpage;
 	}
 	
+	//관리자 권한 삭제
 	@RequestMapping(value="deleteAdmin.do",method = {RequestMethod.GET,RequestMethod.POST})
 	public String deleteAdmin(String email) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
@@ -587,6 +592,22 @@ public class MemberController {
 			viewpage="redirect:/admin.do";
 		}
 		
+		return viewpage;
+	}
+	
+	//사용자 활동정지
+	@RequestMapping(value="stopUser.do",method = {RequestMethod.GET,RequestMethod.POST})
+	public String stopUser(String email,String scontent , HttpServletRequest request) {
+		email = request.getParameter("email");
+		System.out.println("1 " + email + "2" + scontent);
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		String viewpage;
+		int result = dao.stopUser(email, scontent);
+		if(result > 0) {
+			viewpage = "redirect:/userProfile.do?email=" + email;
+		}else {
+			viewpage = "redirect:/notice.do";
+		}
 		return viewpage;
 	}
 	
