@@ -19,30 +19,7 @@
 <script language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <head>
     <script type="text/javascript">
-    	$(function(){
-    		$("#frm").submit(submitFn);
-    	})
-    
-    	function submitFn(){
-    		$.ajax({
-    			url : "SendMail",
-    			data : {cmd:"disable",id : $("#id").val() , email : $("#email").val(), content : $("#content").val()},
-    			success : function(data){
-    				console.log(data);
-    				if(data=='true'){
-    					successAlert("관리자에게 문의메일을 전송했습니다.");
-    				}
-    				else{
-    					errorAlert("메일 발송 실패!");
-    				}
-    			},
-    			error : function(){
-    				errorAlert("메일 발송 실패!");
-    			}
-    		});
-    		
-    	   	return false;
-    	}
+    	
     </script>
 </head>
 
@@ -60,7 +37,7 @@
 
         <div class="row block-9">
           <div class="col-md-7 order-md-last d-flex">
-            <form  action="#" class="bg-light p-4 p-md-5 contact-form" id="frm">
+            <form  action="mailUser.do" class="bg-light p-4 p-md-5 contact-form" id="frm">
               <div class="form-group">
                	<label for="title"><spring:message code="mail.email" /></label> 
                 <input type="text" class="form-control" id="id" name="tosend" placeholder="Your Name" value="<spring:message code="moflex" />" disabled="disabled">
