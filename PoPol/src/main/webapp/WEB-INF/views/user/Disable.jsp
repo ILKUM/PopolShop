@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
-<c:set var="email" value="${sessinScope.email}"/>
-<c:set var="name" value="${sessinScope.name}"/>
 <c:set var="scontent" value="${requestScope.scontent}"/>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,9 +52,9 @@
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
-            <span class="subheading font-pen" style="font-size: 30px">SORRY</span>
-            <h2 class="mt-4 mb-4">서비스 이용이 제한되었습니다.</h2>
-            <p class="font-pen" style="font-size: 30px">관리자에게 문의바랍니다.</p>
+            <span class="subheading font-pen" style="font-size: 30px"><spring:message code="mail.utitle" /></span>
+            <h2 class="mt-4 mb-4"><spring:message code="mail.use1" /></h2>
+            <p class="font-pen" style="font-size: 30px"><spring:message code="mail.use2" /></p>
           </div>
         </div>
 
@@ -63,13 +62,20 @@
           <div class="col-md-7 order-md-last d-flex">
             <form  action="#" class="bg-light p-4 p-md-5 contact-form" id="frm">
               <div class="form-group">
-                <input type="text" class="form-control" id="id" name="id" placeholder="Your Name" value="${name}" readonly>
+               	<label for="title"><spring:message code="mail.email" /></label> 
+                <input type="text" class="form-control" id="id" name="tosend" placeholder="Your Name" value="<spring:message code="moflex" />" disabled="disabled">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="email" name="email" placeholder="Your Email" value="${email}" readonly>
+              	<label for="content"><spring:message code="mail.mtitle" /></label> 
+                <input type="text" class="form-control" id="id" name="mtitle" placeholder="Your Stop" value="${scontent}">
               </div>
               <div class="form-group">
-                <textarea name="content" id="content" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+             	 <label for="tohave" style="margin-top: 8px;"><spring:message code="mail.have" /></label>
+                <input class="form-control createmodal" type="text" id="tohave" style="width: 100%; border-radius: 0.25rem;" value="${sessionScope.email}" name="tohave"> 
+              </div>
+              <div class="form-group">
+              
+                <textarea name="mcontent" id="content" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
               </div>
               <div class="form-group text-right">
                 <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
@@ -86,30 +92,20 @@
 		          			<span class="icon-map-signs"></span>
 		          		</div>
 		          		<div>
-			          		<h3 class="mb-3">Address</h3>
-				            <p>서울특별시 강남구 테헤란로5길 11 YBM빌딩 2층</p>
+			          		<h3 class="mb-3"><spring:message code="admin.ban" /></h3>
+				            <p>${scontent}</p>
 			            </div>
 			          </div>
 		          </div>
-		          <div class="col-md-12 ftco-animate fadeInUp ftco-animated">
-		          	<div class="box p-2 px-3 bg-light d-flex">
-		          		<div class="icon mr-3">
-		          			<span class="icon-phone2"></span>
-		          		</div>
-		          		<div>
-			          		<h3 class="mb-3">Contact Number</h3>
-				            <p><a href="tel://02-3453-5404">02-3453-5404</a></p>
-			            </div>
-			          </div>
-		          </div>
+		         
 		          <div class="col-md-12 ftco-animate fadeInUp ftco-animated">
 		          	<div class="box p-2 px-3 bg-light d-flex">
 		          		<div class="icon mr-3">
 		          			<span class="icon-paper-plane"></span>
 		          		</div>
 		          		<div>
-			          		<h3 class="mb-3">Email Address</h3>
-				            <p><a href="mailto:info@yoursite.com">bit_team2@naver.com</a></p>
+			          		<h3 class="mb-3"><spring:message code="admin.email" /></h3>
+				            <p>${sessionScope.email}</p>
 			            </div>
 			          </div>
 		          </div>
