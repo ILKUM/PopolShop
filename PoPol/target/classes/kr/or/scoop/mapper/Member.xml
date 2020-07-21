@@ -114,4 +114,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="stopUser">
 		update member set isstop = 1 , scontent = #{param2,jdbcType=VARCHAR} where email= #{param1,jdbcType=VARCHAR}
 	</update>
+	<update id="startUser">
+		update member set isstop = 0 where email= #{param1,jdbcType=VARCHAR}
+	</update>
 </mapper>

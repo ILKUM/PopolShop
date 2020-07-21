@@ -96,4 +96,7 @@ public interface MemberDao {
 	
 	//정지처리
 	public int stopUser(String email , String scontent);
+	
+	//활동처리
+	public int startUser(String email);
 }

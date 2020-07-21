@@ -47,6 +47,24 @@ $(function(){
 	$('#userDisable').click(function(){
 		 $('#userStop').modal();
 		});
+	
+	$('#userAble').click(function(){
+		   Swal.fire({
+			   title: '정말로 사용자를 활성화하시겠습니까??',
+			   text: "사용자가 다시 활동 할 수 있습니다!",
+			   icon: 'success',
+			   showCancelButton: true,
+			   confirmButtonColor: '#d33',
+			   cancelButtonColor: '#c8c8c8',
+			   confirmButtonText: '확인',
+			   cancelButtonText: '취소'
+			 }).then((result) => {
+			   if (result.value) {
+				   location.href = 'startUser.do?email=${member.email}';
+			   }
+			 })
+		});
+	
 })
 </script>
 <style>

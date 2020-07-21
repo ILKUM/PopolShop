@@ -645,6 +645,19 @@ public class MemberController {
 
 			return "redirect:/userindex.do";
 		}
-	
+		
+		//사용자 활동허용
+		@RequestMapping(value="startUser.do",method = {RequestMethod.GET,RequestMethod.POST})
+		public String startUser(String email,HttpServletRequest request) {			
+			MemberDao dao = sqlsession.getMapper(MemberDao.class);
+			String viewpage;
+			int result = dao.startUser(email);
+			if(result > 0) {
+				viewpage = "redirect:/userProfile.do?email=" + email;
+			}else {
+				viewpage = "redirect:/notice.do";
+			}
+			return viewpage;
+		}
 	
 }
