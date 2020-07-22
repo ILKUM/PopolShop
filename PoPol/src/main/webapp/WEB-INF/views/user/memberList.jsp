@@ -261,7 +261,7 @@ function checkDelete() {
 						<spring:message code="admin.change" />
 				</c:when>
 				<c:otherwise>
-				<a href="userProfile.do?email=${m.email}"><span class="iconify banMember" data-icon="bx:bxs-user-x" data-inline="false" style="cursor: pointer;" ></span></a>
+				<a href="userProfile.do?email=${m.email}"><span class="iconify banMember" data-icon="et:magnifying-glass" data-inline="false" style="cursor: pointer;" ></span></a>
 				</c:otherwise>
 			</c:choose>
 			</div>

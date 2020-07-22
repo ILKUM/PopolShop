@@ -259,9 +259,11 @@ public class BoardController {
 			int count = dao.getmolike(email, moseq);
 			System.out.println(count);
 			Movie movie = dao.selectMovie(moseq);
+			int mpoint = movie.getMpoint();
 			if(result > 0 ) {
 				model.addAttribute("mocom", mocom);
 				request.setAttribute("count", count);
+				request.setAttribute("mpoint", mpoint);
 				model.addAttribute("movie", movie);
 			}else {
 				System.out.println("이거는 ? " + movie);

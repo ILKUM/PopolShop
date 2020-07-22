@@ -8,7 +8,7 @@
 <c:set var="role" value="${sessionScope.role}" />
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="count" value="${requestScope.count}" />
-<c:set var="point" value="${requestScope.point}" />
+<c:set var="point" value="${sessionScope.point}" />
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,6 +83,21 @@ $(function(){
 		});
 		
 	});
+	
+	$('#download').click(function(){
+		 var point = "<%=session.getAttribute("point")%>";
+		 var mpoint = "<%=request.getAttribute("mpoint")%>";	
+		     if(point > mpoint){
+		    	 location.href="movieDownload.do?fileName=${movie.mophoto}";
+		     }else{	 
+		    	 Swal.fire({
+		   			  title : '포인트가 부족합니다.',
+		   			  text : '다운로드 하실 포인트가 부족합니다.',
+		   			  icon : 'warning',
+		   			  confirmButtonColor: '#ba90c4'
+		   		})
+		   }
+	  });  
 })
 </script>
 <style>
@@ -147,9 +162,9 @@ border-radius: 5px;
 			
 		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
-		<a href="movieDownload.do?fileName=${movie.mophoto}">
+		
 		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>	
-		</a>	
+		
 		</c:if>
 		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>		
 			<c:if test="${role=='ROLE_ADMIN'}">

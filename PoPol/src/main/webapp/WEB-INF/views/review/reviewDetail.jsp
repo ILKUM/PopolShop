@@ -67,6 +67,23 @@ $('.deleteComment').click(function(){
 	
 });
 
+$('#deleteReview').click(function(){
+	   Swal.fire({
+		   title: '정말로 리뷰글을 식제하시겠습니까??',
+		   text: "삭제하시면 리뷰글의 모든 정보가 사라집니다!",
+		   icon: 'warning',
+		   showCancelButton: true,
+		   confirmButtonColor: '#d33',
+		   cancelButtonColor: '#c8c8c8',
+		   confirmButtonText: '확인',
+		   cancelButtonText: '취소'
+		 }).then((result) => {
+		   if (result.value) {
+			   location.href = 'deleteReview.do?reseq=${review.reseq}';
+		   }
+		 })
+	});
+
 })
 </script>
 <style>

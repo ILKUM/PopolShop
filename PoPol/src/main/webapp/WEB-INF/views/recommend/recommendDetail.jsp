@@ -41,8 +41,8 @@ $(function(){
 	});
 	$('#deleteRecom').click(function(){
 	   Swal.fire({
-		   title: '정말로 리뷰를 삭제하시겠습니까??',
-		   text: "삭제하시면 리뷰의 모든 정보가 사라집니다!",
+		   title: '정말로 추천글를 삭제하시겠습니까??',
+		   text: "삭제하시면 추천글의 모든 정보가 사라집니다!",
 		   icon: 'warning',
 		   showCancelButton: true,
 		   confirmButtonColor: '#d33',
@@ -55,6 +55,7 @@ $(function(){
 		   }
 		 })
 	});
+	
 	//댓글 삭제 
 	$('.deleteComment').click(function(){
 		var temp=$(this);
