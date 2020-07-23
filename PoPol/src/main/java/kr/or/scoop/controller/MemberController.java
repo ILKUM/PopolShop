@@ -420,11 +420,11 @@ public class MemberController {
 		if(result > 0) {
 			/* model.addAttribute("ajax", "멤버탈퇴 성공했습니다"); */
 			/* viewpage = "utils/ajax"; */
-			viewpage = "user/memberList";
+			viewpage = "redirect:/admin.do";
 		}else {
 			/* model.addAttribute("ajax", "멤버탈퇴 실패했습니다"); */
 			/* viewpage = "utils/ajax"; */
-			viewpage = "user/memberList";
+			viewpage = "redirect:/admin.do";
 		}
 		return viewpage;
 		
