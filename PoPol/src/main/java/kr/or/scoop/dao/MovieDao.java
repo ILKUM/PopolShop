@@ -71,5 +71,7 @@ public interface MovieDao {
 	//영화 수정 체크
 	public int updateMovie(Movie movie);
 	
+	//영화 가격 가져오기
+	public int getMpoint(int moseq);
 	
 }

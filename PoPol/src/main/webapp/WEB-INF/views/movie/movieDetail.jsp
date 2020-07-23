@@ -86,9 +86,9 @@ $(function(){
 	
 	$('#download').click(function(){
 		 var point = "<%=session.getAttribute("point")%>";
-		 var mpoint = "<%=request.getAttribute("mpoint")%>";	
-		     if(point > mpoint){
-		    	 location.href="movieDownload.do?fileName=${movie.mophoto}";
+		 let mpoint = ${movie.mpoint};	
+		     if(point >= mpoint){
+		    	 location.href="movieDownload.do?fileName=${movie.mophoto}&moseq=${movie.moseq}";
 		     }else{	 
 		    	 Swal.fire({
 		   			  title : '포인트가 부족합니다.',

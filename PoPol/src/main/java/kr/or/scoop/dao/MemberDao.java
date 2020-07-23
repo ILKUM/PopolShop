@@ -99,4 +99,5 @@ public interface MemberDao {
 	
 	//활동처리
 	public int startUser(String email);
+	
 }

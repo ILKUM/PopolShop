@@ -434,7 +434,13 @@ public class BoardController {
 		
 		//영화 다운로드
 		@RequestMapping("/movieDownload.do")
-		public void movieDownload(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception {
+		public void movieDownload(HttpServletRequest request, HttpServletResponse response,HttpSession session,int moseq) throws Exception {
+				MemberDao dao = sqlSession.getMapper(MemberDao.class);
+				MovieDao mdao = sqlSession.getMapper(MovieDao.class);
+				int mpoint = mdao.getMpoint(moseq);
+				String email = (String)session.getAttribute("email");
+				int result = dao.updatePoint(email, mpoint);
+				if(result > 0) {
 				String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/movie/";
 				String p = "/user/movie";
 				String f = request.getParameter("fileName");
@@ -457,6 +463,10 @@ public class BoardController {
 				}
 				fin.close();
 				sout.close();
+				}else {
+					System.out.println("실패");
+				}
+				
 			}
 		
 		//영화 댓글작성

@@ -69,9 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addHistory" parameterType="kr.or.scoop.dto.History">
 	 insert into history (hseq,email,moseq) values (hseq_history_seq.nextval,#{param2},#{param1})
 	</insert>
-	<!-- 글 작성시 포인트 차감 -->
+	<!-- 영화 다운시 포인트 차감 -->
 	<update id="updatePoint" parameterType="kr.or.scoop.dto.Member">
-		update member set point = point - #{mpoint} where email = #{email}
+		update member set point = point - #{param2} where email = #{param1,jdbcType=VARCHAR}
 	</update>
 	<!-- 자신 포인트  -->
 	<select id="getPoint" resultType="int">
@@ -105,15 +105,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="deleteAdmin">
 		update role set rname = 'ROLE_USER' where email = #{email}
 	</update>
+	<!-- 사용자 이용정지 확인 -->
 	<select id="getStop" resultType="int">
 		select isstop from member where email = #{email}
 	</select>
+	<!-- 사용자 이용정지 사유 확인 -->
 	<select id="getScontent" resultType="String">
 	 	select scontent from member where email = #{email}
 	</select>
+	<!-- 사용자 이용정지처리 -->
 	<update id="stopUser">
 		update member set isstop = 1 , scontent = #{param2,jdbcType=VARCHAR} where email= #{param1,jdbcType=VARCHAR}
 	</update>
+	<!-- 사용자 이용정지 해제 처리 -->
 	<update id="startUser">
 		update member set isstop = 0 where email= #{param1,jdbcType=VARCHAR}
 	</update>
