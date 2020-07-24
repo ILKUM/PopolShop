@@ -225,7 +225,7 @@ public class BoardController {
 		//일본영화 이동
 		@RequestMapping(value="japanGet.do",method = RequestMethod.GET)
 		public String japanGet(Movie movie , Model model,HttpSession session,JJim jjim) {
-			String email = (String) session.getAttribute("email");
+			String email = (String)session.getAttribute("email");
 			MovieDao dao = sqlSession.getMapper(MovieDao.class);
 			List<JJim> jjimlist = dao.getMovieJJim(email);
 			List<Movie> m = dao.getJapan();

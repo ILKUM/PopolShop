@@ -128,12 +128,11 @@ $(document).ready(function(){
 		        			
 							<c:forEach items="${movie}" var="m">
 							<c:if test="${not loop}" />
-							<c:if test="${m.moseq == jjim.jseq}">
+							<c:if test="${m.moseq == jjim.moseq}">
 								<c:set var="mark" value="false" />
 								<c:set var="loop" value="true" />
 							</c:if>
-				         	</c:forEach>
-								
+				         	</c:forEach>							
 							<c:choose>
 							<c:when test="${mark}">
 							<i class="jjim far fa-heart" id="like" name="likeoff" data-inline="false" style="cursor: pointer; font-size: 20px;"></i>		
