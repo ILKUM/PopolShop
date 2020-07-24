@@ -467,6 +467,7 @@ public class BoardController {
 					System.out.println("실패");
 				}
 				
+				
 			}
 		
 		//영화 댓글작성

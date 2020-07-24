@@ -22,6 +22,7 @@ public class Member {
 	private int ismlike; //추천 여부
 	private int isstop; //정지 여부
 	private String scontent; //정지사유
+	private int rdseq; //다운받은번호
 	
 	public String getEmail() {
 		return email;
@@ -113,6 +114,13 @@ public class Member {
 	}
 	public void setScontent(String scontent) {
 		this.scontent = scontent;
+	}	
+	
+	public int getRdseq() {
+		return rdseq;
+	}
+	public void setRdseq(int rdseq) {
+		this.rdseq = rdseq;
 	}
 	
 	@Override
@@ -120,7 +128,7 @@ public class Member {
 		return "Member [email=" + email + ", pwd=" + pwd + ", name=" + name + ", filesrc=" + filesrc + ", iddate="
 				+ iddate + ", profile=" + profile + ", rname=" + rname + ", point=" + point + ", cpseq=" + cpseq
 				+ ", cpoint=" + cpoint + ", mpoint=" + mpoint + ", mlike=" + mlike + ", ismlike=" + ismlike
-				+ ", isstop=" + isstop + ", scontent=" + scontent + "]";
+				+ ", isstop=" + isstop + ", scontent=" + scontent + ", rdseq=" + rdseq + "]";
 	}
 	
 	
