@@ -431,6 +431,10 @@ span {
           data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
              &nbsp;<spring:message code="mywrites" /></span>
          </a></li>
+         <li><a href="redown.do" aria-expanded="false"> <span class="iconify" data-icon="ic:round-cloud-download"
+          data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
+             &nbsp;<spring:message code="redown" /></span>
+         </a></li>
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span
                class="iconify" data-icon="wpf:administrator" data-inline="false"

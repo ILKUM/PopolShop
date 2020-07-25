@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.scoop.dao.BoardDao">
+<!-- 다운 리스트 -->
+	<select id="redownBoardGet" resultType="kr.or.scoop.dto.Redown">
+		select * from redown r join member m on r.email = m.email join movie mo on r.moseq = mo.moseq
+	</select>
+	<insert id="redownInsert" parameterType="kr.or.scoop.dto.Redown">
+		insert into redown (rdseq,moseq,email) values (RDSEQ_REDOWN_SEQ.NEXTVAL,#{param1},#{param2}) 
+	</insert>
+</mapper>

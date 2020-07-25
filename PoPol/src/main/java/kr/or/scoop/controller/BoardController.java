@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import kr.or.scoop.dao.BoardDao;
 import kr.or.scoop.dao.MemberDao;
 import kr.or.scoop.dao.MovieDao;
 import kr.or.scoop.dao.NoticeDao;
@@ -437,10 +438,13 @@ public class BoardController {
 		public void movieDownload(HttpServletRequest request, HttpServletResponse response,HttpSession session,int moseq) throws Exception {
 				MemberDao dao = sqlSession.getMapper(MemberDao.class);
 				MovieDao mdao = sqlSession.getMapper(MovieDao.class);
+				BoardDao bdao = sqlSession.getMapper(BoardDao.class);
 				int mpoint = mdao.getMpoint(moseq);
 				String email = (String)session.getAttribute("email");
-				int result = dao.updatePoint(email, mpoint);
-				if(result > 0) {
+				int one = bdao.redownInsert(moseq, email);
+				int two = dao.updatePoint(email, mpoint);
+				int result = one + two;
+				if(result > 1) {
 				String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/movie/";
 				String p = "/user/movie";
 				String f = request.getParameter("fileName");

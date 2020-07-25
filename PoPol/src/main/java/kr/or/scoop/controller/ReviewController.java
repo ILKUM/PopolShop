@@ -33,7 +33,7 @@ public class ReviewController {
 	
 	//리뷰 페이지 이동
 	@RequestMapping(value="review.do" , method=RequestMethod.GET)
-	public String wishGet(Model model,Review review) {		
+	public String reviewGet(Model model,Review review) {		
 	  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
 	  List<Review> r =  dao.getReview(); 
 	   model.addAttribute("review", r);

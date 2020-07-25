@@ -6,6 +6,7 @@ import kr.or.scoop.dto.File;
 import kr.or.scoop.dto.FileReply;
 import kr.or.scoop.dto.RcReply;
 import kr.or.scoop.dto.Recommend;
+import kr.or.scoop.dto.Redown;
 import kr.or.scoop.dto.Review;
 import kr.or.scoop.dto.RvReply;
 
@@ -152,5 +153,11 @@ public interface BoardDao {
 	
 	//파일 다운횟수 증가
 	public int downFile(int fseq);
+	
+	//////////////// 다운로드 한 파일 /////////////
+	
+	public List<Redown> redownBoardGet();
+	
+	public int redownInsert(int moseq , String email);
 	
 }
