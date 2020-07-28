@@ -56,6 +56,23 @@ $(function(){
 		   }
 		 })
 	});
+	
+	$('#download').click(function(){
+	   Swal.fire({
+		   title: '정말로 다운로드 하시겠습니까??',
+		   text: "확인 시 다운로드가 진행 됩니다.",
+		   icon: 'success',
+		   showCancelButton: true,
+		   confirmButtonColor: '#d33',
+		   cancelButtonColor: '#c8c8c8',
+		   confirmButtonText: '확인',
+		   cancelButtonText: '취소'
+		 }).then((result) => {
+		   if (result.value) {
+			   location.href = 'dataDownload.do?fileName=${file.filename}&fseq=${file.fseq}';
+		   }
+		 })
+	});
 	//댓글 삭제 
 	$('.deleteComment').click(function(){
 		var temp=$(this);
@@ -135,9 +152,9 @@ border-radius: 5px;
 			
 				<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 				<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">	
-				<a href="dataDownload.do?fileName=${file.filename}">
+				
 		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>${file.fdnum}	
-			</a>
+		
 		</c:if>
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${file.flike}</i>
 			<c:choose>

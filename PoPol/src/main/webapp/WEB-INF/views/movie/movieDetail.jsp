@@ -88,7 +88,19 @@ $(function(){
 		 var point = "<%=session.getAttribute("point")%>";
 		 let mpoint = ${movie.mpoint};	
 		     if(point >= mpoint){
-		    	 location.href="movieDownload.do?fileName=${movie.mophoto}&moseq=${movie.moseq}";
+		    	 Swal.fire({
+		  		   title: '정말로 다운로드 하시겠습니까??',
+		  		   text: "영화 포인트 만큼 차감이 됩니다.",
+		  		   icon: 'waring',
+		  		   showCancelButton: true,
+		  		   confirmButtonColor: '#d33',
+		  		   cancelButtonColor: '#c8c8c8',
+		  		   confirmButtonText: '확인',
+		  		   cancelButtonText: '취소'
+		  		 }).then((result) => {
+		  		   if (result.value) {
+		  			 location.href="movieDownload.do?fileName=${movie.mophoto}&moseq=${movie.moseq}";
+		  		   }		    	
 		     }else{	 
 		    	 Swal.fire({
 		   			  title : '포인트가 부족합니다.',

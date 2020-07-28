@@ -150,7 +150,10 @@ public class FileController {
 
 	// 영화 다운로드
 	@RequestMapping("/dataDownload.do")
-	public void dataDownload(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+	public void dataDownload(HttpServletRequest request, HttpServletResponse response, HttpSession session,int fseq) throws Exception {
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		int result = dao.downFile(fseq);
+		if(result > 0) {
 		String realPath = "C:/SmartWeb/popol/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PoPol/user/file/";
 		String p = "/user/file";
 		String f = request.getParameter("fileName");
@@ -173,6 +176,9 @@ public class FileController {
 		}
 		fin.close();
 		sout.close();
+		}else {
+			System.out.println("실패");
+		}
 	}
 	
 	//내가 작성한 파일글

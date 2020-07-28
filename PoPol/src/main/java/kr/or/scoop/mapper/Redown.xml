@@ -8,6 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from redown r join member m on r.email = m.email join movie mo on r.moseq = mo.moseq
 	</select>
 	<insert id="redownInsert" parameterType="kr.or.scoop.dto.Redown">
-		insert into redown (rdseq,moseq,email) values (RDSEQ_REDOWN_SEQ.NEXTVAL,#{param1},#{param2}) 
+		insert into redown (rdseq,moseq,email,downtime) values (RDSEQ_REDOWN_SEQ.NEXTVAL,#{param1},#{param2},sysdate) 
 	</insert>
 </mapper>

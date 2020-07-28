@@ -1,5 +1,7 @@
 package kr.or.scoop.dto;
 
+import java.sql.Timestamp;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class Redown {
@@ -17,6 +19,8 @@ public class Redown {
 	private String modirector; //영화 감독
 	private int iswish; //위시리스트 여부
 	private int mpoint; //영화 가격
+	private Timestamp downtime; //다운받은시간
+	
 	public int getRdseq() {
 		return rdseq;
 	}
@@ -101,14 +105,21 @@ public class Redown {
 	public void setMpoint(int mpoint) {
 		this.mpoint = mpoint;
 	}
+	public Timestamp getDowntime() {
+		return downtime;
+	}
+	public void setDowntime(Timestamp downtime) {
+		this.downtime = downtime;
+	}
 	
 	@Override
 	public String toString() {
 		return "Redown [rdseq=" + rdseq + ", email=" + email + ", moseq=" + moseq + ", mcseq=" + mcseq + ", moname="
 				+ moname + ", mocontent=" + mocontent + ", filesrc=" + filesrc + ", mophoto=" + mophoto + ", molike="
 				+ molike + ", monum=" + monum + ", modate=" + modate + ", modirector=" + modirector + ", iswish="
-				+ iswish + ", mpoint=" + mpoint + "]";
+				+ iswish + ", mpoint=" + mpoint + ", downtime=" + downtime + "]";
 	}
+	
 	
 	
 }

@@ -113,19 +113,19 @@ $(document).ready(function(){
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">
 		 
          <div class="col-sm-7 listwrite" style="padding-left: 87px;" >
-         	<spring:message code="all.title" />
+         	<spring:message code="redown.name" />
          </div>
          <div class="col-sm-2 listwrite">
          	<spring:message code="all.time" />
          </div>
          <div class="col-sm-1 listwrite">
-         	<spring:message code="all.num" />
+         	<spring:message code="movie.dir" />
          </div>
          <div class="col-sm-1 listwrite">
          	<spring:message code="all.like" />
          </div>
          <div class="col-sm-1 listwrite">
-         	<spring:message code="all.manage" />
+         	<spring:message code="redown.manage" />
          </div>
 		     
       </div>
@@ -133,29 +133,21 @@ $(document).ready(function(){
 		<c:forEach items="${redown}" var="rd">
 		
 		<div class="row writeRecom" style="margin-left: 2%; margin-right: 2%" id="row">	
-		<div class="col-sm-7 listwrite" style="padding-left: 60px;" >
-		<a href="recomDetail.do?rcseq=${rd.rdseq}">
+		<div class="col-sm-7 listwrite" style="padding-left: 60px;" >		
          	${rd.mophoto}
-		</a>
          </div>
          <div class="col-sm-2 listwrite">
-         <a href="recomDetail.do?rcseq=${rd.rdseq}">
-         	${rd.modate}
-         	</a>
+         	${fn:substring(rd.downtime,0,19)}
          </div>
          <div class="col-sm-1 listwrite">
-         	<a href="recomDetail.do?rcseq=${rd.rdseq}">
          	${rd.modirector}
-         	</a>
          </div>
          <div class="col-sm-1 listwrite">
-         	<a href="recomDetail.do?rcseq=${rd.rdseq}">
          	${rd.molike}
-         	</a>
          </div>
          <div class="col-sm-1 listwrite">
-		<a href="deleteMyRecom.do?rcseq=${rd.rdseq}">
-         	삭제
+		<a href="reMovieDownload.do?fileName=${rd.mophoto}">
+         	<spring:message code="redown.down" />
 		</a>   
 		</div>      
          </div>
