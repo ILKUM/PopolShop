@@ -2,6 +2,8 @@ package kr.or.scoop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +25,10 @@ public class RedownController {
 	
 	//재다운 페이지 이동
 	@RequestMapping(value="redown.do" , method=RequestMethod.GET)
-	public String redownGet(Model model,Redown redown) {		
+	public String redownGet(Model model,Redown redown,HttpSession session) {
+	  String email = (String)session.getAttribute("email");
 	  BoardDao dao = sqlSession.getMapper(BoardDao.class); 
-	  List<Redown> r =  dao.redownBoardGet(); 
+	  List<Redown> r =  dao.redownBoardGet(email); 
 	   model.addAttribute("redown", r);
 	 
 	   return "user/MyRedown";

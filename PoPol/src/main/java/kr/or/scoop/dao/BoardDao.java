@@ -156,7 +156,7 @@ public interface BoardDao {
 	
 	//////////////// 다운로드 한 파일 /////////////
 	
-	public List<Redown> redownBoardGet();
+	public List<Redown> redownBoardGet(String email);
 	
 	public int redownInsert(int moseq , String email);
 	

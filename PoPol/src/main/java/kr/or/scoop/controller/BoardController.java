@@ -256,10 +256,12 @@ public class BoardController {
 		result = mdao.addHistory(moseq, email);
 		List<MoReply> mocom = dao.movieCommentOk(moseq);
 		int count = dao.getmolike(email, moseq);
+		int down = dao.getDownCount(moseq);
 		System.out.println(count);
 		Movie movie = dao.selectMovie(moseq);
 		int mpoint = movie.getMpoint();
 		if (result > 0) {
+			request.setAttribute("down", down);
 			model.addAttribute("mocom", mocom);
 			request.setAttribute("count", count);
 			request.setAttribute("mpoint", mpoint);

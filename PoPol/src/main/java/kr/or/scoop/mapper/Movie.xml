@@ -93,7 +93,11 @@ select m.moseq,m.moname,m.mocontent,m.mophoto,m.molike,m.modate,m.monum,m.modire
 		UPDATE movie 
 		set moname=#{moname}, mocontent=#{mocontent} ,mophoto=#{mophoto} , monum=#{monum}, modirector=#{modirector}, modate=#{modate}, mpoint=#{mpoint} where moseq=#{moseq}
 	</update>
+	<!-- 영화 가격 가져오기 -->
 	<select id="getMpoint" resultType="int">
 		select mpoint from movie where moseq = #{moseq}
+	</select>
+	<select id="getDownCount" resultType="int">	
+	select count(*) from movie where moseq=#{moseq}
 	</select>
 </mapper>

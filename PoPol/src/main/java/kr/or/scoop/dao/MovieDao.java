@@ -74,4 +74,7 @@ public interface MovieDao {
 	//영화 가격 가져오기
 	public int getMpoint(int moseq);
 	
+	//영화 다운로드 기록
+	public int getDownCount(int moseq);
+	
 }

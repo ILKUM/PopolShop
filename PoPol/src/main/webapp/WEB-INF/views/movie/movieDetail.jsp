@@ -8,6 +8,7 @@
 <c:set var="role" value="${sessionScope.role}" />
 <c:set var="img" value="${sessionScope.img}" />
 <c:set var="count" value="${requestScope.count}" />
+<c:set var="down" value="${requestScope.down}" />
 <c:set var="point" value="${sessionScope.point}" />
 <head>
     <meta charset="utf-8">
@@ -88,19 +89,20 @@ $(function(){
 		 var point = "<%=session.getAttribute("point")%>";
 		 let mpoint = ${movie.mpoint};	
 		     if(point >= mpoint){
-		    	 Swal.fire({
-		  		   title: '정말로 다운로드 하시겠습니까??',
-		  		   text: "영화 포인트 만큼 차감이 됩니다.",
-		  		   icon: 'waring',
-		  		   showCancelButton: true,
-		  		   confirmButtonColor: '#d33',
-		  		   cancelButtonColor: '#c8c8c8',
-		  		   confirmButtonText: '확인',
-		  		   cancelButtonText: '취소'
-		  		 }).then((result) => {
-		  		   if (result.value) {
-		  			 location.href="movieDownload.do?fileName=${movie.mophoto}&moseq=${movie.moseq}";
-		  		   }		    	
+		    	   Swal.fire({
+		    		   title: '정말로 다운로드 하시겠습니까??',
+		    		   text: "확인 시 영화 포인트만큼 차감이 됩니다.",
+		    		   icon: 'warning',
+		    		   showCancelButton: true,
+		    		   confirmButtonColor: '#d33',
+		    		   cancelButtonColor: '#c8c8c8',
+		    		   confirmButtonText: '확인',
+		    		   cancelButtonText: '취소'
+		    		 }).then((result) => {
+		    		   if (result.value) {
+		    			   location.href="movieDownload.do?fileName=${movie.mophoto}&moseq=${movie.moseq}";
+		    		   }
+		    		 })		    	
 		     }else{	 
 		    	 Swal.fire({
 		   			  title : '포인트가 부족합니다.',
@@ -109,6 +111,23 @@ $(function(){
 		   			  confirmButtonColor: '#ba90c4'
 		   		})
 		   }
+	  });  
+	
+	$('#redownload').click(function(){
+		    	   Swal.fire({
+		    		   title: '정말로 다시 다운로드 하시겠습니까??',
+		    		   text: "확인 시 다운로드가 진행 됩니다!",
+		    		   icon: 'success',
+		    		   showCancelButton: true,
+		    		   confirmButtonColor: '#d33',
+		    		   cancelButtonColor: '#c8c8c8',
+		    		   confirmButtonText: '확인',
+		    		   cancelButtonText: '취소'
+		    		 }).then((result) => {
+		    		   if (result.value) {
+		    			   location.href="reMovieDownload.do?fileName=${movie.mophoto}&moseq=${movie.moseq}";
+		    		   }
+		    		 })		    		
 	  });  
 })
 </script>
@@ -174,9 +193,12 @@ border-radius: 5px;
 			
 		<div class="col-sm-4" style="float: right;margin-left: 5%;padding-left: 60px;">
 		<c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
-		
-		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>	
-		
+		<c:if test="${down==0}">
+		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>			
+		</c:if>
+		<c:if test="${down==1}">
+		<span class="iconify" id="redownload" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>			
+		</c:if>		
 		</c:if>
 		<i id="chuchun" class="chuchun far fa-thumbs-up" style="cursor: pointer;font-size:25px; margin-bottom: 20px;">&nbsp;${movie.molike}</i>		
 			<c:if test="${role=='ROLE_ADMIN'}">
