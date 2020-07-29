@@ -155,8 +155,13 @@ border-radius: 5px;
 				
 		<span class="iconify" id="download" data-icon="bx:bxs-download" style="cursor: pointer;font-size:25px;cursor: pointer;"></span>${file.fdnum}	
 		
-		</c:if>
+			</c:if>
+			<c:if test="${count==0}">
+				<i id="chuchun" class="far fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${file.flike}</i>
+			</c:if>
+			<c:if test="${count==1}">
 				<i id="chuchun" class="fas fa-thumbs-up" style="cursor: pointer; font-size: 25px;margin-bottom: 10px;">&nbsp;${file.flike}</i>
+			</c:if>
 			<c:choose>
 			<c:when test="${file.email==sessionScope.email}">
 	        	<span class="fas fa-cog"  id="editFile" style="cursor: pointer;font-size:25px; margin-bottom: 20px;margin-left: 10px;"></span>
