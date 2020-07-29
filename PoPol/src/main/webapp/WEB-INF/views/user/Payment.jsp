@@ -30,12 +30,12 @@ function requestPay(){
             pg : 'kakaopay',
             pay_method : 'card',
             merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'MOFLEX PRIMIUM',
-            amount : 100,
+            name : 'MOFLEX PREMIUM',
+            amount : 4000,
             buyer_email : '<%=session.getAttribute("email")%>',
             buyer_name : '',
             buyer_tel : '010-1111-1111',
-            buyer_addr : '서울특별시 강남구 서초동',
+            buyer_addr : '경기도 평택시 소사동',
             buyer_postcode : '123-456',
             //m_redirect_url : 'http://www.naver.com'
         }, function(rsp) {
