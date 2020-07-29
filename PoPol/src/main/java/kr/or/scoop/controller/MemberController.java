@@ -280,12 +280,9 @@ public class MemberController {
 	@RequestMapping("changePwdOk.do")
 	public String changePwdOk(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String pwd = this.bCryptPasswordEncoder.encode(request.getParameter("pwd"));
-		String email = (String)session.getAttribute("email");
-		
-		
+		String email = (String)session.getAttribute("email");	
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		int result = dao.changePassword(pwd, email);
-		
+		int result = dao.changePassword(pwd, email);		
 		String viewpage = "";
 		if(result > 0) {
 			viewpage = "utils/pwdOk";

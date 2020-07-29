@@ -131,6 +131,7 @@ $(function(){
 				${f.flike}	
 			</div>
       </div>
+      
       </a>
       </c:forEach>
     
@@ -139,6 +140,7 @@ $(function(){
 			</div>
             <!-- #/ container -->
             </div>
+            
             </div>
         </div>
         <!--**********************************
