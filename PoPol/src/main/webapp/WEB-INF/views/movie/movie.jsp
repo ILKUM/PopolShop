@@ -190,7 +190,7 @@ $(document).ready(function(){
 		        									</div>
 		        									
 		        									
-		        									
+		        			<c:if test="${role=='ROLE_ADMIN' or role=='ROLE_CHARGE'}">						
 		        			<c:set var="mark" value="true" />
 							<c:set var="loop" value="false" />
 							<c:forEach items="${jjimlist}" var="jjim">
@@ -209,7 +209,7 @@ $(document).ready(function(){
 							<i class="jjim fas fa-heart" id="like" name="likeon"  style="cursor: pointer; font-size: 20px;"></i>	
 							</c:otherwise>
 							</c:choose>
-		        								
+		        			</c:if>					
 		        			</div>					
 		        			</div>
 		        			</c:forEach>
