@@ -41,7 +41,7 @@
 $(document).ready(function(){
 	//더보기 스타일 변경
 	$('#load').mouseover(function(){
-		$(this).css("color","#E71D36");
+		$(this).css("color","#ba90c4");
 	});
 	$('#load').mouseout(function(){
 		$(this).css("color","#464a53");
@@ -79,21 +79,6 @@ $(document).ready(function(){
 
 });
 
-function filter() {
-    var value, name, item, i;
-    value = document.getElementById("searchemail").value.toUpperCase();
-    item = document.getElementsByClassName("search_member");
-
-    for (i = 0; i < item.length; i++) {
-       name = item[i].getElementsByClassName("listmem");
-       if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-          item[i].style.display = "flex";
-       } else {
-          item[i].style.display = "none";
-       }
-    }
- }
-
 </script>	
 
     <jsp:include page="/WEB-INF/views/commons/preloader.jsp"></jsp:include>
@@ -114,41 +99,47 @@ function filter() {
         <div class="card">
 		<div class="row" style="margin: 2% 2% 15px 2%">
 			<div class="col-sm-12" style="padding-left: 0">
-				<h3 style="padding-left: 15px;"><spring:message code="rank.main" /></h3>
+				<h3 style="padding-left: 15px;"><spring:message code="rank.main2" /></h3>
 			</div>
 		</div>
 		<div class="row" style="margin-left: 2%;">
 			<ul class="nav nav-pills">
 			    <li class="nav-item">
-			      <a class="nav-link" href="mlikeRank.do" style="color: #ba90c4;"><spring:message code="rank.main" /></a>
-			    </li>
-			     <li class="nav-item">
-			      <a class="nav-link" href="downRank.do"><spring:message code="rank.main2" /></a>
-			    </li>			
+			      <a class="nav-link" href="mlikeRank.do"><spring:message code="rank.main" /></a>
+			    </li>		
+			    <li class="nav-item">
+			      <a class="nav-link" href="downRank.do" style="color: #ba90c4;"><spring:message code="rank.main2" /></a>
+			    </li>		
 		    </ul>
 		</div>
 		 <hr style="margin-top: 0;margin-left: 2%; margin-right: 2%">
 		 <div class="row" style="margin-left: 2%; margin-right: 2%">		
-				<div class="col-sm-4 listmem" >
-				<spring:message code="admin.name" />
+				<div class="col-sm-6 listmem" >
+				<spring:message code="file.wtitle" />
 				</div>
 				<div class="col-sm-4 listmem">
-				<spring:message code="admin.point" />
+				<spring:message code="file.down" />
 				</div>
-				<div class="col-sm-4 listmem">
+				<div class="col-sm-1 listmem">
 				<spring:message code="all.like" />
 				</div>
+				<div class="col-sm-1 listmem">
+				<spring:message code="all.num" />
+				</div>
 		</div>
-		<c:forEach items="${mem}" var="m">
+		<c:forEach items="${file}" var="f">
 		<div class="row search_member resultmember" style="margin-left: 2%; margin-right: 2%" id="row">				
-			<div class="col-sm-4 listmem">   
-           		${m.name}        
+			<div class="col-sm-6 listmem">   
+           		${fn:substring(f.ftitle,0,25)}
 			</div>			
 			<div class="col-sm-4 listmem">    
-           		${m.point} P    
+           		${f.fdnum}
 			</div>
-			<div class="col-sm-4 listmem">
-				${m.mlike} <spring:message code="you.ea" />
+			<div class="col-sm-1 listmem">
+				${f.flike} <spring:message code="you.ea" />
+			</div>				
+			<div class="col-sm-1 listmem">
+				${f.frnum}  
 			</div>				
       </div>	
 			</c:forEach>

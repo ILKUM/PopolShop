@@ -256,7 +256,7 @@ public class BoardController {
 		result = mdao.addHistory(moseq, email);
 		List<MoReply> mocom = dao.movieCommentOk(moseq);
 		int count = dao.getmolike(email, moseq);
-		int down = dao.getDownCount(moseq);
+		int down = dao.getDownCount(moseq,email);
 		System.out.println(count);
 		Movie movie = dao.selectMovie(moseq);
 		int mpoint = movie.getMpoint();

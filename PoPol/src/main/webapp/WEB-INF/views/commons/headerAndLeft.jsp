@@ -430,11 +430,7 @@ span {
          <li><a href="writeMyRecom.do" aria-expanded="false"> <span class="iconify" data-icon="jam:write"
           data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
              &nbsp;<spring:message code="mywrites" /></span>
-         </a></li>
-         <li><a href="redown.do" aria-expanded="false"> <span class="iconify" data-icon="ic:round-cloud-download"
-          data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
-             &nbsp;<spring:message code="redown" /></span>
-         </a></li>
+         </a></li>        
          <c:if test="${role == 'ROLE_ADMIN'}">
           <li><a href="admin.do" aria-expanded="false"> <span
                class="iconify" data-icon="wpf:administrator" data-inline="false"
@@ -443,6 +439,10 @@ span {
          </a></li>
          </c:if>
          <c:if test="${role == 'ROLE_CHARGE' or role == 'ROLE_ADMIN'}">
+         <li><a href="redown.do" aria-expanded="false"> <span class="iconify" data-icon="ic:round-cloud-download"
+          data-inline="false" style="width: 20px; height: auto;"></span><span class="nav-text">
+             &nbsp;<spring:message code="redown" /></span>
+         </a></li>
          <li><a href="wishlist.do?email=${sessionScope.email}" aria-expanded="false" id="wish"> <span
                class="iconify" data-icon="el:heart" data-inline="false" id="wish"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
@@ -480,6 +480,11 @@ span {
                class="iconify" data-icon="whh:trophy" data-inline="false"
                style="width: 20px; height: auto;"> </span><span class="nav-text">
                   &nbsp;<spring:message code="rank.mlike" /></span>
+         </a></li>   
+         <li><a href="downRank.do" aria-expanded="false"> <span
+               class="iconify" data-icon="whh:trophy" data-inline="false"
+               style="width: 20px; height: auto;"> </span><span class="nav-text">
+                  &nbsp;<spring:message code="rank.main2" /></span>
          </a></li>   
       </ul>
    </div>

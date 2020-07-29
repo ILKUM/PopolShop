@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.or.scoop.dto.File;
 import kr.or.scoop.dto.Member;
 import kr.or.scoop.dto.Role;
 
@@ -99,5 +100,8 @@ public interface MemberDao {
 	
 	//활동처리
 	public int startUser(String email);
+	
+	//추천인 랭킹 
+	public List<File> downRank();
 	
 }

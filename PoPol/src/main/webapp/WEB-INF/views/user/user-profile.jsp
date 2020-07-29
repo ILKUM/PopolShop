@@ -128,10 +128,8 @@ $(function(){
 		</div>
 		<div class="row" style="margin-left: 4%; margin-top: 2%">
 		<div class="form-group" style="width: 100%"> 
-		<c:if test="${role=='ROLE_ADMIN'}">
     		<label for="email"><spring:message code="admin.email" /></label>
-    		<input class="form-control myinfo" type="text" id="email" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.email}" disabled="disabled">
-		</c:if>  		
+    		<input class="form-control myinfo" type="text" id="email" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.email}" disabled="disabled"> 		
     		<br>
     		<label for="name"><spring:message code="admin.name" /></label>
     		<input class="form-control myinfo" type="text" id="name" name="name" style="width: 60%" placeholder="7자까지 입력가능합니다" value="${member.name}" disabled="disabled">

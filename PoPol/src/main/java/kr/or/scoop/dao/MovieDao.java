@@ -75,6 +75,6 @@ public interface MovieDao {
 	public int getMpoint(int moseq);
 	
 	//영화 다운로드 기록
-	public int getDownCount(int moseq);
+	public int getDownCount(int moseq,String email);
 	
 }

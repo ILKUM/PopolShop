@@ -32,6 +32,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.LocaleResolver;
 
 import kr.or.scoop.dao.MemberDao;
+import kr.or.scoop.dto.File;
 import kr.or.scoop.dto.Member;
 import kr.or.scoop.dto.Role;
 import kr.or.scoop.service.MemberService;
@@ -546,13 +547,22 @@ public class MemberController {
 		return viewpage;
 	}
 	
-	//랭킹 페이지 이동
+	//추천인 랭킹 페이지 이동
 	@RequestMapping(value="mlikeRank.do" , method = RequestMethod.GET)
 	public String mlikeRank(Model model) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		List<Member> mem = dao.likeRank();
 		model.addAttribute("mem", mem);
 		return "rank/mlikeRank";
+	}
+	
+	//다운로드 랭킹 페이지 이동
+	@RequestMapping(value="downRank.do" , method = RequestMethod.GET)
+	public String fileDownRank(Model model) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		List<File> file = dao.downRank();
+		model.addAttribute("file", file);
+		return "rank/downRank";
 	}
 	
 	//관리자 권한 추가
