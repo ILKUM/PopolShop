@@ -156,7 +156,7 @@ border-radius: 5px;
 		
 		<hr style="margin:10px 2% 0 0;">	
 		<br>
-    	<img src="<c:url value='/user/recomm/${rec.rcphoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 200; height: 200;">
+    	<img src="<c:url value='/user/recomm/${rec.rcphoto}' />" alt="사진" onerror="this.src='https://ssl.pstatic.net/static/movie/2012/09/dft_img99x141.png'" style="width: 600px; height: 400px; align: center;" >
 		<div class="row" style="margin-right: 0;width:900px;">
         <div class="RecomDetail col-sm-11" id="myissueContent" style="height:100px;overflow: auto;">
         <div>영화 제목 : ${rec.rcname}</div>

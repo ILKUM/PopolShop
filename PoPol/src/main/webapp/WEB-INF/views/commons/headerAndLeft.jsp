@@ -91,7 +91,7 @@ input::placeholder {
 	    
 	     //자기 자신 추천 금지 validation
 	     if($("#toEmail").val() == mail){
-	        Swal.fire("자기 자신은 추천이 불가능 합니다.");
+	        Swal.fire("자신은 추천이 불가능 합니다.");
 	       $("#toEmail").focus();
 	       return false;
 	     }

@@ -303,7 +303,7 @@ CREATE TABLE recommend (
 	RCTIME DATE DEFAULT SYSDATE NOT NULL, /* 추천작성시간 */
 	RCLIKE NUMBER NOT NULL, /* 추천수 */
 	RCRNUM NUMBER NOT NULL, /* 추천글조회수 */
-	추천영화제목 VARCHAR2(100) NOT NULL /* RCNAME */
+	RCNAME VARCHAR2(100) NOT NULL /* 추천영화 제목 */
 );
 
 COMMENT ON TABLE recommend IS '추천게시판';
@@ -324,7 +324,7 @@ COMMENT ON COLUMN recommend.RCLIKE IS '추천수';
 
 COMMENT ON COLUMN recommend.RCRNUM IS '추천글조회수';
 
-COMMENT ON COLUMN recommend.추천영화제목 IS 'RCNAME';
+COMMENT ON COLUMN recommend.RCNAME IS '추천영화제목';
 
 CREATE UNIQUE INDEX PK_recommend
 	ON recommend (

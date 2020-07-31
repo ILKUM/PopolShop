@@ -85,11 +85,11 @@ border-radius: 5px;
         <div class="container-fluid">
         <div class="card" >
 		<div class="row"style="margin:2% 2% 0 2%" >
-		<div class="col-sm-10">
+		<div class="col-sm-9">
 		<span class="iconify" style="font-size: 40px;margin-bottom: 5px;color: #E71D36;" data-icon="ant-design:notification-outlined" data-inline="false"></span>
 		<span id="noticeSubject" style="font-size: 25px;padding-top: 2%;">${notice.notitle}</span>
 		</div>
-		<div class="col-sm-2" style="padding-top: 2%;padding-left: 8%;">
+		<div class="col-sm-3" style="padding-top: 2%;padding-left: 8%;">
 		<c:if test="${role == 'ROLE_ADMIN'}">
 		<span data-toggle="tooltip" data-placement="top" title="공지사항 수정" >
         	<span class="fas fa-cog"  id="editNotice" style="margin-left: 5px;cursor: pointer; font-size: 25px"   ></span>
