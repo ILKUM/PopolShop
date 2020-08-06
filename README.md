@@ -39,3 +39,4 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 ![ban](https://user-images.githubusercontent.com/54253400/89508721-44468900-d809-11ea-96c8-b6176c88830d.PNG)
 ▶ 사용자를 정지사유를 선택 후 비활성화 할 수 있습니다. <br><br>
 ![mdowns](https://user-images.githubusercontent.com/54253400/89508574-0d707300-d809-11ea-81dc-b6d2b83086d9.PNG)
+▶ 비활성화인 계정을 로그인 하시면 관리자에게 메일로 문의 후 관리자를 통해 계정을 다시 활성화 할 수 있습니다.
