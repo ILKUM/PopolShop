@@ -30,7 +30,7 @@
 ▶ 한 사람당 추천은 한번씩만 가능합니다. <br><br>
 
 # 4.영화 다운로드
-![mdown](https://user-images.githubusercontent.com/54253400/89506838-ab167300-d806-11ea-87dc-9b75346e644c.PNG)
+![mdown](https://user-images.githubusercontent.com/54253400/89506838-ab167300-d806-11ea-87dc-9b75346e644c.PNG)<br>
 ▶ 다운로드 클릭시 다운로드를 할 수 있습니다. <br><br>
 ![mdowns](https://user-images.githubusercontent.com/54253400/89506842-ac47a000-d806-11ea-8340-29a8b5e0f752.PNG)
 ▶ 한번 다운로드 한 파일은 포인트 감소 없이 계속 다운로드 받으실 수 있습니다. <br><br>
