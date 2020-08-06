@@ -47,4 +47,4 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 
 ## Trigger
 ![1}(https://user-images.githubusercontent.com/54253400/89509815-bbc8e800-d80a-11ea-9c91-5215f2102789.PNG)
-▶ insert_tri_role : 회원가입 할 시 유저에게 일반유저 권한을 부여함.
+▶ INSERT_TRI_ROLE : 회원가입 할 시 유저에게 일반유저 권한을 부여함.
