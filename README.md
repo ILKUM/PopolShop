@@ -36,4 +36,6 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 ▶ 한번 다운로드 한 파일은 포인트 감소 없이 계속 다운로드 받으실 수 있습니다. <br><br>
 
 # 5.계정 비활성화
+![ban](https://user-images.githubusercontent.com/54253400/89508721-44468900-d809-11ea-96c8-b6176c88830d.PNG)
+▶ 사용자를 정지사유를 선택 후 비활성화 할 수 있습니다. <br><br>
 ![mdowns](https://user-images.githubusercontent.com/54253400/89508574-0d707300-d809-11ea-81dc-b6d2b83086d9.PNG)
