@@ -73,4 +73,6 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 ▶ SourceTree , eXERD 
 # 형상관리
 ▶ Github : SourceTree 
+# DB 
+▶ Oracle 11g
 ![source](https://user-images.githubusercontent.com/54253400/89511436-e320b480-d80c-11ea-8ed3-f6d9162e45a8.PNG)
