@@ -1,5 +1,5 @@
 ![logo](https://user-images.githubusercontent.com/54253400/89410550-e0678600-d75e-11ea-9ea6-9def69d4fd9d.png)
-# MOFLEX
+## MOFLEX
  MOFLEX는 지금까지 공부하며 배운 것을 총 활용해서 만든 프로젝트 입니다. 
  <br><br>
  MOFLEX는 여러 사람들과 영화에 대해 커뮤니티를 할 수 있는 사이트 입니다. MOFLEX는 자료공유 , 소통을 원활하게 사용 가능합니다.
@@ -8,13 +8,13 @@
  <br><br>
  MOFLEX는 영화추가, 자료공유,쿠폰 ,추천인 등이 있습니다.
  <br><br>
-# 주제선정이유
+## 주제선정이유
 평소에 영화를 좋아해서 영화 다운로드와 자료공유 , 커뮤니티를 할 수 있는 사이트가 있으면 좋을꺼 같아서 만들어 보았습니다.
 
-# 실행방법
+## 실행방법
 root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL.sql 파일에 있는 DDL문을 전부다 실행 시키시면 됩니다.
 
-# 주요기능 <br><br>
+## 주요기능 <br><br>
 # 1.영화추가
 ![movieadd](https://user-images.githubusercontent.com/54253400/89506826-a5b92880-d806-11ea-84f5-fab358c2639d.PNG)
 ▶ 영화 포스터와 , 이름 , 가격 , 나라 등을 선택 가능합니다. <br><br>
@@ -40,3 +40,7 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 ▶ 사용자를 정지사유를 선택 후 비활성화 할 수 있습니다. <br><br>
 ![mdowns](https://user-images.githubusercontent.com/54253400/89508574-0d707300-d809-11ea-81dc-b6d2b83086d9.PNG)
 ▶ 비활성화인 계정을 로그인 하시면 관리자에게 메일로 문의 후 관리자를 통해 계정을 다시 활성화 할 수 있습니다.
+
+## DB모델링 
+![1](https://user-images.githubusercontent.com/54253400/89509326-2594c200-d80a-11ea-8a24-f1080832bf31.PNG)
+<br><br>
