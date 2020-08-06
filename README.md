@@ -58,16 +58,16 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 
 ## 사용한 기술들
 # Front 
-▶ EL , JSTL
-▶ SweetAlert , Iconify , FontAwesome
-▶ CSS , JavaScript , HTML 
-▶ Ajax , Bootstrap , JQUERY
+▶ EL , JSTL <br>
+▶ SweetAlert , Iconify , FontAwesome<br>
+▶ CSS , JavaScript , HTML <br>
+▶ Ajax , Bootstrap , JQUERY<br>
 # Back
-▶ JAVA 
-▶ Velocity, JavaMailSender
-▶ Mybatis, Spring Locale , SpringFramework , Spring Security 
+▶ JAVA <br>
+▶ Velocity, JavaMailSender<br>
+▶ Mybatis, Spring Locale , SpringFramework , Spring Security <br>
 # Server 
-▶ Apache Tomcat 
+▶ Apache Tomcat <br>
 # Tool
-▶ Eclipse 
+▶ Eclipse <br>
 ▶ SourceTree , eXERD 
