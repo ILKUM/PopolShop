@@ -56,3 +56,18 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 # 영화 추가 / 글작성
 ![2](https://user-images.githubusercontent.com/54253400/89510624-c46dee00-d80b-11ea-9050-ead4f2bd250c.png)
 
+## 사용한 기술들
+# Front 
+▶ EL , JSTL
+▶ SweetAlert , Iconify , FontAwesome
+▶ CSS , JavaScript , HTML 
+▶ Ajax , Bootstrap , JQUERY
+# Back
+▶ JAVA 
+▶ Velocity, JavaMailSender
+▶ Mybatis, Spring Locale , SpringFramework , Spring Security 
+# Server 
+▶ Apache Tomcat 
+# Tool
+▶ Eclipse 
+▶ SourceTree , eXERD 
