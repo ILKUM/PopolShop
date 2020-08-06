@@ -25,6 +25,6 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 
 # 3.글 추천하기
 ![likeup](https://user-images.githubusercontent.com/54253400/89506834-a8b41900-d806-11ea-9434-08cdbfc7b9a7.PNG)
-▶ 글 상세보기에 글을 추천을 할 수 있습니다. <br>
+▶ 글 상세보기에 글을 추천을 할 수 있습니다. <br><br>
 ![like](https://user-images.githubusercontent.com/54253400/89506836-a9e54600-d806-11ea-81b6-04781461c321.PNG)
 ▶ 한 사람당 추천은 한번씩만 가능합니다. <br><br>
