@@ -92,8 +92,8 @@
 		          			<span class="icon-globe"></span>
 		          		</div>
 		          		<div>
-			          		<h3 class="mb-3">Website</h3>
-				            <p><a href="#">www.모플렉스.com</a></p>
+			          		<h3 class="mb-3"><spring:message code="you.home" /></h3>
+				            <p><a href="index.do">www.모플렉스.com</a></p>
 			            </div>
 			          </div>
 		          </div>

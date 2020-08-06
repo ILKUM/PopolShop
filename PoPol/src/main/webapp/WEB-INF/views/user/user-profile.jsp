@@ -191,7 +191,7 @@ $(function(){
                            <option value="<spring:message code="admin.ban3" />"><spring:message code="admin.ban3" /></option>                    
                            <option value="<spring:message code="admin.ban4" />"><spring:message code="admin.ban4" /></option>                    
                      </select>
-                     <label for="tohave" style="margin-top: 8px;"><spring:message code="mail.have" /></label>
+                     <label for="tohave" style="margin-top: 8px;"><spring:message code="admin.email2" /></label>
                     <input class="form-control createmodal" type="text" id="email" style="width: 100%; border-radius: 0.25rem;" value="${member.email}" name="email"> 
                   </div>
                   <input type="submit" class="btn btn-secondary" id="invitebtn" value="<spring:message code="admin.send" />"

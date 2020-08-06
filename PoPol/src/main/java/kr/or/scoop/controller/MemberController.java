@@ -187,10 +187,9 @@ public class MemberController {
 		}
 		session.setAttribute("language", language);
 		
-		String email = "";
+		String email = (String)session.getAttribute("email");
 		String viewpage = "";
 		
-		email = (String)session.getAttribute("email");
 		MemberDao memberdao = sqlsession.getMapper(MemberDao.class);
 		Member member = memberdao.getMember((String)session.getAttribute("email")); //로그인한 사람 정보 불러오기
 		Role role = memberdao.getRole(email); //로그인한 사람 등급 불러오기
