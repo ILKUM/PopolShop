@@ -53,5 +53,6 @@ root-context.xml 파일의 데이터베이스 username , password 변경 후 DDL
 # 회원가입 / 로그인
 ![1](https://user-images.githubusercontent.com/54253400/89510344-66d9a180-d80b-11ea-9e3f-5d7583f703c6.PNG)
 
-
+# 영화 추가 / 글작성
+![2](https://user-images.githubusercontent.com/54253400/89510624-c46dee00-d80b-11ea-9050-ead4f2bd250c.png)
 
